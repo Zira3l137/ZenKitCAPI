@@ -10,6 +10,7 @@ option(CZK_ENABLE_ASAN "CZenKit: Enable sanitizers in debug builds." ON)
 add_subdirectory(vendor/ZenKit)
 
 list(APPEND _CZK_SOURCES
+        src/CutsceneLibrary.cc
         src/Stream.cc
         src/Logger.cc
         src/Vfs.cc
