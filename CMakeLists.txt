@@ -11,6 +11,7 @@ add_subdirectory(vendor/ZenKit)
 
 list(APPEND _CZK_SOURCES
         src/CutsceneLibrary.cc
+        src/Font.cc
         src/Stream.cc
         src/Logger.cc
         src/Vfs.cc
