@@ -6,6 +6,7 @@
 	#include <glm/vec2.hpp>
 	#include <glm/vec3.hpp>
 	#include <glm/vec4.hpp>
+	#include <glm/ext/quaternion_float.hpp>
 
 extern "C" {
 #endif
@@ -36,6 +37,15 @@ typedef struct ZkInternal_Vec4f {
 
 	float x, y, z, w;
 } ZkVec4f;
+
+typedef struct ZkInternal_Quat {
+#ifdef __cplusplus
+	inline ZkInternal_Quat(glm::quat const& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}
+	inline ZkInternal_Quat(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+#endif
+
+	float x, y, z, w;
+} ZkQuat;
 
 #ifdef __cplusplus
 }
