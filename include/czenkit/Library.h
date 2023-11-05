@@ -30,6 +30,8 @@
 #endif
 
 #ifdef __cplusplus
+	#include <zenkit/Logger.hh>
+
 	#define CZK_WRAP_NEW(x) new (decltype(x))(std::move(x))
 	#define CZK_LOG_ERROR(...) zenkit::Logger::log(zenkit::LogLevel::ERROR, "<Native>", __VA_ARGS__)
 	#define CZK_LOG_WARN(...) zenkit::Logger::log(zenkit::LogLevel::WARNING, "<Native>", __VA_ARGS__)

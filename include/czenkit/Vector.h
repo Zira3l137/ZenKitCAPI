@@ -8,48 +8,33 @@
 	#include <glm/vec4.hpp>
 	#include <glm/ext/quaternion_float.hpp>
 
-extern "C" {
-#endif
+using ZkVec2f = glm::vec2;
+using ZkVec3f = glm::vec3;
+using ZkVec4f = glm::vec4;
+using ZkQuat = glm::quat;
+using ZkColor = glm::u8vec4;
+#else
 
-typedef struct ZkInternal_Vec2f {
-#ifdef __cplusplus
-	inline ZkInternal_Vec2f() = default;
-	inline ZkInternal_Vec2f(glm::vec2 const& v) : x(v.x), y(v.y) {}
-	inline ZkInternal_Vec2f(float x, float y) : x(x), y(y) {}
-#endif
-
+typedef struct {
 	float x, y;
 } ZkVec2f;
 
-typedef struct ZkInternal_Vec3f {
-#ifdef __cplusplus
-	inline ZkInternal_Vec3f() = default;
-	inline ZkInternal_Vec3f(glm::vec3 const& v) : x(v.x), y(v.y), z(v.z) {}
-	inline ZkInternal_Vec3f(float x, float y, float z) : x(x), y(y), z(z) {}
-#endif
-
+typedef struct {
 	float x, y, z;
 } ZkVec3f;
 
-typedef struct ZkInternal_Vec4f {
-#ifdef __cplusplus
-	inline ZkInternal_Vec4f() = default;
-	inline ZkInternal_Vec4f(glm::vec4 const& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}
-	inline ZkInternal_Vec4f(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
-#endif
-
+typedef struct {
 	float x, y, z, w;
 } ZkVec4f;
 
-typedef struct ZkInternal_Quat {
-#ifdef __cplusplus
-	inline ZkInternal_Quat(glm::quat const& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}
-	inline ZkInternal_Quat(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
-#endif
-
+typedef struct {
 	float x, y, z, w;
 } ZkQuat;
 
-#ifdef __cplusplus
-}
+typedef struct {
+	uint8_t r, g, b, a
+} ZkColor;
+
 #endif
+
+
