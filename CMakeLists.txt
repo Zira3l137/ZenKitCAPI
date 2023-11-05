@@ -5,6 +5,11 @@ include(support/BuildSupport.cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Required for dependencies to compile properly.
+if (NOT MSVC)
+    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-fPIC")
+endif ()
+
 option(CZK_ENABLE_ASAN "CZenKit: Enable sanitizers in debug builds." ON)
 
 add_subdirectory(vendor/ZenKit)
@@ -21,6 +26,7 @@ list(APPEND _CZK_SOURCES
         src/MultiResolutionMesh.cc
         src/SoftSkinMesh.cc
         src/Stream.cc
+        src/Texture.cc
         src/Logger.cc
         src/Vfs.cc
 )
