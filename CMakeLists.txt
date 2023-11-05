@@ -16,7 +16,9 @@ list(APPEND _CZK_SOURCES
         src/Material.cc
         src/ModelAnimation.cc
         src/ModelHierarchy.cc
+        src/ModelMesh.cc
         src/MultiResolutionMesh.cc
+        src/SoftSkinMesh.cc
         src/Stream.cc
         src/Logger.cc
         src/Vfs.cc
