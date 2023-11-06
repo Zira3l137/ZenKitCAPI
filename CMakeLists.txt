@@ -32,6 +32,9 @@ list(APPEND _CZK_SOURCES
         src/Texture.cc
         src/Logger.cc
         src/Vfs.cc
+        src/world/BspTree.cc
+        src/world/WayNet.cc
+        src/World.cc
 )
 
 bs_select_cflags(${CZK_ENABLE_ASAN} _CZK_OMPILE_FLAGS _CZK_LINK_FLAGS)
