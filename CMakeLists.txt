@@ -24,6 +24,7 @@ list(APPEND _CZK_SOURCES
         src/ModelAnimation.cc
         src/ModelHierarchy.cc
         src/ModelMesh.cc
+        src/ModelScript.cc
         src/MorphMesh.cc
         src/MultiResolutionMesh.cc
         src/SoftSkinMesh.cc

@@ -43,3 +43,5 @@ typedef unsigned long ZkSize;
 typedef signed long ZkOffset;
 typedef unsigned int ZkBool;
 typedef char const* ZkString;
+
+typedef ZkBool (*ZkStringEnumerator)(void* ctx, ZkString str);
