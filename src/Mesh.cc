@@ -138,7 +138,7 @@ ZkVertex const* ZkMesh_getVertices(ZkMesh const* slf, ZkSize* count) {
 		return nullptr;
 	}
 
-	*count = slf->vertices.size();
+	*count = slf->features.size();
 	return slf->features.data();
 }
 
