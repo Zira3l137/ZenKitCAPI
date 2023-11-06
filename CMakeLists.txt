@@ -19,6 +19,7 @@ list(APPEND _CZK_SOURCES
         src/CutsceneLibrary.cc
         src/Font.cc
         src/Material.cc
+        src/Mesh.cc
         src/Model.cc
         src/ModelAnimation.cc
         src/ModelHierarchy.cc
