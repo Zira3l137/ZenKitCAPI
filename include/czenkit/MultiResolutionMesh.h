@@ -58,11 +58,11 @@ CZK_API ZkVec3f const* ZkMultiResolutionMesh_getPositions(ZkMultiResolutionMesh 
 CZK_API ZkVec3f const* ZkMultiResolutionMesh_getNormals(ZkMultiResolutionMesh const* slf, ZkSize* count);
 
 CZK_API ZkSize ZkMultiResolutionMesh_getSubMeshCount(ZkMultiResolutionMesh const* slf);
-CZK_API ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* slf, long i);
+CZK_API ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* slf, ZkSize i);
 CZK_API void ZkMultiResolutionMesh_enumerateSubMeshes(ZkMultiResolutionMesh const* slf, ZkSubMeshEnumerator cb, void* ctx);
 
 CZK_API ZkSize ZkMultiResolutionMesh_getMaterialCount(ZkMultiResolutionMesh const* slf);
-CZK_API ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const* slf, long i);
+CZK_API ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const* slf, ZkSize i);
 CZK_API void ZkMultiResolutionMesh_enumerateMaterials(ZkMultiResolutionMesh const* slf, ZkMaterialEnumerator cb, void* ctx);
 
 CZK_API ZkBool ZkMultiResolutionMesh_getAlphaTest(ZkMultiResolutionMesh const* slf);

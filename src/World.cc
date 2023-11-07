@@ -89,7 +89,7 @@ ZkSize ZkWorld_getRootObjectCount(ZkWorld const* slf) {
 	return slf->world_vobs.size();
 }
 
-ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, long i) {
+ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkWorld_getRootObject");
 		return nullptr;

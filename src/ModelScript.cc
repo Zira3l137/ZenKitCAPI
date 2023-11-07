@@ -135,7 +135,7 @@ ZkSize ZkModelScript_getAnimationCount(ZkModelScript const* slf) {
 }
 
 
-ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, long i) {
+ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getDisabledAnimation");
 		return nullptr;
@@ -149,7 +149,7 @@ ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, long i) {
 	return slf->disabled_animations[i].c_str();
 }
 
-ZkString ZkModelScript_getMesh(ZkModelScript const* slf, long i) {
+ZkString ZkModelScript_getMesh(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getMesh");
 		return nullptr;
@@ -163,7 +163,7 @@ ZkString ZkModelScript_getMesh(ZkModelScript const* slf, long i) {
 	return slf->meshes[i].c_str();
 }
 
-ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const* slf, long i) {
+ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationCombine");
 		return nullptr;
@@ -177,7 +177,7 @@ ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const*
 	return &slf->combinations[i];
 }
 
-ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf, long i) {
+ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationBlend");
 		return nullptr;
@@ -191,7 +191,7 @@ ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf
 	return &slf->blends[i];
 }
 
-ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf, long i) {
+ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationAlias");
 		return nullptr;
@@ -205,7 +205,7 @@ ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf
 	return &slf->aliases[i];
 }
 
-ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, long i) {
+ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getModelTag");
 		return nullptr;
@@ -219,7 +219,7 @@ ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, long i) {
 	return slf->model_tags[i].bone.c_str();
 }
 
-ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, long i) {
+ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkModelScript_getAnimation");
 		return nullptr;

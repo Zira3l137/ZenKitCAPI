@@ -11,27 +11,14 @@
 #ifdef __cplusplus
 	#include <zenkit/ModelAnimation.hh>
 using ZkModelAnimation = zenkit::ModelAnimation;
+using ZkAnimationSample = zenkit::AnimationSample;
 #else
 typedef struct ZkInternal_ModelAnimation ZkModelAnimation;
-#endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-typedef struct ZkInternal_AnimationSample {
-#ifdef __cplusplus
-	inline ZkInternal_AnimationSample() : position(ZkVec3f {0, 0, 0}), rotation(ZkQuat {0, 0, 0, 0}) {}
-	inline ZkInternal_AnimationSample(zenkit::AnimationSample const& sample)
-	    : position(sample.position), rotation(sample.rotation) {}
-#endif
-
+typedef struct {
 	ZkVec3f position;
 	ZkQuat rotation;
 } ZkAnimationSample;
-
-#ifdef __cplusplus
-};
 #endif
 
 typedef ZkBool (*ZkAnimationSampleEnumerator)(void* ctx, ZkAnimationSample* sample);

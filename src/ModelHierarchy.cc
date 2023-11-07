@@ -73,7 +73,11 @@ ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSiz
 		return {};
 	}
 
-	return slf->nodes[i];
+	return ZkModelHierarchyNode {
+	    slf->nodes[i].parent_index,
+	    slf->nodes[i].name.c_str(),
+	    slf->nodes[i].transform,
+	};
 }
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getBbox(ZkModelHierarchy const* slf) {
@@ -138,9 +142,12 @@ void ZkModelHierarchy_enumerateNodes(ZkModelHierarchy const* slf, ZkModelHierarc
 
 	ZkModelHierarchyNode n;
 	for (auto& node : slf->nodes) {
-		n = node;
-		if (cb(ctx, &n)) {
-			break;
-		}
+		n = {
+		    node.parent_index,
+		    node.name.c_str(),
+		    node.transform,
+		};
+
+		if (cb(ctx, &n)) break;
 	}
 }

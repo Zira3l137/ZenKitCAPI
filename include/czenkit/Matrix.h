@@ -21,16 +21,7 @@ typedef struct ZkInternal_Mat4x4 {
 	}
 #endif
 
-	union {
-		ZkVec4f columns[4] {};
-
-		struct {
-			float m00, m01, m02, m03, //
-			    m10, m11, m12, m13,   //
-			    m20, m21, m22, m23,   //
-			    m30, m31, m32, m33;
-		};
-	};
+	ZkVec4f columns[4];
 } ZkMat4x4;
 
 typedef struct ZkInternal_Mat3x3 {
@@ -44,15 +35,7 @@ typedef struct ZkInternal_Mat3x3 {
 	}
 #endif
 
-	union {
-		ZkVec3f columns[3] {};
-
-		struct {
-			float m00, m01, m02, //
-			    m10, m11, m12,   //
-			    m20, m21, m22;
-		};
-	};
+	ZkVec3f columns[3];
 } ZkMat3x3;
 
 #ifdef __cplusplus

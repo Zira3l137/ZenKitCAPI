@@ -91,7 +91,7 @@ uint32_t ZkTexture_getWidthMipmap(ZkTexture const* slf, ZkSize level) {
 		return 0;
 	}
 
-	return slf->mipmap_width(level);
+	return slf->mipmap_width(static_cast<uint32_t>(level));
 }
 
 uint32_t ZkTexture_getHeightMipmap(ZkTexture const* slf, ZkSize level) {
@@ -105,7 +105,7 @@ uint32_t ZkTexture_getHeightMipmap(ZkTexture const* slf, ZkSize level) {
 		return 0;
 	}
 
-	return slf->mipmap_height(level);
+	return slf->mipmap_height(static_cast<uint32_t>(level));
 }
 
 uint32_t ZkTexture_getWidthRef(ZkTexture const* slf) {
@@ -160,8 +160,8 @@ uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize
 		return nullptr;
 	}
 
-	*size = slf->data(level).size();
-	return slf->data(level).data();
+	*size = slf->data(static_cast<uint32_t>(level)).size();
+	return slf->data(static_cast<uint32_t>(level)).data();
 }
 
 ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf, ZkSize size) {
@@ -170,7 +170,7 @@ ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf,
 		return 0;
 	}
 
-	auto data = slf->as_rgba8(level);
+	auto data = slf->as_rgba8(static_cast<uint32_t>(level));
 	if (size < data.size()) {
 		CZK_LOG_WARN("ZkTexture_getMipmapRgba() returning incomplete image: buffer too small");
 	} else {

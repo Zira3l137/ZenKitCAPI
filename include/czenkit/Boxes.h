@@ -9,7 +9,7 @@
 
 using ZkAxisAlignedBoundingBox = zenkit::AxisAlignedBoundingBox;
 using ZkOrientedBoundingBox = zenkit::OrientedBoundingBox;
-#elif
+#else
 typedef struct {
 	ZkVec3f min;
 	ZkVec3f max;

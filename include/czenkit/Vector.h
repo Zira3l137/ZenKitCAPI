@@ -1,6 +1,7 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
+#include <stdint.h>
 
 #ifdef __cplusplus
 	#include <glm/vec2.hpp>
@@ -34,7 +35,7 @@ typedef struct {
 } ZkQuat;
 
 typedef struct {
-	uint8_t r, g, b, a
+	uint8_t r, g, b, a;
 } ZkColor;
 
 typedef struct {

@@ -82,7 +82,7 @@ ZkSize ZkMultiResolutionMesh_getSubMeshCount(ZkMultiResolutionMesh const* slf) {
 	return slf->sub_meshes.size();
 }
 
-ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* slf, long i) {
+ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getSubMesh");
 		return nullptr;
@@ -116,7 +116,7 @@ ZkSize ZkMultiResolutionMesh_getMaterialCount(ZkMultiResolutionMesh const* slf) 
 	return slf->materials.size();
 }
 
-ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const* slf, long i) {
+ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getMaterial");
 		return nullptr;

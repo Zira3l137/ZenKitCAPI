@@ -113,13 +113,13 @@ CZK_API ZkSize ZkModelScript_getAnimationAliasCount(ZkModelScript const* slf);
 CZK_API ZkSize ZkModelScript_getModelTagCount(ZkModelScript const* slf);
 CZK_API ZkSize ZkModelScript_getAnimationCount(ZkModelScript const* slf);
 
-CZK_API ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, long i);
-CZK_API ZkString ZkModelScript_getMesh(ZkModelScript const* slf, long i);
-CZK_API ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const* slf, long i);
-CZK_API ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf, long i);
-CZK_API ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf, long i);
-CZK_API ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, long i);
-CZK_API ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, long i);
+CZK_API ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, ZkSize i);
+CZK_API ZkString ZkModelScript_getMesh(ZkModelScript const* slf, ZkSize i);
+CZK_API ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const* slf, ZkSize i);
+CZK_API ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf, ZkSize i);
+CZK_API ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf, ZkSize i);
+CZK_API ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, ZkSize i);
+CZK_API ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, ZkSize i);
 
 CZK_API void ZkModelScript_enumerateAnimationCombines(ZkModelScript const* slf, ZkAnimationCombineEnumerator cb, void* ctx);
 CZK_API void ZkModelScript_enumerateMeshes(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx);

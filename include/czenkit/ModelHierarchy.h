@@ -21,15 +21,9 @@ extern "C" {
 #endif
 
 typedef struct ZkInternal_ModelHierarchyNode {
-#ifdef __cplusplus
-	inline ZkInternal_ModelHierarchyNode(){}
-	inline ZkInternal_ModelHierarchyNode(zenkit::ModelHierarchyNode const& node)
-	    : parentIndex(node.parent_index), name(node.name.c_str()), transform(node.transform) {}
-#endif
-
-	int16_t parentIndex {-1};
-	ZkString name {};
-	ZkMat4x4 transform {};
+	int16_t parentIndex;
+	ZkString name;
+	ZkMat4x4 transform;
 } ZkModelHierarchyNode;
 
 #ifdef __cplusplus

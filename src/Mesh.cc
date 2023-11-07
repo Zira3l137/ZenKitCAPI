@@ -97,7 +97,7 @@ ZkSize ZkMesh_getMaterialCount(ZkMesh const* slf) {
 	return slf->materials.size();
 }
 
-ZkMaterial const* ZkMesh_getMaterial(ZkMesh const* slf, long i) {
+ZkMaterial const* ZkMesh_getMaterial(ZkMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkMesh_getMaterial");
 		return nullptr;
@@ -151,7 +151,7 @@ ZkSize ZkMesh_getLightMapCount(ZkMesh const* slf) {
 	return slf->lightmaps.size();
 }
 
-ZkLightMap const* ZkMesh_getLightMap(ZkMesh const* slf, long i) {
+ZkLightMap const* ZkMesh_getLightMap(ZkMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkMesh_getLightMap");
 		return nullptr;
@@ -185,7 +185,7 @@ ZkSize ZkMesh_getPolygonCount(ZkMesh const* slf) {
 	return slf->geometry.size();
 }
 
-ZkPolygon const* ZkMesh_getPolygon(ZkMesh const* slf, long i) {
+ZkPolygon const* ZkMesh_getPolygon(ZkMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkMesh_getPolygon");
 		return nullptr;
@@ -361,7 +361,7 @@ uint8_t ZkPolygon_getNormalAxis(ZkPolygon const* slf) {
 	return slf->flags.normal_axis;
 }
 
-uint16_t ZkPolygon_getSectorIndex(ZkPolygon const* slf) {
+int16_t ZkPolygon_getSectorIndex(ZkPolygon const* slf) {
 	if (slf == nullptr) {
 		CZK_LOG_WARN_NULL("ZkPolygon_getSectorIndex");
 		return {};
