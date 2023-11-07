@@ -5,7 +5,7 @@
 #include "Mesh.h"
 #include "Stream.h"
 #include "Vfs.h"
-#include "vobs/VirtualObject.hh"
+#include "vobs/VirtualObject.h"
 #include "world/BspTree.h"
 #include "world/WayNet.h"
 
@@ -26,5 +26,5 @@ CZK_API ZkWayNet const* ZkWorld_getWayNet(ZkWorld const* slf);
 CZK_API ZkBspTree const* ZkWorld_getBspTree(ZkWorld const* slf);
 
 CZK_API ZkSize ZkWorld_getRootObjectCount(ZkWorld const* slf);
-CZK_API ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, long i);
+CZK_API ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, ZkSize i);
 CZK_API void ZkWorld_enumerateRootObjects(ZkWorld const* slf, ZkVirtualObjectEnumerator cb, void* ctx);

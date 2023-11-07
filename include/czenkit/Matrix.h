@@ -33,6 +33,28 @@ typedef struct ZkInternal_Mat4x4 {
 	};
 } ZkMat4x4;
 
+typedef struct ZkInternal_Mat3x3 {
+#ifdef __cplusplus
+	inline ZkInternal_Mat3x3() = default;
+
+	inline ZkInternal_Mat3x3(glm::mat3 const& v) {
+		columns[0] = v[0];
+		columns[1] = v[1];
+		columns[2] = v[2];
+	}
+#endif
+
+	union {
+		ZkVec3f columns[3] {};
+
+		struct {
+			float m00, m01, m02, //
+			    m10, m11, m12,   //
+			    m20, m21, m22;
+		};
+	};
+} ZkMat3x3;
+
 #ifdef __cplusplus
 }
 #endif

@@ -32,6 +32,7 @@ list(APPEND _CZK_SOURCES
         src/Texture.cc
         src/Logger.cc
         src/Vfs.cc
+        src/vobs/VirtualObject.cc
         src/world/BspTree.cc
         src/world/WayNet.cc
         src/World.cc

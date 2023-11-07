@@ -45,3 +45,8 @@ typedef unsigned int ZkBool;
 typedef char const* ZkString;
 
 typedef ZkBool (*ZkStringEnumerator)(void* ctx, ZkString str);
+
+typedef enum {
+	ZkGameVersion_GOTHIC1 = 0,
+	ZkGameVersion_GOTHIC2 = 1,
+} ZkGameVersion;
