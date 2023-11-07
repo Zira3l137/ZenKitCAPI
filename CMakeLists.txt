@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(czenkit LANGUAGES CXX VERSION 1.3.0)
+project(czenkit LANGUAGES CXX C VERSION 1.3.0)
 
 include(support/BuildSupport.cmake)
 
@@ -34,6 +34,7 @@ list(APPEND _CZK_SOURCES
         src/Vfs.cc
         src/vobs/Camera.cc
         src/vobs/Light.cc
+        src/vobs/Misc.cc
         src/vobs/VirtualObject.cc
         src/world/BspTree.cc
         src/world/WayNet.cc
@@ -54,3 +55,7 @@ set_target_properties(czenkit PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY
 
 install(TARGETS czenkit ARCHIVE LIBRARY RUNTIME)
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/czenkit" TYPE INCLUDE)
+
+
+add_executable(test test.c)
+target_link_libraries(test PRIVATE czenkit)
