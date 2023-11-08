@@ -17,6 +17,7 @@ add_subdirectory(vendor/ZenKit)
 list(APPEND _CZK_SOURCES
         src/Boxes.cc
         src/CutsceneLibrary.cc
+        src/DaedalusScript.cc
         src/Font.cc
         src/Material.cc
         src/Mesh.cc
