@@ -39,6 +39,7 @@ list(APPEND _CZK_SOURCES
         src/vobs/Sound.cc
         src/vobs/Trigger.cc
         src/vobs/VirtualObject.cc
+        src/vobs/Zone.cc
         src/world/BspTree.cc
         src/world/WayNet.cc
         src/World.cc
