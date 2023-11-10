@@ -72,6 +72,31 @@ typedef enum {
 	ZkDaedalusDataType_INSTANCE = 7U,
 } ZkDaedalusDataType;
 
+typedef enum {
+	ZkDaedalusInstanceType_GuildValues = 0,
+	ZkDaedalusInstanceType_Npc = 1,
+	ZkDaedalusInstanceType_Mission = 2,
+	ZkDaedalusInstanceType_Item = 3,
+	ZkDaedalusInstanceType_Focus = 4,
+	ZkDaedalusInstanceType_Info = 5,
+	ZkDaedalusInstanceType_ItemReact = 6,
+	ZkDaedalusInstanceType_Spell = 7,
+	ZkDaedalusInstanceType_Svm = 8,
+	ZkDaedalusInstanceType_Menu = 9,
+	ZkDaedalusInstanceType_MenuItem = 10,
+	ZkDaedalusInstanceType_Camera = 11,
+	ZkDaedalusInstanceType_MusicSystem = 12,
+	ZkDaedalusInstanceType_MusicTheme = 13,
+	ZkDaedalusInstanceType_MusicJingle = 14,
+	ZkDaedalusInstanceType_ParticleEffect = 15,
+	ZkDaedalusInstanceType_EffectBase = 16,
+	ZkDaedalusInstanceType_ParticleEffectEmitKey = 17,
+	ZkDaedalusInstanceType_FightAi = 18,
+	ZkDaedalusInstanceType_SoundEffect = 19,
+	ZkDaedalusInstanceType_SoundSystem = 20,
+	ZkDaedalusInstanceType_Invalid = 20,
+} ZkDaedalusInstanceType;
+
 typedef struct {
 	ZkDaedalusOpcode op;
 	int32_t size;
@@ -122,3 +147,6 @@ CZK_API int32_t ZkDaedalusSymbol_getSize(ZkDaedalusSymbol const* slf);
 CZK_API ZkDaedalusDataType ZkDaedalusSymbol_getType(ZkDaedalusSymbol const* slf);
 CZK_API uint32_t ZkDaedalusSymbol_getIndex(ZkDaedalusSymbol const* slf);
 CZK_API ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const* slf);
+
+CZK_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf);
+CZK_API uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf);

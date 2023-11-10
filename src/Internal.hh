@@ -151,3 +151,11 @@ inline bool zk_any_nullptr(T*... args) {
 			return {};                                                                                                 \
 		}                                                                                                              \
 	} while (false)
+
+#define CZK_CHECK_LENA(maxlen, par)                                                                                    \
+	do {                                                                                                               \
+		if ((par) >= (maxlen)) {                                                                                       \
+			CZK_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
+			return {};                                                                                                 \
+		}                                                                                                              \
+	} while (false)

@@ -3,6 +3,8 @@
 #include "czenkit/DaedalusScript.h"
 #include "Internal.hh"
 
+#include <zenkit/addon/daedalus.hh>
+
 CZK_LOADER(ZkDaedalusScript)
 CZK_PATH_LOADER(ZkDaedalusScript)
 CZK_VFS_LOADER(ZkDaedalusScript)
@@ -83,7 +85,6 @@ ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByName(ZkDaedalusScript* slf, ZkStri
 	CZK_CHECK_NULL(slf, name);
 	CZK_RETURN_CATCH(slf->find_symbol_by_name(name));
 }
-
 
 ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	CZK_CHECK_NULL(slf);
@@ -178,4 +179,37 @@ uint32_t ZkDaedalusSymbol_getIndex(ZkDaedalusSymbol const* slf) {
 ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const* slf) {
 	CZK_CHECK_NULL(slf);
 	CZK_RETURN_CATCH(static_cast<ZkDaedalusDataType>(slf->rtype()));
+}
+
+CZK_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf) {
+	auto type = slf->instance_type();
+
+	if (type == &typeid(zenkit::IGuildValues)) return ZkDaedalusInstanceType_GuildValues;
+	if (type == &typeid(zenkit::INpc)) return ZkDaedalusInstanceType_Npc;
+	if (type == &typeid(zenkit::IMission)) return ZkDaedalusInstanceType_Mission;
+	if (type == &typeid(zenkit::IItem)) return ZkDaedalusInstanceType_Item;
+	if (type == &typeid(zenkit::IFocus)) return ZkDaedalusInstanceType_Focus;
+	if (type == &typeid(zenkit::IInfo)) return ZkDaedalusInstanceType_Info;
+	if (type == &typeid(zenkit::IItemReact)) return ZkDaedalusInstanceType_ItemReact;
+	if (type == &typeid(zenkit::ISpell)) return ZkDaedalusInstanceType_Spell;
+	if (type == &typeid(zenkit::ISvm)) return ZkDaedalusInstanceType_Svm;
+	if (type == &typeid(zenkit::IMenu)) return ZkDaedalusInstanceType_Menu;
+	if (type == &typeid(zenkit::IMenuItem)) return ZkDaedalusInstanceType_MenuItem;
+	if (type == &typeid(zenkit::ICamera)) return ZkDaedalusInstanceType_Camera;
+	if (type == &typeid(zenkit::IMusicSystem)) return ZkDaedalusInstanceType_MusicSystem;
+	if (type == &typeid(zenkit::IMusicTheme)) return ZkDaedalusInstanceType_MusicTheme;
+	if (type == &typeid(zenkit::IMusicJingle)) return ZkDaedalusInstanceType_MusicJingle;
+	if (type == &typeid(zenkit::IParticleEffect)) return ZkDaedalusInstanceType_ParticleEffect;
+	if (type == &typeid(zenkit::IEffectBase)) return ZkDaedalusInstanceType_EffectBase;
+	if (type == &typeid(zenkit::IParticleEffectEmitKey)) return ZkDaedalusInstanceType_ParticleEffectEmitKey;
+	if (type == &typeid(zenkit::IFightAi)) return ZkDaedalusInstanceType_FightAi;
+	if (type == &typeid(zenkit::ISoundEffect)) return ZkDaedalusInstanceType_SoundEffect;
+	if (type == &typeid(zenkit::ISoundSystem)) return ZkDaedalusInstanceType_SoundSystem;
+
+	return ZkDaedalusInstanceType_Invalid;
+}
+
+uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf) {
+	CZK_CHECK_NULL(slf);
+	return slf->symbol_index();
 }

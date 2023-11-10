@@ -18,6 +18,27 @@ list(APPEND _CZK_SOURCES
         src/Boxes.cc
         src/CutsceneLibrary.cc
         src/DaedalusScript.cc
+        src/DaedalusVm.cc
+        src/daedalus/CameraInstance.cc
+        src/daedalus/EffectBaseInstance.cc
+        src/daedalus/FightAiInstance.cc
+        src/daedalus/FocusInstance.cc
+        src/daedalus/GuildValuesInstance.cc
+        src/daedalus/InfoInstance.cc
+        src/daedalus/ItemInstance.cc
+        src/daedalus/ItemReactInstance.cc
+        src/daedalus/MenuInstance.cc
+        src/daedalus/MenuItemInstance.cc
+        src/daedalus/MissionInstance.cc
+        src/daedalus/MusicJingleInstance.cc
+        src/daedalus/MusicSystemInstance.cc
+        src/daedalus/MusicThemeInstance.cc
+        src/daedalus/NpcInstance.cc
+        src/daedalus/ParticleEffectEmitKeyInstance.cc
+        src/daedalus/ParticleEffectInstance.cc
+        src/daedalus/SoundEffectInstance.cc
+        src/daedalus/SoundSystemInstance.cc
+        src/daedalus/SpellInstance.cc
         src/Font.cc
         src/Material.cc
         src/Mesh.cc
