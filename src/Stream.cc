@@ -2,6 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Stream.h"
 
+#ifdef _WIN32
+	typedef std::ptrdiff_t ssize_t;
+#endif
+
 class ZkReadExtImpl final : public zenkit::Read {
 public:
 	ZkReadExtImpl(ZkReadExt ext, void* ctx) : _m_ctx(ctx), _m_ext(ext) {}
@@ -20,7 +24,7 @@ public:
 		return _m_ext.read(_m_ctx, buf, len);
 	}
 
-	void seek(int64_t off, zenkit::Whence whence) noexcept override {
+	void seek(ssize_t off, zenkit::Whence whence) noexcept override {
 		_m_ext.seek(_m_ctx, off, static_cast<ZkWhence>(whence));
 	}
 
