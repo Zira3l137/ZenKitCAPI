@@ -72,4 +72,4 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Windows x86-64 DLL'
-          path: 'build/*'
+          path: 'build/Release/*'
