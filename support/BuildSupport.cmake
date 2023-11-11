@@ -9,8 +9,6 @@
 function(bs_select_cflags SANITIZERS COMPILE LINK)
     if (MSVC)
         bs_internal_select_cflags_msvc(${SANITIZERS} _INTERNAL_COMPILE_FLAGS _INTERNAL_LINK_FLAGS)
-    elseif(MINGW)
-        bs_internal_select_cflags_mingw(${SANITIZERS} _INTERNAL_COMPILE_FLAGS _INTERNAL_LINK_FLAGS)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "^Clang")
         bs_internal_select_cflags_clang(${SANITIZERS} _INTERNAL_COMPILE_FLAGS _INTERNAL_LINK_FLAGS)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "^GCC")
@@ -80,24 +78,6 @@ function(bs_internal_select_cflags_clang SANITIZERS COMPILE LINK)
         list(APPEND _INTERNAL_COMPILE_FLAGS "-fstandalone-debug")
         list(APPEND _INTERNAL_LINK_FLAGS "-fstandalone-debug")
     endif()
-
-    # return _INTERNAL_COMPILE_FLAGS, _INTERNAL_LINK_FLAGS;
-    set(${COMPILE} ${_INTERNAL_COMPILE_FLAGS} PARENT_SCOPE)
-    set(${LINK} ${_INTERNAL_LINK_FLAGS} PARENT_SCOPE)
-    return()
-endfunction()
-
-## Compute the compile and link flags for MinGW
-##
-## Args:
-##   SANITIZERS(bool): Whether to enable sanitizers or not.
-##
-## Returns:
-##   COMPILE(list): A list containing the compiler flags
-##   LINK(list): A list containing the linker flags
-function(bs_internal_select_cflags_mingw SANITIZERS COMPILE LINK)
-    bs_internal_select_cflags_gcc(${SANITIZERS} _INTERNAL_COMPILE_FLAGS _INTERNAL_LINK_FLAGS)
-    list(APPEND _INTERNAL_LINK_FLAGS "-static")
 
     # return _INTERNAL_COMPILE_FLAGS, _INTERNAL_LINK_FLAGS;
     set(${COMPILE} ${_INTERNAL_COMPILE_FLAGS} PARENT_SCOPE)
