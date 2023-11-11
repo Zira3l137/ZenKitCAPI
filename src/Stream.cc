@@ -20,7 +20,7 @@ public:
 		return _m_ext.read(_m_ctx, buf, len);
 	}
 
-	void seek(ssize_t off, zenkit::Whence whence) noexcept override {
+	void seek(int64_t off, zenkit::Whence whence) noexcept override {
 		_m_ext.seek(_m_ctx, off, static_cast<ZkWhence>(whence));
 	}
 
