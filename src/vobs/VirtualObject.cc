@@ -1,12 +1,12 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/vobs/VirtualObject.h"
+#include "zenkit-capi/vobs/VirtualObject.h"
 
 #include <zenkit/Archive.hh>
 
 ZkVirtualObject* ZkVirtualObject_load(ZkRead* buf, ZkGameVersion version) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_load");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_load");
 		return nullptr;
 	}
 
@@ -20,14 +20,14 @@ ZkVirtualObject* ZkVirtualObject_load(ZkRead* buf, ZkGameVersion version) {
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
 		return new ZkVirtualObject {std::move(obj)};
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVirtualObject_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVirtualObject_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkVirtualObject* ZkVirtualObject_loadPath(ZkString path, ZkGameVersion version) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_loadPath");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_loadPath");
 		return nullptr;
 	}
 
@@ -40,9 +40,9 @@ ZkVirtualObject* ZkVirtualObject_loadPath(ZkString path, ZkGameVersion version) 
 
 		ZkVirtualObject obj {};
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVirtualObject_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVirtualObject_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
@@ -54,7 +54,7 @@ void ZkVirtualObject_del(ZkVirtualObject* slf) {
 
 ZkVobType ZkVirtualObject_getType(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getType");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getType");
 		return {};
 	}
 
@@ -63,7 +63,7 @@ ZkVobType ZkVirtualObject_getType(ZkVirtualObject const* slf) {
 
 uint32_t ZkVirtualObject_getId(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getId");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getId");
 		return {};
 	}
 
@@ -72,7 +72,7 @@ uint32_t ZkVirtualObject_getId(ZkVirtualObject const* slf) {
 
 ZkAxisAlignedBoundingBox ZkVirtualObject_getBbox(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAxisAlignedBoundingBox");
+		ZKC_LOG_WARN_NULL("ZkAxisAlignedBoundingBox");
 		return {};
 	}
 
@@ -81,7 +81,7 @@ ZkAxisAlignedBoundingBox ZkVirtualObject_getBbox(ZkVirtualObject const* slf) {
 
 ZkVec3f ZkVirtualObject_getPosition(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getPosition");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getPosition");
 		return {};
 	}
 
@@ -90,7 +90,7 @@ ZkVec3f ZkVirtualObject_getPosition(ZkVirtualObject const* slf) {
 
 ZkMat3x3 ZkVirtualObject_getRotation(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getRotation");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getRotation");
 		return {};
 	}
 
@@ -99,7 +99,7 @@ ZkMat3x3 ZkVirtualObject_getRotation(ZkVirtualObject const* slf) {
 
 ZkBool ZkVirtualObject_getShowVisual(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getShowVisual");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getShowVisual");
 		return {};
 	}
 
@@ -108,7 +108,7 @@ ZkBool ZkVirtualObject_getShowVisual(ZkVirtualObject const* slf) {
 
 ZkSpriteAlignment ZkVirtualObject_getSpriteCameraFacingMode(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getSpriteCameraFacingMode");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getSpriteCameraFacingMode");
 		return {};
 	}
 
@@ -117,7 +117,7 @@ ZkSpriteAlignment ZkVirtualObject_getSpriteCameraFacingMode(ZkVirtualObject cons
 
 ZkBool ZkVirtualObject_getCdStatic(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getCdStatic");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getCdStatic");
 		return {};
 	}
 
@@ -126,7 +126,7 @@ ZkBool ZkVirtualObject_getCdStatic(ZkVirtualObject const* slf) {
 
 ZkBool ZkVirtualObject_getCdDynamic(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getCdDynamic");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getCdDynamic");
 		return {};
 	}
 
@@ -135,7 +135,7 @@ ZkBool ZkVirtualObject_getCdDynamic(ZkVirtualObject const* slf) {
 
 ZkBool ZkVirtualObject_getVobStatic(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getVobStatic");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVobStatic");
 		return {};
 	}
 
@@ -144,7 +144,7 @@ ZkBool ZkVirtualObject_getVobStatic(ZkVirtualObject const* slf) {
 
 ZkShadowType ZkVirtualObject_getDynamicShadows(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getDynamicShadows");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getDynamicShadows");
 		return {};
 	}
 
@@ -153,7 +153,7 @@ ZkShadowType ZkVirtualObject_getDynamicShadows(ZkVirtualObject const* slf) {
 
 ZkBool ZkVirtualObject_getPhysicsEnabled(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getPhysicsEnabled");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getPhysicsEnabled");
 		return {};
 	}
 
@@ -162,7 +162,7 @@ ZkBool ZkVirtualObject_getPhysicsEnabled(ZkVirtualObject const* slf) {
 
 ZkAnimationType ZkVirtualObject_getAnimMode(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getAnimMode");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getAnimMode");
 		return {};
 	}
 
@@ -171,7 +171,7 @@ ZkAnimationType ZkVirtualObject_getAnimMode(ZkVirtualObject const* slf) {
 
 int32_t ZkVirtualObject_getBias(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getBias");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getBias");
 		return {};
 	}
 
@@ -180,7 +180,7 @@ int32_t ZkVirtualObject_getBias(ZkVirtualObject const* slf) {
 
 ZkBool ZkVirtualObject_getAmbient(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getAmbient");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getAmbient");
 		return {};
 	}
 
@@ -189,7 +189,7 @@ ZkBool ZkVirtualObject_getAmbient(ZkVirtualObject const* slf) {
 
 float ZkVirtualObject_getAnimStrength(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getAnimStrength");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getAnimStrength");
 		return {};
 	}
 
@@ -198,7 +198,7 @@ float ZkVirtualObject_getAnimStrength(ZkVirtualObject const* slf) {
 
 float ZkVirtualObject_getFarClipScale(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getFarClipScale");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getFarClipScale");
 		return {};
 	}
 
@@ -207,7 +207,7 @@ float ZkVirtualObject_getFarClipScale(ZkVirtualObject const* slf) {
 
 ZkString ZkVirtualObject_getPresetName(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getPresetName");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getPresetName");
 		return {};
 	}
 
@@ -216,7 +216,7 @@ ZkString ZkVirtualObject_getPresetName(ZkVirtualObject const* slf) {
 
 ZkString ZkVirtualObject_getName(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getName");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getName");
 		return {};
 	}
 
@@ -225,7 +225,7 @@ ZkString ZkVirtualObject_getName(ZkVirtualObject const* slf) {
 
 ZkString ZkVirtualObject_getVisualName(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getVisualName");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVisualName");
 		return {};
 	}
 
@@ -234,7 +234,7 @@ ZkString ZkVirtualObject_getVisualName(ZkVirtualObject const* slf) {
 
 ZkVisualType ZkVirtualObject_getVisualType(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getVisualType");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVisualType");
 		return {};
 	}
 
@@ -243,7 +243,7 @@ ZkVisualType ZkVirtualObject_getVisualType(ZkVirtualObject const* slf) {
 
 ZkDecal const* ZkVirtualObject_getVisualDecal(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getVisualDecal");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVisualDecal");
 		return {};
 	}
 
@@ -252,7 +252,7 @@ ZkDecal const* ZkVirtualObject_getVisualDecal(ZkVirtualObject const* slf) {
 
 ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getChildCount");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getChildCount");
 		return 0;
 	}
 
@@ -261,12 +261,12 @@ ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf) {
 
 ZkVirtualObject const* ZkVirtualObject_getChild(ZkVirtualObject const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_getChild");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_getChild");
 		return nullptr;
 	}
 
 	if (i >= slf->children.size()) {
-		CZK_LOG_ERROR("ZkVirtualObject_getChild() failed: index out of range");
+		ZKC_LOG_ERROR("ZkVirtualObject_getChild() failed: index out of range");
 		return nullptr;
 	}
 
@@ -275,7 +275,7 @@ ZkVirtualObject const* ZkVirtualObject_getChild(ZkVirtualObject const* slf, ZkSi
 
 void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObjectEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVirtualObject_enumerateChildren");
+		ZKC_LOG_WARN_NULL("ZkVirtualObject_enumerateChildren");
 		return;
 	}
 
@@ -286,7 +286,7 @@ void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObje
 
 ZkString ZkDecal_getName(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getName");
+		ZKC_LOG_WARN_NULL("ZkDecal_getName");
 		return {};
 	}
 
@@ -295,7 +295,7 @@ ZkString ZkDecal_getName(ZkDecal const* slf){
 
 ZkVec2f ZkDecal_getDimension(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getDimension");
+		ZKC_LOG_WARN_NULL("ZkDecal_getDimension");
 		return {};
 	}
 
@@ -304,7 +304,7 @@ ZkVec2f ZkDecal_getDimension(ZkDecal const* slf){
 
 ZkVec2f ZkDecal_getOffset(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getOffset");
+		ZKC_LOG_WARN_NULL("ZkDecal_getOffset");
 		return {};
 	}
 
@@ -313,7 +313,7 @@ ZkVec2f ZkDecal_getOffset(ZkDecal const* slf){
 
 ZkBool ZkDecal_getTwoSided(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getTwoSided");
+		ZKC_LOG_WARN_NULL("ZkDecal_getTwoSided");
 		return {};
 	}
 
@@ -322,7 +322,7 @@ ZkBool ZkDecal_getTwoSided(ZkDecal const* slf){
 
 ZkAlphaFunction ZkDecal_getAlphaFunc(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getAlphaFunc");
+		ZKC_LOG_WARN_NULL("ZkDecal_getAlphaFunc");
 		return {};
 	}
 
@@ -331,7 +331,7 @@ ZkAlphaFunction ZkDecal_getAlphaFunc(ZkDecal const* slf){
 
 float ZkDecal_getTextureAnimFps(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getTextureAnimFps");
+		ZKC_LOG_WARN_NULL("ZkDecal_getTextureAnimFps");
 		return {};
 	}
 
@@ -340,7 +340,7 @@ float ZkDecal_getTextureAnimFps(ZkDecal const* slf){
 
 uint8_t ZkDecal_getAlphaWeight(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getAlphaWeight");
+		ZKC_LOG_WARN_NULL("ZkDecal_getAlphaWeight");
 		return {};
 	}
 
@@ -349,7 +349,7 @@ uint8_t ZkDecal_getAlphaWeight(ZkDecal const* slf){
 
 ZkBool ZkDecal_getIgnoreDaylight(ZkDecal const* slf){
 	if (slf == nullptr ){
-		CZK_LOG_WARN_NULL("ZkDecal_getIgnoreDaylight");
+		ZKC_LOG_WARN_NULL("ZkDecal_getIgnoreDaylight");
 		return {};
 	}
 

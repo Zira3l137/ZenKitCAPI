@@ -1,6 +1,6 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/Stream.h"
+#include "zenkit-capi/Stream.h"
 
 class ZkReadExtImpl final : public zenkit::Read {
 public:

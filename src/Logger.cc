@@ -1,6 +1,6 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/Logger.h"
+#include "zenkit-capi/Logger.h"
 
 #include <zenkit/Logger.hh>
 

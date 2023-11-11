@@ -1,12 +1,12 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/Material.h"
+#include "zenkit-capi/Material.h"
 
 #include <zenkit/Archive.hh>
 
 ZkMaterial* ZkMaterial_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_load");
+		ZKC_LOG_WARN_NULL("ZkMaterial_load");
 		return nullptr;
 	}
 
@@ -16,16 +16,16 @@ ZkMaterial* ZkMaterial_load(ZkRead* buf) {
 
 		ZkMaterial obj {};
 		obj.load(*ar);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkMaterial_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkMaterial_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkMaterial* ZkMaterial_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_loadPath");
+		ZKC_LOG_WARN_NULL("ZkMaterial_loadPath");
 		return nullptr;
 	}
 
@@ -36,9 +36,9 @@ ZkMaterial* ZkMaterial_loadPath(ZkString path) {
 
 		ZkMaterial obj {};
 		obj.load(*ar);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkMaterial_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkMaterial_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
@@ -49,7 +49,7 @@ void ZkMaterial_del(ZkMaterial* slf) {
 
 ZkString ZkMaterial_getName(ZkMaterial const* slf){
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getName");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getName");
 		return nullptr;
 	}
 
@@ -58,7 +58,7 @@ ZkString ZkMaterial_getName(ZkMaterial const* slf){
 
 ZkMaterialGroup ZkMaterial_getGroup(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getGroup");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getGroup");
 		return ZkMaterialGroup_UNDEFINED;
 	}
 
@@ -67,7 +67,7 @@ ZkMaterialGroup ZkMaterial_getGroup(ZkMaterial const* slf) {
 
 ZkColor ZkMaterial_getColor(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getColor");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getColor");
 		return {};
 	}
 
@@ -76,7 +76,7 @@ ZkColor ZkMaterial_getColor(ZkMaterial const* slf) {
 
 float ZkMaterial_getSmoothAngle(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getSmoothAngle");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getSmoothAngle");
 		return 0;
 	}
 
@@ -85,7 +85,7 @@ float ZkMaterial_getSmoothAngle(ZkMaterial const* slf) {
 
 ZkString ZkMaterial_getTexture(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getTexture");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getTexture");
 		return nullptr;
 	}
 
@@ -94,7 +94,7 @@ ZkString ZkMaterial_getTexture(ZkMaterial const* slf) {
 
 ZkVec2f ZkMaterial_getTextureScale(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getTextureScale");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureScale");
 		return {};
 	}
 
@@ -103,7 +103,7 @@ ZkVec2f ZkMaterial_getTextureScale(ZkMaterial const* slf) {
 
 float ZkMaterial_getTextureAnimationFps(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getTextureAnimationFps");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureAnimationFps");
 		return 0;
 	}
 
@@ -112,7 +112,7 @@ float ZkMaterial_getTextureAnimationFps(ZkMaterial const* slf) {
 
 ZkAnimationMapping ZkMaterial_getTextureAnimationMapping(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getTextureAnimationMapping");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureAnimationMapping");
 		return ZkAnimationMapping_NONE;
 	}
 
@@ -121,7 +121,7 @@ ZkAnimationMapping ZkMaterial_getTextureAnimationMapping(ZkMaterial const* slf) 
 
 ZkVec2f ZkMaterial_getTextureAnimationMappingDirection(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getTextureAnimationMappingDirection");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureAnimationMappingDirection");
 		return {};
 	}
 
@@ -130,7 +130,7 @@ ZkVec2f ZkMaterial_getTextureAnimationMappingDirection(ZkMaterial const* slf) {
 
 ZkBool ZkMaterial_getDisableCollision(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getDisableCollision");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getDisableCollision");
 		return false;
 	}
 
@@ -139,7 +139,7 @@ ZkBool ZkMaterial_getDisableCollision(ZkMaterial const* slf) {
 
 ZkBool ZkMaterial_getDisableLightmap(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getDisableLightmap");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getDisableLightmap");
 		return false;
 	}
 
@@ -148,7 +148,7 @@ ZkBool ZkMaterial_getDisableLightmap(ZkMaterial const* slf) {
 
 ZkBool ZkMaterial_getDontCollapse(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getDontCollapse");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getDontCollapse");
 		return false;
 	}
 
@@ -157,7 +157,7 @@ ZkBool ZkMaterial_getDontCollapse(ZkMaterial const* slf) {
 
 ZkString ZkMaterial_getDetailObject(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getDetailObject");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getDetailObject");
 		return nullptr;
 	}
 
@@ -166,7 +166,7 @@ ZkString ZkMaterial_getDetailObject(ZkMaterial const* slf) {
 
 float ZkMaterial_getDetailObjectScale(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getDetailObjectScale");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getDetailObjectScale");
 		return 1;
 	}
 
@@ -175,7 +175,7 @@ float ZkMaterial_getDetailObjectScale(ZkMaterial const* slf) {
 
 ZkBool ZkMaterial_getForceOccluder(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getForceOccluder");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getForceOccluder");
 		return false;
 	}
 
@@ -184,7 +184,7 @@ ZkBool ZkMaterial_getForceOccluder(ZkMaterial const* slf) {
 
 ZkBool ZkMaterial_getEnvironmentMapping(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getEnvironmentMapping");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getEnvironmentMapping");
 		return false;
 	}
 
@@ -193,7 +193,7 @@ ZkBool ZkMaterial_getEnvironmentMapping(ZkMaterial const* slf) {
 
 float ZkMaterial_getEnvironmentMappingStrength(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getEnvironmentMappingStrength");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getEnvironmentMappingStrength");
 		return 0;
 	}
 
@@ -202,7 +202,7 @@ float ZkMaterial_getEnvironmentMappingStrength(ZkMaterial const* slf) {
 
 ZkWaveMode ZkMaterial_getWaveMode(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getWaveMode");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveMode");
 		return ZkWaveMode_NONE;
 	}
 
@@ -211,7 +211,7 @@ ZkWaveMode ZkMaterial_getWaveMode(ZkMaterial const* slf) {
 
 ZkWaveSpeed ZkMaterial_getWaveSpeed(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getWaveSpeed");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveSpeed");
 		return ZkWaveSpeed_NORMAL;
 	}
 
@@ -220,7 +220,7 @@ ZkWaveSpeed ZkMaterial_getWaveSpeed(ZkMaterial const* slf) {
 
 float ZkMaterial_getWaveAmplitude(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getWaveAmplitude");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveAmplitude");
 		return 0;
 	}
 
@@ -229,7 +229,7 @@ float ZkMaterial_getWaveAmplitude(ZkMaterial const* slf) {
 
 float ZkMaterial_getWaveGridSize(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getWaveGridSize");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveGridSize");
 		return 1;
 	}
 
@@ -238,7 +238,7 @@ float ZkMaterial_getWaveGridSize(ZkMaterial const* slf) {
 
 ZkBool ZkMaterial_getIgnoreSun(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getIgnoreSun");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getIgnoreSun");
 		return false;
 	}
 
@@ -247,7 +247,7 @@ ZkBool ZkMaterial_getIgnoreSun(ZkMaterial const* slf) {
 
 ZkAlphaFunction ZkMaterial_getAlphaFunction(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getAlphaFunction");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getAlphaFunction");
 		return ZkAlphaFunction_DEFAULT;
 	}
 
@@ -256,7 +256,7 @@ ZkAlphaFunction ZkMaterial_getAlphaFunction(ZkMaterial const* slf) {
 
 ZkVec2f ZkMaterial_getDefaultMapping(ZkMaterial const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMaterial_getDefaultMapping");
+		ZKC_LOG_WARN_NULL("ZkMaterial_getDefaultMapping");
 		return {};
 	}
 

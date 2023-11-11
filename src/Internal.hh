@@ -3,27 +3,27 @@
 #pragma once
 #include <zenkit/Archive.hh>
 
-#define CZK_LOADER(cls)                                                                                                \
+#define ZKC_LOADER(cls)                                                                                                \
 	cls* cls##_load(ZkRead* buf) {                                                                                     \
 		if (buf == nullptr) {                                                                                          \
-			CZK_LOG_WARN_NULL(#cls "_load");                                                                           \
+			ZKC_LOG_WARN_NULL(#cls "_load");                                                                           \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
                                                                                                                        \
 		try {                                                                                                          \
 			cls obj {};                                                                                                \
 			obj.load(buf);                                                                                             \
-			return CZK_WRAP_NEW(obj);                                                                                  \
+			return ZKC_WRAP_NEW(obj);                                                                                  \
 		} catch (std::exception const& exc) {                                                                          \
-			CZK_LOG_ERROR(#cls "_load() failed: %s", exc.what());                                                      \
+			ZKC_LOG_ERROR(#cls "_load() failed: %s", exc.what());                                                      \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
 	}
 
-#define CZK_PATH_LOADER(cls)                                                                                           \
+#define ZKC_PATH_LOADER(cls)                                                                                           \
 	cls* cls##_loadPath(ZkString path) {                                                                               \
 		if (path == nullptr) {                                                                                         \
-			CZK_LOG_WARN_NULL(#cls "_loadPath");                                                                       \
+			ZKC_LOG_WARN_NULL(#cls "_loadPath");                                                                       \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
                                                                                                                        \
@@ -32,17 +32,17 @@
                                                                                                                        \
 			cls obj {};                                                                                                \
 			obj.load(buf.get());                                                                                       \
-			return CZK_WRAP_NEW(obj);                                                                                  \
+			return ZKC_WRAP_NEW(obj);                                                                                  \
 		} catch (std::exception const& exc) {                                                                          \
-			CZK_LOG_ERROR(#cls "_loadPath() failed: %s", exc.what());                                                  \
+			ZKC_LOG_ERROR(#cls "_loadPath() failed: %s", exc.what());                                                  \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
 	}
 
-#define CZK_VFS_LOADER(cls)                                                                                            \
+#define ZKC_VFS_LOADER(cls)                                                                                            \
 	cls* cls##_loadVfs(ZkVfs* vfs, ZkString name) {                                                                    \
 		if (vfs == nullptr || name == nullptr) {                                                                       \
-			CZK_LOG_WARN_NULL(#cls "_loadVfs");                                                                        \
+			ZKC_LOG_WARN_NULL(#cls "_loadVfs");                                                                        \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
                                                                                                                        \
@@ -53,35 +53,35 @@
 		return cls##_load(rd.get());                                                                                   \
 	}
 
-#define CZK_DELETER(cls)                                                                                               \
+#define ZKC_DELETER(cls)                                                                                               \
 	void cls##_del(cls* slf) {                                                                                         \
 		delete slf;                                                                                                    \
 	}
 
-#define CZK_RETURN_CATCH(expr)                                                                                         \
+#define ZKC_RETURN_CATCH(expr)                                                                                         \
 	do {                                                                                                               \
 		try {                                                                                                          \
 			return (expr);                                                                                             \
 		} catch (std::exception const& exc) {                                                                          \
-			CZK_LOG_ERROR("%s() failed: %s", __func__, exc.what());                                                    \
+			ZKC_LOG_ERROR("%s() failed: %s", __func__, exc.what());                                                    \
 			return {};                                                                                                 \
 		}                                                                                                              \
 	} while (0)
 
-#define CZK_CATCH(expr)                                                                                                \
+#define ZKC_CATCH(expr)                                                                                                \
 	do {                                                                                                               \
 		try {                                                                                                          \
 			expr;                                                                                                      \
 		} catch (std::exception const& exc) {                                                                          \
-			CZK_LOG_ERROR("%s() failed: %s", __func__, exc.what());                                                    \
+			ZKC_LOG_ERROR("%s() failed: %s", __func__, exc.what());                                                    \
 			return;                                                                                                    \
 		}                                                                                                              \
 	} while (0)
 
-#define CZK_VOB_LOADER(cls)                                                                                            \
+#define ZKC_VOB_LOADER(cls)                                                                                            \
 	cls* cls##_load(ZkRead* buf, ZkGameVersion version) {                                                              \
 		if (buf == nullptr) {                                                                                          \
-			CZK_LOG_WARN_NULL(#cls "_load");                                                                           \
+			ZKC_LOG_WARN_NULL(#cls "_load");                                                                           \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
                                                                                                                        \
@@ -93,17 +93,17 @@
                                                                                                                        \
 			cls obj {};                                                                                                \
 			obj.load(*ar, static_cast<zenkit::GameVersion>(version));                                                  \
-			return CZK_WRAP_NEW(obj);                                                                                  \
+			return ZKC_WRAP_NEW(obj);                                                                                  \
 		} catch (std::exception const& exc) {                                                                          \
-			CZK_LOG_ERROR(#cls "_load() failed: %s", exc.what());                                                      \
+			ZKC_LOG_ERROR(#cls "_load() failed: %s", exc.what());                                                      \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
 	}
 
-#define CZK_VOB_PATH_LOADER(cls)                                                                                       \
+#define ZKC_VOB_PATH_LOADER(cls)                                                                                       \
 	cls* cls##_loadPath(ZkString path, ZkGameVersion version) {                                                        \
 		if (path == nullptr) {                                                                                         \
-			CZK_LOG_WARN_NULL(#cls "_loadPath");                                                                       \
+			ZKC_LOG_WARN_NULL(#cls "_loadPath");                                                                       \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
                                                                                                                        \
@@ -116,9 +116,9 @@
                                                                                                                        \
 			cls obj {};                                                                                                \
 			obj.load(*ar, static_cast<zenkit::GameVersion>(version));                                                  \
-			return CZK_WRAP_NEW(obj);                                                                                  \
+			return ZKC_WRAP_NEW(obj);                                                                                  \
 		} catch (std::exception const& exc) {                                                                          \
-			CZK_LOG_ERROR(#cls "_loadPath() failed: %s", exc.what());                                                  \
+			ZKC_LOG_ERROR(#cls "_loadPath() failed: %s", exc.what());                                                  \
 			return nullptr;                                                                                            \
 		}                                                                                                              \
 	}
@@ -128,34 +128,34 @@ inline bool zk_any_nullptr(T*... args) {
 	return ((args == nullptr) || ...);
 }
 
-#define CZK_CHECK_NULL(...)                                                                                            \
+#define ZKC_CHECK_NULL(...)                                                                                            \
 	do {                                                                                                               \
 		if (zk_any_nullptr(__VA_ARGS__)) {                                                                             \
-			CZK_LOG_ERROR("%s() failed: received NULL argument", __func__);                                            \
+			ZKC_LOG_ERROR("%s() failed: received NULL argument", __func__);                                            \
 			return {};                                                                                                 \
 		}                                                                                                              \
 	} while (false)
 
-#define CZK_CHECK_NULLV(...)                                                                                           \
+#define ZKC_CHECK_NULLV(...)                                                                                           \
 	do {                                                                                                               \
 		if (zk_any_nullptr(__VA_ARGS__)) {                                                                             \
-			CZK_LOG_ERROR("%s() failed: received NULL argument", __func__);                                            \
+			ZKC_LOG_ERROR("%s() failed: received NULL argument", __func__);                                            \
 			return;                                                                                                    \
 		}                                                                                                              \
 	} while (false)
 
-#define CZK_CHECK_LEN(lst, par)                                                                                        \
+#define ZKC_CHECK_LEN(lst, par)                                                                                        \
 	do {                                                                                                               \
 		if ((par) >= (lst).size()) {                                                                                   \
-			CZK_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
+			ZKC_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
 			return {};                                                                                                 \
 		}                                                                                                              \
 	} while (false)
 
-#define CZK_CHECK_LENA(maxlen, par)                                                                                    \
+#define ZKC_CHECK_LENA(maxlen, par)                                                                                    \
 	do {                                                                                                               \
 		if ((par) >= (maxlen)) {                                                                                       \
-			CZK_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
+			ZKC_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
 			return {};                                                                                                 \
 		}                                                                                                              \
 	} while (false)

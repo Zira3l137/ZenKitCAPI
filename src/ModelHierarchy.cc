@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/ModelHierarchy.h"
+#include "zenkit-capi/ModelHierarchy.h"
 
 ZkModelHierarchy* ZkModelHierarchy_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_load");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_load");
 		return nullptr;
 	}
 
 	try {
 		ZkModelHierarchy obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelHierarchy_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelHierarchy_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelHierarchy* ZkModelHierarchy_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_loadPath");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkModelHierarchy* ZkModelHierarchy_loadPath(ZkString path) {
 
 		ZkModelHierarchy obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelHierarchy_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelHierarchy_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelHierarchy* ZkModelHierarchy_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkModelHierarchy_del(ZkModelHierarchy* slf) {
 
 ZkSize ZkModelHierarchy_getNodeCount(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getNodeCount");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getNodeCount");
 		return 0;
 	}
 
@@ -64,12 +64,12 @@ ZkSize ZkModelHierarchy_getNodeCount(ZkModelHierarchy const* slf) {
 
 ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getNode");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getNode");
 		return {};
 	}
 
 	if (i >= slf->nodes.size()) {
-		CZK_LOG_ERROR("ZkModelHierarchy_getNode() failed: index out of range");
+		ZKC_LOG_ERROR("ZkModelHierarchy_getNode() failed: index out of range");
 		return {};
 	}
 
@@ -82,7 +82,7 @@ ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSiz
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getBbox(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getBbox");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getBbox");
 		return {};
 	}
 
@@ -91,7 +91,7 @@ ZkAxisAlignedBoundingBox ZkModelHierarchy_getBbox(ZkModelHierarchy const* slf) {
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getCollisionBbox(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getCollisionBbox");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getCollisionBbox");
 		return {};
 	}
 
@@ -100,7 +100,7 @@ ZkAxisAlignedBoundingBox ZkModelHierarchy_getCollisionBbox(ZkModelHierarchy cons
 
 ZkVec3f ZkModelHierarchy_getRootTranslation(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getRootTranslation");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getRootTranslation");
 		return {};
 	}
 
@@ -109,7 +109,7 @@ ZkVec3f ZkModelHierarchy_getRootTranslation(ZkModelHierarchy const* slf) {
 
 uint32_t ZkModelHierarchy_getChecksum(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getChecksum");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getChecksum");
 		return {};
 	}
 
@@ -118,7 +118,7 @@ uint32_t ZkModelHierarchy_getChecksum(ZkModelHierarchy const* slf) {
 
 ZkDate ZkModelHierarchy_getSourceDate(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getSourceDate");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getSourceDate");
 		return {};
 	}
 
@@ -127,7 +127,7 @@ ZkDate ZkModelHierarchy_getSourceDate(ZkModelHierarchy const* slf) {
 
 ZkString ZkModelHierarchy_getSourcePath(ZkModelHierarchy const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_getSourcePath");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getSourcePath");
 		return {};
 	}
 
@@ -136,7 +136,7 @@ ZkString ZkModelHierarchy_getSourcePath(ZkModelHierarchy const* slf) {
 
 void ZkModelHierarchy_enumerateNodes(ZkModelHierarchy const* slf, ZkModelHierarchyNodeEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelHierarchy_enumerateNodes");
+		ZKC_LOG_WARN_NULL("ZkModelHierarchy_enumerateNodes");
 		return;
 	}
 

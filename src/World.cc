@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/World.h"
+#include "zenkit-capi/World.h"
 
 ZkWorld* ZkWorld_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_load");
+		ZKC_LOG_WARN_NULL("ZkWorld_load");
 		return nullptr;
 	}
 
 	try {
 		ZkWorld obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkWorld_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkWorld_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkWorld* ZkWorld_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_loadPath");
+		ZKC_LOG_WARN_NULL("ZkWorld_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkWorld* ZkWorld_loadPath(ZkString path) {
 
 		ZkWorld obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkWorld_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkWorld_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkWorld* ZkWorld_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkWorld_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkWorld_del(ZkWorld* slf) {
 
 ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_getMesh");
+		ZKC_LOG_WARN_NULL("ZkWorld_getMesh");
 		return nullptr;
 	}
 
@@ -64,7 +64,7 @@ ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf) {
 
 ZkWayNet const* ZkWorld_getWayNet(ZkWorld const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_getWayNet");
+		ZKC_LOG_WARN_NULL("ZkWorld_getWayNet");
 		return nullptr;
 	}
 
@@ -73,7 +73,7 @@ ZkWayNet const* ZkWorld_getWayNet(ZkWorld const* slf) {
 
 ZkBspTree const* ZkWorld_getBspTree(ZkWorld const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_getBspTree");
+		ZKC_LOG_WARN_NULL("ZkWorld_getBspTree");
 		return nullptr;
 	}
 
@@ -82,7 +82,7 @@ ZkBspTree const* ZkWorld_getBspTree(ZkWorld const* slf) {
 
 ZkSize ZkWorld_getRootObjectCount(ZkWorld const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_getRootObjectCount");
+		ZKC_LOG_WARN_NULL("ZkWorld_getRootObjectCount");
 		return 0;
 	}
 
@@ -91,12 +91,12 @@ ZkSize ZkWorld_getRootObjectCount(ZkWorld const* slf) {
 
 ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_getRootObject");
+		ZKC_LOG_WARN_NULL("ZkWorld_getRootObject");
 		return nullptr;
 	}
 
 	if (i >= slf->world_vobs.size()) {
-		CZK_LOG_ERROR("ZkWorld_getRootObject() failed: index out of range");
+		ZKC_LOG_ERROR("ZkWorld_getRootObject() failed: index out of range");
 		return nullptr;
 	}
 
@@ -105,7 +105,7 @@ ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, ZkSize i) {
 
 void ZkWorld_enumerateRootObjects(ZkWorld const* slf, ZkVirtualObjectEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWorld_enumerateRootObjects");
+		ZKC_LOG_WARN_NULL("ZkWorld_enumerateRootObjects");
 		return;
 	}
 

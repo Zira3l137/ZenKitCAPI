@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/ModelMesh.h"
+#include "zenkit-capi/ModelMesh.h"
 
 ZkModelMesh* ZkModelMesh_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_load");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_load");
 		return nullptr;
 	}
 
 	try {
 		ZkModelMesh obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelMesh_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelMesh_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelMesh* ZkModelMesh_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_loadPath");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkModelMesh* ZkModelMesh_loadPath(ZkString path) {
 
 		ZkModelMesh obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelMesh_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelMesh_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelMesh* ZkModelMesh_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkModelMesh_del(ZkModelMesh* slf) {
 
 ZkSize ZkModelMesh_getMeshCount(ZkModelMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_getMeshCount");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_getMeshCount");
 		return 0;
 	}
 
@@ -64,12 +64,12 @@ ZkSize ZkModelMesh_getMeshCount(ZkModelMesh const* slf) {
 
 ZkSoftSkinMesh const* ZkModelMesh_getMesh(ZkModelMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_getMesh");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_getMesh");
 		return nullptr;
 	}
 
 	if (i >= slf->meshes.size()) {
-		CZK_LOG_ERROR("ZkModelMesh_getMesh() failed: index out of range");
+		ZKC_LOG_ERROR("ZkModelMesh_getMesh() failed: index out of range");
 		return nullptr;
 	}
 
@@ -78,7 +78,7 @@ ZkSoftSkinMesh const* ZkModelMesh_getMesh(ZkModelMesh const* slf, ZkSize i) {
 
 void ZkModelMesh_enumerateMeshes(ZkModelMesh const* slf, ZkSoftSkinMeshEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_enumerateMeshes");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_enumerateMeshes");
 		return;
 	}
 
@@ -89,7 +89,7 @@ void ZkModelMesh_enumerateMeshes(ZkModelMesh const* slf, ZkSoftSkinMeshEnumerato
 
 ZkSize ZkModelMesh_getAttachmentCount(ZkModelMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_getAttachmentCount");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_getAttachmentCount");
 		return 0;
 	}
 
@@ -98,7 +98,7 @@ ZkSize ZkModelMesh_getAttachmentCount(ZkModelMesh const* slf) {
 
 ZkMultiResolutionMesh const* ZkModelMesh_getAttachment(ZkModelMesh const* slf, ZkString name) {
 	if (slf == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_getAttachment");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_getAttachment");
 		return nullptr;
 	}
 
@@ -109,7 +109,7 @@ ZkMultiResolutionMesh const* ZkModelMesh_getAttachment(ZkModelMesh const* slf, Z
 
 void ZkModelMesh_enumerateAttachments(ZkModelMesh const* slf, ZkAttachmentEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_enumerateAttachments");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_enumerateAttachments");
 		return;
 	}
 
@@ -120,7 +120,7 @@ void ZkModelMesh_enumerateAttachments(ZkModelMesh const* slf, ZkAttachmentEnumer
 
 uint32_t ZkModelMesh_getChecksum(ZkModelMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelMesh_getChecksum");
+		ZKC_LOG_WARN_NULL("ZkModelMesh_getChecksum");
 		return 0;
 	}
 

@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/CutsceneLibrary.h"
+#include "zenkit-capi/CutsceneLibrary.h"
 
 ZkCutsceneLibrary* ZkCutsceneLibrary_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneLibrary_load");
+		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_load");
 		return nullptr;
 	}
 
 	try {
 		ZkCutsceneLibrary obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkCutsceneLibrary_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkCutsceneLibrary_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkCutsceneLibrary* ZkCutsceneLibrary_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneLibrary_loadPath");
+		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkCutsceneLibrary* ZkCutsceneLibrary_loadPath(ZkString path) {
 
 		ZkCutsceneLibrary obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkCutsceneLibrary_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkCutsceneLibrary_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkCutsceneLibrary* ZkCutsceneLibrary_loadVfs(ZkVfs const* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneLibrary_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkCutsceneLibrary_del(ZkCutsceneLibrary* slf) {
 
 ZkCutsceneBlock const* ZkCutsceneLibrary_getBlock(ZkCutsceneLibrary const* slf, ZkString name) {
 	if (slf == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneLibrary_getBlock");
+		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_getBlock");
 		return nullptr;
 	}
 
@@ -64,7 +64,7 @@ ZkCutsceneBlock const* ZkCutsceneLibrary_getBlock(ZkCutsceneLibrary const* slf, 
 
 void ZkCutsceneLibrary_enumerateBlocks(ZkCutsceneLibrary const* slf, ZkCutsceneBlockEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneLibrary_enumerateBlocks");
+		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_enumerateBlocks");
 		return;
 	}
 
@@ -75,7 +75,7 @@ void ZkCutsceneLibrary_enumerateBlocks(ZkCutsceneLibrary const* slf, ZkCutsceneB
 
 ZkString ZkCutsceneBlock_getName(ZkCutsceneBlock const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneBlock_getName");
+		ZKC_LOG_WARN_NULL("ZkCutsceneBlock_getName");
 		return nullptr;
 	}
 
@@ -84,7 +84,7 @@ ZkString ZkCutsceneBlock_getName(ZkCutsceneBlock const* slf) {
 
 ZkCutsceneMessage const* ZkCutsceneBlock_getMessage(ZkCutsceneBlock const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneBlock_getMessage");
+		ZKC_LOG_WARN_NULL("ZkCutsceneBlock_getMessage");
 		return nullptr;
 	}
 
@@ -93,7 +93,7 @@ ZkCutsceneMessage const* ZkCutsceneBlock_getMessage(ZkCutsceneBlock const* slf) 
 
 uint32_t ZkCutsceneMessage_getType(ZkCutsceneMessage const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneMessage_getType");
+		ZKC_LOG_WARN_NULL("ZkCutsceneMessage_getType");
 		return 0;
 	}
 
@@ -102,7 +102,7 @@ uint32_t ZkCutsceneMessage_getType(ZkCutsceneMessage const* slf) {
 
 ZkString ZkCutsceneMessage_getText(ZkCutsceneMessage const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneMessage_getText");
+		ZKC_LOG_WARN_NULL("ZkCutsceneMessage_getText");
 		return nullptr;
 	}
 
@@ -111,7 +111,7 @@ ZkString ZkCutsceneMessage_getText(ZkCutsceneMessage const* slf) {
 
 ZkString ZkCutsceneMessage_getName(ZkCutsceneMessage const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneMessage_getName");
+		ZKC_LOG_WARN_NULL("ZkCutsceneMessage_getName");
 		return nullptr;
 	}
 

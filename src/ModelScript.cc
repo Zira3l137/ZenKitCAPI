@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/ModelScript.h"
+#include "zenkit-capi/ModelScript.h"
 
 ZkModelScript* ZkModelScript_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_load");
+		ZKC_LOG_WARN_NULL("ZkModelScript_load");
 		return nullptr;
 	}
 
 	try {
 		ZkModelScript obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelScript_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelScript_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelScript* ZkModelScript_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_loadPath");
+		ZKC_LOG_WARN_NULL("ZkModelScript_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkModelScript* ZkModelScript_loadPath(ZkString path) {
 
 		ZkModelScript obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelScript_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelScript_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelScript* ZkModelScript_loadVfs(ZkVfs* vfs, ZkString name)  {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkModelScript_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkModelScript_del(ZkModelScript* slf) {
 
 ZkString ZkModelScript_getSkeletonName(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getSkeletonName");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getSkeletonName");
 		return nullptr;
 	}
 
@@ -64,7 +64,7 @@ ZkString ZkModelScript_getSkeletonName(ZkModelScript const* slf) {
 
 ZkBool ZkModelScript_getSkeletonMeshDisabled(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getSkeletonMeshDisabled");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getSkeletonMeshDisabled");
 		return false;
 	}
 
@@ -73,7 +73,7 @@ ZkBool ZkModelScript_getSkeletonMeshDisabled(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getMeshCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getMeshCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getMeshCount");
 		return 0;
 	}
 
@@ -82,7 +82,7 @@ ZkSize ZkModelScript_getMeshCount(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getDisabledAnimationsCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getDisabledAnimationsCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getDisabledAnimationsCount");
 		return 0;
 	}
 
@@ -91,7 +91,7 @@ ZkSize ZkModelScript_getDisabledAnimationsCount(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getAnimationCombineCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationCombineCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationCombineCount");
 		return 0;
 	}
 
@@ -100,7 +100,7 @@ ZkSize ZkModelScript_getAnimationCombineCount(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getAnimationBlendCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationBlendCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationBlendCount");
 		return 0;
 	}
 
@@ -109,7 +109,7 @@ ZkSize ZkModelScript_getAnimationBlendCount(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getAnimationAliasCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationAliasCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationAliasCount");
 		return 0;
 	}
 
@@ -118,7 +118,7 @@ ZkSize ZkModelScript_getAnimationAliasCount(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getModelTagCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getModelTagCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getModelTagCount");
 		return 0;
 	}
 
@@ -127,7 +127,7 @@ ZkSize ZkModelScript_getModelTagCount(ZkModelScript const* slf) {
 
 ZkSize ZkModelScript_getAnimationCount(ZkModelScript const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationCount");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationCount");
 		return 0;
 	}
 
@@ -137,12 +137,12 @@ ZkSize ZkModelScript_getAnimationCount(ZkModelScript const* slf) {
 
 ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getDisabledAnimation");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getDisabledAnimation");
 		return nullptr;
 	}
 
 	if (i >= slf->disabled_animations.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getDisabledAnimation() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getDisabledAnimation() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -151,12 +151,12 @@ ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, ZkSize i) 
 
 ZkString ZkModelScript_getMesh(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getMesh");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getMesh");
 		return nullptr;
 	}
 
 	if (i >= slf->meshes.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getMesh() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getMesh() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -165,12 +165,12 @@ ZkString ZkModelScript_getMesh(ZkModelScript const* slf, ZkSize i) {
 
 ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationCombine");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationCombine");
 		return nullptr;
 	}
 
 	if (i >= slf->combinations.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getAnimationCombine() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getAnimationCombine() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -179,12 +179,12 @@ ZkAnimationCombine const* ZkModelScript_getAnimationCombine(ZkModelScript const*
 
 ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationBlend");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationBlend");
 		return nullptr;
 	}
 
 	if (i >= slf->blends.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getAnimationBlend() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getAnimationBlend() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -193,12 +193,12 @@ ZkAnimationBlend const* ZkModelScript_getAnimationBlend(ZkModelScript const* slf
 
 ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimationAlias");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimationAlias");
 		return nullptr;
 	}
 
 	if (i >= slf->aliases.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getAnimationAlias() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getAnimationAlias() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -207,12 +207,12 @@ ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript const* slf
 
 ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getModelTag");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getModelTag");
 		return nullptr;
 	}
 
 	if (i >= slf->model_tags.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getModelTag() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getModelTag() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -221,12 +221,12 @@ ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, ZkSize i) {
 
 ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_getAnimation");
+		ZKC_LOG_WARN_NULL("ZkModelScript_getAnimation");
 		return nullptr;
 	}
 
 	if (i >= slf->animations.size()) {
-		CZK_LOG_ERROR("ZkModelScript_getAnimation() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkModelScript_getAnimation() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -236,7 +236,7 @@ ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, ZkSize i
 
 void ZkModelScript_enumerateAnimationCombines(ZkModelScript const* slf, ZkAnimationCombineEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateAnimationCombines");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateAnimationCombines");
 		return;
 	}
 
@@ -247,7 +247,7 @@ void ZkModelScript_enumerateAnimationCombines(ZkModelScript const* slf, ZkAnimat
 
 void ZkModelScript_enumerateMeshes(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateMeshes");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateMeshes");
 		return;
 	}
 
@@ -258,7 +258,7 @@ void ZkModelScript_enumerateMeshes(ZkModelScript const* slf, ZkStringEnumerator 
 
 void ZkModelScript_enumerateDisabledAnimations(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateDisabledAnimations");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateDisabledAnimations");
 		return;
 	}
 
@@ -269,7 +269,7 @@ void ZkModelScript_enumerateDisabledAnimations(ZkModelScript const* slf, ZkStrin
 
 void ZkModelScript_enumerateAnimationBlends(ZkModelScript const* slf, ZkAnimationBlendEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateAnimationBlends");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateAnimationBlends");
 		return;
 	}
 
@@ -280,7 +280,7 @@ void ZkModelScript_enumerateAnimationBlends(ZkModelScript const* slf, ZkAnimatio
 
 void ZkModelScript_enumerateAnimationAliases(ZkModelScript const* slf, ZkAnimationAliasEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateAnimationAliases");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateAnimationAliases");
 		return;
 	}
 
@@ -291,7 +291,7 @@ void ZkModelScript_enumerateAnimationAliases(ZkModelScript const* slf, ZkAnimati
 
 void ZkModelScript_enumerateModelTags(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateModelTags");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateModelTags");
 		return;
 	}
 
@@ -302,7 +302,7 @@ void ZkModelScript_enumerateModelTags(ZkModelScript const* slf, ZkStringEnumerat
 
 void ZkModelScript_enumerateAnimations(ZkModelScript const* slf, ZkAnimationEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelScript_enumerateAnimations");
+		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateAnimations");
 		return;
 	}
 
@@ -316,7 +316,7 @@ void ZkModelScript_enumerateAnimations(ZkModelScript const* slf, ZkAnimationEnum
 
 ZkString ZkAnimation_getName(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getName");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getName");
 		return {};
 	}
 
@@ -325,7 +325,7 @@ ZkString ZkAnimation_getName(ZkAnimation const* slf) {
 
 uint32_t ZkAnimation_getLayer(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getLayer");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getLayer");
 		return {};
 	}
 
@@ -334,7 +334,7 @@ uint32_t ZkAnimation_getLayer(ZkAnimation const* slf) {
 
 ZkString ZkAnimation_getNext(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getNext");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getNext");
 		return {};
 	}
 
@@ -343,7 +343,7 @@ ZkString ZkAnimation_getNext(ZkAnimation const* slf) {
 
 float ZkAnimation_getBlendIn(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getBlendIn");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getBlendIn");
 		return {};
 	}
 
@@ -352,7 +352,7 @@ float ZkAnimation_getBlendIn(ZkAnimation const* slf) {
 
 float ZkAnimation_getBlendOut(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getBlendOut");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getBlendOut");
 		return {};
 	}
 
@@ -361,7 +361,7 @@ float ZkAnimation_getBlendOut(ZkAnimation const* slf) {
 
 ZkAnimationFlag ZkAnimation_getFlags(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getFlags");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getFlags");
 		return {};
 	}
 
@@ -370,7 +370,7 @@ ZkAnimationFlag ZkAnimation_getFlags(ZkAnimation const* slf) {
 
 ZkString ZkAnimation_getModel(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getModel");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getModel");
 		return {};
 	}
 
@@ -379,7 +379,7 @@ ZkString ZkAnimation_getModel(ZkAnimation const* slf) {
 
 ZkAnimationDirection ZkAnimation_getDirection(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getDirection");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getDirection");
 		return {};
 	}
 
@@ -388,7 +388,7 @@ ZkAnimationDirection ZkAnimation_getDirection(ZkAnimation const* slf) {
 
 int32_t ZkAnimation_getFirstFrame(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getFirstFrame");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getFirstFrame");
 		return {};
 	}
 
@@ -397,7 +397,7 @@ int32_t ZkAnimation_getFirstFrame(ZkAnimation const* slf) {
 
 int32_t ZkAnimation_getLastFrame(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getLastFrame");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getLastFrame");
 		return {};
 	}
 
@@ -406,7 +406,7 @@ int32_t ZkAnimation_getLastFrame(ZkAnimation const* slf) {
 
 float ZkAnimation_getFps(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation");
+		ZKC_LOG_WARN_NULL("ZkAnimation");
 		return {};
 	}
 
@@ -415,7 +415,7 @@ float ZkAnimation_getFps(ZkAnimation const* slf) {
 
 float ZkAnimation_getSpeed(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("(");
+		ZKC_LOG_WARN_NULL("(");
 		return {};
 	}
 
@@ -424,7 +424,7 @@ float ZkAnimation_getSpeed(ZkAnimation const* slf) {
 
 float ZkAnimation_getCollisionVolumeScale(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getCollisionVolumeScale");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getCollisionVolumeScale");
 		return {};
 	}
 
@@ -434,7 +434,7 @@ float ZkAnimation_getCollisionVolumeScale(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getEventTagCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getEventCountTag");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getEventCountTag");
 		return 0;
 	}
 
@@ -443,7 +443,7 @@ ZkSize ZkAnimation_getEventTagCount(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getParticleEffectCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getParticleEffectCount");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getParticleEffectCount");
 		return 0;
 	}
 
@@ -452,7 +452,7 @@ ZkSize ZkAnimation_getParticleEffectCount(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getParticleEffectStopCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getParticleEffectStopCount");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getParticleEffectStopCount");
 		return 0;
 	}
 
@@ -461,7 +461,7 @@ ZkSize ZkAnimation_getParticleEffectStopCount(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getSoundEffectCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getSoundEffectCount");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getSoundEffectCount");
 		return 0;
 	}
 
@@ -470,7 +470,7 @@ ZkSize ZkAnimation_getSoundEffectCount(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getSoundEffectGroundCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getSoundEffectGroundCount");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getSoundEffectGroundCount");
 		return 0;
 	}
 
@@ -479,7 +479,7 @@ ZkSize ZkAnimation_getSoundEffectGroundCount(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getMorphAnimationCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getMorphAnimationCount");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getMorphAnimationCount");
 		return 0;
 	}
 
@@ -488,7 +488,7 @@ ZkSize ZkAnimation_getMorphAnimationCount(ZkAnimation const* slf) {
 
 ZkSize ZkAnimation_getCameraTremorCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getCameraTremorCount");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getCameraTremorCount");
 		return 0;
 	}
 
@@ -498,12 +498,12 @@ ZkSize ZkAnimation_getCameraTremorCount(ZkAnimation const* slf) {
 
 ZkEventTag const* ZkAnimation_getEventTag(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getEventTag");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getEventTag");
 		return nullptr;
 	}
 
 	if (i >= slf->events.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getEventTag() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getEventTag() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -512,12 +512,12 @@ ZkEventTag const* ZkAnimation_getEventTag(ZkAnimation const* slf, ZkSize i) {
 
 ZkEventParticleEffect const* ZkAnimation_getParticleEffect(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getParticleEffect");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getParticleEffect");
 		return nullptr;
 	}
 
 	if (i >= slf->pfx.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getParticleEffect() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getParticleEffect() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -526,12 +526,12 @@ ZkEventParticleEffect const* ZkAnimation_getParticleEffect(ZkAnimation const* sl
 
 ZkEventParticleEffectStop const* ZkAnimation_getParticleEffectStop(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getParticleEffectStop");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getParticleEffectStop");
 		return nullptr;
 	}
 
 	if (i >= slf->pfx_stop.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getParticleEffectStop() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getParticleEffectStop() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -540,12 +540,12 @@ ZkEventParticleEffectStop const* ZkAnimation_getParticleEffectStop(ZkAnimation c
 
 ZkEventSoundEffect const* ZkAnimation_getSoundEffect(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getSoundEffect");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getSoundEffect");
 		return nullptr;
 	}
 
 	if (i >= slf->sfx.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getSoundEffect() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getSoundEffect() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -554,12 +554,12 @@ ZkEventSoundEffect const* ZkAnimation_getSoundEffect(ZkAnimation const* slf, ZkS
 
 ZkEventSoundEffectGround const* ZkAnimation_getSoundEffectGround(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getSoundEffectGround");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getSoundEffectGround");
 		return nullptr;
 	}
 
 	if (i >= slf->sfx_ground.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getSoundEffectGround() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getSoundEffectGround() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -568,12 +568,12 @@ ZkEventSoundEffectGround const* ZkAnimation_getSoundEffectGround(ZkAnimation con
 
 ZkEventMorphAnimation const* ZkAnimation_getMorphAnimation(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getMorphAnimation");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getMorphAnimation");
 		return nullptr;
 	}
 
 	if (i >= slf->morph.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getMorphAnimation() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getMorphAnimation() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -582,12 +582,12 @@ ZkEventMorphAnimation const* ZkAnimation_getMorphAnimation(ZkAnimation const* sl
 
 ZkEventCameraTremor const* ZkAnimation_getCameraTremor(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_getCameraTremor");
+		ZKC_LOG_WARN_NULL("ZkAnimation_getCameraTremor");
 		return nullptr;
 	}
 
 	if (i >= slf->tremors.size()) {
-		CZK_LOG_ERROR("ZkAnimation_getCameraTremor() failed: index out of bounds");
+		ZKC_LOG_ERROR("ZkAnimation_getCameraTremor() failed: index out of bounds");
 		return nullptr;
 	}
 
@@ -597,7 +597,7 @@ ZkEventCameraTremor const* ZkAnimation_getCameraTremor(ZkAnimation const* slf, Z
 
 void ZkAnimation_enumerateEventTags(ZkAnimation const* slf, ZkEventTagEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateEventTags");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateEventTags");
 		return;
 	}
 
@@ -608,7 +608,7 @@ void ZkAnimation_enumerateEventTags(ZkAnimation const* slf, ZkEventTagEnumerator
 
 void ZkAnimation_enumerateParticleEffects(ZkAnimation const* slf, ZkEventParticlEffectEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateParticleEffects");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateParticleEffects");
 		return;
 	}
 
@@ -620,7 +620,7 @@ void ZkAnimation_enumerateParticleEffects(ZkAnimation const* slf, ZkEventParticl
 void ZkAnimation_enumerateParticleEffectStops(ZkAnimation const* slf,
                                               ZkEventParticleEffectStopEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateParticleEffectStops");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateParticleEffectStops");
 		return;
 	}
 
@@ -631,7 +631,7 @@ void ZkAnimation_enumerateParticleEffectStops(ZkAnimation const* slf,
 
 void ZkAnimation_enumerateSoundEffects(ZkAnimation const* slf, ZkEventSoundEffectEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateSoundEffects");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateSoundEffects");
 		return;
 	}
 
@@ -642,7 +642,7 @@ void ZkAnimation_enumerateSoundEffects(ZkAnimation const* slf, ZkEventSoundEffec
 
 void ZkAnimation_enumerateSoundEffectGrounds(ZkAnimation const* slf, ZkEventSoundEffectGroundEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateSoundEffectGrounds");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateSoundEffectGrounds");
 		return;
 	}
 
@@ -653,7 +653,7 @@ void ZkAnimation_enumerateSoundEffectGrounds(ZkAnimation const* slf, ZkEventSoun
 
 void ZkAnimation_enumerateMorphAnimations(ZkAnimation const* slf, ZkEventMorphAnimationEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateMorphAnimations");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateMorphAnimations");
 		return;
 	}
 
@@ -664,7 +664,7 @@ void ZkAnimation_enumerateMorphAnimations(ZkAnimation const* slf, ZkEventMorphAn
 
 void ZkAnimation_enumerateCameraTremors(ZkAnimation const* slf, ZkEventCameraTremorEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimation_enumerateCameraTremors");
+		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateCameraTremors");
 		return;
 	}
 
@@ -678,7 +678,7 @@ void ZkAnimation_enumerateCameraTremors(ZkAnimation const* slf, ZkEventCameraTre
 
 int32_t ZkEventTag_getFrame(ZkEventTag const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getFrame");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getFrame");
 		return {};
 	}
 
@@ -687,7 +687,7 @@ int32_t ZkEventTag_getFrame(ZkEventTag const* slf) {
 
 ZkEventType ZkEventTag_getType(ZkEventTag const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getType");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getType");
 		return {};
 	}
 
@@ -696,7 +696,7 @@ ZkEventType ZkEventTag_getType(ZkEventTag const* slf) {
 
 ZkString ZkEventTag_getSlot(ZkEventTag const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getSlot");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getSlot");
 		return {};
 	}
 
@@ -709,7 +709,7 @@ ZkString ZkEventTag_getSlot(ZkEventTag const* slf, ZkSize i) {
 
 ZkString ZkEventTag_getItem(ZkEventTag const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getItem");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getItem");
 		return {};
 	}
 
@@ -718,7 +718,7 @@ ZkString ZkEventTag_getItem(ZkEventTag const* slf) {
 
 int32_t const* ZkEventTag_getFrames(ZkEventTag const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getFrames");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getFrames");
 		return {};
 	}
 
@@ -728,7 +728,7 @@ int32_t const* ZkEventTag_getFrames(ZkEventTag const* slf, ZkSize* count) {
 
 ZkFightMode ZkEventTag_getFightMode(ZkEventTag const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getFightMode");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getFightMode");
 		return {};
 	}
 
@@ -737,7 +737,7 @@ ZkFightMode ZkEventTag_getFightMode(ZkEventTag const* slf) {
 
 ZkBool ZkEventTag_getIsAttached(ZkEventTag const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventTag_getIsAttached");
+		ZKC_LOG_WARN_NULL("ZkEventTag_getIsAttached");
 		return {};
 	}
 
@@ -748,7 +748,7 @@ ZkBool ZkEventTag_getIsAttached(ZkEventTag const* slf) {
 
 int32_t ZkEventParticleEffect_getFrame(ZkEventParticleEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffect_getFrame");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffect_getFrame");
 		return {};
 	}
 
@@ -757,7 +757,7 @@ int32_t ZkEventParticleEffect_getFrame(ZkEventParticleEffect const* slf) {
 
 int32_t ZkEventParticleEffect_getIndex(ZkEventParticleEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffect_getIndex");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffect_getIndex");
 		return {};
 	}
 
@@ -766,7 +766,7 @@ int32_t ZkEventParticleEffect_getIndex(ZkEventParticleEffect const* slf) {
 
 ZkString ZkEventParticleEffect_getName(ZkEventParticleEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffect_getName");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffect_getName");
 		return {};
 	}
 
@@ -775,7 +775,7 @@ ZkString ZkEventParticleEffect_getName(ZkEventParticleEffect const* slf) {
 
 ZkString ZkEventParticleEffect_getPosition(ZkEventParticleEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffect_getPosition");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffect_getPosition");
 		return {};
 	}
 
@@ -784,7 +784,7 @@ ZkString ZkEventParticleEffect_getPosition(ZkEventParticleEffect const* slf) {
 
 ZkBool ZkEventParticleEffect_getIsAttached(ZkEventParticleEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffect_getIsAttached");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffect_getIsAttached");
 		return {};
 	}
 
@@ -795,7 +795,7 @@ ZkBool ZkEventParticleEffect_getIsAttached(ZkEventParticleEffect const* slf) {
 
 int32_t ZkEventParticleEffectStop_getFrame(ZkEventParticleEffectStop const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffectStop_getFrame");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffectStop_getFrame");
 		return {};
 	}
 
@@ -804,7 +804,7 @@ int32_t ZkEventParticleEffectStop_getFrame(ZkEventParticleEffectStop const* slf)
 
 int32_t ZkEventParticleEffectStop_getIndex(ZkEventParticleEffectStop const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventParticleEffectStop_getIndex");
+		ZKC_LOG_WARN_NULL("ZkEventParticleEffectStop_getIndex");
 		return {};
 	}
 
@@ -815,7 +815,7 @@ int32_t ZkEventParticleEffectStop_getIndex(ZkEventParticleEffectStop const* slf)
 
 int32_t ZkEventCameraTremor_getFrame(ZkEventCameraTremor const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventCameraTremor_getFrame");
+		ZKC_LOG_WARN_NULL("ZkEventCameraTremor_getFrame");
 		return {};
 	}
 
@@ -824,7 +824,7 @@ int32_t ZkEventCameraTremor_getFrame(ZkEventCameraTremor const* slf) {
 
 int32_t ZkEventCameraTremor_getField1(ZkEventCameraTremor const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventCameraTremor_getField1");
+		ZKC_LOG_WARN_NULL("ZkEventCameraTremor_getField1");
 		return {};
 	}
 
@@ -833,7 +833,7 @@ int32_t ZkEventCameraTremor_getField1(ZkEventCameraTremor const* slf) {
 
 int32_t ZkEventCameraTremor_getField2(ZkEventCameraTremor const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventCameraTremor_getField2");
+		ZKC_LOG_WARN_NULL("ZkEventCameraTremor_getField2");
 		return {};
 	}
 
@@ -842,7 +842,7 @@ int32_t ZkEventCameraTremor_getField2(ZkEventCameraTremor const* slf) {
 
 int32_t ZkEventCameraTremor_getField3(ZkEventCameraTremor const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventCameraTremor_getField3");
+		ZKC_LOG_WARN_NULL("ZkEventCameraTremor_getField3");
 		return {};
 	}
 
@@ -851,7 +851,7 @@ int32_t ZkEventCameraTremor_getField3(ZkEventCameraTremor const* slf) {
 
 int32_t ZkEventCameraTremor_getField4(ZkEventCameraTremor const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventCameraTremor_getField4");
+		ZKC_LOG_WARN_NULL("ZkEventCameraTremor_getField4");
 		return {};
 	}
 
@@ -862,7 +862,7 @@ int32_t ZkEventCameraTremor_getField4(ZkEventCameraTremor const* slf) {
 
 int32_t ZkEventSoundEffect_getFrame(ZkEventSoundEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffect_getFrame");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffect_getFrame");
 		return {};
 	}
 
@@ -871,7 +871,7 @@ int32_t ZkEventSoundEffect_getFrame(ZkEventSoundEffect const* slf) {
 
 ZkString ZkEventSoundEffect_getName(ZkEventSoundEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffect_getName");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffect_getName");
 		return {};
 	}
 
@@ -880,7 +880,7 @@ ZkString ZkEventSoundEffect_getName(ZkEventSoundEffect const* slf) {
 
 float ZkEventSoundEffect_getRange(ZkEventSoundEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffect_getRange");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffect_getRange");
 		return {};
 	}
 
@@ -889,7 +889,7 @@ float ZkEventSoundEffect_getRange(ZkEventSoundEffect const* slf) {
 
 ZkBool ZkEventSoundEffect_getEmptySlot(ZkEventSoundEffect const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffect_getEmptySlot");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffect_getEmptySlot");
 		return {};
 	}
 
@@ -900,7 +900,7 @@ ZkBool ZkEventSoundEffect_getEmptySlot(ZkEventSoundEffect const* slf) {
 
 int32_t ZkEventSoundEffectGround_getFrame(ZkEventSoundEffectGround const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffectGround_getFrame");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffectGround_getFrame");
 		return {};
 	}
 
@@ -909,7 +909,7 @@ int32_t ZkEventSoundEffectGround_getFrame(ZkEventSoundEffectGround const* slf) {
 
 ZkString ZkEventSoundEffectGround_getName(ZkEventSoundEffectGround const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffectGround_getName");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffectGround_getName");
 		return {};
 	}
 
@@ -918,7 +918,7 @@ ZkString ZkEventSoundEffectGround_getName(ZkEventSoundEffectGround const* slf) {
 
 float ZkEventSoundEffectGround_getRange(ZkEventSoundEffectGround const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffectGround_getRange");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffectGround_getRange");
 		return {};
 	}
 
@@ -927,7 +927,7 @@ float ZkEventSoundEffectGround_getRange(ZkEventSoundEffectGround const* slf) {
 
 ZkBool ZkEventSoundEffectGround_getEmptySlot(ZkEventSoundEffectGround const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkEventSoundEffectGround_getEmptySlot");
+		ZKC_LOG_WARN_NULL("ZkEventSoundEffectGround_getEmptySlot");
 		return {};
 	}
 
@@ -938,7 +938,7 @@ ZkBool ZkEventSoundEffectGround_getEmptySlot(ZkEventSoundEffectGround const* slf
 
 int32_t ZkMorphAnimation_getFrame(ZkEventMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getFrame");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getFrame");
 		return {};
 	}
 
@@ -947,7 +947,7 @@ int32_t ZkMorphAnimation_getFrame(ZkEventMorphAnimation const* slf) {
 
 ZkString ZkMorphAnimation_getAnimation(ZkEventMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getAnimation");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getAnimation");
 		return {};
 	}
 
@@ -956,7 +956,7 @@ ZkString ZkMorphAnimation_getAnimation(ZkEventMorphAnimation const* slf) {
 
 ZkString ZkMorphAnimation_getNode(ZkEventMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getNode");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getNode");
 		return {};
 	}
 
@@ -967,7 +967,7 @@ ZkString ZkMorphAnimation_getNode(ZkEventMorphAnimation const* slf) {
 
 ZkString ZkAnimationCombine_getName(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getName");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getName");
 		return {};
 	}
 
@@ -976,7 +976,7 @@ ZkString ZkAnimationCombine_getName(ZkAnimationCombine const* slf) {
 
 uint32_t ZkAnimationCombine_getLayer(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getLayer");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getLayer");
 		return {};
 	}
 
@@ -985,7 +985,7 @@ uint32_t ZkAnimationCombine_getLayer(ZkAnimationCombine const* slf) {
 
 ZkString ZkAnimationCombine_getNext(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getNext");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getNext");
 		return {};
 	}
 
@@ -994,7 +994,7 @@ ZkString ZkAnimationCombine_getNext(ZkAnimationCombine const* slf) {
 
 float ZkAnimationCombine_getBlendIn(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getBlendIn");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getBlendIn");
 		return {};
 	}
 
@@ -1003,7 +1003,7 @@ float ZkAnimationCombine_getBlendIn(ZkAnimationCombine const* slf) {
 
 float ZkAnimationCombine_getBlendOut(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getBlendOut");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getBlendOut");
 		return {};
 	}
 
@@ -1012,7 +1012,7 @@ float ZkAnimationCombine_getBlendOut(ZkAnimationCombine const* slf) {
 
 ZkAnimationFlag ZkAnimationCombine_getFlags(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getFlags");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getFlags");
 		return {};
 	}
 
@@ -1021,7 +1021,7 @@ ZkAnimationFlag ZkAnimationCombine_getFlags(ZkAnimationCombine const* slf) {
 
 ZkString ZkAnimationCombine_getModel(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getModel");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getModel");
 		return {};
 	}
 
@@ -1030,7 +1030,7 @@ ZkString ZkAnimationCombine_getModel(ZkAnimationCombine const* slf) {
 
 int32_t ZkAnimationCombine_getLastFrame(ZkAnimationCombine const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationCombine_getLastFrame");
+		ZKC_LOG_WARN_NULL("ZkAnimationCombine_getLastFrame");
 		return {};
 	}
 
@@ -1041,7 +1041,7 @@ int32_t ZkAnimationCombine_getLastFrame(ZkAnimationCombine const* slf) {
 
 ZkString ZkAnimationBlend_getName(ZkAnimationBlend const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationBlend_getName");
+		ZKC_LOG_WARN_NULL("ZkAnimationBlend_getName");
 		return {};
 	}
 
@@ -1050,7 +1050,7 @@ ZkString ZkAnimationBlend_getName(ZkAnimationBlend const* slf) {
 
 ZkString ZkAnimationBlend_getNext(ZkAnimationBlend const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationBlend_getNext");
+		ZKC_LOG_WARN_NULL("ZkAnimationBlend_getNext");
 		return {};
 	}
 
@@ -1059,7 +1059,7 @@ ZkString ZkAnimationBlend_getNext(ZkAnimationBlend const* slf) {
 
 float ZkAnimationBlend_getBlendIn(ZkAnimationBlend const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationBlend_getBlendIn");
+		ZKC_LOG_WARN_NULL("ZkAnimationBlend_getBlendIn");
 		return {};
 	}
 
@@ -1068,7 +1068,7 @@ float ZkAnimationBlend_getBlendIn(ZkAnimationBlend const* slf) {
 
 float ZkAnimationBlend_getBlendOut(ZkAnimationBlend const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationBlend_getBlendOut");
+		ZKC_LOG_WARN_NULL("ZkAnimationBlend_getBlendOut");
 		return {};
 	}
 
@@ -1079,7 +1079,7 @@ float ZkAnimationBlend_getBlendOut(ZkAnimationBlend const* slf) {
 
 ZkString ZkAnimationAlias_getName(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getName");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getName");
 		return {};
 	}
 
@@ -1088,7 +1088,7 @@ ZkString ZkAnimationAlias_getName(ZkAnimationAlias const* slf) {
 
 uint32_t ZkAnimationAlias_getLayer(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getLayer");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getLayer");
 		return {};
 	}
 
@@ -1097,7 +1097,7 @@ uint32_t ZkAnimationAlias_getLayer(ZkAnimationAlias const* slf) {
 
 ZkString ZkAnimationAlias_getNext(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getNext");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getNext");
 		return {};
 	}
 
@@ -1106,7 +1106,7 @@ ZkString ZkAnimationAlias_getNext(ZkAnimationAlias const* slf) {
 
 float ZkAnimationAlias_getBlendIn(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getBlendIn");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getBlendIn");
 		return {};
 	}
 
@@ -1115,7 +1115,7 @@ float ZkAnimationAlias_getBlendIn(ZkAnimationAlias const* slf) {
 
 float ZkAnimationAlias_getBlendOut(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getBlendOut");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getBlendOut");
 		return {};
 	}
 
@@ -1124,7 +1124,7 @@ float ZkAnimationAlias_getBlendOut(ZkAnimationAlias const* slf) {
 
 ZkAnimationFlag ZkAnimationAlias_getFlags(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getFlags");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getFlags");
 		return {};
 	}
 
@@ -1133,7 +1133,7 @@ ZkAnimationFlag ZkAnimationAlias_getFlags(ZkAnimationAlias const* slf) {
 
 ZkString ZkAnimationAlias_getAlias(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getAlias");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getAlias");
 		return {};
 	}
 
@@ -1142,7 +1142,7 @@ ZkString ZkAnimationAlias_getAlias(ZkAnimationAlias const* slf) {
 
 ZkAnimationDirection ZkAnimationAlias_getDirection(ZkAnimationAlias const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkAnimationAlias_getDirection");
+		ZKC_LOG_WARN_NULL("ZkAnimationAlias_getDirection");
 		return {};
 	}
 

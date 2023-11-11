@@ -1,10 +1,10 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/Boxes.h"
+#include "zenkit-capi/Boxes.h"
 
 ZkVec3f ZkOrientedBoundingBox_getCenter(ZkOrientedBoundingBox const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_getCenter");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getCenter");
 		return {};
 	}
 
@@ -13,12 +13,12 @@ ZkVec3f ZkOrientedBoundingBox_getCenter(ZkOrientedBoundingBox const* slf) {
 
 ZkVec3f ZkOrientedBoundingBox_getAxis(ZkOrientedBoundingBox const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_getAxis");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getAxis");
 		return {};
 	}
 
 	if (i >= 3) {
-		CZK_LOG_ERROR("ZkOrientedBoundingBox_getAxis() failed: index out of range (0..2)");
+		ZKC_LOG_ERROR("ZkOrientedBoundingBox_getAxis() failed: index out of range (0..2)");
 		return {};
 	}
 
@@ -27,7 +27,7 @@ ZkVec3f ZkOrientedBoundingBox_getAxis(ZkOrientedBoundingBox const* slf, ZkSize i
 
 ZkVec3f ZkOrientedBoundingBox_getHalfWidth(ZkOrientedBoundingBox const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_getHalfWidth");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getHalfWidth");
 		return {};
 	}
 
@@ -36,7 +36,7 @@ ZkVec3f ZkOrientedBoundingBox_getHalfWidth(ZkOrientedBoundingBox const* slf) {
 
 ZkSize ZkOrientedBoundingBox_getChildCount(ZkOrientedBoundingBox const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
 		return {};
 	}
 
@@ -45,12 +45,12 @@ ZkSize ZkOrientedBoundingBox_getChildCount(ZkOrientedBoundingBox const* slf) {
 
 ZkOrientedBoundingBox const* ZkOrientedBoundingBox_getChild(ZkOrientedBoundingBox const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
 		return {};
 	}
 
 	if (i >= slf->children.size()) {
-		CZK_LOG_ERROR("ZkOrientedBoundingBox_getChild() failed: index out of range");
+		ZKC_LOG_ERROR("ZkOrientedBoundingBox_getChild() failed: index out of range");
 		return {};
 	}
 
@@ -59,7 +59,7 @@ ZkOrientedBoundingBox const* ZkOrientedBoundingBox_getChild(ZkOrientedBoundingBo
 
 void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf, ZkOrientedBoundingBoxEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_enumerateChildren");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_enumerateChildren");
 		return;
 	}
 
@@ -70,7 +70,7 @@ void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf, Z
 
 ZkAxisAlignedBoundingBox ZkOrientedBoundingBox_toAabb(ZkOrientedBoundingBox const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkOrientedBoundingBox_toAabb");
+		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_toAabb");
 		return {};
 	}
 

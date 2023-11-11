@@ -1,12 +1,12 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/vobs/Light.h"
+#include "zenkit-capi/vobs/Light.h"
 
 #include <zenkit/Archive.hh>
 
 ZkLightPreset* ZkLightPreset_load(ZkRead* buf, ZkGameVersion version) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_load");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_load");
 		return nullptr;
 	}
 
@@ -18,16 +18,16 @@ ZkLightPreset* ZkLightPreset_load(ZkRead* buf, ZkGameVersion version) {
 
 		ZkLightPreset obj {};
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkLightPreset_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkLightPreset_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkLightPreset* ZkLightPreset_loadPath(ZkString path, ZkGameVersion version) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_loadPath");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_loadPath");
 		return nullptr;
 	}
 
@@ -40,9 +40,9 @@ ZkLightPreset* ZkLightPreset_loadPath(ZkString path, ZkGameVersion version) {
 
 		ZkLightPreset obj {};
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkLightPreset_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkLightPreset_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
@@ -53,7 +53,7 @@ void ZkLightPreset_del(ZkLightPreset* slf) {
 
 ZkLight* ZkLight_load(ZkRead* buf, ZkGameVersion version) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_load");
+		ZKC_LOG_WARN_NULL("ZkLight_load");
 		return nullptr;
 	}
 
@@ -66,16 +66,16 @@ ZkLight* ZkLight_load(ZkRead* buf, ZkGameVersion version) {
 		ZkLight obj {};
 		obj.type = zenkit::VobType::zCVobLight;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkLight_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkLight_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkLight* ZkLight_loadPath(ZkString path, ZkGameVersion version) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_loadPath");
+		ZKC_LOG_WARN_NULL("ZkLight_loadPath");
 		return nullptr;
 	}
 
@@ -89,9 +89,9 @@ ZkLight* ZkLight_loadPath(ZkString path, ZkGameVersion version) {
 		ZkLight obj {};
 		obj.type = zenkit::VobType::zCVobLight;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkLight_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkLight_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
@@ -102,7 +102,7 @@ void ZkLight_del(ZkLight* slf) {
 
 ZkString ZkLightPreset_getPreset(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getPreset");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getPreset");
 		return {};
 	}
 
@@ -111,7 +111,7 @@ ZkString ZkLightPreset_getPreset(ZkLightPreset const* slf) {
 
 ZkLightType ZkLightPreset_getLightType(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getLightType");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getLightType");
 		return {};
 	}
 
@@ -120,7 +120,7 @@ ZkLightType ZkLightPreset_getLightType(ZkLightPreset const* slf) {
 
 float ZkLightPreset_getRange(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getRange");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getRange");
 		return {};
 	}
 
@@ -129,7 +129,7 @@ float ZkLightPreset_getRange(ZkLightPreset const* slf) {
 
 ZkColor ZkLightPreset_getColor(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getColor");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getColor");
 		return {};
 	}
 
@@ -138,7 +138,7 @@ ZkColor ZkLightPreset_getColor(ZkLightPreset const* slf) {
 
 float ZkLightPreset_getConeAngle(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getConeAngle");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getConeAngle");
 		return {};
 	}
 
@@ -147,7 +147,7 @@ float ZkLightPreset_getConeAngle(ZkLightPreset const* slf) {
 
 ZkBool ZkLightPreset_getIsStatic(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getIsStatic");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getIsStatic");
 		return {};
 	}
 
@@ -156,7 +156,7 @@ ZkBool ZkLightPreset_getIsStatic(ZkLightPreset const* slf) {
 
 ZkLightQuality ZkLightPreset_getQuality(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getQuality");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getQuality");
 		return {};
 	}
 
@@ -165,7 +165,7 @@ ZkLightQuality ZkLightPreset_getQuality(ZkLightPreset const* slf) {
 
 ZkString ZkLightPreset_getLensflareFx(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getLensflareFx");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getLensflareFx");
 		return {};
 	}
 
@@ -174,7 +174,7 @@ ZkString ZkLightPreset_getLensflareFx(ZkLightPreset const* slf) {
 
 ZkBool ZkLightPreset_getOn(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getOn");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getOn");
 		return {};
 	}
 
@@ -183,7 +183,7 @@ ZkBool ZkLightPreset_getOn(ZkLightPreset const* slf) {
 
 float const* ZkLightPreset_getRangeAnimationScale(ZkLightPreset const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getRangeAnimationScale");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getRangeAnimationScale");
 		return {};
 	}
 
@@ -193,7 +193,7 @@ float const* ZkLightPreset_getRangeAnimationScale(ZkLightPreset const* slf, ZkSi
 
 float ZkLightPreset_getRangeAnimationFps(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getRangeAnimationFps");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getRangeAnimationFps");
 		return {};
 	}
 
@@ -202,7 +202,7 @@ float ZkLightPreset_getRangeAnimationFps(ZkLightPreset const* slf) {
 
 ZkBool ZkLightPreset_getRangeAnimationSmooth(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getRangeAnimationSmooth");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getRangeAnimationSmooth");
 		return {};
 	}
 
@@ -211,7 +211,7 @@ ZkBool ZkLightPreset_getRangeAnimationSmooth(ZkLightPreset const* slf) {
 
 ZkColor const* ZkLightPreset_getColorAnimationList(ZkLightPreset const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getColorAnimationList");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getColorAnimationList");
 		return {};
 	}
 
@@ -221,7 +221,7 @@ ZkColor const* ZkLightPreset_getColorAnimationList(ZkLightPreset const* slf, ZkS
 
 float ZkLightPreset_getColorAnimationFps(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getColorAnimationFps");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getColorAnimationFps");
 		return {};
 	}
 
@@ -230,7 +230,7 @@ float ZkLightPreset_getColorAnimationFps(ZkLightPreset const* slf) {
 
 ZkBool ZkLightPreset_getColorAnimationSmooth(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getColorAnimationSmooth");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getColorAnimationSmooth");
 		return {};
 	}
 
@@ -239,7 +239,7 @@ ZkBool ZkLightPreset_getColorAnimationSmooth(ZkLightPreset const* slf) {
 
 ZkBool ZkLightPreset_getCanMove(ZkLightPreset const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLightPreset_getCanMove");
+		ZKC_LOG_WARN_NULL("ZkLightPreset_getCanMove");
 		return {};
 	}
 
@@ -248,7 +248,7 @@ ZkBool ZkLightPreset_getCanMove(ZkLightPreset const* slf) {
 
 ZkString ZkLight_getPreset(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getPreset");
+		ZKC_LOG_WARN_NULL("ZkLight_getPreset");
 		return {};
 	}
 
@@ -257,7 +257,7 @@ ZkString ZkLight_getPreset(ZkLight const* slf) {
 
 ZkLightType ZkLight_getLightType(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getLightType");
+		ZKC_LOG_WARN_NULL("ZkLight_getLightType");
 		return {};
 	}
 
@@ -266,7 +266,7 @@ ZkLightType ZkLight_getLightType(ZkLight const* slf) {
 
 float ZkLight_getRange(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getRange");
+		ZKC_LOG_WARN_NULL("ZkLight_getRange");
 		return {};
 	}
 
@@ -275,7 +275,7 @@ float ZkLight_getRange(ZkLight const* slf) {
 
 ZkColor ZkLight_getColor(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getColor");
+		ZKC_LOG_WARN_NULL("ZkLight_getColor");
 		return {};
 	}
 
@@ -284,7 +284,7 @@ ZkColor ZkLight_getColor(ZkLight const* slf) {
 
 float ZkLight_getConeAngle(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getConeAngle");
+		ZKC_LOG_WARN_NULL("ZkLight_getConeAngle");
 		return {};
 	}
 
@@ -293,7 +293,7 @@ float ZkLight_getConeAngle(ZkLight const* slf) {
 
 ZkBool ZkLight_getIsStatic(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getIsStatic");
+		ZKC_LOG_WARN_NULL("ZkLight_getIsStatic");
 		return {};
 	}
 
@@ -302,7 +302,7 @@ ZkBool ZkLight_getIsStatic(ZkLight const* slf) {
 
 ZkLightQuality ZkLight_getQuality(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getQuality");
+		ZKC_LOG_WARN_NULL("ZkLight_getQuality");
 		return {};
 	}
 
@@ -311,7 +311,7 @@ ZkLightQuality ZkLight_getQuality(ZkLight const* slf) {
 
 ZkString ZkLight_getLensflareFx(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getLensflareFx");
+		ZKC_LOG_WARN_NULL("ZkLight_getLensflareFx");
 		return {};
 	}
 
@@ -320,7 +320,7 @@ ZkString ZkLight_getLensflareFx(ZkLight const* slf) {
 
 ZkBool ZkLight_getOn(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getOn");
+		ZKC_LOG_WARN_NULL("ZkLight_getOn");
 		return {};
 	}
 
@@ -329,7 +329,7 @@ ZkBool ZkLight_getOn(ZkLight const* slf) {
 
 float const* ZkLight_getRangeAnimationScale(ZkLight const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getRangeAnimationScale");
+		ZKC_LOG_WARN_NULL("ZkLight_getRangeAnimationScale");
 		return {};
 	}
 
@@ -339,7 +339,7 @@ float const* ZkLight_getRangeAnimationScale(ZkLight const* slf, ZkSize* count) {
 
 float ZkLight_getRangeAnimationFps(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getRangeAnimationFps");
+		ZKC_LOG_WARN_NULL("ZkLight_getRangeAnimationFps");
 		return {};
 	}
 
@@ -348,7 +348,7 @@ float ZkLight_getRangeAnimationFps(ZkLight const* slf) {
 
 ZkBool ZkLight_getRangeAnimationSmooth(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getRangeAnimationSmooth");
+		ZKC_LOG_WARN_NULL("ZkLight_getRangeAnimationSmooth");
 		return {};
 	}
 
@@ -357,7 +357,7 @@ ZkBool ZkLight_getRangeAnimationSmooth(ZkLight const* slf) {
 
 ZkColor const* ZkLight_getColorAnimationList(ZkLight const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getColorAnimationList");
+		ZKC_LOG_WARN_NULL("ZkLight_getColorAnimationList");
 		return {};
 	}
 
@@ -367,7 +367,7 @@ ZkColor const* ZkLight_getColorAnimationList(ZkLight const* slf, ZkSize* count) 
 
 float ZkLight_getColorAnimationFps(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getColorAnimationFps");
+		ZKC_LOG_WARN_NULL("ZkLight_getColorAnimationFps");
 		return {};
 	}
 
@@ -376,7 +376,7 @@ float ZkLight_getColorAnimationFps(ZkLight const* slf) {
 
 ZkBool ZkLight_getColorAnimationSmooth(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getColorAnimationSmooth");
+		ZKC_LOG_WARN_NULL("ZkLight_getColorAnimationSmooth");
 		return {};
 	}
 
@@ -385,7 +385,7 @@ ZkBool ZkLight_getColorAnimationSmooth(ZkLight const* slf) {
 
 ZkBool ZkLight_getCanMove(ZkLight const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkLight_getCanMove");
+		ZKC_LOG_WARN_NULL("ZkLight_getCanMove");
 		return {};
 	}
 

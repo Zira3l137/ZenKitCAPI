@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/ModelAnimation.h"
+#include "zenkit-capi/ModelAnimation.h"
 
 ZkModelAnimation* ZkModelAnimation_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_load");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_load");
 		return nullptr;
 	}
 
 	try {
 		ZkModelAnimation obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelAnimation_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelAnimation_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelAnimation* ZkModelAnimation_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_loadPath");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkModelAnimation* ZkModelAnimation_loadPath(ZkString path) {
 
 		ZkModelAnimation obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkModelAnimation_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkModelAnimation_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkModelAnimation* ZkModelAnimation_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkModelAnimation_del(ZkModelAnimation* slf) {
 
 ZkString ZkModelAnimation_getName(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getName");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getName");
 		return nullptr;
 	}
 
@@ -64,7 +64,7 @@ ZkString ZkModelAnimation_getName(ZkModelAnimation const* slf) {
 
 ZkString ZkModelAnimation_getNext(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getNext");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getNext");
 		return nullptr;
 	}
 
@@ -73,7 +73,7 @@ ZkString ZkModelAnimation_getNext(ZkModelAnimation const* slf) {
 
 uint32_t ZkModelAnimation_getLayer(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getLayer");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getLayer");
 		return 0;
 	}
 
@@ -82,7 +82,7 @@ uint32_t ZkModelAnimation_getLayer(ZkModelAnimation const* slf) {
 
 uint32_t ZkModelAnimation_getFrameCount(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getFrameCount");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getFrameCount");
 		return 0;
 	}
 
@@ -91,7 +91,7 @@ uint32_t ZkModelAnimation_getFrameCount(ZkModelAnimation const* slf) {
 
 uint32_t ZkModelAnimation_getNodeCount(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getNodeCount");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getNodeCount");
 		return 0;
 	}
 
@@ -100,7 +100,7 @@ uint32_t ZkModelAnimation_getNodeCount(ZkModelAnimation const* slf) {
 
 float ZkModelAnimation_getFps(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getFps");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getFps");
 		return 0;
 	}
 
@@ -109,7 +109,7 @@ float ZkModelAnimation_getFps(ZkModelAnimation const* slf) {
 
 float ZkModelAnimation_getFpsSource(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getFpsSource");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getFpsSource");
 		return 0;
 	}
 
@@ -118,7 +118,7 @@ float ZkModelAnimation_getFpsSource(ZkModelAnimation const* slf) {
 
 ZkAxisAlignedBoundingBox ZkModelAnimation_getBbox(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getBbox");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getBbox");
 		return {ZkVec3f {0, 0, 0}, ZkVec3f {0, 0, 0}};
 	}
 
@@ -127,7 +127,7 @@ ZkAxisAlignedBoundingBox ZkModelAnimation_getBbox(ZkModelAnimation const* slf) {
 
 uint32_t ZkModelAnimation_getChecksum(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getChecksum");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getChecksum");
 		return 0;
 	}
 
@@ -136,7 +136,7 @@ uint32_t ZkModelAnimation_getChecksum(ZkModelAnimation const* slf) {
 
 ZkString ZkModelAnimation_getSourcePath(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getSourcePath");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourcePath");
 		return nullptr;
 	}
 
@@ -145,7 +145,7 @@ ZkString ZkModelAnimation_getSourcePath(ZkModelAnimation const* slf) {
 
 ZkDate ZkModelAnimation_getSourceDate(ZkModelAnimation const* slf){
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getSourceDate");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourceDate");
 		return {};
 	}
 
@@ -154,7 +154,7 @@ ZkDate ZkModelAnimation_getSourceDate(ZkModelAnimation const* slf){
 
 ZkString ZkModelAnimation_getSourceScript(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getSourceScript");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourceScript");
 		return nullptr;
 	}
 
@@ -163,7 +163,7 @@ ZkString ZkModelAnimation_getSourceScript(ZkModelAnimation const* slf) {
 
 ZkSize ZkModelAnimation_getSampleCount(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getSampleCount");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSampleCount");
 		return 0;
 	}
 
@@ -172,12 +172,12 @@ ZkSize ZkModelAnimation_getSampleCount(ZkModelAnimation const* slf) {
 
 ZkAnimationSample ZkModelAnimation_getSample(ZkModelAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getSample");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSample");
 		return {};
 	}
 
 	if (i >= slf->samples.size()) {
-		CZK_LOG_ERROR("ZkModelAnimation_getSample() failed: index out of range");
+		ZKC_LOG_ERROR("ZkModelAnimation_getSample() failed: index out of range");
 		return {};
 	}
 
@@ -186,7 +186,7 @@ ZkAnimationSample ZkModelAnimation_getSample(ZkModelAnimation const* slf, ZkSize
 
 void ZkModelAnimation_enumerateSamples(ZkModelAnimation const* slf, ZkAnimationSampleEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_enumerateSamples");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_enumerateSamples");
 		return;
 	}
 
@@ -201,7 +201,7 @@ void ZkModelAnimation_enumerateSamples(ZkModelAnimation const* slf, ZkAnimationS
 
 uint32_t const* ZkModelAnimation_getNodeIndices(ZkModelAnimation const* slf, ZkSize* length) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkModelAnimation_getNodeIndices");
+		ZKC_LOG_WARN_NULL("ZkModelAnimation_getNodeIndices");
 
 		if (length != nullptr) *length = 0;
 		return nullptr;

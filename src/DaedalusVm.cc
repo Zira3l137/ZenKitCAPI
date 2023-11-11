@@ -1,6 +1,6 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/DaedalusVm.h"
+#include "zenkit-capi/DaedalusVm.h"
 
 #include <zenkit/DaedalusVm.hh>
 #include <zenkit/addon/daedalus.hh>
@@ -14,7 +14,7 @@ struct ZkInternal_DaedalusVm {
 };
 
 ZkDaedalusVm* ZkDaedalusVm_load(ZkRead* buf) {
-	CZK_CHECK_NULL(buf);
+	ZKC_CHECK_NULL(buf);
 
 	try {
 		ZkDaedalusScript script;
@@ -35,25 +35,25 @@ ZkDaedalusVm* ZkDaedalusVm_load(ZkRead* buf) {
 
 		return vm;
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkDaedalusVm_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkDaedalusVm_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkDaedalusVm* ZkDaedalusVm_loadPath(ZkString path) {
-	CZK_CHECK_NULL(path);
+	ZKC_CHECK_NULL(path);
 
 	try {
 		auto buf = zenkit::Read::from(path);
 		return ZkDaedalusVm_load(buf.get());
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkDaedalusVm_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkDaedalusVm_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkDaedalusVm* ZkDaedalusVm_loadVfs(ZkVfs* vfs, ZkString name) {
-	CZK_CHECK_NULL(vfs, name);
+	ZKC_CHECK_NULL(vfs, name);
 
 	auto node = vfs->find(name);
 	if (node == nullptr) return nullptr;
@@ -62,143 +62,143 @@ ZkDaedalusVm* ZkDaedalusVm_loadVfs(ZkVfs* vfs, ZkString name) {
 	return ZkDaedalusVm_load(rd.get());
 }
 
-CZK_DELETER(ZkDaedalusVm)
+ZKC_DELETER(ZkDaedalusVm)
 
 void ZkDaedalusVm_pushInt(ZkDaedalusVm* slf, int32_t value) {
-	CZK_CHECK_NULLV(slf);
-	CZK_CATCH(slf->handle.push_int(value));
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CATCH(slf->handle.push_int(value));
 }
 
 void ZkDaedalusVm_pushFloat(ZkDaedalusVm* slf, float value) {
-	CZK_CHECK_NULLV(slf);
-	CZK_CATCH(slf->handle.push_float(value));
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CATCH(slf->handle.push_float(value));
 }
 
 void ZkDaedalusVm_pushString(ZkDaedalusVm* slf, ZkString value) {
-	CZK_CHECK_NULLV(slf);
-	CZK_CATCH(slf->handle.push_string(value));
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CATCH(slf->handle.push_string(value));
 }
 
 void ZkDaedalusVm_pushInstance(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 
 	auto instance = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (instance == nullptr) {
-		CZK_LOG_ERROR("ZkDaedalusVm_pushInstance() failed: invalid instance");
+		ZKC_LOG_ERROR("ZkDaedalusVm_pushInstance() failed: invalid instance");
 		return;
 	}
 
-	CZK_CATCH(slf->handle.push_instance(instance->get_instance()));
+	ZKC_CATCH(slf->handle.push_instance(instance->get_instance()));
 }
 
 int32_t ZkDaedalusVm_popInt(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.pop_int());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.pop_int());
 }
 
 float ZkDaedalusVm_popFloat(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.pop_float());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.pop_float());
 }
 
 ZkString ZkDaedalusVm_popString(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.pop_string().c_str());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.pop_string().c_str());
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_popInstance(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.pop_instance().get());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.pop_instance().get());
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalSelf(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.global_self()->get_instance().get());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.global_self()->get_instance().get());
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalOther(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.global_other()->get_instance().get());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.global_other()->get_instance().get());
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalVictim(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.global_victim()->get_instance().get());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.global_victim()->get_instance().get());
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalHero(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.global_hero()->get_instance().get());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.global_hero()->get_instance().get());
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalItem(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->handle.global_item()->get_instance().get());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->handle.global_item()->get_instance().get());
 }
 
 void ZkDaedalusVm_setGlobalSelf(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 
 	auto sym = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (sym == nullptr) {
-		CZK_LOG_ERROR("ZkDaedalusVm_setGlobalSelf() failed: invalid instance");
+		ZKC_LOG_ERROR("ZkDaedalusVm_setGlobalSelf() failed: invalid instance");
 		return;
 	}
 
-	CZK_CATCH(slf->handle.global_self()->set_instance(sym->get_instance()));
+	ZKC_CATCH(slf->handle.global_self()->set_instance(sym->get_instance()));
 }
 void ZkDaedalusVm_setGlobalOther(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 
 	auto sym = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (sym == nullptr) {
-		CZK_LOG_ERROR("ZkDaedalusVm_setGlobalOther() failed: invalid instance");
+		ZKC_LOG_ERROR("ZkDaedalusVm_setGlobalOther() failed: invalid instance");
 		return;
 	}
 
-	CZK_CATCH(slf->handle.global_other()->set_instance(sym->get_instance()));
+	ZKC_CATCH(slf->handle.global_other()->set_instance(sym->get_instance()));
 }
 void ZkDaedalusVm_setGlobalVictim(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 
 	auto sym = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (sym == nullptr) {
-		CZK_LOG_ERROR("ZkDaedalusVm_setGlobalVictim() failed: invalid instance");
+		ZKC_LOG_ERROR("ZkDaedalusVm_setGlobalVictim() failed: invalid instance");
 		return;
 	}
 
-	CZK_CATCH(slf->handle.global_victim()->set_instance(sym->get_instance()));
+	ZKC_CATCH(slf->handle.global_victim()->set_instance(sym->get_instance()));
 }
 void ZkDaedalusVm_setGlobalHero(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 
 	auto sym = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (sym == nullptr) {
-		CZK_LOG_ERROR("ZkDaedalusVm_setGlobalHero() failed: invalid instance");
+		ZKC_LOG_ERROR("ZkDaedalusVm_setGlobalHero() failed: invalid instance");
 		return;
 	}
 
-	CZK_CATCH(slf->handle.global_hero()->set_instance(sym->get_instance()));
+	ZKC_CATCH(slf->handle.global_hero()->set_instance(sym->get_instance()));
 }
 void ZkDaedalusVm_setGlobalItem(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 
 	auto sym = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (sym == nullptr) {
-		CZK_LOG_ERROR("ZkDaedalusVm_setGlobalItem() failed: invalid instance");
+		ZKC_LOG_ERROR("ZkDaedalusVm_setGlobalItem() failed: invalid instance");
 		return;
 	}
 
-	CZK_CATCH(slf->handle.global_item()->set_instance(sym->get_instance()));
+	ZKC_CATCH(slf->handle.global_item()->set_instance(sym->get_instance()));
 }
 
 void ZkDaedalusVm_callFunction(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 	slf->handle.unsafe_call(sym);
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusInstanceType type) {
-	CZK_CHECK_NULL(slf, sym);
+	ZKC_CHECK_NULL(slf, sym);
 
 	switch (type) {
 	case ZkDaedalusInstanceType_GuildValues:
@@ -245,7 +245,7 @@ ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbo
 		return slf->handle.init_instance<zenkit::ISoundSystem>(sym).get();
 	}
 
-	CZK_LOG_ERROR("ZkDaedalusVm_initInstance() failed: invalid instance type");
+	ZKC_LOG_ERROR("ZkDaedalusVm_initInstance() failed: invalid instance type");
 	return nullptr;
 }
 
@@ -253,16 +253,16 @@ void ZkDaedalusVm_registerExternal(ZkDaedalusVm* slf,
                                    ZkDaedalusSymbol* sym,
                                    ZkDaedalusVmExternalCallback cb,
                                    void* ctx) {
-	CZK_CHECK_NULLV(slf, sym, cb);
+	ZKC_CHECK_NULLV(slf, sym, cb);
 	slf->externals.insert_or_assign(sym->index(), [cb, ctx](ZkDaedalusVm* vm) { cb(ctx, vm); });
 }
 
 void ZkDaedalusVm_registerExternalDefault(ZkDaedalusVm* slf, ZkDaedalusVmExternalDefaultCallback cb, void* ctx) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 	slf->externalDefault = [cb, ctx](ZkDaedalusVm* vm, ZkDaedalusSymbol* sym) { cb(ctx, vm, sym); };
 }
 
 void ZkDaedalusVm_printStackTrace(ZkDaedalusVm* slf) {
-	CZK_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf);
 	slf->handle.print_stack_trace();
 }

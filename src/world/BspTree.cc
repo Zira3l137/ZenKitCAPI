@@ -1,10 +1,10 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/world/BspTree.h"
+#include "zenkit-capi/world/BspTree.h"
 
 ZkBspTreeType ZkBspTree_getType(ZkBspTree const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getMode");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getMode");
 		return ZkBspTreeType_INDOOR;
 	}
 
@@ -13,7 +13,7 @@ ZkBspTreeType ZkBspTree_getType(ZkBspTree const* slf) {
 
 uint32_t const* ZkBspTree_getPolygonIndices(ZkBspTree const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getPolygonIndices");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getPolygonIndices");
 		return nullptr;
 	}
 
@@ -23,7 +23,7 @@ uint32_t const* ZkBspTree_getPolygonIndices(ZkBspTree const* slf, ZkSize* count)
 
 uint32_t const* ZkBspTree_getLeafPolygonIndices(ZkBspTree const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getLeafPolygonIndices");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getLeafPolygonIndices");
 		return nullptr;
 	}
 
@@ -33,7 +33,7 @@ uint32_t const* ZkBspTree_getLeafPolygonIndices(ZkBspTree const* slf, ZkSize* co
 
 uint32_t const* ZkBspTree_getPortalPolygonIndices(ZkBspTree const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getPortalPolygonIndices");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getPortalPolygonIndices");
 		return nullptr;
 	}
 
@@ -43,7 +43,7 @@ uint32_t const* ZkBspTree_getPortalPolygonIndices(ZkBspTree const* slf, ZkSize* 
 
 ZkVec3f const* ZkBspTree_getLightPoints(ZkBspTree const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getLightPoints");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getLightPoints");
 		return nullptr;
 	}
 
@@ -53,7 +53,7 @@ ZkVec3f const* ZkBspTree_getLightPoints(ZkBspTree const* slf, ZkSize* count) {
 
 uint64_t const* ZkBspTree_getLeafNodeIndices(ZkBspTree const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getLeafNodeIndices");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getLeafNodeIndices");
 		return nullptr;
 	}
 
@@ -63,7 +63,7 @@ uint64_t const* ZkBspTree_getLeafNodeIndices(ZkBspTree const* slf, ZkSize* count
 
 ZkBspNode const* ZkBspTree_getNodes(ZkBspTree const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getNodes");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getNodes");
 		return nullptr;
 	}
 
@@ -73,7 +73,7 @@ ZkBspNode const* ZkBspTree_getNodes(ZkBspTree const* slf, ZkSize* count) {
 
 ZkSize ZkBspTree_getSectorCount(ZkBspTree const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getSectorCount");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getSectorCount");
 		return 0;
 	}
 
@@ -82,12 +82,12 @@ ZkSize ZkBspTree_getSectorCount(ZkBspTree const* slf) {
 
 ZkBspSector const* ZkBspTree_getSector(ZkBspTree const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_getSector");
+		ZKC_LOG_WARN_NULL("ZkBspTree_getSector");
 		return nullptr;
 	}
 
 	if (i >= slf->sectors.size()) {
-		CZK_LOG_ERROR("ZkBspTree_getSector() failed: index out of range");
+		ZKC_LOG_ERROR("ZkBspTree_getSector() failed: index out of range");
 		return nullptr;
 	}
 
@@ -96,7 +96,7 @@ ZkBspSector const* ZkBspTree_getSector(ZkBspTree const* slf, ZkSize i) {
 
 void ZkBspTree_enumerateSectors(ZkBspTree const* slf, ZkBspSectorEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspTree_enumerateSectors");
+		ZKC_LOG_WARN_NULL("ZkBspTree_enumerateSectors");
 		return;
 	}
 
@@ -107,7 +107,7 @@ void ZkBspTree_enumerateSectors(ZkBspTree const* slf, ZkBspSectorEnumerator cb, 
 
 ZkString ZkBspSector_getName(ZkBspSector const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspSector_getName");
+		ZKC_LOG_WARN_NULL("ZkBspSector_getName");
 		return nullptr;
 	}
 
@@ -116,7 +116,7 @@ ZkString ZkBspSector_getName(ZkBspSector const* slf) {
 
 uint32_t const* ZkBspSector_getNodeIndices(ZkBspSector const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspSector_getNodeIndices");
+		ZKC_LOG_WARN_NULL("ZkBspSector_getNodeIndices");
 		return nullptr;
 	}
 
@@ -126,7 +126,7 @@ uint32_t const* ZkBspSector_getNodeIndices(ZkBspSector const* slf, ZkSize* count
 
 uint32_t const* ZkBspSector_getPortalPolygonIndices(ZkBspSector const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkBspSector_getPortalPolygonIndices");
+		ZKC_LOG_WARN_NULL("ZkBspSector_getPortalPolygonIndices");
 		return nullptr;
 	}
 

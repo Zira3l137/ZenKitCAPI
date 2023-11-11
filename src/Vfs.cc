@@ -1,6 +1,6 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/Vfs.h"
+#include "zenkit-capi/Vfs.h"
 
 ZkVfs* ZkVfs_new(void) {
 	return new ZkVfs {};
@@ -12,7 +12,7 @@ void ZkVfs_del(ZkVfs* slf) {
 
 ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_getRoot");
+		ZKC_LOG_WARN_NULL("ZkVfs_getRoot");
 		return nullptr;
 	}
 
@@ -21,7 +21,7 @@ ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf) {
 
 ZkVfsNode* ZkVfs_mkdir(ZkVfs* slf, ZkString path) {
 	if (slf == nullptr || path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_mkdir");
+		ZKC_LOG_WARN_NULL("ZkVfs_mkdir");
 		return nullptr;
 	}
 
@@ -30,7 +30,7 @@ ZkVfsNode* ZkVfs_mkdir(ZkVfs* slf, ZkString path) {
 
 ZkBool ZkVfs_remove(ZkVfs* slf, ZkString path) {
 	if (slf == nullptr || path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_mkdir");
+		ZKC_LOG_WARN_NULL("ZkVfs_mkdir");
 		return false;
 	}
 
@@ -39,59 +39,59 @@ ZkBool ZkVfs_remove(ZkVfs* slf, ZkString path) {
 
 void ZkVfs_mount(ZkVfs* slf, ZkVfsNode* node, ZkString parent, ZkVfsOverwriteBehavior overwrite) {
 	if (slf == nullptr || node == nullptr || parent == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_mount");
+		ZKC_LOG_WARN_NULL("ZkVfs_mount");
 		return;
 	}
 
 	try {
 		slf->mount(*node, parent, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVfs_mount() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVfs_mount() failed: %s", exc.what());
 	}
 }
 
 void ZkVfs_mountHost(ZkVfs* slf, ZkString path, ZkString parent, ZkVfsOverwriteBehavior overwrite) {
 	if (slf == nullptr || path == nullptr || parent == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_mountHost");
+		ZKC_LOG_WARN_NULL("ZkVfs_mountHost");
 		return;
 	}
 
 	try {
 		slf->mount_host(path, parent, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVfs_mountHost() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVfs_mountHost() failed: %s", exc.what());
 	}
 }
 
 void ZkVfs_mountDisk(ZkVfs* slf, ZkRead* buf, ZkVfsOverwriteBehavior overwrite) {
 	if (slf == nullptr || buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_mountDisk");
+		ZKC_LOG_WARN_NULL("ZkVfs_mountDisk");
 		return;
 	}
 
 	try {
 		slf->mount_disk(buf, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVfs_mountDisk() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVfs_mountDisk() failed: %s", exc.what());
 	}
 }
 
 void ZkVfs_mountDiskHost(ZkVfs* slf, ZkString path, ZkVfsOverwriteBehavior overwrite) {
 	if (slf == nullptr || path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_mountDiskHost");
+		ZKC_LOG_WARN_NULL("ZkVfs_mountDiskHost");
 		return;
 	}
 
 	try {
 		slf->mount_disk(path, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVfs_mountDiskHost() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVfs_mountDiskHost() failed: %s", exc.what());
 	}
 }
 
 ZkVfsNode* ZkVfs_resolvePath(ZkVfs* slf, ZkString path) {
 	if (slf == nullptr || path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_resolvePath");
+		ZKC_LOG_WARN_NULL("ZkVfs_resolvePath");
 		return nullptr;
 	}
 
@@ -100,7 +100,7 @@ ZkVfsNode* ZkVfs_resolvePath(ZkVfs* slf, ZkString path) {
 
 ZkVfsNode* ZkVfs_findNode(ZkVfs* slf, ZkString name) {
 	if (slf == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfs_findNode");
+		ZKC_LOG_WARN_NULL("ZkVfs_findNode");
 		return nullptr;
 	}
 
@@ -109,37 +109,41 @@ ZkVfsNode* ZkVfs_findNode(ZkVfs* slf, ZkString name) {
 
 ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time_t ts) {
 	if (name == nullptr || buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_newFile");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_newFile");
 		return nullptr;
 	}
 
 	try {
 		auto node = ZkVfsNode::file(name, zenkit::VfsFileDescriptor {(std::byte const*)(buf), size}, ts);
-		return CZK_WRAP_NEW(node);
+		return ZKC_WRAP_NEW(node);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVfsNode_newFile() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVfsNode_newFile() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkVfsNode* ZkVfsNode_newDir(ZkString name, time_t ts) {
 	if (name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_newDir");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_newDir");
 		return nullptr;
 	}
 
 	try {
 		auto node = ZkVfsNode::directory(name, ts);
-		return CZK_WRAP_NEW(node);
+		return ZKC_WRAP_NEW(node);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkVfsNode_newDir() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkVfsNode_newDir() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
+void ZkVfsNode_del(ZkVfsNode* slf) {
+	delete slf;
+}
+
 ZkBool ZkVfsNode_isFile(ZkVfsNode const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_isFile");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_isFile");
 		return false;
 	}
 
@@ -148,7 +152,7 @@ ZkBool ZkVfsNode_isFile(ZkVfsNode const* slf) {
 
 ZkBool ZkVfsNode_isDir(ZkVfsNode const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_isDir");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_isDir");
 		return false;
 	}
 
@@ -157,7 +161,7 @@ ZkBool ZkVfsNode_isDir(ZkVfsNode const* slf) {
 
 time_t ZkVfsNode_getTime(ZkVfsNode const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_getTime");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_getTime");
 		return 0;
 	}
 
@@ -166,7 +170,7 @@ time_t ZkVfsNode_getTime(ZkVfsNode const* slf) {
 
 ZkString ZkVfsNode_getName(ZkVfsNode const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_getName");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_getName");
 		return nullptr;
 	}
 
@@ -175,12 +179,12 @@ ZkString ZkVfsNode_getName(ZkVfsNode const* slf) {
 
 ZkVfsNode* ZkVfsNode_getChild(ZkVfsNode* slf, ZkString name) {
 	if (slf == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_getChild");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_getChild");
 		return nullptr;
 	}
 
 	if (ZkVfsNode_isFile(slf)) {
-		CZK_LOG_ERROR("ZkVfsNode_getChild() failed: not a directory");
+		ZKC_LOG_ERROR("ZkVfsNode_getChild() failed: not a directory");
 		return nullptr;
 	}
 
@@ -189,12 +193,12 @@ ZkVfsNode* ZkVfsNode_getChild(ZkVfsNode* slf, ZkString name) {
 
 ZkVfsNode* ZkVfsNode_create(ZkVfsNode* slf, ZkVfsNode* node) {
 	if (slf == nullptr || node == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_create");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_create");
 		return nullptr;
 	}
 
 	if (ZkVfsNode_isFile(slf)) {
-		CZK_LOG_ERROR("ZkVfsNode_create() failed: not a directory");
+		ZKC_LOG_ERROR("ZkVfsNode_create() failed: not a directory");
 		return nullptr;
 	}
 
@@ -203,12 +207,12 @@ ZkVfsNode* ZkVfsNode_create(ZkVfsNode* slf, ZkVfsNode* node) {
 
 ZkBool ZkVfsNode_remove(ZkVfsNode* slf, ZkString name) {
 	if (slf == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_remove");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_remove");
 		return false;
 	}
 
 	if (ZkVfsNode_isFile(slf)) {
-		CZK_LOG_ERROR("ZkVfsNode_remove() failed: not a directory");
+		ZKC_LOG_ERROR("ZkVfsNode_remove() failed: not a directory");
 		return false;
 	}
 
@@ -217,12 +221,12 @@ ZkBool ZkVfsNode_remove(ZkVfsNode* slf, ZkString name) {
 
 ZkRead* ZkVfsNode_open(ZkVfsNode const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_open");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_open");
 		return nullptr;
 	}
 
 	if (!ZkVfsNode_isFile(slf)) {
-		CZK_LOG_ERROR("ZkVfsNode_open() failed: not a file");
+		ZKC_LOG_ERROR("ZkVfsNode_open() failed: not a file");
 		return nullptr;
 	}
 
@@ -231,12 +235,12 @@ ZkRead* ZkVfsNode_open(ZkVfsNode const* slf) {
 
 void ZkVfsNode_enumerateChildren(ZkVfsNode const* slf, ZkVfsNodeEnumerator callback, void* ctx) {
 	if (slf == nullptr || callback == nullptr) {
-		CZK_LOG_WARN_NULL("ZkVfsNode_enumerateChildren");
+		ZKC_LOG_WARN_NULL("ZkVfsNode_enumerateChildren");
 		return;
 	}
 
 	if (ZkVfsNode_isFile(slf)) {
-		CZK_LOG_ERROR("ZkVfsNode_enumerateChildren() failed: not a directory");
+		ZKC_LOG_ERROR("ZkVfsNode_enumerateChildren() failed: not a directory");
 		return;
 	}
 

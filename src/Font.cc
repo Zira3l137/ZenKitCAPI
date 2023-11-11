@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/Font.h"
+#include "zenkit-capi/Font.h"
 
 ZkFont* ZkFont_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_load");
+		ZKC_LOG_WARN_NULL("ZkFont_load");
 		return nullptr;
 	}
 
 	try {
 		ZkFont obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkFont_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkFont_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkFont* ZkFont_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_loadPath");
+		ZKC_LOG_WARN_NULL("ZkFont_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkFont* ZkFont_loadPath(ZkString path) {
 
 		ZkFont obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkFont_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkFont_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkFont* ZkFont_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkFont_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkFont_del(ZkFont* slf) {
 
 ZkString ZkFont_getName(ZkFont const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_getName");
+		ZKC_LOG_WARN_NULL("ZkFont_getName");
 		return nullptr;
 	}
 
@@ -64,7 +64,7 @@ ZkString ZkFont_getName(ZkFont const* slf) {
 
 uint32_t ZkFont_getHeight(ZkFont const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_getHeight");
+		ZKC_LOG_WARN_NULL("ZkFont_getHeight");
 		return 0;
 	}
 
@@ -73,7 +73,7 @@ uint32_t ZkFont_getHeight(ZkFont const* slf) {
 
 ZkSize ZkFont_getGlyphCount(ZkFont const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_getGlyphCount");
+		ZKC_LOG_WARN_NULL("ZkFont_getGlyphCount");
 		return 0;
 	}
 
@@ -82,12 +82,12 @@ ZkSize ZkFont_getGlyphCount(ZkFont const* slf) {
 
 ZkFontGlyph ZkFont_getGlyph(ZkFont const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_getGlyph");
+		ZKC_LOG_WARN_NULL("ZkFont_getGlyph");
 		return {0, ZkVec2f {0, 0}, ZkVec2f {0, 0}};
 	}
 
 	if (i >= slf->glyphs.size()) {
-		CZK_LOG_ERROR("ZkFont_getGlyph() failed: index out of range");
+		ZKC_LOG_ERROR("ZkFont_getGlyph() failed: index out of range");
 		return {0, ZkVec2f {0, 0}, ZkVec2f {0, 0}};
 	}
 
@@ -97,7 +97,7 @@ ZkFontGlyph ZkFont_getGlyph(ZkFont const* slf, ZkSize i) {
 
 void ZkFont_enumerateGlyphs(ZkFont const* slf, ZkFontGlyphEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkFont_enumerateGlyphs");
+		ZKC_LOG_WARN_NULL("ZkFont_enumerateGlyphs");
 		return;
 	}
 

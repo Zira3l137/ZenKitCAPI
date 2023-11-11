@@ -1,12 +1,12 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/vobs/Camera.h"
+#include "zenkit-capi/vobs/Camera.h"
 
 #include <zenkit/Archive.hh>
 
 ZkCutsceneCamera* ZkCutsceneCamera_load(ZkRead* buf, ZkGameVersion version) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_load");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_load");
 		return nullptr;
 	}
 
@@ -19,16 +19,16 @@ ZkCutsceneCamera* ZkCutsceneCamera_load(ZkRead* buf, ZkGameVersion version) {
 		ZkCutsceneCamera obj {};
 		obj.type = zenkit::VobType::zCCSCamera;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkCutsceneCamera_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkCutsceneCamera_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkCutsceneCamera* ZkCutsceneCamera_loadPath(ZkString path, ZkGameVersion version) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_loadPath");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_loadPath");
 		return nullptr;
 	}
 
@@ -42,9 +42,9 @@ ZkCutsceneCamera* ZkCutsceneCamera_loadPath(ZkString path, ZkGameVersion version
 		ZkCutsceneCamera obj {};
 		obj.type = zenkit::VobType::zCCSCamera;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkCutsceneCamera_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkCutsceneCamera_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
@@ -55,7 +55,7 @@ void ZkCutsceneCamera_del(ZkCutsceneCamera* slf) {
 
 ZkCameraTrajectory ZkCutsceneCamera_getTrajectoryFOR(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getTrajectoryFOR");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTrajectoryFOR");
 		return {};
 	}
 
@@ -64,7 +64,7 @@ ZkCameraTrajectory ZkCutsceneCamera_getTrajectoryFOR(ZkCutsceneCamera const* slf
 
 ZkCameraTrajectory ZkCutsceneCamera_getTargetTrajectoryFOR(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getTargetTrajectoryFOR");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTargetTrajectoryFOR");
 		return {};
 	}
 
@@ -73,7 +73,7 @@ ZkCameraTrajectory ZkCutsceneCamera_getTargetTrajectoryFOR(ZkCutsceneCamera cons
 
 ZkCameraLoopType ZkCutsceneCamera_getLoopMode(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getLoopMode");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getLoopMode");
 		return {};
 	}
 
@@ -82,7 +82,7 @@ ZkCameraLoopType ZkCutsceneCamera_getLoopMode(ZkCutsceneCamera const* slf) {
 
 ZkCameraLerpType ZkCutsceneCamera_getLerpMode(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getLerpMode");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getLerpMode");
 		return {};
 	}
 
@@ -91,7 +91,7 @@ ZkCameraLerpType ZkCutsceneCamera_getLerpMode(ZkCutsceneCamera const* slf) {
 
 ZkBool ZkCutsceneCamera_getIgnoreFORVobRotation(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getIgnoreFORVobRotation");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getIgnoreFORVobRotation");
 		return {};
 	}
 
@@ -100,7 +100,7 @@ ZkBool ZkCutsceneCamera_getIgnoreFORVobRotation(ZkCutsceneCamera const* slf) {
 
 ZkBool ZkCutsceneCamera_getIgnoreFORVobRotationTarget(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getIgnoreFORVobRotationTarget");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getIgnoreFORVobRotationTarget");
 		return {};
 	}
 
@@ -109,7 +109,7 @@ ZkBool ZkCutsceneCamera_getIgnoreFORVobRotationTarget(ZkCutsceneCamera const* sl
 
 ZkBool ZkCutsceneCamera_getAdapt(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getAdapt");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAdapt");
 		return {};
 	}
 
@@ -118,7 +118,7 @@ ZkBool ZkCutsceneCamera_getAdapt(ZkCutsceneCamera const* slf) {
 
 ZkBool ZkCutsceneCamera_getEaseFirst(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getEaseFirst");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getEaseFirst");
 		return {};
 	}
 
@@ -127,7 +127,7 @@ ZkBool ZkCutsceneCamera_getEaseFirst(ZkCutsceneCamera const* slf) {
 
 ZkBool ZkCutsceneCamera_getEaseLast(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getEaseLast");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getEaseLast");
 		return {};
 	}
 
@@ -136,7 +136,7 @@ ZkBool ZkCutsceneCamera_getEaseLast(ZkCutsceneCamera const* slf) {
 
 float ZkCutsceneCamera_getTotalDuration(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getTotalDuration");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTotalDuration");
 		return {};
 	}
 
@@ -145,7 +145,7 @@ float ZkCutsceneCamera_getTotalDuration(ZkCutsceneCamera const* slf) {
 
 ZkString ZkCutsceneCamera_getAutoFocusVob(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getAutoFocusVob");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoFocusVob");
 		return {};
 	}
 
@@ -154,7 +154,7 @@ ZkString ZkCutsceneCamera_getAutoFocusVob(ZkCutsceneCamera const* slf) {
 
 ZkBool ZkCutsceneCamera_getAutoPlayerMovable(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getAutoPlayerMovable");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoPlayerMovable");
 		return {};
 	}
 
@@ -163,7 +163,7 @@ ZkBool ZkCutsceneCamera_getAutoPlayerMovable(ZkCutsceneCamera const* slf) {
 
 ZkBool ZkCutsceneCamera_getAutoUntriggerLast(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getAutoUntriggerLast");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoUntriggerLast");
 		return {};
 	}
 
@@ -172,7 +172,7 @@ ZkBool ZkCutsceneCamera_getAutoUntriggerLast(ZkCutsceneCamera const* slf) {
 
 float ZkCutsceneCamera_getAutoUntriggerLastDelay(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getAutoUntriggerLastDelay");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoUntriggerLastDelay");
 		return {};
 	}
 
@@ -181,7 +181,7 @@ float ZkCutsceneCamera_getAutoUntriggerLastDelay(ZkCutsceneCamera const* slf) {
 
 int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getPositionCount");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getPositionCount");
 		return {};
 	}
 
@@ -190,7 +190,7 @@ int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf) {
 
 int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getTargetCount");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTargetCount");
 		return {};
 	}
 
@@ -199,7 +199,7 @@ int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf) {
 
 ZkSize ZkCutsceneCamera_getFrameCount(ZkCutsceneCamera const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getFrameCount");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getFrameCount");
 		return 0;
 	}
 
@@ -208,12 +208,12 @@ ZkSize ZkCutsceneCamera_getFrameCount(ZkCutsceneCamera const* slf) {
 
 ZkCameraTrajectoryFrame const* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_getFrame");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getFrame");
 		return nullptr;
 	}
 
 	if (i >= slf->frames.size()) {
-		CZK_LOG_ERROR("ZkCutsceneCamera_getFrame() failed: index out of range");
+		ZKC_LOG_ERROR("ZkCutsceneCamera_getFrame() failed: index out of range");
 		return nullptr;
 	}
 
@@ -222,7 +222,7 @@ ZkCameraTrajectoryFrame const* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const*
 
 void ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTrajectoryFrameEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCutsceneCamera_enumerateFrames");
+		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_enumerateFrames");
 		return;
 	}
 
@@ -233,7 +233,7 @@ void ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTraje
 
 float ZkCameraTrajectoryFrame_getTime(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTime");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTime");
 		return {};
 	}
 
@@ -242,7 +242,7 @@ float ZkCameraTrajectoryFrame_getTime(ZkCameraTrajectoryFrame const* slf) {
 
 float ZkCameraTrajectoryFrame_getRollAngle(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getRollAngle");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getRollAngle");
 		return {};
 	}
 
@@ -251,7 +251,7 @@ float ZkCameraTrajectoryFrame_getRollAngle(ZkCameraTrajectoryFrame const* slf) {
 
 float ZkCameraTrajectoryFrame_getFovScale(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getFovScale");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getFovScale");
 		return {};
 	}
 
@@ -260,7 +260,7 @@ float ZkCameraTrajectoryFrame_getFovScale(ZkCameraTrajectoryFrame const* slf) {
 
 ZkCameraMotion ZkCameraTrajectoryFrame_getMotionType(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionType");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionType");
 		return {};
 	}
 
@@ -269,7 +269,7 @@ ZkCameraMotion ZkCameraTrajectoryFrame_getMotionType(ZkCameraTrajectoryFrame con
 
 ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeFov(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeFov");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeFov");
 		return {};
 	}
 
@@ -278,7 +278,7 @@ ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeFov(ZkCameraTrajectoryFrame 
 
 ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeRoll(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeRoll");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeRoll");
 		return {};
 	}
 
@@ -287,7 +287,7 @@ ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeRoll(ZkCameraTrajectoryFrame
 
 ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeTimeScale(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeTimeScale");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeTimeScale");
 		return {};
 	}
 
@@ -296,7 +296,7 @@ ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeTimeScale(ZkCameraTrajectory
 
 float ZkCameraTrajectoryFrame_getTension(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTension");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTension");
 		return {};
 	}
 
@@ -305,7 +305,7 @@ float ZkCameraTrajectoryFrame_getTension(ZkCameraTrajectoryFrame const* slf) {
 
 float ZkCameraTrajectoryFrame_getCamBias(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getCamBias");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getCamBias");
 		return {};
 	}
 
@@ -314,7 +314,7 @@ float ZkCameraTrajectoryFrame_getCamBias(ZkCameraTrajectoryFrame const* slf) {
 
 float ZkCameraTrajectoryFrame_getContinuity(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getContinuity");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getContinuity");
 		return {};
 	}
 
@@ -323,7 +323,7 @@ float ZkCameraTrajectoryFrame_getContinuity(ZkCameraTrajectoryFrame const* slf) 
 
 float ZkCameraTrajectoryFrame_getTimeScale(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTimeScale");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTimeScale");
 		return {};
 	}
 
@@ -332,7 +332,7 @@ float ZkCameraTrajectoryFrame_getTimeScale(ZkCameraTrajectoryFrame const* slf) {
 
 ZkBool ZkCameraTrajectoryFrame_getTimeFixed(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTimeFixed");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTimeFixed");
 		return {};
 	}
 
@@ -341,7 +341,7 @@ ZkBool ZkCameraTrajectoryFrame_getTimeFixed(ZkCameraTrajectoryFrame const* slf) 
 
 ZkMat4x4 ZkCameraTrajectoryFrame_getOriginalPose(ZkCameraTrajectoryFrame const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getOriginalPose");
+		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getOriginalPose");
 		return {};
 	}
 

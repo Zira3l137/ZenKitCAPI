@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/MorphMesh.h"
+#include "zenkit-capi/MorphMesh.h"
 
 ZkMorphMesh* ZkMorphMesh_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_load");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_load");
 		return nullptr;
 	}
 
 	try {
 		ZkMorphMesh obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkMorphMesh_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkMorphMesh_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkMorphMesh* ZkMorphMesh_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_loadPath");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkMorphMesh* ZkMorphMesh_loadPath(ZkString path) {
 
 		ZkMorphMesh obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkMorphMesh_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkMorphMesh_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkMorphMesh* ZkMorphMesh_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkMorphMesh_del(ZkMorphMesh* slf) {
 
 ZkString ZkMorphMesh_getName(ZkMorphMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getName");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getName");
 		return nullptr;
 	}
 
@@ -64,7 +64,7 @@ ZkString ZkMorphMesh_getName(ZkMorphMesh const* slf) {
 
 ZkMultiResolutionMesh const* ZkMorphMesh_getMesh(ZkMorphMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getMesh");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getMesh");
 		return nullptr;
 	}
 
@@ -73,7 +73,7 @@ ZkMultiResolutionMesh const* ZkMorphMesh_getMesh(ZkMorphMesh const* slf) {
 
 ZkVec3f const* ZkMorphMesh_getMorphPositions(ZkMorphMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getMorphPositions");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getMorphPositions");
 		return nullptr;
 	}
 
@@ -83,7 +83,7 @@ ZkVec3f const* ZkMorphMesh_getMorphPositions(ZkMorphMesh const* slf, ZkSize* cou
 
 ZkSize ZkMorphMesh_getAnimationCount(ZkMorphMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getAnimationCount");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getAnimationCount");
 		return 0;
 	}
 
@@ -92,12 +92,12 @@ ZkSize ZkMorphMesh_getAnimationCount(ZkMorphMesh const* slf) {
 
 ZkMorphAnimation const* ZkMorphMesh_getAnimation(ZkMorphMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getAnimation");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getAnimation");
 		return nullptr;
 	}
 
 	if (i >= slf->animations.size()) {
-		CZK_LOG_ERROR("ZkMorphMesh_getAnimation() failed: index out of range");
+		ZKC_LOG_ERROR("ZkMorphMesh_getAnimation() failed: index out of range");
 		return nullptr;
 	}
 
@@ -106,7 +106,7 @@ ZkMorphAnimation const* ZkMorphMesh_getAnimation(ZkMorphMesh const* slf, ZkSize 
 
 void ZkMorphMesh_enumerateAnimations(ZkMorphMesh const* slf, ZkMorphAnimationEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_enumerateAnimations");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_enumerateAnimations");
 		return;
 	}
 
@@ -117,7 +117,7 @@ void ZkMorphMesh_enumerateAnimations(ZkMorphMesh const* slf, ZkMorphAnimationEnu
 
 ZkSize ZkMorphMesh_getSourceCount(ZkMorphMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getSourceCount");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getSourceCount");
 		return 0;
 	}
 
@@ -126,12 +126,12 @@ ZkSize ZkMorphMesh_getSourceCount(ZkMorphMesh const* slf) {
 
 ZkMorphSource const* ZkMorphMesh_getSource(ZkMorphMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_getSource");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_getSource");
 		return nullptr;
 	}
 
 	if (i >= slf->sources.size()) {
-		CZK_LOG_ERROR("ZkMorphMesh_getSource() failed: index out of range");
+		ZKC_LOG_ERROR("ZkMorphMesh_getSource() failed: index out of range");
 		return nullptr;
 	}
 
@@ -140,7 +140,7 @@ ZkMorphSource const* ZkMorphMesh_getSource(ZkMorphMesh const* slf, ZkSize i) {
 
 void ZkMorphMesh_enumerateSources(ZkMorphMesh const* slf, ZkMorphSourceEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphMesh_enumerateSources");
+		ZKC_LOG_WARN_NULL("ZkMorphMesh_enumerateSources");
 		return;
 	}
 
@@ -151,7 +151,7 @@ void ZkMorphMesh_enumerateSources(ZkMorphMesh const* slf, ZkMorphSourceEnumerato
 
 ZkString ZkMorphAnimation_getName(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getName");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getName");
 		return nullptr;
 	}
 
@@ -160,7 +160,7 @@ ZkString ZkMorphAnimation_getName(ZkMorphAnimation const* slf) {
 
 int32_t ZkMorphAnimation_getLayer(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getLayer");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getLayer");
 		return 0;
 	}
 
@@ -169,7 +169,7 @@ int32_t ZkMorphAnimation_getLayer(ZkMorphAnimation const* slf) {
 
 float ZkMorphAnimation_getBlendIn(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getBlendIn");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getBlendIn");
 		return 0;
 	}
 
@@ -178,7 +178,7 @@ float ZkMorphAnimation_getBlendIn(ZkMorphAnimation const* slf) {
 
 float ZkMorphAnimation_getBlendOut(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getBlendOut");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getBlendOut");
 		return 0;
 	}
 
@@ -187,7 +187,7 @@ float ZkMorphAnimation_getBlendOut(ZkMorphAnimation const* slf) {
 
 float ZkMorphAnimation_getDuration(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getDuration");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getDuration");
 		return 0;
 	}
 
@@ -196,7 +196,7 @@ float ZkMorphAnimation_getDuration(ZkMorphAnimation const* slf) {
 
 float ZkMorphAnimation_getSpeed(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getSpeed");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getSpeed");
 		return 0;
 	}
 
@@ -205,7 +205,7 @@ float ZkMorphAnimation_getSpeed(ZkMorphAnimation const* slf) {
 
 uint8_t ZkMorphAnimation_getFlags(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getFlags");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getFlags");
 		return 0;
 	}
 
@@ -214,7 +214,7 @@ uint8_t ZkMorphAnimation_getFlags(ZkMorphAnimation const* slf) {
 
 uint32_t ZkMorphAnimation_getFrameCount(ZkMorphAnimation const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getFrameCount");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getFrameCount");
 		return 0;
 	}
 
@@ -223,7 +223,7 @@ uint32_t ZkMorphAnimation_getFrameCount(ZkMorphAnimation const* slf) {
 
 uint32_t const* ZkMorphAnimation_getVertices(ZkMorphAnimation const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getVertices");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getVertices");
 		return nullptr;
 	}
 
@@ -233,7 +233,7 @@ uint32_t const* ZkMorphAnimation_getVertices(ZkMorphAnimation const* slf, ZkSize
 
 ZkVec3f const* ZkMorphAnimation_getSamples(ZkMorphAnimation const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphAnimation_getSamples");
+		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getSamples");
 		return nullptr;
 	}
 
@@ -243,7 +243,7 @@ ZkVec3f const* ZkMorphAnimation_getSamples(ZkMorphAnimation const* slf, ZkSize* 
 
 ZkDate ZkMorphSource_getFileDate(ZkMorphSource const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphSource_getFileDate");
+		ZKC_LOG_WARN_NULL("ZkMorphSource_getFileDate");
 		return {};
 	}
 
@@ -252,7 +252,7 @@ ZkDate ZkMorphSource_getFileDate(ZkMorphSource const* slf) {
 
 ZkString ZkMorphSource_getFileName(ZkMorphSource const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMorphSource_getFileName");
+		ZKC_LOG_WARN_NULL("ZkMorphSource_getFileName");
 		return nullptr;
 	}
 

@@ -1,26 +1,26 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/MultiResolutionMesh.h"
+#include "zenkit-capi/MultiResolutionMesh.h"
 
 ZkMultiResolutionMesh* ZkMultiResolutionMesh_load(ZkRead* buf) {
 	if (buf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_load");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_load");
 		return nullptr;
 	}
 
 	try {
 		ZkMultiResolutionMesh obj {};
 		obj.load(buf);
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkMultiResolutionMesh_load() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkMultiResolutionMesh_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkMultiResolutionMesh* ZkMultiResolutionMesh_loadPath(ZkString path) {
 	if (path == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_loadPath");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_loadPath");
 		return nullptr;
 	}
 
@@ -29,16 +29,16 @@ ZkMultiResolutionMesh* ZkMultiResolutionMesh_loadPath(ZkString path) {
 
 		ZkMultiResolutionMesh obj {};
 		obj.load(buf.get());
-		return CZK_WRAP_NEW(obj);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
-		CZK_LOG_ERROR("ZkMultiResolutionMesh_loadPath() failed: %s", exc.what());
+		ZKC_LOG_ERROR("ZkMultiResolutionMesh_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkMultiResolutionMesh* ZkMultiResolutionMesh_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_loadVfs");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_loadVfs");
 		return nullptr;
 	}
 
@@ -55,7 +55,7 @@ void ZkMultiResolutionMesh_del(ZkMultiResolutionMesh* slf) {
 
 ZkVec3f const* ZkMultiResolutionMesh_getPositions(ZkMultiResolutionMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getPositions");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getPositions");
 		return nullptr;
 	}
 
@@ -65,7 +65,7 @@ ZkVec3f const* ZkMultiResolutionMesh_getPositions(ZkMultiResolutionMesh const* s
 
 ZkVec3f const* ZkMultiResolutionMesh_getNormals(ZkMultiResolutionMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getNormals");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getNormals");
 		return nullptr;
 	}
 
@@ -75,7 +75,7 @@ ZkVec3f const* ZkMultiResolutionMesh_getNormals(ZkMultiResolutionMesh const* slf
 
 ZkSize ZkMultiResolutionMesh_getSubMeshCount(ZkMultiResolutionMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getSubMeshCount");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getSubMeshCount");
 		return 0;
 	}
 
@@ -84,12 +84,12 @@ ZkSize ZkMultiResolutionMesh_getSubMeshCount(ZkMultiResolutionMesh const* slf) {
 
 ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getSubMesh");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getSubMesh");
 		return nullptr;
 	}
 
 	if (i >= slf->sub_meshes.size()) {
-		CZK_LOG_ERROR("ZkMultiResolutionMesh_getSubMesh() failed: index out of range");
+		ZKC_LOG_ERROR("ZkMultiResolutionMesh_getSubMesh() failed: index out of range");
 		return nullptr;
 	}
 
@@ -98,7 +98,7 @@ ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* s
 
 void ZkMultiResolutionMesh_enumerateSubMeshes(ZkMultiResolutionMesh const* slf, ZkSubMeshEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_enumerateSubMeshes");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_enumerateSubMeshes");
 		return;
 	}
 
@@ -109,7 +109,7 @@ void ZkMultiResolutionMesh_enumerateSubMeshes(ZkMultiResolutionMesh const* slf, 
 
 ZkSize ZkMultiResolutionMesh_getMaterialCount(ZkMultiResolutionMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getMaterialCount");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getMaterialCount");
 		return 0;
 	}
 
@@ -118,12 +118,12 @@ ZkSize ZkMultiResolutionMesh_getMaterialCount(ZkMultiResolutionMesh const* slf) 
 
 ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getMaterial");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getMaterial");
 		return nullptr;
 	}
 
 	if (i >= slf->materials.size()) {
-		CZK_LOG_ERROR("ZkMultiResolutionMesh_getMaterial() failed: index out of range");
+		ZKC_LOG_ERROR("ZkMultiResolutionMesh_getMaterial() failed: index out of range");
 		return nullptr;
 	}
 
@@ -132,7 +132,7 @@ ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const*
 
 void ZkMultiResolutionMesh_enumerateMaterials(ZkMultiResolutionMesh const* slf, ZkMaterialEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_enumerateMaterials");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_enumerateMaterials");
 		return;
 	}
 
@@ -143,7 +143,7 @@ void ZkMultiResolutionMesh_enumerateMaterials(ZkMultiResolutionMesh const* slf, 
 
 ZkBool ZkMultiResolutionMesh_getAlphaTest(ZkMultiResolutionMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getAlphaTest");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getAlphaTest");
 		return false;
 	}
 
@@ -152,7 +152,7 @@ ZkBool ZkMultiResolutionMesh_getAlphaTest(ZkMultiResolutionMesh const* slf) {
 
 ZkAxisAlignedBoundingBox ZkMultiResolutionMesh_getBbox(ZkMultiResolutionMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getBbox");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getBbox");
 		return {};
 	}
 
@@ -161,7 +161,7 @@ ZkAxisAlignedBoundingBox ZkMultiResolutionMesh_getBbox(ZkMultiResolutionMesh con
 
 ZkOrientedBoundingBox const* ZkMultiResolutionMesh_getOrientedBbox(ZkMultiResolutionMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkMultiResolutionMesh_getOrientedBbox");
+		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getOrientedBbox");
 		return nullptr;
 	}
 
@@ -170,7 +170,7 @@ ZkOrientedBoundingBox const* ZkMultiResolutionMesh_getOrientedBbox(ZkMultiResolu
 
 ZkMaterial const* ZkSubMesh_getMaterial(ZkSubMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getMaterial");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getMaterial");
 		return nullptr;
 	}
 
@@ -179,7 +179,7 @@ ZkMaterial const* ZkSubMesh_getMaterial(ZkSubMesh const* slf) {
 
 ZkMeshTriangle const* ZkSubMesh_getTriangles(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getTriangles");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getTriangles");
 		return nullptr;
 	}
 
@@ -189,7 +189,7 @@ ZkMeshTriangle const* ZkSubMesh_getTriangles(ZkSubMesh const* slf, ZkSize* count
 
 ZkMeshWedge const* ZkSubMesh_getWedges(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getWedges");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getWedges");
 		return nullptr;
 	}
 
@@ -199,7 +199,7 @@ ZkMeshWedge const* ZkSubMesh_getWedges(ZkSubMesh const* slf, ZkSize* count) {
 
 float const* ZkSubMesh_getColors(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getColors");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getColors");
 		return nullptr;
 	}
 
@@ -209,7 +209,7 @@ float const* ZkSubMesh_getColors(ZkSubMesh const* slf, ZkSize* count) {
 
 uint16_t const* ZkSubMesh_getTrianglePlaneIndices(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getTrianglePlaneIndices");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getTrianglePlaneIndices");
 		return nullptr;
 	}
 
@@ -219,7 +219,7 @@ uint16_t const* ZkSubMesh_getTrianglePlaneIndices(ZkSubMesh const* slf, ZkSize* 
 
 ZkMeshPlane const* ZkSubMesh_getTrianglePlanes(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getTrianglePlanes");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getTrianglePlanes");
 		return nullptr;
 	}
 
@@ -229,7 +229,7 @@ ZkMeshPlane const* ZkSubMesh_getTrianglePlanes(ZkSubMesh const* slf, ZkSize* cou
 
 ZkMeshTriangleEdge const* ZkSubMesh_getTriangleEdges(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getTriangleEdges");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getTriangleEdges");
 		return nullptr;
 	}
 
@@ -239,7 +239,7 @@ ZkMeshTriangleEdge const* ZkSubMesh_getTriangleEdges(ZkSubMesh const* slf, ZkSiz
 
 ZkMeshEdge const* ZkSubMesh_getEdges(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getEdges");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getEdges");
 		return nullptr;
 	}
 
@@ -249,7 +249,7 @@ ZkMeshEdge const* ZkSubMesh_getEdges(ZkSubMesh const* slf, ZkSize* count) {
 
 float const* ZkSubMesh_getEdgeScores(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getEdgeScores");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getEdgeScores");
 		return nullptr;
 	}
 
@@ -259,7 +259,7 @@ float const* ZkSubMesh_getEdgeScores(ZkSubMesh const* slf, ZkSize* count) {
 
 uint16_t const* ZkSubMesh_getWedgeMap(ZkSubMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSubMesh_getWedgeMap");
+		ZKC_LOG_WARN_NULL("ZkSubMesh_getWedgeMap");
 		return nullptr;
 	}
 

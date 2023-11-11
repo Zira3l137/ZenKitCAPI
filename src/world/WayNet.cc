@@ -1,10 +1,10 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/world/WayNet.h"
+#include "zenkit-capi/world/WayNet.h"
 
 ZkWayEdge const* ZkWayNet_getEdges(ZkWayNet const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayNet_getEdges");
+		ZKC_LOG_WARN_NULL("ZkWayNet_getEdges");
 		return nullptr;
 	}
 
@@ -14,7 +14,7 @@ ZkWayEdge const* ZkWayNet_getEdges(ZkWayNet const* slf, ZkSize* count) {
 
 ZkSize ZkWayNet_getPointCount(ZkWayNet const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayNet_getPointCount");
+		ZKC_LOG_WARN_NULL("ZkWayNet_getPointCount");
 		return 0;
 	}
 
@@ -23,12 +23,12 @@ ZkSize ZkWayNet_getPointCount(ZkWayNet const* slf) {
 
 ZkWayPoint const* ZkWayNet_getPoint(ZkWayNet const* slf, ZkSize i) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayNet_getPoint");
+		ZKC_LOG_WARN_NULL("ZkWayNet_getPoint");
 		return nullptr;
 	}
 
 	if (i >= slf->waypoints.size()) {
-		CZK_LOG_ERROR("ZkWayNet_getPoint() failed: index out of range");
+		ZKC_LOG_ERROR("ZkWayNet_getPoint() failed: index out of range");
 		return nullptr;
 	}
 
@@ -37,7 +37,7 @@ ZkWayPoint const* ZkWayNet_getPoint(ZkWayNet const* slf, ZkSize i) {
 
 void ZkWayNet_enumeratePoints(ZkWayNet const* slf, ZkWayPointEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayNet_enumeratePoints");
+		ZKC_LOG_WARN_NULL("ZkWayNet_enumeratePoints");
 		return;
 	}
 
@@ -48,7 +48,7 @@ void ZkWayNet_enumeratePoints(ZkWayNet const* slf, ZkWayPointEnumerator cb, void
 
 ZkString ZkWayPoint_getName(ZkWayPoint const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayPoint_getName");
+		ZKC_LOG_WARN_NULL("ZkWayPoint_getName");
 		return nullptr;
 	}
 
@@ -57,7 +57,7 @@ ZkString ZkWayPoint_getName(ZkWayPoint const* slf) {
 
 int32_t ZkWayPoint_getWaterDepth(ZkWayPoint const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayPoint_getWaterDepth");
+		ZKC_LOG_WARN_NULL("ZkWayPoint_getWaterDepth");
 		return 0;
 	}
 
@@ -66,7 +66,7 @@ int32_t ZkWayPoint_getWaterDepth(ZkWayPoint const* slf) {
 
 ZkBool ZkWayPoint_getUnderWater(ZkWayPoint const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayPoint_getUnderWater");
+		ZKC_LOG_WARN_NULL("ZkWayPoint_getUnderWater");
 		return 0;
 	}
 
@@ -75,7 +75,7 @@ ZkBool ZkWayPoint_getUnderWater(ZkWayPoint const* slf) {
 
 ZkVec3f ZkWayPoint_getPosition(ZkWayPoint const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayPoint_getPosition");
+		ZKC_LOG_WARN_NULL("ZkWayPoint_getPosition");
 		return {};
 	}
 
@@ -84,7 +84,7 @@ ZkVec3f ZkWayPoint_getPosition(ZkWayPoint const* slf) {
 
 ZkVec3f ZkWayPoint_getDirection(ZkWayPoint const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayPoint_getDirection");
+		ZKC_LOG_WARN_NULL("ZkWayPoint_getDirection");
 		return {};
 	}
 
@@ -93,7 +93,7 @@ ZkVec3f ZkWayPoint_getDirection(ZkWayPoint const* slf) {
 
 ZkBool ZkWayPoint_getFreePoint(ZkWayPoint const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkWayPoint_getFreePoint");
+		ZKC_LOG_WARN_NULL("ZkWayPoint_getFreePoint");
 		return {};
 	}
 

@@ -1,22 +1,22 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/DaedalusScript.h"
+#include "zenkit-capi/DaedalusScript.h"
 #include "Internal.hh"
 
 #include <zenkit/addon/daedalus.hh>
 
-CZK_LOADER(ZkDaedalusScript)
-CZK_PATH_LOADER(ZkDaedalusScript)
-CZK_VFS_LOADER(ZkDaedalusScript)
-CZK_DELETER(ZkDaedalusScript)
+ZKC_LOADER(ZkDaedalusScript)
+ZKC_PATH_LOADER(ZkDaedalusScript)
+ZKC_VFS_LOADER(ZkDaedalusScript)
+ZKC_DELETER(ZkDaedalusScript)
 
 uint32_t ZkDaedalusScript_getSymbolCount(ZkDaedalusScript* slf) {
-	CZK_CHECK_NULL(slf);
+	ZKC_CHECK_NULL(slf);
 	return (uint32_t) slf->symbols().size();
 }
 
 void ZkDaedalusScript_enumerateSymbols(ZkDaedalusScript* slf, ZkDaedalusSymbolEnumerator cb, void* ctx) {
-	CZK_CHECK_NULLV(slf, cb);
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& symbol : slf->symbols()) {
 		if (cb(ctx, const_cast<ZkDaedalusSymbol*>(&symbol))) break;
@@ -27,13 +27,13 @@ void ZkDaedalusScript_enumerateInstanceSymbols(ZkDaedalusScript* slf,
                                                ZkString className,
                                                ZkDaedalusSymbolEnumerator cb,
                                                void* ctx) {
-	CZK_CHECK_NULLV(slf, cb);
+	ZKC_CHECK_NULLV(slf, cb);
 
 	slf->enumerate_instances_by_class_name(className, [cb, ctx](auto& sym) { cb(ctx, &sym); });
 }
 
 ZkDaedalusInstruction ZkDaedalusScript_getInstruction(ZkDaedalusScript* slf, ZkSize address) {
-	CZK_CHECK_NULL(slf);
+	ZKC_CHECK_NULL(slf);
 
 	auto instr = slf->instruction_at((uint32_t) address);
 
@@ -72,116 +72,116 @@ ZkDaedalusInstruction ZkDaedalusScript_getInstruction(ZkDaedalusScript* slf, ZkS
 }
 
 ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByIndex(ZkDaedalusScript* slf, uint32_t i) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->find_symbol_by_index(i));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->find_symbol_by_index(i));
 }
 
 ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByAddress(ZkDaedalusScript* slf, ZkSize address) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->find_symbol_by_address((uint32_t) address));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->find_symbol_by_address((uint32_t) address));
 }
 
 ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByName(ZkDaedalusScript* slf, ZkString name) {
-	CZK_CHECK_NULL(slf, name);
-	CZK_RETURN_CATCH(slf->find_symbol_by_name(name));
+	ZKC_CHECK_NULL(slf, name);
+	ZKC_RETURN_CATCH(slf->find_symbol_by_name(name));
 }
 
 ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->get_string(index, context).c_str());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->get_string(index, context).c_str());
 }
 
 float ZkDaedalusSymbol_getFloat(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->get_float(index, context));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->get_float(index, context));
 }
 
 int32_t ZkDaedalusSymbol_getInt(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->get_int(index, context));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->get_int(index, context));
 }
 
 void ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context) {
-	CZK_CHECK_NULLV(slf, value);
-	CZK_CATCH(slf->set_string(value, index, context));
+	ZKC_CHECK_NULLV(slf, value);
+	ZKC_CATCH(slf->set_string(value, index, context));
 }
 
 void ZkDaedalusSymbol_setFloat(ZkDaedalusSymbol* slf, float value, uint16_t index, ZkDaedalusInstance* context) {
-	CZK_CHECK_NULLV(slf);
-	CZK_CATCH(slf->set_float(value, index, context));
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CATCH(slf->set_float(value, index, context));
 }
 
 void ZkDaedalusSymbol_setInt(ZkDaedalusSymbol* slf, int32_t value, uint16_t index, ZkDaedalusInstance* context) {
-	CZK_CHECK_NULLV(slf);
-	CZK_CATCH(slf->set_int(value, index, context));
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CATCH(slf->set_int(value, index, context));
 }
 
 ZkBool ZkDaedalusSymbol_getIsConst(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->is_const());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->is_const());
 }
 
 ZkBool ZkDaedalusSymbol_getIsMember(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->is_member());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->is_member());
 }
 
 ZkBool ZkDaedalusSymbol_getIsExternal(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->is_external());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->is_external());
 }
 
 ZkBool ZkDaedalusSymbol_getIsMerged(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->is_merged());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->is_merged());
 }
 
 ZkBool ZkDaedalusSymbol_getIsGenerated(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->is_generated());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->is_generated());
 }
 
 ZkBool ZkDaedalusSymbol_getHasReturn(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->has_return());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->has_return());
 }
 
 ZkString ZkDaedalusSymbol_getName(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->name().c_str());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->name().c_str());
 }
 
 int32_t ZkDaedalusSymbol_getAddress(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(static_cast<int32_t>(slf->address()));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(static_cast<int32_t>(slf->address()));
 }
 
 int32_t ZkDaedalusSymbol_getParent(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(static_cast<int32_t>(slf->parent()));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(static_cast<int32_t>(slf->parent()));
 }
 
 int32_t ZkDaedalusSymbol_getSize(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(static_cast<int32_t>(slf->count()));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(static_cast<int32_t>(slf->count()));
 }
 
 ZkDaedalusDataType ZkDaedalusSymbol_getType(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(static_cast<ZkDaedalusDataType>(slf->type()));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(static_cast<ZkDaedalusDataType>(slf->type()));
 }
 
 uint32_t ZkDaedalusSymbol_getIndex(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(slf->index());
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(slf->index());
 }
 
 ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const* slf) {
-	CZK_CHECK_NULL(slf);
-	CZK_RETURN_CATCH(static_cast<ZkDaedalusDataType>(slf->rtype()));
+	ZKC_CHECK_NULL(slf);
+	ZKC_RETURN_CATCH(static_cast<ZkDaedalusDataType>(slf->rtype()));
 }
 
-CZK_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf) {
+ZKC_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf) {
 	auto type = slf->instance_type();
 
 	if (type == &typeid(zenkit::IGuildValues)) return ZkDaedalusInstanceType_GuildValues;
@@ -210,6 +210,6 @@ CZK_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance con
 }
 
 uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf) {
-	CZK_CHECK_NULL(slf);
+	ZKC_CHECK_NULL(slf);
 	return slf->symbol_index();
 }

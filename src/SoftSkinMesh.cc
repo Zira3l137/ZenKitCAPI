@@ -1,10 +1,10 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
-#include "czenkit/SoftSkinMesh.h"
+#include "zenkit-capi/SoftSkinMesh.h"
 
 ZkSize ZkSoftSkinMesh_getNodeCount(ZkSoftSkinMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_getNodeCount");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getNodeCount");
 		return 0;
 	}
 
@@ -13,7 +13,7 @@ ZkSize ZkSoftSkinMesh_getNodeCount(ZkSoftSkinMesh const* slf) {
 
 ZkMultiResolutionMesh const* ZkSoftSkinMesh_getMesh(ZkSoftSkinMesh const* slf) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_getMesh");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getMesh");
 		return nullptr;
 	}
 
@@ -22,12 +22,12 @@ ZkMultiResolutionMesh const* ZkSoftSkinMesh_getMesh(ZkSoftSkinMesh const* slf) {
 
 ZkOrientedBoundingBox const* ZkSoftSkinMesh_getBbox(ZkSoftSkinMesh const* slf, ZkSize node) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_getBbox");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getBbox");
 		return nullptr;
 	}
 
 	if (node >= slf->bboxes.size()) {
-		CZK_LOG_ERROR("ZkSoftSkinMesh_getBbox() failed: index out of range");
+		ZKC_LOG_ERROR("ZkSoftSkinMesh_getBbox() failed: index out of range");
 		return nullptr;
 	}
 
@@ -36,7 +36,7 @@ ZkOrientedBoundingBox const* ZkSoftSkinMesh_getBbox(ZkSoftSkinMesh const* slf, Z
 
 void ZkSoftSkinMesh_enumerateBoundingBoxes(ZkSoftSkinMesh const* slf, ZkOrientedBoundingBoxEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateBoundingBoxes");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateBoundingBoxes");
 		return;
 	}
 
@@ -47,12 +47,12 @@ void ZkSoftSkinMesh_enumerateBoundingBoxes(ZkSoftSkinMesh const* slf, ZkOriented
 
 ZkSoftSkinWeightEntry const* ZkSoftSkinMesh_getWeights(ZkSoftSkinMesh const* slf, ZkSize node, ZkSize* count) {
 	if (slf == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_getWeights");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getWeights");
 		return nullptr;
 	}
 
 	if (node >= slf->weights.size()) {
-		CZK_LOG_ERROR("ZkSoftSkinMesh_getWeights() failed: index out of range");
+		ZKC_LOG_ERROR("ZkSoftSkinMesh_getWeights() failed: index out of range");
 		return nullptr;
 	}
 
@@ -62,7 +62,7 @@ ZkSoftSkinWeightEntry const* ZkSoftSkinMesh_getWeights(ZkSoftSkinMesh const* slf
 
 void ZkSoftSkinMesh_enumerateWeights(ZkSoftSkinMesh const* slf, ZkSoftSkinWeightEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateWeights");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateWeights");
 		return;
 	}
 
@@ -73,7 +73,7 @@ void ZkSoftSkinMesh_enumerateWeights(ZkSoftSkinMesh const* slf, ZkSoftSkinWeight
 
 ZkSoftSkinWedgeNormal const* ZkSoftSkinMesh_getWedgeNormals(ZkSoftSkinMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_getWedgeNormals");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getWedgeNormals");
 		return nullptr;
 	}
 
@@ -83,7 +83,7 @@ ZkSoftSkinWedgeNormal const* ZkSoftSkinMesh_getWedgeNormals(ZkSoftSkinMesh const
 
 int32_t const* ZkSoftSkinMesh_getNodes(ZkSoftSkinMesh const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		CZK_LOG_WARN_NULL("ZkSoftSkinMesh_getNodes");
+		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getNodes");
 		return nullptr;
 	}
 
