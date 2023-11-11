@@ -36,7 +36,7 @@ ZkModelScript* ZkModelScript_loadPath(ZkString path) {
 	}
 }
 
-ZkModelScript* ZkModelScript_loadVfs(ZkVfs* vfs, ZkString name)  {
+ZkModelScript* ZkModelScript_loadVfs(ZkVfs* vfs, ZkString name) {
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelScript_loadVfs");
 		return nullptr;
@@ -133,7 +133,6 @@ ZkSize ZkModelScript_getAnimationCount(ZkModelScript const* slf) {
 
 	return slf->animations.size();
 }
-
 
 ZkString ZkModelScript_getDisabledAnimation(ZkModelScript const* slf, ZkSize i) {
 	if (slf == nullptr) {
@@ -233,7 +232,6 @@ ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, ZkSize i
 	return &slf->animations[i];
 }
 
-
 void ZkModelScript_enumerateAnimationCombines(ZkModelScript const* slf, ZkAnimationCombineEnumerator cb, void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelScript_enumerateAnimationCombines");
@@ -310,7 +308,6 @@ void ZkModelScript_enumerateAnimations(ZkModelScript const* slf, ZkAnimationEnum
 		if (cb(ctx, &v)) break;
 	}
 }
-
 
 // ZkAnimation
 
@@ -431,7 +428,6 @@ float ZkAnimation_getCollisionVolumeScale(ZkAnimation const* slf) {
 	return slf->collision_volume_scale;
 }
 
-
 ZkSize ZkAnimation_getEventTagCount(ZkAnimation const* slf) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkAnimation_getEventCountTag");
@@ -494,7 +490,6 @@ ZkSize ZkAnimation_getCameraTremorCount(ZkAnimation const* slf) {
 
 	return slf->tremors.size();
 }
-
 
 ZkEventTag const* ZkAnimation_getEventTag(ZkAnimation const* slf, ZkSize i) {
 	if (slf == nullptr) {
@@ -594,7 +589,6 @@ ZkEventCameraTremor const* ZkAnimation_getCameraTremor(ZkAnimation const* slf, Z
 	return &slf->tremors[i];
 }
 
-
 void ZkAnimation_enumerateEventTags(ZkAnimation const* slf, ZkEventTagEnumerator cb, void* ctx) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateEventTags");
@@ -618,7 +612,8 @@ void ZkAnimation_enumerateParticleEffects(ZkAnimation const* slf, ZkEventParticl
 }
 
 void ZkAnimation_enumerateParticleEffectStops(ZkAnimation const* slf,
-                                              ZkEventParticleEffectStopEnumerator cb, void* ctx) {
+                                              ZkEventParticleEffectStopEnumerator cb,
+                                              void* ctx) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkAnimation_enumerateParticleEffectStops");
 		return;
@@ -672,7 +667,6 @@ void ZkAnimation_enumerateCameraTremors(ZkAnimation const* slf, ZkEventCameraTre
 		if (cb(ctx, &v)) break;
 	}
 }
-
 
 // ZkEventTag
 
@@ -1148,4 +1142,3 @@ ZkAnimationDirection ZkAnimationAlias_getDirection(ZkAnimationAlias const* slf) 
 
 	return static_cast<ZkAnimationDirection>(slf->direction);
 }
-

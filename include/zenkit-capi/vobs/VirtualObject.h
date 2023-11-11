@@ -1,11 +1,11 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
+#include "../Boxes.h"
 #include "../Library.h"
+#include "../Material.h"
 #include "../Matrix.h"
 #include "../Vector.h"
-#include "../Material.h"
-#include "../Boxes.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/VirtualObject.hh>
@@ -126,10 +126,8 @@ ZKC_API ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf);
 ZKC_API ZkVirtualObject const* ZkVirtualObject_getChild(ZkVirtualObject const* slf, ZkSize i);
 ZKC_API void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObjectEnumerator cb, void* ctx);
 
-
 // TODO(lmichaelis): Implement save-games
 // ZKC_API std::optional<SaveState> ZkVirtualObject_getSaved(ZkVirtualObject const* slf);
-
 
 ZKC_API ZkString ZkDecal_getName(ZkDecal const* slf);
 ZKC_API ZkVec2f ZkDecal_getDimension(ZkDecal const* slf);

@@ -8,7 +8,6 @@ using ZkSpellInstance = zenkit::ISpell;
 typedef struct ZkInternal_SpellInstance ZkSpellInstance;
 #endif
 
-
 ZKC_API float ZkSpellInstance_getTimePerMana(ZkSpellInstance const* slf);
 ZKC_API int32_t ZkSpellInstance_getDamagePerLevel(ZkSpellInstance const* slf);
 ZKC_API int32_t ZkSpellInstance_getDamageType(ZkSpellInstance const* slf);

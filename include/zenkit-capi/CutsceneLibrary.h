@@ -5,9 +5,8 @@
 #include "Stream.h"
 #include "Vfs.h"
 
-
 #ifdef __cplusplus
-#include <zenkit/CutsceneLibrary.hh>
+	#include <zenkit/CutsceneLibrary.hh>
 using ZkCutsceneLibrary = zenkit::CutsceneLibrary;
 using ZkCutsceneBlock = zenkit::CutsceneBlock;
 using ZkCutsceneMessage = zenkit::CutsceneMessage;

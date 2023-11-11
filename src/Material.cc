@@ -47,7 +47,7 @@ void ZkMaterial_del(ZkMaterial* slf) {
 	delete slf;
 }
 
-ZkString ZkMaterial_getName(ZkMaterial const* slf){
+ZkString ZkMaterial_getName(ZkMaterial const* slf) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getName");
 		return nullptr;

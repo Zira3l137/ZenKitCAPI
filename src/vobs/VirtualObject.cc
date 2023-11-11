@@ -51,7 +51,6 @@ void ZkVirtualObject_del(ZkVirtualObject* slf) {
 	delete slf;
 }
 
-
 ZkVobType ZkVirtualObject_getType(ZkVirtualObject const* slf) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVirtualObject_getType");
@@ -284,8 +283,8 @@ void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObje
 	}
 }
 
-ZkString ZkDecal_getName(ZkDecal const* slf){
-	if (slf == nullptr ){
+ZkString ZkDecal_getName(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getName");
 		return {};
 	}
@@ -293,8 +292,8 @@ ZkString ZkDecal_getName(ZkDecal const* slf){
 	return slf->name.c_str();
 }
 
-ZkVec2f ZkDecal_getDimension(ZkDecal const* slf){
-	if (slf == nullptr ){
+ZkVec2f ZkDecal_getDimension(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getDimension");
 		return {};
 	}
@@ -302,8 +301,8 @@ ZkVec2f ZkDecal_getDimension(ZkDecal const* slf){
 	return slf->dimension;
 }
 
-ZkVec2f ZkDecal_getOffset(ZkDecal const* slf){
-	if (slf == nullptr ){
+ZkVec2f ZkDecal_getOffset(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getOffset");
 		return {};
 	}
@@ -311,8 +310,8 @@ ZkVec2f ZkDecal_getOffset(ZkDecal const* slf){
 	return slf->offset;
 }
 
-ZkBool ZkDecal_getTwoSided(ZkDecal const* slf){
-	if (slf == nullptr ){
+ZkBool ZkDecal_getTwoSided(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getTwoSided");
 		return {};
 	}
@@ -320,8 +319,8 @@ ZkBool ZkDecal_getTwoSided(ZkDecal const* slf){
 	return slf->two_sided;
 }
 
-ZkAlphaFunction ZkDecal_getAlphaFunc(ZkDecal const* slf){
-	if (slf == nullptr ){
+ZkAlphaFunction ZkDecal_getAlphaFunc(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getAlphaFunc");
 		return {};
 	}
@@ -329,8 +328,8 @@ ZkAlphaFunction ZkDecal_getAlphaFunc(ZkDecal const* slf){
 	return static_cast<ZkAlphaFunction>(slf->alpha_func);
 }
 
-float ZkDecal_getTextureAnimFps(ZkDecal const* slf){
-	if (slf == nullptr ){
+float ZkDecal_getTextureAnimFps(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getTextureAnimFps");
 		return {};
 	}
@@ -338,8 +337,8 @@ float ZkDecal_getTextureAnimFps(ZkDecal const* slf){
 	return slf->texture_anim_fps;
 }
 
-uint8_t ZkDecal_getAlphaWeight(ZkDecal const* slf){
-	if (slf == nullptr ){
+uint8_t ZkDecal_getAlphaWeight(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getAlphaWeight");
 		return {};
 	}
@@ -347,12 +346,11 @@ uint8_t ZkDecal_getAlphaWeight(ZkDecal const* slf){
 	return slf->alpha_weight;
 }
 
-ZkBool ZkDecal_getIgnoreDaylight(ZkDecal const* slf){
-	if (slf == nullptr ){
+ZkBool ZkDecal_getIgnoreDaylight(ZkDecal const* slf) {
+	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkDecal_getIgnoreDaylight");
 		return {};
 	}
 
 	return slf->ignore_daylight;
 }
-

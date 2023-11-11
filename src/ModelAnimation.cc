@@ -143,7 +143,7 @@ ZkString ZkModelAnimation_getSourcePath(ZkModelAnimation const* slf) {
 	return slf->source_path.c_str();
 }
 
-ZkDate ZkModelAnimation_getSourceDate(ZkModelAnimation const* slf){
+ZkDate ZkModelAnimation_getSourceDate(ZkModelAnimation const* slf) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourceDate");
 		return {};

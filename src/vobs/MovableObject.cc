@@ -8,57 +8,57 @@ ZKC_VOB_LOADER(ZkMovableObject)
 ZKC_VOB_PATH_LOADER(ZkMovableObject)
 ZKC_DELETER(ZkMovableObject)
 
-ZkString ZkMovableObject_getName(ZkMovableObject const* slf){
+ZkString ZkMovableObject_getName(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->name.c_str();
 }
 
-int32_t ZkMovableObject_getHp(ZkMovableObject const* slf){
+int32_t ZkMovableObject_getHp(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->hp;
 }
 
-int32_t ZkMovableObject_getDamage(ZkMovableObject const* slf){
+int32_t ZkMovableObject_getDamage(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->damage;
 }
 
-ZkBool ZkMovableObject_getMovable(ZkMovableObject const* slf){
+ZkBool ZkMovableObject_getMovable(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->movable;
 }
 
-ZkBool ZkMovableObject_getTakable(ZkMovableObject const* slf){
+ZkBool ZkMovableObject_getTakable(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->takable;
 }
 
-ZkBool ZkMovableObject_getFocusOverride(ZkMovableObject const* slf){
+ZkBool ZkMovableObject_getFocusOverride(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->focus_override;
 }
 
-ZkSoundMaterialType ZkMovableObject_getMaterial(ZkMovableObject const* slf){
+ZkSoundMaterialType ZkMovableObject_getMaterial(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkSoundMaterialType>(slf->material);
 }
 
-ZkString ZkMovableObject_getVisualDestroyed(ZkMovableObject const* slf){
+ZkString ZkMovableObject_getVisualDestroyed(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->visual_destroyed.c_str();
 }
 
-ZkString ZkMovableObject_getOwner(ZkMovableObject const* slf){
+ZkString ZkMovableObject_getOwner(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->owner.c_str();
 }
 
-ZkString ZkMovableObject_getOwnerGuild(ZkMovableObject const* slf){
+ZkString ZkMovableObject_getOwnerGuild(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->owner_guild.c_str();
 }
 
-ZkBool ZkMovableObject_getDestroyed(ZkMovableObject const* slf){
+ZkBool ZkMovableObject_getDestroyed(ZkMovableObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->destroyed;
 }

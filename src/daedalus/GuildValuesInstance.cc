@@ -3,7 +3,6 @@
 #include "zenkit-capi/daedalus/GuildValuesInstance.h"
 #include "../Internal.hh"
 
-
 int32_t ZkGuildValuesInstance_getWaterDepthKnee(ZkGuildValuesInstance const* slf, ZkSize i) {
 	ZKC_CHECK_NULL(slf);
 	ZKC_CHECK_LENA(ZkGuildValuesInstance_ElementLength, i);

@@ -47,7 +47,6 @@ typedef enum {
 	ZkItemInstanceText_Slot5 = 5,
 } ZkItemInstanceTextSlot;
 
-
 ZKC_API int32_t ZkItemInstance_getId(ZkItemInstance const* slf);
 ZKC_API ZkString ZkItemInstance_getName(ZkItemInstance const* slf);
 ZKC_API ZkString ZkItemInstance_getNameId(ZkItemInstance const* slf);

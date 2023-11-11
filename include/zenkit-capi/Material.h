@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include "Library.h"
-#include "Vector.h"
 #include "Stream.h"
+#include "Vector.h"
 
 #ifdef __cplusplus
-#include <zenkit/Material.hh>
+	#include <zenkit/Material.hh>
 using ZkMaterial = zenkit::Material;
 #else
 typedef struct ZkInternal_Material ZkMaterial;
@@ -60,7 +60,6 @@ typedef ZkBool (*ZkMaterialEnumerator)(void* ctx, ZkMaterial const* material);
 ZKC_API ZkMaterial* ZkMaterial_load(ZkRead* buf);
 ZKC_API ZkMaterial* ZkMaterial_loadPath(ZkString path);
 ZKC_API void ZkMaterial_del(ZkMaterial* slf);
-
 
 ZKC_API ZkString ZkMaterial_getName(ZkMaterial const* slf);
 ZKC_API ZkMaterialGroup ZkMaterial_getGroup(ZkMaterial const* slf);

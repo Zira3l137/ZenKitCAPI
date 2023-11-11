@@ -69,8 +69,8 @@ ZKC_API int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf);
 
 ZKC_API ZkSize ZkCutsceneCamera_getFrameCount(ZkCutsceneCamera const* slf);
 ZKC_API ZkCameraTrajectoryFrame const* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const* slf, ZkSize i);
-ZKC_API void ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTrajectoryFrameEnumerator cb, void* ctx);
-
+ZKC_API void
+ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTrajectoryFrameEnumerator cb, void* ctx);
 
 ZKC_API float ZkCameraTrajectoryFrame_getTime(ZkCameraTrajectoryFrame const* slf);
 ZKC_API float ZkCameraTrajectoryFrame_getRollAngle(ZkCameraTrajectoryFrame const* slf);

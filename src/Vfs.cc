@@ -114,7 +114,7 @@ ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time
 	}
 
 	try {
-		auto node = ZkVfsNode::file(name, zenkit::VfsFileDescriptor {(std::byte const*)(buf), size}, ts);
+		auto node = ZkVfsNode::file(name, zenkit::VfsFileDescriptor {(std::byte const*) (buf), size}, ts);
 		return ZKC_WRAP_NEW(node);
 	} catch (std::exception const& exc) {
 		ZKC_LOG_ERROR("ZkVfsNode_newFile() failed: %s", exc.what());

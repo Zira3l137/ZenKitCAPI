@@ -24,7 +24,6 @@ typedef enum {
 
 typedef ZkBool (*ZkVfsNodeEnumerator)(void* ctx, ZkVfsNode const* node);
 
-
 ZKC_API ZkVfs* ZkVfs_new(void);
 ZKC_API void ZkVfs_del(ZkVfs* slf);
 

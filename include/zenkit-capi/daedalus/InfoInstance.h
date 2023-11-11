@@ -16,4 +16,3 @@ ZKC_API int32_t ZkInfoInstance_getInformation(ZkInfoInstance const* slf);
 ZKC_API ZkString ZkInfoInstance_getDescription(ZkInfoInstance const* slf);
 ZKC_API int32_t ZkInfoInstance_getTrade(ZkInfoInstance const* slf);
 ZKC_API int32_t ZkInfoInstance_getPermanent(ZkInfoInstance const* slf);
-

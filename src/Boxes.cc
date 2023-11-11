@@ -57,7 +57,9 @@ ZkOrientedBoundingBox const* ZkOrientedBoundingBox_getChild(ZkOrientedBoundingBo
 	return &slf->children[i];
 }
 
-void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf, ZkOrientedBoundingBoxEnumerator cb, void* ctx) {
+void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf,
+                                             ZkOrientedBoundingBoxEnumerator cb,
+                                             void* ctx) {
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_enumerateChildren");
 		return;

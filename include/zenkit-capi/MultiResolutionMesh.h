@@ -9,7 +9,7 @@
 #include "Vfs.h"
 
 #ifdef __cplusplus
-#include <zenkit/MultiResolutionMesh.hh>
+	#include <zenkit/MultiResolutionMesh.hh>
 using ZkMultiResolutionMesh = zenkit::MultiResolutionMesh;
 using ZkSubMesh = zenkit::SubMesh;
 
@@ -59,11 +59,13 @@ ZKC_API ZkVec3f const* ZkMultiResolutionMesh_getNormals(ZkMultiResolutionMesh co
 
 ZKC_API ZkSize ZkMultiResolutionMesh_getSubMeshCount(ZkMultiResolutionMesh const* slf);
 ZKC_API ZkSubMesh const* ZkMultiResolutionMesh_getSubMesh(ZkMultiResolutionMesh const* slf, ZkSize i);
-ZKC_API void ZkMultiResolutionMesh_enumerateSubMeshes(ZkMultiResolutionMesh const* slf, ZkSubMeshEnumerator cb, void* ctx);
+ZKC_API void
+ZkMultiResolutionMesh_enumerateSubMeshes(ZkMultiResolutionMesh const* slf, ZkSubMeshEnumerator cb, void* ctx);
 
 ZKC_API ZkSize ZkMultiResolutionMesh_getMaterialCount(ZkMultiResolutionMesh const* slf);
 ZKC_API ZkMaterial const* ZkMultiResolutionMesh_getMaterial(ZkMultiResolutionMesh const* slf, ZkSize i);
-ZKC_API void ZkMultiResolutionMesh_enumerateMaterials(ZkMultiResolutionMesh const* slf, ZkMaterialEnumerator cb, void* ctx);
+ZKC_API void
+ZkMultiResolutionMesh_enumerateMaterials(ZkMultiResolutionMesh const* slf, ZkMaterialEnumerator cb, void* ctx);
 
 ZKC_API ZkBool ZkMultiResolutionMesh_getAlphaTest(ZkMultiResolutionMesh const* slf);
 ZKC_API ZkAxisAlignedBoundingBox ZkMultiResolutionMesh_getBbox(ZkMultiResolutionMesh const* slf);

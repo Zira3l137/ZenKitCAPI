@@ -1,11 +1,11 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "ModelMesh.h"
 #include "ModelHierarchy.h"
+#include "ModelMesh.h"
 
 #ifdef __cplusplus
-#include <zenkit/Model.hh>
+	#include <zenkit/Model.hh>
 using ZkModel = zenkit::Model;
 #else
 typedef struct ZkInternal_Model ZkModel;

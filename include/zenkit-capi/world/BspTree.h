@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include "../Boxes.h"
-#include "../Vector.h"
 #include "../Library.h"
+#include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/world/BspTree.hh>

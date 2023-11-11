@@ -60,4 +60,3 @@ int32_t ZkSpellInstance_getTargetCollectElevation(ZkSpellInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->target_collect_elev;
 }
-

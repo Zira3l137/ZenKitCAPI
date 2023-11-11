@@ -1,14 +1,14 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
+#include "Date.h"
+#include "MultiResolutionMesh.h"
 #include "Stream.h"
 #include "Vector.h"
-#include "MultiResolutionMesh.h"
 #include "Vfs.h"
-#include "Date.h"
 
 #ifdef __cplusplus
-#include <zenkit/MorphMesh.hh>
+	#include <zenkit/MorphMesh.hh>
 using ZkMorphMesh = zenkit::MorphMesh;
 using ZkMorphAnimation = zenkit::MorphAnimation;
 using ZkMorphSource = zenkit::MorphSource;

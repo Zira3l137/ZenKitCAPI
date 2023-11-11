@@ -119,17 +119,23 @@ ZKC_API void ZkDaedalusScript_del(ZkDaedalusScript* slf);
 
 ZKC_API uint32_t ZkDaedalusScript_getSymbolCount(ZkDaedalusScript* slf);
 ZKC_API void ZkDaedalusScript_enumerateSymbols(ZkDaedalusScript* slf, ZkDaedalusSymbolEnumerator cb, void* ctx);
-ZKC_API void ZkDaedalusScript_enumerateInstanceSymbols(ZkDaedalusScript* slf, ZkString className, ZkDaedalusSymbolEnumerator cb, void* ctx);
+ZKC_API void ZkDaedalusScript_enumerateInstanceSymbols(ZkDaedalusScript* slf,
+                                                       ZkString className,
+                                                       ZkDaedalusSymbolEnumerator cb,
+                                                       void* ctx);
 ZKC_API ZkDaedalusInstruction ZkDaedalusScript_getInstruction(ZkDaedalusScript* slf, ZkSize address);
 
 ZKC_API ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByIndex(ZkDaedalusScript* slf, uint32_t i);
 ZKC_API ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByAddress(ZkDaedalusScript* slf, ZkSize i);
 ZKC_API ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByName(ZkDaedalusScript* slf, ZkString i);
 
-ZKC_API ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context);
+ZKC_API ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf,
+                                            uint16_t index,
+                                            ZkDaedalusInstance const* context);
 ZKC_API float ZkDaedalusSymbol_getFloat(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context);
 ZKC_API int32_t ZkDaedalusSymbol_getInt(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context);
-ZKC_API void ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context);
+ZKC_API void
+ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context);
 ZKC_API void ZkDaedalusSymbol_setFloat(ZkDaedalusSymbol* slf, float value, uint16_t index, ZkDaedalusInstance* context);
 ZKC_API void ZkDaedalusSymbol_setInt(ZkDaedalusSymbol* slf, int32_t value, uint16_t index, ZkDaedalusInstance* context);
 

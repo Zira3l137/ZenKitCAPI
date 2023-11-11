@@ -121,11 +121,13 @@ ZKC_API ZkAnimationAlias const* ZkModelScript_getAnimationAlias(ZkModelScript co
 ZKC_API ZkString ZkModelScript_getModelTag(ZkModelScript const* slf, ZkSize i);
 ZKC_API ZkAnimation const* ZkModelScript_getAnimation(ZkModelScript const* slf, ZkSize i);
 
-ZKC_API void ZkModelScript_enumerateAnimationCombines(ZkModelScript const* slf, ZkAnimationCombineEnumerator cb, void* ctx);
+ZKC_API void
+ZkModelScript_enumerateAnimationCombines(ZkModelScript const* slf, ZkAnimationCombineEnumerator cb, void* ctx);
 ZKC_API void ZkModelScript_enumerateMeshes(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx);
 ZKC_API void ZkModelScript_enumerateDisabledAnimations(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx);
 ZKC_API void ZkModelScript_enumerateAnimationBlends(ZkModelScript const* slf, ZkAnimationBlendEnumerator cb, void* ctx);
-ZKC_API void ZkModelScript_enumerateAnimationAliases(ZkModelScript const* slf, ZkAnimationAliasEnumerator cb, void* ctx);
+ZKC_API void
+ZkModelScript_enumerateAnimationAliases(ZkModelScript const* slf, ZkAnimationAliasEnumerator cb, void* ctx);
 ZKC_API void ZkModelScript_enumerateModelTags(ZkModelScript const* slf, ZkStringEnumerator cb, void* ctx);
 ZKC_API void ZkModelScript_enumerateAnimations(ZkModelScript const* slf, ZkAnimationEnumerator cb, void* ctx);
 
@@ -163,10 +165,13 @@ ZKC_API ZkEventCameraTremor const* ZkAnimation_getCameraTremor(ZkAnimation const
 
 ZKC_API void ZkAnimation_enumerateEventTags(ZkAnimation const* slf, ZkEventTagEnumerator cb, void* ctx);
 ZKC_API void ZkAnimation_enumerateParticleEffects(ZkAnimation const* slf, ZkEventParticlEffectEnumerator cb, void* ctx);
-ZKC_API void ZkAnimation_enumerateParticleEffectStops(ZkAnimation const* slf, ZkEventParticleEffectStopEnumerator cb, void* ctx);
+ZKC_API void
+ZkAnimation_enumerateParticleEffectStops(ZkAnimation const* slf, ZkEventParticleEffectStopEnumerator cb, void* ctx);
 ZKC_API void ZkAnimation_enumerateSoundEffects(ZkAnimation const* slf, ZkEventSoundEffectEnumerator cb, void* ctx);
-ZKC_API void ZkAnimation_enumerateSoundEffectGrounds(ZkAnimation const* slf, ZkEventSoundEffectGroundEnumerator cb, void* ctx);
-ZKC_API void ZkAnimation_enumerateMorphAnimations(ZkAnimation const* slf, ZkEventMorphAnimationEnumerator cb, void* ctx);
+ZKC_API void
+ZkAnimation_enumerateSoundEffectGrounds(ZkAnimation const* slf, ZkEventSoundEffectGroundEnumerator cb, void* ctx);
+ZKC_API void
+ZkAnimation_enumerateMorphAnimations(ZkAnimation const* slf, ZkEventMorphAnimationEnumerator cb, void* ctx);
 ZKC_API void ZkAnimation_enumerateCameraTremors(ZkAnimation const* slf, ZkEventCameraTremorEnumerator cb, void* ctx);
 
 // ZkEventTag

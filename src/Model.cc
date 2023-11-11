@@ -53,7 +53,7 @@ void ZkModel_del(ZkModel* slf) {
 	delete slf;
 }
 
-ZkModelHierarchy const* ZkModel_getHierarchy(ZkModel const* slf){
+ZkModelHierarchy const* ZkModel_getHierarchy(ZkModel const* slf) {
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModel_getHierarchy");
 		return nullptr;

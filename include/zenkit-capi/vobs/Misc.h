@@ -26,8 +26,7 @@ typedef struct ZkInternal_ParticleEffectController ZkParticleEffectController;
 typedef struct ZkInternal_MessageFilter ZkMessageFilter;
 typedef struct ZkInternal_CodeMaster ZkCodeMaster;
 typedef struct ZkInternal_MoverController ZkMoverController;
-typedef struct ZkInternal_TouchDamager ZkTouchDamage
-typedef struct ZkInternal_Earthquake ZkEarthquake
+typedef struct ZkInternal_TouchDamager ZkTouchDamage typedef struct ZkInternal_Earthquake ZkEarthquake
 #endif
 
 typedef enum {
