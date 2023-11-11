@@ -18,7 +18,7 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Linux x86-64 Shared Object'
-          path: 'build/libphoenix-shared*'
+          path: 'build/libzenkitcapi*'
   android:
     name: "Android"
     runs-on: 'ubuntu-latest'
@@ -36,7 +36,7 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'ARM x64 Shared Object'
-          path: 'build/libphoenix-shared*'
+          path: 'build/libzenkitcapi*'
   macos:
     name: "MacOS"
     runs-on: 'macos-11'
@@ -55,7 +55,7 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'MacOS x86-64 DyLib'
-          path: 'build/libphoenix-shared*'
+          path: 'build/libzenkitcapi*'
   windows:
     name: "Windows"
     runs-on: 'windows-2022'
@@ -77,4 +77,4 @@ jobs:
         uses: 'actions/upload-artifact@v3'
         with:
           name: 'Windows x86-64 DLL'
-          path: 'build/libphoenix-shared.dll'
+          path: 'build/libzenkitcapi.dll'
