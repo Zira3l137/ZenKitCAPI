@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Required for dependencies to compile properly.
 if (NOT MSVC)
-    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-fPIC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 endif ()
 
 option(ZKC_ENABLE_ASAN "ZenKitCAPI: Enable sanitizers in debug builds." ON)
