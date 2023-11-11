@@ -56,3 +56,19 @@ ZkRead* ZkRead_newExt(ZkReadExt ext, void* ctx) {
 void ZkRead_del(ZkRead* slf) {
 	delete slf;
 }
+
+ZkSize ZkRead_getSize(ZkRead* slf) {
+	auto off = slf->tell();
+	slf->seek(0, zenkit::Whence::END);
+	auto size = slf->tell();
+	slf->seek(static_cast<int64_t>(off), zenkit::Whence::BEG);
+	return size;
+}
+
+ZkSize ZkRead_getBytes(ZkRead* slf, void* buf, ZkSize length) {
+	auto off = slf->tell();
+	slf->seek(0, zenkit::Whence::END);
+	auto count = slf->read(buf, length);
+	slf->seek(static_cast<int64_t>(off), zenkit::Whence::BEG);
+	return count;
+}
