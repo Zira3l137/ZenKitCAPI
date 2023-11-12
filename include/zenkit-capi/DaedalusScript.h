@@ -94,7 +94,7 @@ typedef enum {
 	ZkDaedalusInstanceType_FightAi = 18,
 	ZkDaedalusInstanceType_SoundEffect = 19,
 	ZkDaedalusInstanceType_SoundSystem = 20,
-	ZkDaedalusInstanceType_Invalid = 20,
+	ZkDaedalusInstanceType_Invalid = 21,
 } ZkDaedalusInstanceType;
 
 typedef struct {
