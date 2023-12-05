@@ -19,6 +19,15 @@ typedef struct ZkInternal_Mat4x4 {
 		columns[2] = v[2];
 		columns[3] = v[3];
 	}
+
+	operator glm::mat4() const {
+		return glm::mat4 {
+			columns[0],
+			columns[1],
+			columns[2],
+			columns[3],
+		};
+	}
 #endif
 
 	ZkVec4f columns[4];
@@ -32,6 +41,14 @@ typedef struct ZkInternal_Mat3x3 {
 		columns[0] = v[0];
 		columns[1] = v[1];
 		columns[2] = v[2];
+	}
+
+	operator glm::mat3() const {
+		return glm::mat3 {
+			columns[0],
+			columns[1],
+			columns[2],
+		};
 	}
 #endif
 

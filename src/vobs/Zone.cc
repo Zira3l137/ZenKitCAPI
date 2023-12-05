@@ -13,9 +13,19 @@ ZkBool ZkZoneMusic_getIsEnabled(ZkZoneMusic const* slf) {
 	return slf->enabled;
 }
 
+void ZkZoneMusic_setIsEnabled(ZkZoneMusic* slf, ZkBool isEnabled) {
+	ZKC_CHECK_NULLV(slf);
+	slf->enabled = isEnabled;
+}
+
 int32_t ZkZoneMusic_getPriority(ZkZoneMusic const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->priority;
+}
+
+void ZkZoneMusic_setPriority(ZkZoneMusic* slf, int32_t priority) {
+	ZKC_CHECK_NULLV(slf);
+	slf->priority = priority;
 }
 
 ZkBool ZkZoneMusic_getIsEllipsoid(ZkZoneMusic const* slf) {
@@ -23,9 +33,19 @@ ZkBool ZkZoneMusic_getIsEllipsoid(ZkZoneMusic const* slf) {
 	return slf->ellipsoid;
 }
 
+void ZkZoneMusic_setIsEllipsoid(ZkZoneMusic* slf, ZkBool isEllipsoid) {
+	ZKC_CHECK_NULLV(slf);
+	slf->ellipsoid = isEllipsoid;
+}
+
 float ZkZoneMusic_getReverb(ZkZoneMusic const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->reverb;
+}
+
+void ZkZoneMusic_setReverb(ZkZoneMusic* slf, float reverb) {
+	ZKC_CHECK_NULLV(slf);
+	slf->reverb = reverb;
 }
 
 float ZkZoneMusic_getVolume(ZkZoneMusic const* slf) {
@@ -33,9 +53,19 @@ float ZkZoneMusic_getVolume(ZkZoneMusic const* slf) {
 	return slf->volume;
 }
 
+void ZkZoneMusic_setVolume(ZkZoneMusic* slf, float volume) {
+	ZKC_CHECK_NULLV(slf);
+	slf->volume = volume;
+}
+
 ZkBool ZkZoneMusic_getIsLoop(ZkZoneMusic const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->loop;
+}
+
+void ZkZoneMusic_setIsLoop(ZkZoneMusic* slf, ZkBool isLoop) {
+	ZKC_CHECK_NULLV(slf);
+	slf->loop = isLoop;
 }
 
 ZKC_VOB_LOADER(ZkZoneFarPlane)
@@ -47,9 +77,19 @@ float ZkZoneFarPlane_getVobFarPlaneZ(ZkZoneFarPlane const* slf) {
 	return slf->vob_far_plane_z;
 }
 
+void ZkZoneFarPlane_setVobFarPlaneZ(ZkZoneFarPlane* slf, float vobFarPlaneZ) {
+	ZKC_CHECK_NULLV(slf);
+	slf->vob_far_plane_z = vobFarPlaneZ;
+}
+
 float ZkZoneFarPlane_getInnerRangePercentage(ZkZoneFarPlane const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->inner_range_percentage;
+}
+
+void ZkZoneFarPlane_setInnerRangePercentage(ZkZoneFarPlane* slf, float innerRangePercentage) {
+	ZKC_CHECK_NULLV(slf);
+	slf->inner_range_percentage = innerRangePercentage;
 }
 
 ZKC_VOB_LOADER(ZkZoneFog)
@@ -61,9 +101,19 @@ float ZkZoneFog_getRangeCenter(ZkZoneFog const* slf) {
 	return slf->range_center;
 }
 
+void ZkZoneFog_setRangeCenter(ZkZoneFog* slf, float rangeCenter) {
+	ZKC_CHECK_NULLV(slf);
+	slf->range_center = rangeCenter;
+}
+
 float ZkZoneFog_getInnerRangePercentage(ZkZoneFog const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->inner_range_percentage;
+}
+
+void ZkZoneFog_setInnerRangePercentage(ZkZoneFog* slf, float innerRangePercentage) {
+	ZKC_CHECK_NULLV(slf);
+	slf->inner_range_percentage = innerRangePercentage;
 }
 
 ZkColor ZkZoneFog_getColor(ZkZoneFog const* slf) {
@@ -71,12 +121,27 @@ ZkColor ZkZoneFog_getColor(ZkZoneFog const* slf) {
 	return slf->color;
 }
 
+void ZkZoneFog_setColor(ZkZoneFog* slf, ZkColor color) {
+	ZKC_CHECK_NULLV(slf);
+	slf->color = color;
+}
+
 ZkBool ZkZoneFog_getFadeOutSky(ZkZoneFog const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->fade_out_sky;
 }
 
+void ZkZoneFog_setFadeOutSky(ZkZoneFog* slf, ZkBool fadeOutSky) {
+	ZKC_CHECK_NULLV(slf);
+	slf->fade_out_sky = fadeOutSky;
+}
+
 ZkBool ZkZoneFog_getOverrideColor(ZkZoneFog const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->override_color;
+}
+
+void ZkZoneFog_setOverrideColor(ZkZoneFog* slf, ZkBool overrideColor) {
+	ZKC_CHECK_NULLV(slf);
+	slf->override_color = overrideColor;
 }

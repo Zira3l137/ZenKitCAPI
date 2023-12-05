@@ -2,229 +2,182 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/vobs/Camera.h"
 
+#include "../Internal.hh"
+
 #include <zenkit/Archive.hh>
 
-ZkCutsceneCamera* ZkCutsceneCamera_load(ZkRead* buf, ZkGameVersion version) {
-	if (buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_load");
-		return nullptr;
-	}
-
-	try {
-		auto ar = zenkit::ReadArchive::from(buf);
-
-		zenkit::ArchiveObject o {};
-		ar->read_object_begin(o);
-
-		ZkCutsceneCamera obj {};
-		obj.type = zenkit::VirtualObjectType::zCCSCamera;
-		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return ZKC_WRAP_NEW(obj);
-	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkCutsceneCamera_load() failed: %s", exc.what());
-		return nullptr;
-	}
-}
-
-ZkCutsceneCamera* ZkCutsceneCamera_loadPath(ZkString path, ZkGameVersion version) {
-	if (path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_loadPath");
-		return nullptr;
-	}
-
-	try {
-		auto buf = zenkit::Read::from(path);
-		auto ar = zenkit::ReadArchive::from(buf.get());
-
-		zenkit::ArchiveObject o {};
-		ar->read_object_begin(o);
-
-		ZkCutsceneCamera obj {};
-		obj.type = zenkit::VirtualObjectType::zCCSCamera;
-		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
-		return ZKC_WRAP_NEW(obj);
-	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkCutsceneCamera_loadPath() failed: %s", exc.what());
-		return nullptr;
-	}
-}
-
-void ZkCutsceneCamera_del(ZkCutsceneCamera* slf) {
-	delete slf;
-}
+ZKC_VOB_LOADER(ZkCutsceneCamera);
+ZKC_VOB_PATH_LOADER(ZkCutsceneCamera);
+ZKC_DELETER(ZkCutsceneCamera);
 
 ZkCameraTrajectory ZkCutsceneCamera_getTrajectoryFOR(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTrajectoryFOR");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraTrajectory>(slf->trajectory_for);
 }
 
-ZkCameraTrajectory ZkCutsceneCamera_getTargetTrajectoryFOR(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTargetTrajectoryFOR");
-		return {};
-	}
+void ZkCutsceneCamera_setTrajectoryFOR(ZkCutsceneCamera* slf, ZkCameraTrajectory trajectoryFOR) {
+	ZKC_CHECK_NULLV(slf);
+	slf->trajectory_for = static_cast<zenkit::CameraTrajectory>(trajectoryFOR);
+}
 
+ZkCameraTrajectory ZkCutsceneCamera_getTargetTrajectoryFOR(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraTrajectory>(slf->target_trajectory_for);
 }
 
-ZkCameraLoopType ZkCutsceneCamera_getLoopMode(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getLoopMode");
-		return {};
-	}
+void ZkCutsceneCamera_setTargetTrajectoryFOR(ZkCutsceneCamera* slf, ZkCameraTrajectory targetTrajectoryFOR) {
+	ZKC_CHECK_NULLV(slf);
+	slf->target_trajectory_for = static_cast<zenkit::CameraTrajectory>(targetTrajectoryFOR);
+}
 
+ZkCameraLoopType ZkCutsceneCamera_getLoopMode(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraLoopType>(slf->loop_mode);
 }
 
-ZkCameraLerpType ZkCutsceneCamera_getLerpMode(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getLerpMode");
-		return {};
-	}
+void ZkCutsceneCamera_setLoopMode(ZkCutsceneCamera* slf, ZkCameraLoopType loopMode) {
+	ZKC_CHECK_NULLV(slf);
+	slf->loop_mode = static_cast<zenkit::CameraLoop>(loopMode);
+}
 
+ZkCameraLerpType ZkCutsceneCamera_getLerpMode(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraLerpType>(slf->lerp_mode);
 }
 
-ZkBool ZkCutsceneCamera_getIgnoreFORVobRotation(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getIgnoreFORVobRotation");
-		return {};
-	}
+void ZkCutsceneCamera_setLerpMode(ZkCutsceneCamera* slf, ZkCameraLerpType lerpMode) {
+	ZKC_CHECK_NULLV(slf);
+	slf->lerp_mode = static_cast<zenkit::CameraLerpType>(lerpMode);
+}
 
+ZkBool ZkCutsceneCamera_getIgnoreFORVobRotation(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->ignore_for_vob_rotation;
 }
 
-ZkBool ZkCutsceneCamera_getIgnoreFORVobRotationTarget(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getIgnoreFORVobRotationTarget");
-		return {};
-	}
+void ZkCutsceneCamera_setIgnoreFORVobRotation(ZkCutsceneCamera* slf, ZkBool ignoreFORVobRotation) {
+	ZKC_CHECK_NULLV(slf);
+	slf->ignore_for_vob_rotation = ignoreFORVobRotation;
+}
 
+ZkBool ZkCutsceneCamera_getIgnoreFORVobRotationTarget(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->ignore_for_vob_rotation_target;
 }
 
-ZkBool ZkCutsceneCamera_getAdapt(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAdapt");
-		return {};
-	}
+void ZkCutsceneCamera_setIgnoreFORVobRotationTarget(ZkCutsceneCamera* slf, ZkBool ignoreFORVobRotationTarget) {
+	ZKC_CHECK_NULLV(slf);
+	slf->ignore_for_vob_rotation_target = ignoreFORVobRotationTarget;
+}
 
+ZkBool ZkCutsceneCamera_getAdapt(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->adapt;
 }
 
-ZkBool ZkCutsceneCamera_getEaseFirst(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getEaseFirst");
-		return {};
-	}
+void ZkCutsceneCamera_setAdapt(ZkCutsceneCamera* slf, ZkBool adapt) {
+	ZKC_CHECK_NULLV(slf);
+	slf->adapt = adapt;
+}
 
+ZkBool ZkCutsceneCamera_getEaseFirst(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->ease_first;
 }
 
-ZkBool ZkCutsceneCamera_getEaseLast(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getEaseLast");
-		return {};
-	}
+void ZkCutsceneCamera_setEaseFirst(ZkCutsceneCamera* slf, ZkBool easeFirst) {
+	ZKC_CHECK_NULLV(slf);
+	slf->ease_first = easeFirst;
+}
 
+ZkBool ZkCutsceneCamera_getEaseLast(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->ease_last;
 }
 
-float ZkCutsceneCamera_getTotalDuration(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTotalDuration");
-		return {};
-	}
+void ZkCutsceneCamera_setEaseLast(ZkCutsceneCamera* slf, ZkBool easeLast) {
+	ZKC_CHECK_NULLV(slf);
+	slf->ease_last = easeLast;
+}
 
+float ZkCutsceneCamera_getTotalDuration(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->total_duration;
 }
 
-ZkString ZkCutsceneCamera_getAutoFocusVob(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoFocusVob");
-		return {};
-	}
+void ZkCutsceneCamera_setTotalDuration(ZkCutsceneCamera* slf, float totalDuration) {
+	ZKC_CHECK_NULLV(slf);
+	slf->total_duration = totalDuration;
+}
 
+ZkString ZkCutsceneCamera_getAutoFocusVob(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->auto_focus_vob.c_str();
 }
 
-ZkBool ZkCutsceneCamera_getAutoPlayerMovable(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoPlayerMovable");
-		return {};
-	}
+void ZkCutsceneCamera_setAutoFocusVob(ZkCutsceneCamera* slf, ZkString autoFocusVob) {
+	ZKC_CHECK_NULLV(slf);
+	slf->auto_focus_vob = autoFocusVob;
+}
 
+ZkBool ZkCutsceneCamera_getAutoPlayerMovable(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->auto_player_movable;
 }
 
-ZkBool ZkCutsceneCamera_getAutoUntriggerLast(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoUntriggerLast");
-		return {};
-	}
+void ZkCutsceneCamera_setAutoPlayerMovable(ZkCutsceneCamera* slf, ZkBool autoPlayerMovable) {
+	ZKC_CHECK_NULLV(slf);
+	slf->auto_player_movable = autoPlayerMovable;
+}
 
+ZkBool ZkCutsceneCamera_getAutoUntriggerLast(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->auto_untrigger_last;
 }
 
-float ZkCutsceneCamera_getAutoUntriggerLastDelay(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getAutoUntriggerLastDelay");
-		return {};
-	}
+void ZkCutsceneCamera_setAutoUntriggerLast(ZkCutsceneCamera* slf, ZkBool autoUntriggerLast) {
+	ZKC_CHECK_NULLV(slf);
+	slf->auto_untrigger_last = autoUntriggerLast;
+}
 
+float ZkCutsceneCamera_getAutoUntriggerLastDelay(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->auto_untrigger_last_delay;
 }
 
-int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getPositionCount");
-		return {};
-	}
+void ZkCutsceneCamera_setAutoUntriggerLastDelay(ZkCutsceneCamera* slf, float autoUntriggerLastDelay) {
+	ZKC_CHECK_NULLV(slf);
+	slf->auto_untrigger_last_delay = autoUntriggerLastDelay;
+}
 
+int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->position_count;
 }
 
-int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getTargetCount");
-		return {};
-	}
+void ZkCutsceneCamera_setPositionCount(ZkCutsceneCamera* slf, int32_t positionCount) {
+	ZKC_CHECK_NULLV(slf);
+	slf->position_count = positionCount;
+}
 
+int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->target_count;
 }
 
 ZkSize ZkCutsceneCamera_getFrameCount(ZkCutsceneCamera const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getFrameCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->frames.size();
 }
 
-ZkCameraTrajectoryFrame const* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const* slf, ZkSize i) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_getFrame");
-		return nullptr;
-	}
-
-	if (i >= slf->frames.size()) {
-		ZKC_LOG_ERROR("ZkCutsceneCamera_getFrame() failed: index out of range");
-		return nullptr;
-	}
-
+ZkCameraTrajectoryFrame* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const* slf, ZkSize i) {
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->frames, i);
 	return slf->frames[i].get();
 }
 
 void ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTrajectoryFrameEnumerator cb, void* ctx) {
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCutsceneCamera_enumerateFrames");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& frame : slf->frames) {
 		if (cb(ctx, frame.get())) break;
@@ -232,118 +185,131 @@ void ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTraje
 }
 
 float ZkCameraTrajectoryFrame_getTime(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTime");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->time;
 }
 
-float ZkCameraTrajectoryFrame_getRollAngle(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getRollAngle");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setTime(ZkCameraTrajectoryFrame* slf, float time) {
+	ZKC_CHECK_NULLV(slf);
+	slf->time = time;
+}
 
+float ZkCameraTrajectoryFrame_getRollAngle(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->roll_angle;
 }
 
-float ZkCameraTrajectoryFrame_getFovScale(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getFovScale");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setRollAngle(ZkCameraTrajectoryFrame* slf, float rollAngle) {
+	ZKC_CHECK_NULLV(slf);
+	slf->roll_angle = rollAngle;
+}
 
+float ZkCameraTrajectoryFrame_getFovScale(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->fov_scale;
 }
 
-ZkCameraMotion ZkCameraTrajectoryFrame_getMotionType(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionType");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setFovScale(ZkCameraTrajectoryFrame* slf, float fovScale) {
+	ZKC_CHECK_NULLV(slf);
+	slf->fov_scale = fovScale;
+}
 
+ZkCameraMotion ZkCameraTrajectoryFrame_getMotionType(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraMotion>(slf->motion_type);
 }
 
-ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeFov(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeFov");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setMotionType(ZkCameraTrajectoryFrame* slf, ZkCameraMotion motionType) {
+	ZKC_CHECK_NULLV(slf);
+	slf->motion_type = static_cast<zenkit::CameraMotion>(motionType);
+}
 
+ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeFov(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraMotion>(slf->motion_type_fov);
 }
 
-ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeRoll(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeRoll");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setMotionTypeFov(ZkCameraTrajectoryFrame* slf, ZkCameraMotion motionTypeFov) {
+	ZKC_CHECK_NULLV(slf);
+	slf->motion_type_fov = static_cast<zenkit::CameraMotion>(motionTypeFov);
+}
 
+ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeRoll(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraMotion>(slf->motion_type_roll);
 }
 
-ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeTimeScale(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getMotionTypeTimeScale");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setMotionTypeRoll(ZkCameraTrajectoryFrame* slf, ZkCameraMotion motionTypeRoll) {
+	ZKC_CHECK_NULLV(slf);
+	slf->motion_type_roll = static_cast<zenkit::CameraMotion>(motionTypeRoll);
+}
 
+ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeTimeScale(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkCameraMotion>(slf->motion_type_time_scale);
 }
 
-float ZkCameraTrajectoryFrame_getTension(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTension");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setMotionTypeTimeScale(ZkCameraTrajectoryFrame* slf, ZkCameraMotion motionTypeTimeScale) {
+	ZKC_CHECK_NULLV(slf);
+	slf->motion_type_time_scale = static_cast<zenkit::CameraMotion>(motionTypeTimeScale);
+}
 
+float ZkCameraTrajectoryFrame_getTension(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->tension;
 }
 
-float ZkCameraTrajectoryFrame_getCamBias(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getCamBias");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setTension(ZkCameraTrajectoryFrame* slf, float tension) {
+	ZKC_CHECK_NULLV(slf);
+	slf->tension = tension;
+}
 
+float ZkCameraTrajectoryFrame_getCamBias(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->cam_bias;
 }
 
-float ZkCameraTrajectoryFrame_getContinuity(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getContinuity");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setCamBias(ZkCameraTrajectoryFrame* slf, float camBias) {
+	ZKC_CHECK_NULLV(slf);
+	slf->cam_bias = camBias;
+}
 
+float ZkCameraTrajectoryFrame_getContinuity(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->continuity;
 }
 
-float ZkCameraTrajectoryFrame_getTimeScale(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTimeScale");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setContinuity(ZkCameraTrajectoryFrame* slf, float continuity) {
+	ZKC_CHECK_NULLV(slf);
+	slf->continuity = continuity;
+}
 
+float ZkCameraTrajectoryFrame_getTimeScale(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->time_scale;
 }
 
-ZkBool ZkCameraTrajectoryFrame_getTimeFixed(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getTimeFixed");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setTimeScale(ZkCameraTrajectoryFrame* slf, float timeScale) {
+	ZKC_CHECK_NULLV(slf);
+	slf->time_scale = timeScale;
+}
 
+ZkBool ZkCameraTrajectoryFrame_getTimeFixed(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->time_fixed;
 }
 
-ZkMat4x4 ZkCameraTrajectoryFrame_getOriginalPose(ZkCameraTrajectoryFrame const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkCameraTrajectoryFrame_getOriginalPose");
-		return {};
-	}
+void ZkCameraTrajectoryFrame_setTimeFixed(ZkCameraTrajectoryFrame* slf, ZkBool timeFixed) {
+	ZKC_CHECK_NULLV(slf);
+	slf->time_fixed = timeFixed;
+}
 
+ZkMat4x4 ZkCameraTrajectoryFrame_getOriginalPose(ZkCameraTrajectoryFrame const* slf) {
+	ZKC_CHECK_NULL(slf);
 	return slf->original_pose;
+}
+
+void ZkCameraTrajectoryFrame_setOriginalPose(ZkCameraTrajectoryFrame* slf, ZkMat4x4 originalPose) {
+	ZKC_CHECK_NULLV(slf);
+	slf->original_pose = originalPose;
 }

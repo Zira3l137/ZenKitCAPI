@@ -152,6 +152,14 @@ inline bool zk_any_nullptr(T*... args) {
 		}                                                                                                              \
 	} while (false)
 
+#define ZKC_CHECK_LENV(lst, par)                                                                                       \
+	do {                                                                                                               \
+		if ((par) >= (lst).size()) {                                                                                   \
+			ZKC_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
+			return;                                                                                                    \
+		}                                                                                                              \
+	} while (false)
+
 #define ZKC_CHECK_LENA(maxlen, par)                                                                                    \
 	do {                                                                                                               \
 		if ((par) >= (maxlen)) {                                                                                       \
