@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/vobs/VirtualObject.h"
 
+#include "../Internal.hh"
+
 #include <zenkit/Archive.hh>
 
 ZkVirtualObject* ZkVirtualObject_load(ZkRead* buf, ZkGameVersion version) {
@@ -222,31 +224,9 @@ ZkString ZkVirtualObject_getName(ZkVirtualObject const* slf) {
 	return slf->vob_name.c_str();
 }
 
-ZkString ZkVirtualObject_getVisualName(ZkVirtualObject const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVisualName");
-		return {};
-	}
-
-	return slf->visual_name.c_str();
-}
-
-ZkVisualType ZkVirtualObject_getVisualType(ZkVirtualObject const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVisualType");
-		return {};
-	}
-
-	return static_cast<ZkVisualType>(slf->associated_visual_type);
-}
-
-ZkDecal const* ZkVirtualObject_getVisualDecal(ZkVirtualObject const* slf) {
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVirtualObject_getVisualDecal");
-		return {};
-	}
-
-	return slf->visual_decal ? &*slf->visual_decal : nullptr;
+ZkVisual const* ZkVirtualObject_getVisual(ZkVirtualObject const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->visual ? slf->visual.get() : nullptr;
 }
 
 ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf) {
@@ -281,6 +261,16 @@ void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObje
 	for (auto& obj : slf->children) {
 		if (cb(ctx, obj.get())) break;
 	}
+}
+
+ZkString ZkVisual_getName(ZkVisual const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->name.c_str();
+}
+
+ZkVisualType ZkVisual_getType(ZkVisual const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return static_cast<ZkVisualType>(slf->type);
 }
 
 ZkString ZkDecal_getName(ZkDecal const* slf) {

@@ -1,19 +1,17 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "../Boxes.h"
 #include "../Library.h"
-#include "../Matrix.h"
 #include "../Stream.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/MovableObject.hh>
-using ZkMovableObject = zenkit::vobs::MovableObject;
-using ZkInteractiveObject = zenkit::vobs::InteractiveObject;
-using ZkFire = zenkit::vobs::Fire;
-using ZkContainer = zenkit::vobs::Container;
-using ZkDoor = zenkit::vobs::Door;
+using ZkMovableObject = zenkit::VMovableObject;
+using ZkInteractiveObject = zenkit::VInteractiveObject;
+using ZkFire = zenkit::VFire;
+using ZkContainer = zenkit::VContainer;
+using ZkDoor = zenkit::VDoor;
 #else
 typedef struct ZkInternal_MovableObject ZkMovableObject;
 typedef struct ZkInternal_InteractiveObject ZkInteractiveObject;

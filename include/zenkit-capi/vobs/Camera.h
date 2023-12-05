@@ -9,8 +9,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Camera.hh>
-using ZkCutsceneCamera = zenkit::vobs::CutsceneCamera;
-using ZkCameraTrajectoryFrame = zenkit::vobs::CameraTrajectoryFrame;
+using ZkCutsceneCamera = zenkit::VCutsceneCamera;
+using ZkCameraTrajectoryFrame = zenkit::VCameraTrajectoryFrame;
 #else
 typedef struct ZkInternal_CutsceneCamera ZkCutsceneCamera;
 typedef struct ZkInternal_CameraTrajectoryFrame ZkCameraTrajectoryFrame;

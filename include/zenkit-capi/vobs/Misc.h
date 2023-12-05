@@ -1,23 +1,21 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "../Boxes.h"
 #include "../Library.h"
 #include "../Material.h"
-#include "../Matrix.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Misc.hh>
-using ZkAnimate = zenkit::vobs::Animate;
-using ZkItem = zenkit::vobs::Item;
-using ZkLensFlare = zenkit::vobs::LensFlare;
-using ZkParticleEffectController = zenkit::vobs::ParticleEffectController;
-using ZkMessageFilter = zenkit::vobs::MessageFilter;
-using ZkCodeMaster = zenkit::vobs::CodeMaster;
-using ZkMoverController = zenkit::vobs::MoverController;
-using ZkTouchDamage = zenkit::vobs::TouchDamage;
-using ZkEarthquake = zenkit::vobs::Earthquake;
+using ZkAnimate = zenkit::VAnimate;
+using ZkItem = zenkit::VItem;
+using ZkLensFlare = zenkit::VLensFlare;
+using ZkParticleEffectController = zenkit::VParticleEffectController;
+using ZkMessageFilter = zenkit::VMessageFilter;
+using ZkCodeMaster = zenkit::VCodeMaster;
+using ZkMoverController = zenkit::VMoverController;
+using ZkTouchDamage = zenkit::VTouchDamage;
+using ZkEarthquake = zenkit::VEarthquake;
 #else
 typedef struct ZkInternal_Animate ZkAnimate;
 typedef struct ZkInternal_Item ZkItem;

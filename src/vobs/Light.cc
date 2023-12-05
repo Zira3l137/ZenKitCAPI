@@ -64,7 +64,7 @@ ZkLight* ZkLight_load(ZkRead* buf, ZkGameVersion version) {
 		ar->read_object_begin(o);
 
 		ZkLight obj {};
-		obj.type = zenkit::VobType::zCVobLight;
+		obj.type = zenkit::VirtualObjectType::zCVobLight;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
 		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
@@ -87,7 +87,7 @@ ZkLight* ZkLight_loadPath(ZkString path, ZkGameVersion version) {
 		ar->read_object_begin(o);
 
 		ZkLight obj {};
-		obj.type = zenkit::VobType::zCVobLight;
+		obj.type = zenkit::VirtualObjectType::zCVobLight;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
 		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {

@@ -17,7 +17,7 @@ ZkCutsceneCamera* ZkCutsceneCamera_load(ZkRead* buf, ZkGameVersion version) {
 		ar->read_object_begin(o);
 
 		ZkCutsceneCamera obj {};
-		obj.type = zenkit::VobType::zCCSCamera;
+		obj.type = zenkit::VirtualObjectType::zCCSCamera;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
 		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
@@ -40,7 +40,7 @@ ZkCutsceneCamera* ZkCutsceneCamera_loadPath(ZkString path, ZkGameVersion version
 		ar->read_object_begin(o);
 
 		ZkCutsceneCamera obj {};
-		obj.type = zenkit::VobType::zCCSCamera;
+		obj.type = zenkit::VirtualObjectType::zCCSCamera;
 		obj.load(*ar, static_cast<zenkit::GameVersion>(version));
 		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {

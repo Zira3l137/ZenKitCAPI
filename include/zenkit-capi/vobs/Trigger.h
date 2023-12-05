@@ -1,23 +1,20 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "../Boxes.h"
 #include "../Library.h"
-#include "../Matrix.h"
 #include "../ModelAnimation.h"
 #include "../Stream.h"
-#include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Trigger.hh>
-using ZkTrigger = zenkit::vobs::Trigger;
-using ZkMover = zenkit::vobs::Mover;
-using ZkTriggerList = zenkit::vobs::TriggerList;
-using ZkTriggerListTarget = zenkit::vobs::TriggerList::Target;
-using ZkTriggerScript = zenkit::vobs::TriggerScript;
-using ZkTriggerChangeLevel = zenkit::vobs::TriggerChangeLevel;
-using ZkTriggerWorldStart = zenkit::vobs::TriggerWorldStart;
-using ZkTriggerUntouch = zenkit::vobs::TriggerUntouch;
+using ZkTrigger = zenkit::VTrigger;
+using ZkMover = zenkit::VMover;
+using ZkTriggerList = zenkit::VTriggerList;
+using ZkTriggerListTarget = zenkit::VTriggerList::Target;
+using ZkTriggerScript = zenkit::VTriggerScript;
+using ZkTriggerChangeLevel = zenkit::VTriggerChangeLevel;
+using ZkTriggerWorldStart = zenkit::VTriggerWorldStart;
+using ZkTriggerUntouch = zenkit::VTriggerUntouch;
 #else
 typedef struct ZkInternal_Trigger ZkTrigger;
 typedef struct ZkInternal_Mover ZkMover;

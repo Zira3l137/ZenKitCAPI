@@ -1,16 +1,13 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "../Boxes.h"
 #include "../Library.h"
-#include "../Matrix.h"
 #include "../Stream.h"
-#include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Sound.hh>
-using ZkSound = zenkit::vobs::Sound;
-using ZkSoundDaytime = zenkit::vobs::SoundDaytime;
+using ZkSound = zenkit::VSound;
+using ZkSoundDaytime = zenkit::VSoundDaytime;
 #else
 typedef struct ZkInternal_Sound ZkSound;
 typedef struct ZkInternal_SoundDaytime ZkSoundDaytime;

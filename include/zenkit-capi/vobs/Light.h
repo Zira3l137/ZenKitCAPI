@@ -1,16 +1,14 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "../Boxes.h"
 #include "../Library.h"
 #include "../Material.h"
-#include "../Matrix.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Light.hh>
-using ZkLight = zenkit::vobs::Light;
-using ZkLightPreset = zenkit::vobs::LightPreset;
+using ZkLight = zenkit::VLight;
+using ZkLightPreset = zenkit::LightPreset;
 #else
 typedef struct ZkInternal_Light ZkLight;
 typedef struct ZkInternal_LightPreset ZkLightPreset;

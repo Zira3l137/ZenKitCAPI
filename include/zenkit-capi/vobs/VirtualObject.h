@@ -10,9 +10,11 @@
 #ifdef __cplusplus
 	#include <zenkit/vobs/VirtualObject.hh>
 using ZkVirtualObject = zenkit::VirtualObject;
-using ZkDecal = zenkit::Decal;
+using ZkVisual = zenkit::Visual;
+using ZkDecal = zenkit::VisualDecal;
 #else
 typedef struct ZkInternal_VirtualObject ZkVirtualObject;
+typedef struct ZkInternal_Visual ZkVisual;
 typedef struct ZkInternal_Decal ZkDecal;
 #endif
 
@@ -89,7 +91,7 @@ typedef enum {
 	ZkVisualType_MESH = 1,
 	ZkVisualType_MULTI_RESOLUTION_MESH = 2,
 	ZkVisualType_PARTICLE_EFFECT = 3,
-	ZkVisualType_AI_CAMERA = 4,
+	ZkVisualType_CAMERA = 4,
 	ZkVisualType_MODEL = 5,
 	ZkVisualType_MORPH_MESH = 6,
 	ZkVisualType_UNKNOWN = 7,
@@ -118,9 +120,7 @@ ZKC_API float ZkVirtualObject_getAnimStrength(ZkVirtualObject const* slf);
 ZKC_API float ZkVirtualObject_getFarClipScale(ZkVirtualObject const* slf);
 ZKC_API ZkString ZkVirtualObject_getPresetName(ZkVirtualObject const* slf);
 ZKC_API ZkString ZkVirtualObject_getName(ZkVirtualObject const* slf);
-ZKC_API ZkString ZkVirtualObject_getVisualName(ZkVirtualObject const* slf);
-ZKC_API ZkVisualType ZkVirtualObject_getVisualType(ZkVirtualObject const* slf);
-ZKC_API ZkDecal const* ZkVirtualObject_getVisualDecal(ZkVirtualObject const* slf);
+ZKC_API ZkVisual const* ZkVirtualObject_getVisual(ZkVirtualObject const* slf);
 
 ZKC_API ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf);
 ZKC_API ZkVirtualObject const* ZkVirtualObject_getChild(ZkVirtualObject const* slf, ZkSize i);
@@ -128,6 +128,9 @@ ZKC_API void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVir
 
 // TODO(lmichaelis): Implement save-games
 // ZKC_API std::optional<SaveState> ZkVirtualObject_getSaved(ZkVirtualObject const* slf);
+
+ZKC_API ZkString ZkVisual_getName(ZkVisual const* slf);
+ZKC_API ZkVisualType ZkVisual_getType(ZkVisual const* slf);
 
 ZKC_API ZkString ZkDecal_getName(ZkDecal const* slf);
 ZKC_API ZkVec2f ZkDecal_getDimension(ZkDecal const* slf);

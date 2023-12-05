@@ -9,9 +9,9 @@
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Zone.hh>
-using ZkZoneMusic = zenkit::vobs::ZoneMusic;
-using ZkZoneFarPlane = zenkit::vobs::ZoneFarPlane;
-using ZkZoneFog = zenkit::vobs::ZoneFog;
+using ZkZoneMusic = zenkit::VZoneMusic;
+using ZkZoneFarPlane = zenkit::VZoneFarPlane;
+using ZkZoneFog = zenkit::VZoneFog;
 #else
 typedef struct ZkInternal_ZoneMusic ZkZoneMusic;
 typedef struct ZkInternal_ZoneFarPlane ZkZoneFarPlane;
