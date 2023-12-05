@@ -174,7 +174,7 @@ ZkString ZkVisual_getName(ZkVisual const* slf) {
 	return slf->name.c_str();
 }
 
-ZkVisualType ZkVisualVisual_getType(ZkVisual const* slf) {
+ZkVisualType ZkVisual_getType(ZkVisual const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkVisualType>(slf->type);
 }
