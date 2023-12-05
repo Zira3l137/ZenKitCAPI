@@ -27,9 +27,16 @@ typedef enum {
 } ZkMusicTransitionType;
 
 ZKC_API ZkString ZkMusicThemeInstance_getFile(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setFile(ZkMusicThemeInstance* slf, ZkString file);
 ZKC_API float ZkMusicThemeInstance_getVol(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setVol(ZkMusicThemeInstance* slf, float vol);
 ZKC_API int32_t ZkMusicThemeInstance_getLoop(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setLoop(ZkMusicThemeInstance* slf, int32_t loop);
 ZKC_API float ZkMusicThemeInstance_getReverbmix(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setReverbmix(ZkMusicThemeInstance* slf, float reverbmix);
 ZKC_API float ZkMusicThemeInstance_getReverbtime(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setReverbtime(ZkMusicThemeInstance* slf, float reverbtime);
 ZKC_API ZkMusicTransitionEffect ZkMusicThemeInstance_getTranstype(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setTranstype(ZkMusicThemeInstance* slf, ZkMusicTransitionEffect transtype);
 ZKC_API ZkMusicTransitionType ZkMusicThemeInstance_getTranssubtype(ZkMusicThemeInstance const* slf);
+ZKC_API void ZkMusicThemeInstance_setTranssubtype(ZkMusicThemeInstance* slf, ZkMusicTransitionType transsubtype);

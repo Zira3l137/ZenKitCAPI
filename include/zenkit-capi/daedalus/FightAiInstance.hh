@@ -30,3 +30,4 @@ typedef enum {
 } ZkFightAiMove;
 
 ZKC_API ZkFightAiMove ZkFightAiInstance_getMove(ZkFightAiInstance const* slf, ZkSize i);
+ZKC_API void ZkFightAiInstance_setMove(ZkFightAiInstance* slf, ZkSize i, ZkFightAiMove move);

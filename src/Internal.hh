@@ -167,3 +167,11 @@ inline bool zk_any_nullptr(T*... args) {
 			return {};                                                                                                 \
 		}                                                                                                              \
 	} while (false)
+
+#define ZKC_CHECK_LENAV(maxlen, par)                                                                                   \
+	do {                                                                                                               \
+		if ((par) >= (maxlen)) {                                                                                       \
+			ZKC_LOG_ERROR("%s() failed: index out of range", __func__);                                                \
+			return;                                                                                                    \
+		}                                                                                                              \
+	} while (false)
