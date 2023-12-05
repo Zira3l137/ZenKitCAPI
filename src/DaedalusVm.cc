@@ -243,6 +243,8 @@ ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbo
 		return slf->handle.init_instance<zenkit::ISoundEffect>(sym).get();
 	case ZkDaedalusInstanceType_SoundSystem:
 		return slf->handle.init_instance<zenkit::ISoundSystem>(sym).get();
+	default:
+		break;
 	}
 
 	ZKC_LOG_ERROR("ZkDaedalusVm_initInstance() failed: invalid instance type");
