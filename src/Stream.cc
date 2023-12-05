@@ -3,7 +3,7 @@
 #include "zenkit-capi/Stream.h"
 
 #ifdef _WIN32
-	typedef std::ptrdiff_t ssize_t;
+typedef std::ptrdiff_t ssize_t;
 #endif
 
 class ZkReadExtImpl final : public zenkit::Read {
