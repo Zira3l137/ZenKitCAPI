@@ -11,11 +11,11 @@
 	#include <zenkit/vobs/VirtualObject.hh>
 using ZkVirtualObject = zenkit::VirtualObject;
 using ZkVisual = zenkit::Visual;
-using ZkDecal = zenkit::VisualDecal;
+using ZkVisualDecal = zenkit::VisualDecal;
 #else
 typedef struct ZkInternal_VirtualObject ZkVirtualObject;
 typedef struct ZkInternal_Visual ZkVisual;
-typedef struct ZkInternal_Decal ZkDecal;
+typedef struct ZkInternal_VisualDecal ZkVisualDecal;
 #endif
 
 typedef ZkBool (*ZkVirtualObjectEnumerator)(void* ctx, ZkVirtualObject const* vob);
@@ -132,11 +132,11 @@ ZKC_API void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVir
 ZKC_API ZkString ZkVisual_getName(ZkVisual const* slf);
 ZKC_API ZkVisualType ZkVisual_getType(ZkVisual const* slf);
 
-ZKC_API ZkString ZkDecal_getName(ZkDecal const* slf);
-ZKC_API ZkVec2f ZkDecal_getDimension(ZkDecal const* slf);
-ZKC_API ZkVec2f ZkDecal_getOffset(ZkDecal const* slf);
-ZKC_API ZkBool ZkDecal_getTwoSided(ZkDecal const* slf);
-ZKC_API ZkAlphaFunction ZkDecal_getAlphaFunc(ZkDecal const* slf);
-ZKC_API float ZkDecal_getTextureAnimFps(ZkDecal const* slf);
-ZKC_API uint8_t ZkDecal_getAlphaWeight(ZkDecal const* slf);
-ZKC_API ZkBool ZkDecal_getIgnoreDaylight(ZkDecal const* slf);
+ZKC_API ZkString ZkVisualDecal_getName(ZkVisualDecal const* slf);
+ZKC_API ZkVec2f ZkVisualDecal_getDimension(ZkVisualDecal const* slf);
+ZKC_API ZkVec2f ZkVisualDecal_getOffset(ZkVisualDecal const* slf);
+ZKC_API ZkBool ZkVisualDecal_getTwoSided(ZkVisualDecal const* slf);
+ZKC_API ZkAlphaFunction ZkVisualDecal_getAlphaFunc(ZkVisualDecal const* slf);
+ZKC_API float ZkVisualDecal_getTextureAnimFps(ZkVisualDecal const* slf);
+ZKC_API uint8_t ZkVisualDecal_getAlphaWeight(ZkVisualDecal const* slf);
+ZKC_API ZkBool ZkVisualDecal_getIgnoreDaylight(ZkVisualDecal const* slf);
