@@ -230,8 +230,8 @@ ZkVisual* ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisualType visual) {
 		obj = std::make_shared<zenkit::VisualMorphMesh>();
 		break;
 	case ZkVisualType_UNKNOWN:
-		obj = nullptr;
-		break;
+		slf->visual = nullptr;
+		return nullptr;
 	}
 
 	obj->type = static_cast<zenkit::VisualType>(visual);
