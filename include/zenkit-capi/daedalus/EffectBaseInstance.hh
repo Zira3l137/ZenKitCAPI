@@ -52,7 +52,8 @@ ZKC_API void ZkEffectBaseInstance_setEmTrjEaseVel(ZkEffectBaseInstance* slf, flo
 ZKC_API float ZkEffectBaseInstance_getEmTrjDynUpdateDelay(ZkEffectBaseInstance const* slf);
 ZKC_API void ZkEffectBaseInstance_setEmTrjDynUpdateDelay(ZkEffectBaseInstance* slf, float emTrjDynUpdateDelay);
 ZKC_API int32_t ZkEffectBaseInstance_getEmTrjDynUpdateTargetOnly(ZkEffectBaseInstance const* slf);
-ZKC_API void ZkEffectBaseInstance_setEmTrjDynUpdateTargetOnly(ZkEffectBaseInstance* slf, int32_t emTrjDynUpdateTargetOnly);
+ZKC_API void ZkEffectBaseInstance_setEmTrjDynUpdateTargetOnly(ZkEffectBaseInstance* slf,
+                                                              int32_t emTrjDynUpdateTargetOnly);
 ZKC_API ZkString ZkEffectBaseInstance_getEmFxCreateS(ZkEffectBaseInstance const* slf);
 ZKC_API void ZkEffectBaseInstance_setEmFxCreateS(ZkEffectBaseInstance* slf, ZkString emFxCreateS);
 ZKC_API ZkString ZkEffectBaseInstance_getEmFxInvestOriginS(ZkEffectBaseInstance const* slf);

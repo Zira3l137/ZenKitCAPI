@@ -132,7 +132,7 @@ int32_t ZkGuildValuesInstance_getDisableAutoRoll(ZkGuildValuesInstance const* sl
 void ZkGuildValuesInstance_setDisableAutoRoll(ZkGuildValuesInstance* slf, ZkSize i, int32_t disableAutoRoll) {
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENAV(ZkGuildValuesInstance_ElementLength, i);
-	slf->disable_autoroll [i]= disableAutoRoll;
+	slf->disable_autoroll[i] = disableAutoRoll;
 }
 
 int32_t ZkGuildValuesInstance_getSurfaceAlign(ZkGuildValuesInstance const* slf, ZkSize i) {

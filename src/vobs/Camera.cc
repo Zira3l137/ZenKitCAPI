@@ -155,11 +155,6 @@ int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf) {
 	return slf->position_count;
 }
 
-void ZkCutsceneCamera_setPositionCount(ZkCutsceneCamera* slf, int32_t positionCount) {
-	ZKC_CHECK_NULLV(slf);
-	slf->position_count = positionCount;
-}
-
 int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->target_count;

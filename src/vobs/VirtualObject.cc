@@ -202,6 +202,43 @@ ZkVisual* ZkVirtualObject_getVisual(ZkVirtualObject const* slf) {
 	return slf->visual ? slf->visual.get() : nullptr;
 }
 
+ZkVisual* ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisualType visual) {
+	ZKC_CHECK_NULL(slf);
+
+	std::shared_ptr<zenkit::Visual> obj;
+
+	switch (visual) {
+	case ZkVisualType_DECAL:
+		obj = std::make_shared<zenkit::VisualDecal>();
+		break;
+	case ZkVisualType_MESH:
+		obj = std::make_shared<zenkit::VisualMesh>();
+		break;
+	case ZkVisualType_MULTI_RESOLUTION_MESH:
+		obj = std::make_shared<zenkit::VisualMultiResolutionMesh>();
+		break;
+	case ZkVisualType_PARTICLE_EFFECT:
+		obj = std::make_shared<zenkit::VisualParticleEffect>();
+		break;
+	case ZkVisualType_CAMERA:
+		obj = std::make_shared<zenkit::VisualCamera>();
+		break;
+	case ZkVisualType_MODEL:
+		obj = std::make_shared<zenkit::VisualModel>();
+		break;
+	case ZkVisualType_MORPH_MESH:
+		obj = std::make_shared<zenkit::VisualMorphMesh>();
+		break;
+	case ZkVisualType_UNKNOWN:
+		obj = nullptr;
+		break;
+	}
+
+	obj->type = static_cast<zenkit::VisualType>(visual);
+	slf->visual = obj;
+	return obj.get();
+}
+
 ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->children.size();

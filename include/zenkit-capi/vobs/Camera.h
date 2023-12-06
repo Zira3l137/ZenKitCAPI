@@ -79,7 +79,6 @@ ZKC_API void ZkCutsceneCamera_setAutoUntriggerLast(ZkCutsceneCamera* slf, ZkBool
 ZKC_API float ZkCutsceneCamera_getAutoUntriggerLastDelay(ZkCutsceneCamera const* slf);
 ZKC_API void ZkCutsceneCamera_setAutoUntriggerLastDelay(ZkCutsceneCamera* slf, float autoUntriggerLastDelay);
 ZKC_API int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf);
-ZKC_API void ZkCutsceneCamera_setPositionCount(ZkCutsceneCamera* slf, int32_t positionCount);
 ZKC_API int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf);
 ZKC_API void ZkCutsceneCamera_setTargetCount(ZkCutsceneCamera* slf, int32_t targetCount);
 

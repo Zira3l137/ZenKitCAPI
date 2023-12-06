@@ -46,7 +46,8 @@ int32_t ZkParticleEffectEmitKeyInstance_getPfxPpsIsSmoothChg(ZkParticleEffectEmi
 	return slf->pfx_pps_is_smooth_chg;
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxPpsIsSmoothChg(ZkParticleEffectEmitKeyInstance* slf, int32_t pfxPpsIsSmoothChg) {
+void ZkParticleEffectEmitKeyInstance_setPfxPpsIsSmoothChg(ZkParticleEffectEmitKeyInstance* slf,
+                                                          int32_t pfxPpsIsSmoothChg) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_pps_is_smooth_chg = pfxPpsIsSmoothChg;
 }
@@ -56,7 +57,8 @@ int32_t ZkParticleEffectEmitKeyInstance_getPfxPpsIsLoopingChg(ZkParticleEffectEm
 	return slf->pfx_pps_is_looping_chg;
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxPpsIsLoopingChg(ZkParticleEffectEmitKeyInstance* slf, int32_t pfxPpsIsLoopingChg) {
+void ZkParticleEffectEmitKeyInstance_setPfxPpsIsLoopingChg(ZkParticleEffectEmitKeyInstance* slf,
+                                                           int32_t pfxPpsIsLoopingChg) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_pps_is_looping_chg = pfxPpsIsLoopingChg;
 }
@@ -96,7 +98,8 @@ int32_t ZkParticleEffectEmitKeyInstance_getPfxShpIsVolumeChg(ZkParticleEffectEmi
 	return slf->pfx_shp_is_volume_chg;
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxShpIsVolumeChg(ZkParticleEffectEmitKeyInstance* slf, int32_t pfxShpIsVolumeChg) {
+void ZkParticleEffectEmitKeyInstance_setPfxShpIsVolumeChg(ZkParticleEffectEmitKeyInstance* slf,
+                                                          int32_t pfxShpIsVolumeChg) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_shp_is_volume_chg = pfxShpIsVolumeChg;
 }
@@ -116,7 +119,8 @@ float ZkParticleEffectEmitKeyInstance_getPfxShpDistribWalksPeed(ZkParticleEffect
 	return slf->pfx_shp_distrib_walks_peed;
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxShpDistribWalksPeed(ZkParticleEffectEmitKeyInstance* slf, float pfxShpDistribWalksPeed) {
+void ZkParticleEffectEmitKeyInstance_setPfxShpDistribWalksPeed(ZkParticleEffectEmitKeyInstance* slf,
+                                                               float pfxShpDistribWalksPeed) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_shp_distrib_walks_peed = pfxShpDistribWalksPeed;
 }
@@ -126,7 +130,8 @@ ZkString ZkParticleEffectEmitKeyInstance_getPfxShpOffsetVecS(ZkParticleEffectEmi
 	return slf->pfx_shp_offset_vec_s.c_str();
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxShpOffsetVecS(ZkParticleEffectEmitKeyInstance* slf, ZkString pfxShpOffsetVecS) {
+void ZkParticleEffectEmitKeyInstance_setPfxShpOffsetVecS(ZkParticleEffectEmitKeyInstance* slf,
+                                                         ZkString pfxShpOffsetVecS) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_shp_offset_vec_s = pfxShpOffsetVecS;
 }
@@ -136,7 +141,8 @@ ZkString ZkParticleEffectEmitKeyInstance_getPfxShpDistribTypeS(ZkParticleEffectE
 	return slf->pfx_shp_distrib_type_s.c_str();
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxShpDistribTypeS(ZkParticleEffectEmitKeyInstance* slf, ZkString pfxShpDistribTypeS) {
+void ZkParticleEffectEmitKeyInstance_setPfxShpDistribTypeS(ZkParticleEffectEmitKeyInstance* slf,
+                                                           ZkString pfxShpDistribTypeS) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_shp_distrib_type_s = pfxShpDistribTypeS;
 }
@@ -166,7 +172,8 @@ ZkString ZkParticleEffectEmitKeyInstance_getPfxDirModeTargetForS(ZkParticleEffec
 	return slf->pfx_dir_mode_target_for_s.c_str();
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxDirModeTargetForS(ZkParticleEffectEmitKeyInstance* slf, ZkString pfxDirModeTargetForS) {
+void ZkParticleEffectEmitKeyInstance_setPfxDirModeTargetForS(ZkParticleEffectEmitKeyInstance* slf,
+                                                             ZkString pfxDirModeTargetForS) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_dir_mode_target_for_s = pfxDirModeTargetForS;
 }
@@ -176,7 +183,8 @@ ZkString ZkParticleEffectEmitKeyInstance_getPfxDirModeTargetPosS(ZkParticleEffec
 	return slf->pfx_dir_mode_target_pos_s.c_str();
 }
 
-void ZkParticleEffectEmitKeyInstance_setPfxDirModeTargetPosS(ZkParticleEffectEmitKeyInstance* slf, ZkString pfxDirModeTargetPosS) {
+void ZkParticleEffectEmitKeyInstance_setPfxDirModeTargetPosS(ZkParticleEffectEmitKeyInstance* slf,
+                                                             ZkString pfxDirModeTargetPosS) {
 	ZKC_CHECK_NULLV(slf);
 	slf->pfx_dir_mode_target_pos_s = pfxDirModeTargetPosS;
 }
@@ -216,7 +224,8 @@ ZkString ZkParticleEffectEmitKeyInstance_getLightPresetName(ZkParticleEffectEmit
 	return slf->light_preset_name.c_str();
 }
 
-void ZkParticleEffectEmitKeyInstance_setLightPresetName(ZkParticleEffectEmitKeyInstance* slf, ZkString lightPresetName) {
+void ZkParticleEffectEmitKeyInstance_setLightPresetName(ZkParticleEffectEmitKeyInstance* slf,
+                                                        ZkString lightPresetName) {
 	ZKC_CHECK_NULLV(slf);
 	slf->light_preset_name = lightPresetName;
 }
@@ -306,7 +315,8 @@ int32_t ZkParticleEffectEmitKeyInstance_getEmCheckCollision(ZkParticleEffectEmit
 	return slf->em_check_collision;
 }
 
-void ZkParticleEffectEmitKeyInstance_setEmCheckCollision(ZkParticleEffectEmitKeyInstance* slf, int32_t emCheckCollision) {
+void ZkParticleEffectEmitKeyInstance_setEmCheckCollision(ZkParticleEffectEmitKeyInstance* slf,
+                                                         int32_t emCheckCollision) {
 	ZKC_CHECK_NULLV(slf);
 	slf->em_check_collision = emCheckCollision;
 }
