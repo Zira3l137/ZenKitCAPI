@@ -39,6 +39,7 @@ list(APPEND _ZKC_SOURCES
         src/daedalus/SoundEffectInstance.cc
         src/daedalus/SoundSystemInstance.cc
         src/daedalus/SpellInstance.cc
+        src/daedalus/SvmInstance.cc
         src/Font.cc
         src/Material.cc
         src/Mesh.cc
