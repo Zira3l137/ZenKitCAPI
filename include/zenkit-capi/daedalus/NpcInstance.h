@@ -131,7 +131,8 @@ ZKC_API void ZkNpcInstance_setExpNext(ZkNpcInstance* slf, int32_t expNext);
 ZKC_API int32_t ZkNpcInstance_getLp(ZkNpcInstance const* slf);
 ZKC_API void ZkNpcInstance_setLp(ZkNpcInstance* slf, int32_t lp);
 ZKC_API int32_t ZkNpcInstance_getBodyStateInterruptableOverride(ZkNpcInstance const* slf);
-ZKC_API void ZkNpcInstance_setBodyStateInterruptableOverride(ZkNpcInstance* slf, int32_t bodyStateInterruptableOverride);
+ZKC_API void ZkNpcInstance_setBodyStateInterruptableOverride(ZkNpcInstance* slf,
+                                                             int32_t bodyStateInterruptableOverride);
 ZKC_API int32_t ZkNpcInstance_getNoFocus(ZkNpcInstance const* slf);
 ZKC_API void ZkNpcInstance_setNoFocus(ZkNpcInstance* slf, int32_t noFocus);
 ZKC_API ZkString ZkNpcInstance_getName(ZkNpcInstance const* slf, ZkNpcInstanceNameSlot slot);

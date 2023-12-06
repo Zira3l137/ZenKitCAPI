@@ -100,7 +100,8 @@ ZKC_API void ZkCameraTrajectoryFrame_setMotionTypeFov(ZkCameraTrajectoryFrame* s
 ZKC_API ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeRoll(ZkCameraTrajectoryFrame const* slf);
 ZKC_API void ZkCameraTrajectoryFrame_setMotionTypeRoll(ZkCameraTrajectoryFrame* slf, ZkCameraMotion motionTypeRoll);
 ZKC_API ZkCameraMotion ZkCameraTrajectoryFrame_getMotionTypeTimeScale(ZkCameraTrajectoryFrame const* slf);
-ZKC_API void ZkCameraTrajectoryFrame_setMotionTypeTimeScale(ZkCameraTrajectoryFrame* slf, ZkCameraMotion motionTypeTimeScale);
+ZKC_API void ZkCameraTrajectoryFrame_setMotionTypeTimeScale(ZkCameraTrajectoryFrame* slf,
+                                                            ZkCameraMotion motionTypeTimeScale);
 ZKC_API float ZkCameraTrajectoryFrame_getTension(ZkCameraTrajectoryFrame const* slf);
 ZKC_API void ZkCameraTrajectoryFrame_setTension(ZkCameraTrajectoryFrame* slf, float tension);
 ZKC_API float ZkCameraTrajectoryFrame_getCamBias(ZkCameraTrajectoryFrame const* slf);

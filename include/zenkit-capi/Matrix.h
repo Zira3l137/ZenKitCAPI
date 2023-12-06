@@ -22,10 +22,10 @@ typedef struct ZkInternal_Mat4x4 {
 
 	operator glm::mat4() const {
 		return glm::mat4 {
-			columns[0],
-			columns[1],
-			columns[2],
-			columns[3],
+		    columns[0],
+		    columns[1],
+		    columns[2],
+		    columns[3],
 		};
 	}
 #endif
@@ -45,9 +45,9 @@ typedef struct ZkInternal_Mat3x3 {
 
 	operator glm::mat3() const {
 		return glm::mat3 {
-			columns[0],
-			columns[1],
-			columns[2],
+		    columns[0],
+		    columns[1],
+		    columns[2],
 		};
 	}
 #endif

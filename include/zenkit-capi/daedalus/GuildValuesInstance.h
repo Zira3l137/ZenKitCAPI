@@ -37,7 +37,8 @@ ZKC_API void ZkGuildValuesInstance_setDisableAutoRoll(ZkGuildValuesInstance* slf
 ZKC_API int32_t ZkGuildValuesInstance_getSurfaceAlign(ZkGuildValuesInstance const* slf, ZkSize i);
 ZKC_API void ZkGuildValuesInstance_setSurfaceAlign(ZkGuildValuesInstance* slf, ZkSize i, int32_t surfaceAlign);
 ZKC_API int32_t ZkGuildValuesInstance_getClimbHeadingAngle(ZkGuildValuesInstance const* slf, ZkSize i);
-ZKC_API void ZkGuildValuesInstance_setClimbHeadingAngle(ZkGuildValuesInstance* slf, ZkSize i, int32_t climbHeadingAngle);
+ZKC_API void
+ZkGuildValuesInstance_setClimbHeadingAngle(ZkGuildValuesInstance* slf, ZkSize i, int32_t climbHeadingAngle);
 ZKC_API int32_t ZkGuildValuesInstance_getClimbHorizAngle(ZkGuildValuesInstance const* slf, ZkSize i);
 ZKC_API void ZkGuildValuesInstance_setClimbHorizAngle(ZkGuildValuesInstance* slf, ZkSize i, int32_t climbHorizAngle);
 ZKC_API int32_t ZkGuildValuesInstance_getClimbGroundAngle(ZkGuildValuesInstance const* slf, ZkSize i);
