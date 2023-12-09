@@ -270,9 +270,9 @@ uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkSize* count
 	return slf->vertices.data();
 }
 
-uint32_t const* ZkPolygon_getPolygonIndices(ZkPolygon const* slf, ZkSize* count) {
+uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkSize* count) {
 	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getPolygonIndices");
+		ZKC_LOG_WARN_NULL("ZkPolygon_getFeatureIndices");
 		return {};
 	}
 
