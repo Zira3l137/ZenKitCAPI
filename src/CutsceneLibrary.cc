@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/CutsceneLibrary.h"
 
+#include "Internal.hh"
+
 ZkCutsceneLibrary* ZkCutsceneLibrary_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkCutsceneLibrary* ZkCutsceneLibrary_load(ZkRead* buf) {
 }
 
 ZkCutsceneLibrary* ZkCutsceneLibrary_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkCutsceneLibrary* ZkCutsceneLibrary_loadPath(ZkString path) {
 }
 
 ZkCutsceneLibrary* ZkCutsceneLibrary_loadVfs(ZkVfs const* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkCutsceneLibrary* ZkCutsceneLibrary_loadVfs(ZkVfs const* vfs, ZkString name) {
 }
 
 void ZkCutsceneLibrary_del(ZkCutsceneLibrary* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkCutsceneBlock const* ZkCutsceneLibrary_getBlock(ZkCutsceneLibrary const* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_getBlock");
 		return nullptr;
@@ -63,6 +70,7 @@ ZkCutsceneBlock const* ZkCutsceneLibrary_getBlock(ZkCutsceneLibrary const* slf, 
 }
 
 void ZkCutsceneLibrary_enumerateBlocks(ZkCutsceneLibrary const* slf, ZkCutsceneBlockEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneLibrary_enumerateBlocks");
 		return;
@@ -74,6 +82,7 @@ void ZkCutsceneLibrary_enumerateBlocks(ZkCutsceneLibrary const* slf, ZkCutsceneB
 }
 
 ZkString ZkCutsceneBlock_getName(ZkCutsceneBlock const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneBlock_getName");
 		return nullptr;
@@ -83,6 +92,7 @@ ZkString ZkCutsceneBlock_getName(ZkCutsceneBlock const* slf) {
 }
 
 ZkCutsceneMessage const* ZkCutsceneBlock_getMessage(ZkCutsceneBlock const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneBlock_getMessage");
 		return nullptr;
@@ -92,6 +102,7 @@ ZkCutsceneMessage const* ZkCutsceneBlock_getMessage(ZkCutsceneBlock const* slf) 
 }
 
 uint32_t ZkCutsceneMessage_getType(ZkCutsceneMessage const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneMessage_getType");
 		return 0;
@@ -101,6 +112,7 @@ uint32_t ZkCutsceneMessage_getType(ZkCutsceneMessage const* slf) {
 }
 
 ZkString ZkCutsceneMessage_getText(ZkCutsceneMessage const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneMessage_getText");
 		return nullptr;
@@ -110,6 +122,7 @@ ZkString ZkCutsceneMessage_getText(ZkCutsceneMessage const* slf) {
 }
 
 ZkString ZkCutsceneMessage_getName(ZkCutsceneMessage const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkCutsceneMessage_getName");
 		return nullptr;

@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Boxes.h"
 
+#include "Internal.hh"
+
 ZkVec3f ZkOrientedBoundingBox_getCenter(ZkOrientedBoundingBox const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getCenter");
 		return {};
@@ -12,6 +15,7 @@ ZkVec3f ZkOrientedBoundingBox_getCenter(ZkOrientedBoundingBox const* slf) {
 }
 
 ZkVec3f ZkOrientedBoundingBox_getAxis(ZkOrientedBoundingBox const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getAxis");
 		return {};
@@ -26,6 +30,7 @@ ZkVec3f ZkOrientedBoundingBox_getAxis(ZkOrientedBoundingBox const* slf, ZkSize i
 }
 
 ZkVec3f ZkOrientedBoundingBox_getHalfWidth(ZkOrientedBoundingBox const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getHalfWidth");
 		return {};
@@ -35,6 +40,7 @@ ZkVec3f ZkOrientedBoundingBox_getHalfWidth(ZkOrientedBoundingBox const* slf) {
 }
 
 ZkSize ZkOrientedBoundingBox_getChildCount(ZkOrientedBoundingBox const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
 		return {};
@@ -44,6 +50,7 @@ ZkSize ZkOrientedBoundingBox_getChildCount(ZkOrientedBoundingBox const* slf) {
 }
 
 ZkOrientedBoundingBox const* ZkOrientedBoundingBox_getChild(ZkOrientedBoundingBox const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
 		return {};
@@ -60,6 +67,7 @@ ZkOrientedBoundingBox const* ZkOrientedBoundingBox_getChild(ZkOrientedBoundingBo
 void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf,
                                              ZkOrientedBoundingBoxEnumerator cb,
                                              void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_enumerateChildren");
 		return;
@@ -71,6 +79,7 @@ void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf,
 }
 
 ZkAxisAlignedBoundingBox ZkOrientedBoundingBox_toAabb(ZkOrientedBoundingBox const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_toAabb");
 		return {};

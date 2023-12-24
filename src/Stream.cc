@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Stream.h"
 
+#include "Internal.hh"
+
 #ifdef _WIN32
 typedef std::ptrdiff_t ssize_t;
 #endif
@@ -42,26 +44,32 @@ private:
 };
 
 ZkRead* ZkRead_newFile(FILE* stream) {
+	ZKC_TRACE_FN();
 	return zenkit::Read::from(stream).release();
 }
 
 ZkRead* ZkRead_newMem(ZkByte const* bytes, ZkSize length) {
+	ZKC_TRACE_FN();
 	return zenkit::Read::from(reinterpret_cast<std::byte const*>(bytes), length).release();
 }
 
 ZkRead* ZkRead_newPath(ZkString path) {
+	ZKC_TRACE_FN();
 	return zenkit::Read::from(path).release();
 }
 
 ZkRead* ZkRead_newExt(ZkReadExt ext, void* ctx) {
+	ZKC_TRACE_FN();
 	return new ZkReadExtImpl {ext, ctx};
 }
 
 void ZkRead_del(ZkRead* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkSize ZkRead_getSize(ZkRead* slf) {
+	ZKC_TRACE_FN();
 	auto off = slf->tell();
 	slf->seek(0, zenkit::Whence::END);
 	auto size = slf->tell();
@@ -70,6 +78,7 @@ ZkSize ZkRead_getSize(ZkRead* slf) {
 }
 
 ZkSize ZkRead_getBytes(ZkRead* slf, void* buf, ZkSize length) {
+	ZKC_TRACE_FN();
 	auto off = slf->tell();
 	slf->seek(0, zenkit::Whence::END);
 	auto count = slf->read(buf, length);

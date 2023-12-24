@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Model.h"
 
+#include "Internal.hh"
+
 ZkModel* ZkModel_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModel_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkModel* ZkModel_load(ZkRead* buf) {
 }
 
 ZkModel* ZkModel_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModel_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkModel* ZkModel_loadPath(ZkString path) {
 }
 
 ZkModel* ZkModel_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModel_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkModel* ZkModel_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkModel_del(ZkModel* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkModelHierarchy const* ZkModel_getHierarchy(ZkModel const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModel_getHierarchy");
 		return nullptr;
@@ -63,6 +70,7 @@ ZkModelHierarchy const* ZkModel_getHierarchy(ZkModel const* slf) {
 }
 
 ZkModelMesh const* ZkModel_getMesh(ZkModel const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModel_getMesh");
 		return nullptr;

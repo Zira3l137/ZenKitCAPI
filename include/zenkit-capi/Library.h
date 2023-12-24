@@ -33,6 +33,7 @@
 	#include <zenkit/Logger.hh>
 
 	#define ZKC_WRAP_NEW(x) new (decltype(x))(std::move(x))
+	#define ZKC_LOG_TRACE(...) zenkit::Logger::log(zenkit::LogLevel::TRACE, "<Native>", __VA_ARGS__)
 	#define ZKC_LOG_ERROR(...) zenkit::Logger::log(zenkit::LogLevel::ERROR, "<Native>", __VA_ARGS__)
 	#define ZKC_LOG_WARN(...) zenkit::Logger::log(zenkit::LogLevel::WARNING, "<Native>", __VA_ARGS__)
 	#define ZKC_LOG_WARN_NULL(fn)                                                                                      \

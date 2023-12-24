@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/World.h"
 
+#include "Internal.hh"
+
 ZkWorld* ZkWorld_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkWorld* ZkWorld_load(ZkRead* buf) {
 }
 
 ZkWorld* ZkWorld_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkWorld* ZkWorld_loadPath(ZkString path) {
 }
 
 ZkWorld* ZkWorld_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkWorld* ZkWorld_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkWorld_del(ZkWorld* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_getMesh");
 		return nullptr;
@@ -63,6 +70,7 @@ ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf) {
 }
 
 ZkWayNet const* ZkWorld_getWayNet(ZkWorld const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_getWayNet");
 		return nullptr;
@@ -72,6 +80,7 @@ ZkWayNet const* ZkWorld_getWayNet(ZkWorld const* slf) {
 }
 
 ZkBspTree const* ZkWorld_getBspTree(ZkWorld const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_getBspTree");
 		return nullptr;
@@ -81,6 +90,7 @@ ZkBspTree const* ZkWorld_getBspTree(ZkWorld const* slf) {
 }
 
 ZkSize ZkWorld_getRootObjectCount(ZkWorld const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_getRootObjectCount");
 		return 0;
@@ -90,6 +100,7 @@ ZkSize ZkWorld_getRootObjectCount(ZkWorld const* slf) {
 }
 
 ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_getRootObject");
 		return nullptr;
@@ -104,6 +115,7 @@ ZkVirtualObject const* ZkWorld_getRootObject(ZkWorld const* slf, ZkSize i) {
 }
 
 void ZkWorld_enumerateRootObjects(ZkWorld const* slf, ZkVirtualObjectEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWorld_enumerateRootObjects");
 		return;

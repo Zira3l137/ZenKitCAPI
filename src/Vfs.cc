@@ -2,15 +2,20 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Vfs.h"
 
+#include "Internal.hh"
+
 ZkVfs* ZkVfs_new(void) {
+	ZKC_TRACE_FN();
 	return new ZkVfs {};
 }
 
 void ZkVfs_del(ZkVfs* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_getRoot");
 		return nullptr;
@@ -20,6 +25,7 @@ ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf) {
 }
 
 ZkVfsNode* ZkVfs_mkdir(ZkVfs* slf, ZkString path) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_mkdir");
 		return nullptr;
@@ -29,6 +35,7 @@ ZkVfsNode* ZkVfs_mkdir(ZkVfs* slf, ZkString path) {
 }
 
 ZkBool ZkVfs_remove(ZkVfs* slf, ZkString path) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_mkdir");
 		return false;
@@ -38,6 +45,7 @@ ZkBool ZkVfs_remove(ZkVfs* slf, ZkString path) {
 }
 
 void ZkVfs_mount(ZkVfs* slf, ZkVfsNode* node, ZkString parent, ZkVfsOverwriteBehavior overwrite) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || node == nullptr || parent == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_mount");
 		return;
@@ -51,6 +59,7 @@ void ZkVfs_mount(ZkVfs* slf, ZkVfsNode* node, ZkString parent, ZkVfsOverwriteBeh
 }
 
 void ZkVfs_mountHost(ZkVfs* slf, ZkString path, ZkString parent, ZkVfsOverwriteBehavior overwrite) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || path == nullptr || parent == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_mountHost");
 		return;
@@ -64,6 +73,7 @@ void ZkVfs_mountHost(ZkVfs* slf, ZkString path, ZkString parent, ZkVfsOverwriteB
 }
 
 void ZkVfs_mountDisk(ZkVfs* slf, ZkRead* buf, ZkVfsOverwriteBehavior overwrite) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_mountDisk");
 		return;
@@ -77,6 +87,7 @@ void ZkVfs_mountDisk(ZkVfs* slf, ZkRead* buf, ZkVfsOverwriteBehavior overwrite) 
 }
 
 void ZkVfs_mountDiskHost(ZkVfs* slf, ZkString path, ZkVfsOverwriteBehavior overwrite) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_mountDiskHost");
 		return;
@@ -90,6 +101,7 @@ void ZkVfs_mountDiskHost(ZkVfs* slf, ZkString path, ZkVfsOverwriteBehavior overw
 }
 
 ZkVfsNode* ZkVfs_resolvePath(ZkVfs* slf, ZkString path) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_resolvePath");
 		return nullptr;
@@ -99,6 +111,7 @@ ZkVfsNode* ZkVfs_resolvePath(ZkVfs* slf, ZkString path) {
 }
 
 ZkVfsNode* ZkVfs_findNode(ZkVfs* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfs_findNode");
 		return nullptr;
@@ -108,6 +121,7 @@ ZkVfsNode* ZkVfs_findNode(ZkVfs* slf, ZkString name) {
 }
 
 ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time_t ts) {
+	ZKC_TRACE_FN();
 	if (name == nullptr || buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_newFile");
 		return nullptr;
@@ -123,6 +137,7 @@ ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time
 }
 
 ZkVfsNode* ZkVfsNode_newDir(ZkString name, time_t ts) {
+	ZKC_TRACE_FN();
 	if (name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_newDir");
 		return nullptr;
@@ -138,10 +153,12 @@ ZkVfsNode* ZkVfsNode_newDir(ZkString name, time_t ts) {
 }
 
 void ZkVfsNode_del(ZkVfsNode* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkBool ZkVfsNode_isFile(ZkVfsNode const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_isFile");
 		return false;
@@ -151,6 +168,7 @@ ZkBool ZkVfsNode_isFile(ZkVfsNode const* slf) {
 }
 
 ZkBool ZkVfsNode_isDir(ZkVfsNode const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_isDir");
 		return false;
@@ -160,6 +178,7 @@ ZkBool ZkVfsNode_isDir(ZkVfsNode const* slf) {
 }
 
 time_t ZkVfsNode_getTime(ZkVfsNode const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_getTime");
 		return 0;
@@ -169,6 +188,7 @@ time_t ZkVfsNode_getTime(ZkVfsNode const* slf) {
 }
 
 ZkString ZkVfsNode_getName(ZkVfsNode const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_getName");
 		return nullptr;
@@ -178,6 +198,7 @@ ZkString ZkVfsNode_getName(ZkVfsNode const* slf) {
 }
 
 ZkVfsNode* ZkVfsNode_getChild(ZkVfsNode* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_getChild");
 		return nullptr;
@@ -192,6 +213,7 @@ ZkVfsNode* ZkVfsNode_getChild(ZkVfsNode* slf, ZkString name) {
 }
 
 ZkVfsNode* ZkVfsNode_create(ZkVfsNode* slf, ZkVfsNode* node) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || node == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_create");
 		return nullptr;
@@ -206,6 +228,7 @@ ZkVfsNode* ZkVfsNode_create(ZkVfsNode* slf, ZkVfsNode* node) {
 }
 
 ZkBool ZkVfsNode_remove(ZkVfsNode* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_remove");
 		return false;
@@ -220,6 +243,7 @@ ZkBool ZkVfsNode_remove(ZkVfsNode* slf, ZkString name) {
 }
 
 ZkRead* ZkVfsNode_open(ZkVfsNode const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_open");
 		return nullptr;
@@ -234,6 +258,7 @@ ZkRead* ZkVfsNode_open(ZkVfsNode const* slf) {
 }
 
 void ZkVfsNode_enumerateChildren(ZkVfsNode const* slf, ZkVfsNodeEnumerator callback, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || callback == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVfsNode_enumerateChildren");
 		return;

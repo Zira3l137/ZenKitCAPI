@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Texture.h"
 
+#include "Internal.hh"
+
 ZkTexture* ZkTexture_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkTexture* ZkTexture_load(ZkRead* buf) {
 }
 
 ZkTexture* ZkTexture_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkTexture* ZkTexture_loadPath(ZkString path) {
 }
 
 ZkTexture* ZkTexture_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkTexture* ZkTexture_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkTexture_del(ZkTexture* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkTextureFormat ZkTexture_getFormat(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getFormat");
 		return ZkTextureFormat_R8G8B8A8;
@@ -63,6 +70,7 @@ ZkTextureFormat ZkTexture_getFormat(ZkTexture const* slf) {
 }
 
 uint32_t ZkTexture_getWidth(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getWidth");
 		return 0;
@@ -72,6 +80,7 @@ uint32_t ZkTexture_getWidth(ZkTexture const* slf) {
 }
 
 uint32_t ZkTexture_getHeight(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getHeight");
 		return 0;
@@ -81,6 +90,7 @@ uint32_t ZkTexture_getHeight(ZkTexture const* slf) {
 }
 
 uint32_t ZkTexture_getWidthMipmap(ZkTexture const* slf, ZkSize level) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getWidthMipmap");
 		return 0;
@@ -95,6 +105,7 @@ uint32_t ZkTexture_getWidthMipmap(ZkTexture const* slf, ZkSize level) {
 }
 
 uint32_t ZkTexture_getHeightMipmap(ZkTexture const* slf, ZkSize level) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getHeightMipmap");
 		return 0;
@@ -109,6 +120,7 @@ uint32_t ZkTexture_getHeightMipmap(ZkTexture const* slf, ZkSize level) {
 }
 
 uint32_t ZkTexture_getWidthRef(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getWidthRef");
 		return 0;
@@ -118,6 +130,7 @@ uint32_t ZkTexture_getWidthRef(ZkTexture const* slf) {
 }
 
 uint32_t ZkTexture_getHeightRef(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getHeightRef");
 		return 0;
@@ -127,6 +140,7 @@ uint32_t ZkTexture_getHeightRef(ZkTexture const* slf) {
 }
 
 uint32_t ZkTexture_getMipmapCount(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getMipmapCount");
 		return 0;
@@ -136,6 +150,7 @@ uint32_t ZkTexture_getMipmapCount(ZkTexture const* slf) {
 }
 
 uint32_t ZkTexture_getAverageColor(ZkTexture const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getAverageColor");
 		return 0;
@@ -145,6 +160,7 @@ uint32_t ZkTexture_getAverageColor(ZkTexture const* slf) {
 }
 
 ZkColorArgb const* ZkTexture_getPalette(ZkTexture const* slf, ZkSize* size) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || size == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getPalette");
 		return nullptr;
@@ -155,6 +171,7 @@ ZkColorArgb const* ZkTexture_getPalette(ZkTexture const* slf, ZkSize* size) {
 }
 
 uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize* size) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || size == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getMipmapRaw");
 		return nullptr;
@@ -165,6 +182,7 @@ uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize
 }
 
 ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf, ZkSize size) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_getMipmapRgba");
 		return 0;
@@ -182,6 +200,7 @@ ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf,
 }
 
 void ZkTexture_enumerateRawMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_enumerateRawMipmaps");
 		return;
@@ -193,6 +212,7 @@ void ZkTexture_enumerateRawMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumerat
 }
 
 void ZkTexture_enumerateRgbaMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkTexture_enumerateRgbaMipmaps");
 		return;

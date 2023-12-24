@@ -2,9 +2,12 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Material.h"
 
+#include "Internal.hh"
+
 #include <zenkit/Archive.hh>
 
 ZkMaterial* ZkMaterial_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_load");
 		return nullptr;
@@ -24,6 +27,7 @@ ZkMaterial* ZkMaterial_load(ZkRead* buf) {
 }
 
 ZkMaterial* ZkMaterial_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_loadPath");
 		return nullptr;
@@ -44,10 +48,12 @@ ZkMaterial* ZkMaterial_loadPath(ZkString path) {
 }
 
 void ZkMaterial_del(ZkMaterial* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkString ZkMaterial_getName(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getName");
 		return nullptr;
@@ -57,6 +63,7 @@ ZkString ZkMaterial_getName(ZkMaterial const* slf) {
 }
 
 ZkMaterialGroup ZkMaterial_getGroup(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getGroup");
 		return ZkMaterialGroup_UNDEFINED;
@@ -66,6 +73,7 @@ ZkMaterialGroup ZkMaterial_getGroup(ZkMaterial const* slf) {
 }
 
 ZkColor ZkMaterial_getColor(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getColor");
 		return {};
@@ -75,6 +83,7 @@ ZkColor ZkMaterial_getColor(ZkMaterial const* slf) {
 }
 
 float ZkMaterial_getSmoothAngle(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getSmoothAngle");
 		return 0;
@@ -84,6 +93,7 @@ float ZkMaterial_getSmoothAngle(ZkMaterial const* slf) {
 }
 
 ZkString ZkMaterial_getTexture(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getTexture");
 		return nullptr;
@@ -93,6 +103,7 @@ ZkString ZkMaterial_getTexture(ZkMaterial const* slf) {
 }
 
 ZkVec2f ZkMaterial_getTextureScale(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureScale");
 		return {};
@@ -102,6 +113,7 @@ ZkVec2f ZkMaterial_getTextureScale(ZkMaterial const* slf) {
 }
 
 float ZkMaterial_getTextureAnimationFps(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureAnimationFps");
 		return 0;
@@ -111,6 +123,7 @@ float ZkMaterial_getTextureAnimationFps(ZkMaterial const* slf) {
 }
 
 ZkAnimationMapping ZkMaterial_getTextureAnimationMapping(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureAnimationMapping");
 		return ZkAnimationMapping_NONE;
@@ -120,6 +133,7 @@ ZkAnimationMapping ZkMaterial_getTextureAnimationMapping(ZkMaterial const* slf) 
 }
 
 ZkVec2f ZkMaterial_getTextureAnimationMappingDirection(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getTextureAnimationMappingDirection");
 		return {};
@@ -129,6 +143,7 @@ ZkVec2f ZkMaterial_getTextureAnimationMappingDirection(ZkMaterial const* slf) {
 }
 
 ZkBool ZkMaterial_getDisableCollision(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getDisableCollision");
 		return false;
@@ -138,6 +153,7 @@ ZkBool ZkMaterial_getDisableCollision(ZkMaterial const* slf) {
 }
 
 ZkBool ZkMaterial_getDisableLightmap(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getDisableLightmap");
 		return false;
@@ -147,6 +163,7 @@ ZkBool ZkMaterial_getDisableLightmap(ZkMaterial const* slf) {
 }
 
 ZkBool ZkMaterial_getDontCollapse(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getDontCollapse");
 		return false;
@@ -156,6 +173,7 @@ ZkBool ZkMaterial_getDontCollapse(ZkMaterial const* slf) {
 }
 
 ZkString ZkMaterial_getDetailObject(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getDetailObject");
 		return nullptr;
@@ -165,6 +183,7 @@ ZkString ZkMaterial_getDetailObject(ZkMaterial const* slf) {
 }
 
 float ZkMaterial_getDetailObjectScale(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getDetailObjectScale");
 		return 1;
@@ -174,6 +193,7 @@ float ZkMaterial_getDetailObjectScale(ZkMaterial const* slf) {
 }
 
 ZkBool ZkMaterial_getForceOccluder(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getForceOccluder");
 		return false;
@@ -183,6 +203,7 @@ ZkBool ZkMaterial_getForceOccluder(ZkMaterial const* slf) {
 }
 
 ZkBool ZkMaterial_getEnvironmentMapping(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getEnvironmentMapping");
 		return false;
@@ -192,6 +213,7 @@ ZkBool ZkMaterial_getEnvironmentMapping(ZkMaterial const* slf) {
 }
 
 float ZkMaterial_getEnvironmentMappingStrength(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getEnvironmentMappingStrength");
 		return 0;
@@ -201,6 +223,7 @@ float ZkMaterial_getEnvironmentMappingStrength(ZkMaterial const* slf) {
 }
 
 ZkWaveMode ZkMaterial_getWaveMode(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveMode");
 		return ZkWaveMode_NONE;
@@ -210,6 +233,7 @@ ZkWaveMode ZkMaterial_getWaveMode(ZkMaterial const* slf) {
 }
 
 ZkWaveSpeed ZkMaterial_getWaveSpeed(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveSpeed");
 		return ZkWaveSpeed_NORMAL;
@@ -219,6 +243,7 @@ ZkWaveSpeed ZkMaterial_getWaveSpeed(ZkMaterial const* slf) {
 }
 
 float ZkMaterial_getWaveAmplitude(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveAmplitude");
 		return 0;
@@ -228,6 +253,7 @@ float ZkMaterial_getWaveAmplitude(ZkMaterial const* slf) {
 }
 
 float ZkMaterial_getWaveGridSize(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getWaveGridSize");
 		return 1;
@@ -237,6 +263,7 @@ float ZkMaterial_getWaveGridSize(ZkMaterial const* slf) {
 }
 
 ZkBool ZkMaterial_getIgnoreSun(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getIgnoreSun");
 		return false;
@@ -246,6 +273,7 @@ ZkBool ZkMaterial_getIgnoreSun(ZkMaterial const* slf) {
 }
 
 ZkAlphaFunction ZkMaterial_getAlphaFunction(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getAlphaFunction");
 		return ZkAlphaFunction_DEFAULT;
@@ -255,6 +283,7 @@ ZkAlphaFunction ZkMaterial_getAlphaFunction(ZkMaterial const* slf) {
 }
 
 ZkVec2f ZkMaterial_getDefaultMapping(ZkMaterial const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMaterial_getDefaultMapping");
 		return {};

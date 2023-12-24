@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/ModelAnimation.h"
 
+#include "Internal.hh"
+
 ZkModelAnimation* ZkModelAnimation_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkModelAnimation* ZkModelAnimation_load(ZkRead* buf) {
 }
 
 ZkModelAnimation* ZkModelAnimation_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkModelAnimation* ZkModelAnimation_loadPath(ZkString path) {
 }
 
 ZkModelAnimation* ZkModelAnimation_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkModelAnimation* ZkModelAnimation_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkModelAnimation_del(ZkModelAnimation* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkString ZkModelAnimation_getName(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getName");
 		return nullptr;
@@ -63,6 +70,7 @@ ZkString ZkModelAnimation_getName(ZkModelAnimation const* slf) {
 }
 
 ZkString ZkModelAnimation_getNext(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getNext");
 		return nullptr;
@@ -72,6 +80,7 @@ ZkString ZkModelAnimation_getNext(ZkModelAnimation const* slf) {
 }
 
 uint32_t ZkModelAnimation_getLayer(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getLayer");
 		return 0;
@@ -81,6 +90,7 @@ uint32_t ZkModelAnimation_getLayer(ZkModelAnimation const* slf) {
 }
 
 uint32_t ZkModelAnimation_getFrameCount(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getFrameCount");
 		return 0;
@@ -90,6 +100,7 @@ uint32_t ZkModelAnimation_getFrameCount(ZkModelAnimation const* slf) {
 }
 
 uint32_t ZkModelAnimation_getNodeCount(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getNodeCount");
 		return 0;
@@ -99,6 +110,7 @@ uint32_t ZkModelAnimation_getNodeCount(ZkModelAnimation const* slf) {
 }
 
 float ZkModelAnimation_getFps(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getFps");
 		return 0;
@@ -108,6 +120,7 @@ float ZkModelAnimation_getFps(ZkModelAnimation const* slf) {
 }
 
 float ZkModelAnimation_getFpsSource(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getFpsSource");
 		return 0;
@@ -117,6 +130,7 @@ float ZkModelAnimation_getFpsSource(ZkModelAnimation const* slf) {
 }
 
 ZkAxisAlignedBoundingBox ZkModelAnimation_getBbox(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getBbox");
 		return {ZkVec3f {0, 0, 0}, ZkVec3f {0, 0, 0}};
@@ -126,6 +140,7 @@ ZkAxisAlignedBoundingBox ZkModelAnimation_getBbox(ZkModelAnimation const* slf) {
 }
 
 uint32_t ZkModelAnimation_getChecksum(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getChecksum");
 		return 0;
@@ -135,6 +150,7 @@ uint32_t ZkModelAnimation_getChecksum(ZkModelAnimation const* slf) {
 }
 
 ZkString ZkModelAnimation_getSourcePath(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourcePath");
 		return nullptr;
@@ -144,6 +160,7 @@ ZkString ZkModelAnimation_getSourcePath(ZkModelAnimation const* slf) {
 }
 
 ZkDate ZkModelAnimation_getSourceDate(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourceDate");
 		return {};
@@ -153,6 +170,7 @@ ZkDate ZkModelAnimation_getSourceDate(ZkModelAnimation const* slf) {
 }
 
 ZkString ZkModelAnimation_getSourceScript(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSourceScript");
 		return nullptr;
@@ -162,6 +180,7 @@ ZkString ZkModelAnimation_getSourceScript(ZkModelAnimation const* slf) {
 }
 
 ZkSize ZkModelAnimation_getSampleCount(ZkModelAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSampleCount");
 		return 0;
@@ -171,6 +190,7 @@ ZkSize ZkModelAnimation_getSampleCount(ZkModelAnimation const* slf) {
 }
 
 ZkAnimationSample ZkModelAnimation_getSample(ZkModelAnimation const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getSample");
 		return {};
@@ -185,6 +205,7 @@ ZkAnimationSample ZkModelAnimation_getSample(ZkModelAnimation const* slf, ZkSize
 }
 
 void ZkModelAnimation_enumerateSamples(ZkModelAnimation const* slf, ZkAnimationSampleEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_enumerateSamples");
 		return;
@@ -200,6 +221,7 @@ void ZkModelAnimation_enumerateSamples(ZkModelAnimation const* slf, ZkAnimationS
 }
 
 uint32_t const* ZkModelAnimation_getNodeIndices(ZkModelAnimation const* slf, ZkSize* length) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getNodeIndices");
 
