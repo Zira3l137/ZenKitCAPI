@@ -18,191 +18,229 @@ ZKC_VOB_PATH_LOADER(ZkVirtualObject);
 ZKC_DELETER(ZkVirtualObject);
 
 ZkVobType ZkVirtualObject_getType(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkVobType>(slf->type);
 }
 
 uint32_t ZkVirtualObject_getId(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->id;
 }
 
 ZkAxisAlignedBoundingBox ZkVirtualObject_getBbox(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->bbox;
 }
 
 void ZkVirtualObject_setBbox(ZkVirtualObject* slf, ZkAxisAlignedBoundingBox bbox) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->bbox = bbox;
 }
 
 ZkVec3f ZkVirtualObject_getPosition(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->position;
 }
 
 void ZkVirtualObject_setPosition(ZkVirtualObject* slf, ZkVec3f position) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->position = position;
 }
 
 ZkMat3x3 ZkVirtualObject_getRotation(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->rotation;
 }
 
 void ZkVirtualObject_setRotation(ZkVirtualObject* slf, ZkMat3x3 rotation) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->rotation = rotation;
 }
 
 ZkBool ZkVirtualObject_getShowVisual(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->show_visual;
 }
 
 void ZkVirtualObject_setShowVisual(ZkVirtualObject* slf, ZkBool showVisual) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->show_visual = showVisual;
 }
 
 ZkSpriteAlignment ZkVirtualObject_getSpriteCameraFacingMode(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkSpriteAlignment>(slf->sprite_camera_facing_mode);
 }
 
 void ZkVirtualObject_setSpriteCameraFacingMode(ZkVirtualObject* slf, ZkSpriteAlignment spriteCameraFacingMode) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->sprite_camera_facing_mode = static_cast<zenkit::SpriteAlignment>(spriteCameraFacingMode);
 }
 
 ZkBool ZkVirtualObject_getCdStatic(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->cd_static;
 }
 
 void ZkVirtualObject_setCdStatic(ZkVirtualObject* slf, ZkBool cdStatic) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->cd_static = cdStatic;
 }
 
 ZkBool ZkVirtualObject_getCdDynamic(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->cd_dynamic;
 }
 
 void ZkVirtualObject_setCdDynamic(ZkVirtualObject* slf, ZkBool cdDynamic) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->cd_dynamic = cdDynamic;
 }
 
 ZkBool ZkVirtualObject_getVobStatic(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->vob_static;
 }
 
 void ZkVirtualObject_setVobStatic(ZkVirtualObject* slf, ZkBool vobStatic) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->vob_static = vobStatic;
 }
 
 ZkShadowType ZkVirtualObject_getDynamicShadows(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkShadowType>(slf->dynamic_shadows);
 }
 
 void ZkVirtualObject_setDynamicShadows(ZkVirtualObject* slf, ZkShadowType dynamicShadows) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->dynamic_shadows = static_cast<zenkit::ShadowType>(dynamicShadows);
 }
 
 ZkBool ZkVirtualObject_getPhysicsEnabled(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->physics_enabled;
 }
 
 void ZkVirtualObject_setPhysicsEnabled(ZkVirtualObject* slf, ZkBool physicsEnabled) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->physics_enabled = physicsEnabled;
 }
 
 ZkAnimationType ZkVirtualObject_getAnimMode(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkAnimationType>(slf->anim_mode);
 }
 
 void ZkVirtualObject_setAnimMode(ZkVirtualObject* slf, ZkAnimationType animMode) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->anim_mode = static_cast<zenkit::AnimationType>(animMode);
 }
 
 int32_t ZkVirtualObject_getBias(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->bias;
 }
 
 void ZkVirtualObject_setBias(ZkVirtualObject* slf, int32_t bias) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->bias = bias;
 }
 
 ZkBool ZkVirtualObject_getAmbient(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->ambient;
 }
 
 void ZkVirtualObject_setAmbient(ZkVirtualObject* slf, ZkBool ambient) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->ambient = ambient;
 }
 
 float ZkVirtualObject_getAnimStrength(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->anim_strength;
 }
 
 void ZkVirtualObject_setAnimStrength(ZkVirtualObject* slf, float animStrength) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->anim_strength = animStrength;
 }
 
 float ZkVirtualObject_getFarClipScale(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->far_clip_scale;
 }
 
 void ZkVirtualObject_setFarClipScale(ZkVirtualObject* slf, float farClipScale) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->far_clip_scale = farClipScale;
 }
 
 ZkString ZkVirtualObject_getPresetName(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->preset_name.c_str();
 }
 
 void ZkVirtualObject_setPresetName(ZkVirtualObject* slf, ZkString presetName) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->preset_name = presetName;
 }
 
 ZkString ZkVirtualObject_getName(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->vob_name.c_str();
 }
 
 void ZkVirtualObject_setName(ZkVirtualObject* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->vob_name = name;
 }
 
 ZkVisual* ZkVirtualObject_getVisual(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->visual ? slf->visual.get() : nullptr;
 }
 
 ZkVisual* ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisualType visual) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 
 	std::shared_ptr<zenkit::Visual> obj;
@@ -240,17 +278,20 @@ ZkVisual* ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisualType visual) {
 }
 
 ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->children.size();
 }
 
 ZkVirtualObject* ZkVirtualObject_getChild(ZkVirtualObject const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	ZKC_CHECK_LEN(slf->children, i);
 	return slf->children[i].get();
 }
 
 void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObjectEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkVirtualObject_enumerateChildren");
 		return;
@@ -262,6 +303,7 @@ void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObje
 }
 
 ZkVirtualObject* ZkVirtualObject_addChild(ZkVirtualObject* slf, ZkVobType type) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 
 	std::shared_ptr<zenkit::VirtualObject> obj;
@@ -412,12 +454,14 @@ ZkVirtualObject* ZkVirtualObject_addChild(ZkVirtualObject* slf, ZkVobType type) 
 }
 
 void ZkVirtualObject_removeChild(ZkVirtualObject* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(slf->children, i);
 	slf->children.erase(slf->children.begin() + static_cast<long>(i));
 }
 
 void ZkVirtualObject_removeChildren(ZkVirtualObject* slf, ZkVirtualObjectEnumerator pred, void* ctx) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, pred);
 
 	for (auto it = slf->children.begin(); it != slf->children.end();) {
@@ -430,96 +474,115 @@ void ZkVirtualObject_removeChildren(ZkVirtualObject* slf, ZkVirtualObjectEnumera
 }
 
 ZkString ZkVisual_getName(ZkVisual const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->name.c_str();
 }
 
 void ZkVisual_setName(ZkVisual* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->name = name;
 }
 
 ZkVisualType ZkVisual_getType(ZkVisual const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkVisualType>(slf->type);
 }
 
 ZkString ZkVisualDecal_getName(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->name.c_str();
 }
 
 void ZkVisualDecal_setName(ZkVisualDecal* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->name = name;
 }
 
 ZkVec2f ZkVisualDecal_getDimension(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->dimension;
 }
 
 void ZkVisualDecal_setDimension(ZkVisualDecal* slf, ZkVec2f dimension) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->dimension = dimension;
 }
 
 ZkVec2f ZkVisualDecal_getOffset(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->offset;
 }
 
 void ZkVisualDecal_setOffset(ZkVisualDecal* slf, ZkVec2f offset) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->offset = offset;
 }
 
 ZkBool ZkVisualDecal_getTwoSided(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->two_sided;
 }
 
 void ZkVisualDecal_setTwoSided(ZkVisualDecal* slf, ZkBool twoSided) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->two_sided = twoSided;
 }
 
 ZkAlphaFunction ZkVisualDecal_getAlphaFunc(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkAlphaFunction>(slf->alpha_func);
 }
 
 void ZkVisualDecal_setAlphaFunc(ZkVisualDecal* slf, ZkAlphaFunction alphaFunc) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->alpha_func = static_cast<zenkit::AlphaFunction>(alphaFunc);
 }
 
 float ZkVisualDecal_getTextureAnimFps(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->texture_anim_fps;
 }
 
 void ZkVisualDecal_setTextureAnimFps(ZkVisualDecal* slf, float textureAnimFps) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->texture_anim_fps = textureAnimFps;
 }
 
 uint8_t ZkVisualDecal_getAlphaWeight(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->alpha_weight;
 }
 
 void ZkVisualDecal_setAlphaWeight(ZkVisualDecal* slf, uint8_t alphaWeight) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->alpha_weight = alphaWeight;
 }
 
 ZkBool ZkVisualDecal_getIgnoreDaylight(ZkVisualDecal const* slf) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return slf->ignore_daylight;
 }
 
 void ZkVisualDecal_setIgnoreDaylight(ZkVisualDecal* slf, ZkBool ignoreDaylight) {
+	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->ignore_daylight = ignoreDaylight;
 }

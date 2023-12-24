@@ -55,6 +55,7 @@
 
 #define ZKC_DELETER(cls)                                                                                               \
 	void cls##_del(cls* slf) {                                                                                         \
+		ZKC_TRACE_FN();                                                                                                \
 		delete slf;                                                                                                    \
 	}
 
@@ -80,6 +81,7 @@
 
 #define ZKC_VOB_LOADER(cls)                                                                                            \
 	cls* cls##_load(ZkRead* buf, ZkGameVersion version) {                                                              \
+		ZKC_TRACE_FN();                                                                                                \
 		if (buf == nullptr) {                                                                                          \
 			ZKC_LOG_WARN_NULL(#cls "_load");                                                                           \
 			return nullptr;                                                                                            \
@@ -102,6 +104,7 @@
 
 #define ZKC_VOB_PATH_LOADER(cls)                                                                                       \
 	cls* cls##_loadPath(ZkString path, ZkGameVersion version) {                                                        \
+		ZKC_TRACE_FN();                                                                                                \
 		if (path == nullptr) {                                                                                         \
 			ZKC_LOG_WARN_NULL(#cls "_loadPath");                                                                       \
 			return nullptr;                                                                                            \

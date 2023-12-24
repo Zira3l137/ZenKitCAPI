@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/ModelHierarchy.h"
 
+#include "Internal.hh"
+
 ZkModelHierarchy* ZkModelHierarchy_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkModelHierarchy* ZkModelHierarchy_load(ZkRead* buf) {
 }
 
 ZkModelHierarchy* ZkModelHierarchy_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkModelHierarchy* ZkModelHierarchy_loadPath(ZkString path) {
 }
 
 ZkModelHierarchy* ZkModelHierarchy_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkModelHierarchy* ZkModelHierarchy_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkModelHierarchy_del(ZkModelHierarchy* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkSize ZkModelHierarchy_getNodeCount(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getNodeCount");
 		return 0;
@@ -63,6 +70,7 @@ ZkSize ZkModelHierarchy_getNodeCount(ZkModelHierarchy const* slf) {
 }
 
 ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getNode");
 		return {};
@@ -81,6 +89,7 @@ ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSiz
 }
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getBbox(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getBbox");
 		return {};
@@ -90,6 +99,7 @@ ZkAxisAlignedBoundingBox ZkModelHierarchy_getBbox(ZkModelHierarchy const* slf) {
 }
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getCollisionBbox(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getCollisionBbox");
 		return {};
@@ -99,6 +109,7 @@ ZkAxisAlignedBoundingBox ZkModelHierarchy_getCollisionBbox(ZkModelHierarchy cons
 }
 
 ZkVec3f ZkModelHierarchy_getRootTranslation(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getRootTranslation");
 		return {};
@@ -108,6 +119,7 @@ ZkVec3f ZkModelHierarchy_getRootTranslation(ZkModelHierarchy const* slf) {
 }
 
 uint32_t ZkModelHierarchy_getChecksum(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getChecksum");
 		return {};
@@ -117,6 +129,7 @@ uint32_t ZkModelHierarchy_getChecksum(ZkModelHierarchy const* slf) {
 }
 
 ZkDate ZkModelHierarchy_getSourceDate(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getSourceDate");
 		return {};
@@ -126,6 +139,7 @@ ZkDate ZkModelHierarchy_getSourceDate(ZkModelHierarchy const* slf) {
 }
 
 ZkString ZkModelHierarchy_getSourcePath(ZkModelHierarchy const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getSourcePath");
 		return {};
@@ -135,6 +149,7 @@ ZkString ZkModelHierarchy_getSourcePath(ZkModelHierarchy const* slf) {
 }
 
 void ZkModelHierarchy_enumerateNodes(ZkModelHierarchy const* slf, ZkModelHierarchyNodeEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelHierarchy_enumerateNodes");
 		return;

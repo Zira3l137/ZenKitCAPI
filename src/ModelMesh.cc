@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/ModelMesh.h"
 
+#include "Internal.hh"
+
 ZkModelMesh* ZkModelMesh_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkModelMesh* ZkModelMesh_load(ZkRead* buf) {
 }
 
 ZkModelMesh* ZkModelMesh_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkModelMesh* ZkModelMesh_loadPath(ZkString path) {
 }
 
 ZkModelMesh* ZkModelMesh_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkModelMesh* ZkModelMesh_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkModelMesh_del(ZkModelMesh* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkSize ZkModelMesh_getMeshCount(ZkModelMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_getMeshCount");
 		return 0;
@@ -63,6 +70,7 @@ ZkSize ZkModelMesh_getMeshCount(ZkModelMesh const* slf) {
 }
 
 ZkSoftSkinMesh const* ZkModelMesh_getMesh(ZkModelMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_getMesh");
 		return nullptr;
@@ -77,6 +85,7 @@ ZkSoftSkinMesh const* ZkModelMesh_getMesh(ZkModelMesh const* slf, ZkSize i) {
 }
 
 void ZkModelMesh_enumerateMeshes(ZkModelMesh const* slf, ZkSoftSkinMeshEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_enumerateMeshes");
 		return;
@@ -88,6 +97,7 @@ void ZkModelMesh_enumerateMeshes(ZkModelMesh const* slf, ZkSoftSkinMeshEnumerato
 }
 
 ZkSize ZkModelMesh_getAttachmentCount(ZkModelMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_getAttachmentCount");
 		return 0;
@@ -97,6 +107,7 @@ ZkSize ZkModelMesh_getAttachmentCount(ZkModelMesh const* slf) {
 }
 
 ZkMultiResolutionMesh const* ZkModelMesh_getAttachment(ZkModelMesh const* slf, ZkString name) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_getAttachment");
 		return nullptr;
@@ -108,6 +119,7 @@ ZkMultiResolutionMesh const* ZkModelMesh_getAttachment(ZkModelMesh const* slf, Z
 }
 
 void ZkModelMesh_enumerateAttachments(ZkModelMesh const* slf, ZkAttachmentEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_enumerateAttachments");
 		return;
@@ -119,6 +131,7 @@ void ZkModelMesh_enumerateAttachments(ZkModelMesh const* slf, ZkAttachmentEnumer
 }
 
 uint32_t ZkModelMesh_getChecksum(ZkModelMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelMesh_getChecksum");
 		return 0;

@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/SoftSkinMesh.h"
 
+#include "Internal.hh"
+
 ZkSize ZkSoftSkinMesh_getNodeCount(ZkSoftSkinMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getNodeCount");
 		return 0;
@@ -12,6 +15,7 @@ ZkSize ZkSoftSkinMesh_getNodeCount(ZkSoftSkinMesh const* slf) {
 }
 
 ZkMultiResolutionMesh const* ZkSoftSkinMesh_getMesh(ZkSoftSkinMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getMesh");
 		return nullptr;
@@ -21,6 +25,7 @@ ZkMultiResolutionMesh const* ZkSoftSkinMesh_getMesh(ZkSoftSkinMesh const* slf) {
 }
 
 ZkOrientedBoundingBox const* ZkSoftSkinMesh_getBbox(ZkSoftSkinMesh const* slf, ZkSize node) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getBbox");
 		return nullptr;
@@ -35,6 +40,7 @@ ZkOrientedBoundingBox const* ZkSoftSkinMesh_getBbox(ZkSoftSkinMesh const* slf, Z
 }
 
 void ZkSoftSkinMesh_enumerateBoundingBoxes(ZkSoftSkinMesh const* slf, ZkOrientedBoundingBoxEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateBoundingBoxes");
 		return;
@@ -46,6 +52,7 @@ void ZkSoftSkinMesh_enumerateBoundingBoxes(ZkSoftSkinMesh const* slf, ZkOriented
 }
 
 ZkSoftSkinWeightEntry const* ZkSoftSkinMesh_getWeights(ZkSoftSkinMesh const* slf, ZkSize node, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getWeights");
 		return nullptr;
@@ -61,6 +68,7 @@ ZkSoftSkinWeightEntry const* ZkSoftSkinMesh_getWeights(ZkSoftSkinMesh const* slf
 }
 
 void ZkSoftSkinMesh_enumerateWeights(ZkSoftSkinMesh const* slf, ZkSoftSkinWeightEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateWeights");
 		return;
@@ -72,6 +80,7 @@ void ZkSoftSkinMesh_enumerateWeights(ZkSoftSkinMesh const* slf, ZkSoftSkinWeight
 }
 
 ZkSoftSkinWedgeNormal const* ZkSoftSkinMesh_getWedgeNormals(ZkSoftSkinMesh const* slf, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || count == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getWedgeNormals");
 		return nullptr;
@@ -82,6 +91,7 @@ ZkSoftSkinWedgeNormal const* ZkSoftSkinMesh_getWedgeNormals(ZkSoftSkinMesh const
 }
 
 int32_t const* ZkSoftSkinMesh_getNodes(ZkSoftSkinMesh const* slf, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || count == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getNodes");
 		return nullptr;

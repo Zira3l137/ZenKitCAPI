@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/Font.h"
 
+#include "Internal.hh"
+
 ZkFont* ZkFont_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkFont* ZkFont_load(ZkRead* buf) {
 }
 
 ZkFont* ZkFont_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkFont* ZkFont_loadPath(ZkString path) {
 }
 
 ZkFont* ZkFont_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkFont* ZkFont_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkFont_del(ZkFont* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkString ZkFont_getName(ZkFont const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_getName");
 		return nullptr;
@@ -63,6 +70,7 @@ ZkString ZkFont_getName(ZkFont const* slf) {
 }
 
 uint32_t ZkFont_getHeight(ZkFont const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_getHeight");
 		return 0;
@@ -72,6 +80,7 @@ uint32_t ZkFont_getHeight(ZkFont const* slf) {
 }
 
 ZkSize ZkFont_getGlyphCount(ZkFont const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_getGlyphCount");
 		return 0;
@@ -81,6 +90,7 @@ ZkSize ZkFont_getGlyphCount(ZkFont const* slf) {
 }
 
 ZkFontGlyph ZkFont_getGlyph(ZkFont const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_getGlyph");
 		return {0, ZkVec2f {0, 0}, ZkVec2f {0, 0}};
@@ -96,6 +106,7 @@ ZkFontGlyph ZkFont_getGlyph(ZkFont const* slf, ZkSize i) {
 }
 
 void ZkFont_enumerateGlyphs(ZkFont const* slf, ZkFontGlyphEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_enumerateGlyphs");
 		return;

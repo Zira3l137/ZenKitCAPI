@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/world/WayNet.h"
 
+#include "../Internal.hh"
+
 ZkWayEdge const* ZkWayNet_getEdges(ZkWayNet const* slf, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || count == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayNet_getEdges");
 		return nullptr;
@@ -13,6 +16,7 @@ ZkWayEdge const* ZkWayNet_getEdges(ZkWayNet const* slf, ZkSize* count) {
 }
 
 ZkSize ZkWayNet_getPointCount(ZkWayNet const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayNet_getPointCount");
 		return 0;
@@ -22,6 +26,7 @@ ZkSize ZkWayNet_getPointCount(ZkWayNet const* slf) {
 }
 
 ZkWayPoint const* ZkWayNet_getPoint(ZkWayNet const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayNet_getPoint");
 		return nullptr;
@@ -36,6 +41,7 @@ ZkWayPoint const* ZkWayNet_getPoint(ZkWayNet const* slf, ZkSize i) {
 }
 
 void ZkWayNet_enumeratePoints(ZkWayNet const* slf, ZkWayPointEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayNet_enumeratePoints");
 		return;
@@ -47,6 +53,7 @@ void ZkWayNet_enumeratePoints(ZkWayNet const* slf, ZkWayPointEnumerator cb, void
 }
 
 ZkString ZkWayPoint_getName(ZkWayPoint const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayPoint_getName");
 		return nullptr;
@@ -56,6 +63,7 @@ ZkString ZkWayPoint_getName(ZkWayPoint const* slf) {
 }
 
 int32_t ZkWayPoint_getWaterDepth(ZkWayPoint const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayPoint_getWaterDepth");
 		return 0;
@@ -65,6 +73,7 @@ int32_t ZkWayPoint_getWaterDepth(ZkWayPoint const* slf) {
 }
 
 ZkBool ZkWayPoint_getUnderWater(ZkWayPoint const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayPoint_getUnderWater");
 		return 0;
@@ -74,6 +83,7 @@ ZkBool ZkWayPoint_getUnderWater(ZkWayPoint const* slf) {
 }
 
 ZkVec3f ZkWayPoint_getPosition(ZkWayPoint const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayPoint_getPosition");
 		return {};
@@ -83,6 +93,7 @@ ZkVec3f ZkWayPoint_getPosition(ZkWayPoint const* slf) {
 }
 
 ZkVec3f ZkWayPoint_getDirection(ZkWayPoint const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayPoint_getDirection");
 		return {};
@@ -92,6 +103,7 @@ ZkVec3f ZkWayPoint_getDirection(ZkWayPoint const* slf) {
 }
 
 ZkBool ZkWayPoint_getFreePoint(ZkWayPoint const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkWayPoint_getFreePoint");
 		return {};

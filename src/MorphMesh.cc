@@ -2,7 +2,10 @@
 // SPDX-License-Identifier: MIT
 #include "zenkit-capi/MorphMesh.h"
 
+#include "Internal.hh"
+
 ZkMorphMesh* ZkMorphMesh_load(ZkRead* buf) {
+	ZKC_TRACE_FN();
 	if (buf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_load");
 		return nullptr;
@@ -19,6 +22,7 @@ ZkMorphMesh* ZkMorphMesh_load(ZkRead* buf) {
 }
 
 ZkMorphMesh* ZkMorphMesh_loadPath(ZkString path) {
+	ZKC_TRACE_FN();
 	if (path == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_loadPath");
 		return nullptr;
@@ -37,6 +41,7 @@ ZkMorphMesh* ZkMorphMesh_loadPath(ZkString path) {
 }
 
 ZkMorphMesh* ZkMorphMesh_loadVfs(ZkVfs* vfs, ZkString name) {
+	ZKC_TRACE_FN();
 	if (vfs == nullptr || name == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_loadVfs");
 		return nullptr;
@@ -50,10 +55,12 @@ ZkMorphMesh* ZkMorphMesh_loadVfs(ZkVfs* vfs, ZkString name) {
 }
 
 void ZkMorphMesh_del(ZkMorphMesh* slf) {
+	ZKC_TRACE_FN();
 	delete slf;
 }
 
 ZkString ZkMorphMesh_getName(ZkMorphMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getName");
 		return nullptr;
@@ -63,6 +70,7 @@ ZkString ZkMorphMesh_getName(ZkMorphMesh const* slf) {
 }
 
 ZkMultiResolutionMesh const* ZkMorphMesh_getMesh(ZkMorphMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getMesh");
 		return nullptr;
@@ -72,6 +80,7 @@ ZkMultiResolutionMesh const* ZkMorphMesh_getMesh(ZkMorphMesh const* slf) {
 }
 
 ZkVec3f const* ZkMorphMesh_getMorphPositions(ZkMorphMesh const* slf, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || count == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getMorphPositions");
 		return nullptr;
@@ -82,6 +91,7 @@ ZkVec3f const* ZkMorphMesh_getMorphPositions(ZkMorphMesh const* slf, ZkSize* cou
 }
 
 ZkSize ZkMorphMesh_getAnimationCount(ZkMorphMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getAnimationCount");
 		return 0;
@@ -91,6 +101,7 @@ ZkSize ZkMorphMesh_getAnimationCount(ZkMorphMesh const* slf) {
 }
 
 ZkMorphAnimation const* ZkMorphMesh_getAnimation(ZkMorphMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getAnimation");
 		return nullptr;
@@ -105,6 +116,7 @@ ZkMorphAnimation const* ZkMorphMesh_getAnimation(ZkMorphMesh const* slf, ZkSize 
 }
 
 void ZkMorphMesh_enumerateAnimations(ZkMorphMesh const* slf, ZkMorphAnimationEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_enumerateAnimations");
 		return;
@@ -116,6 +128,7 @@ void ZkMorphMesh_enumerateAnimations(ZkMorphMesh const* slf, ZkMorphAnimationEnu
 }
 
 ZkSize ZkMorphMesh_getSourceCount(ZkMorphMesh const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getSourceCount");
 		return 0;
@@ -125,6 +138,7 @@ ZkSize ZkMorphMesh_getSourceCount(ZkMorphMesh const* slf) {
 }
 
 ZkMorphSource const* ZkMorphMesh_getSource(ZkMorphMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_getSource");
 		return nullptr;
@@ -139,6 +153,7 @@ ZkMorphSource const* ZkMorphMesh_getSource(ZkMorphMesh const* slf, ZkSize i) {
 }
 
 void ZkMorphMesh_enumerateSources(ZkMorphMesh const* slf, ZkMorphSourceEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || cb == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphMesh_enumerateSources");
 		return;
@@ -150,6 +165,7 @@ void ZkMorphMesh_enumerateSources(ZkMorphMesh const* slf, ZkMorphSourceEnumerato
 }
 
 ZkString ZkMorphAnimation_getName(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getName");
 		return nullptr;
@@ -159,6 +175,7 @@ ZkString ZkMorphAnimation_getName(ZkMorphAnimation const* slf) {
 }
 
 int32_t ZkMorphAnimation_getLayer(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getLayer");
 		return 0;
@@ -168,6 +185,7 @@ int32_t ZkMorphAnimation_getLayer(ZkMorphAnimation const* slf) {
 }
 
 float ZkMorphAnimation_getBlendIn(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getBlendIn");
 		return 0;
@@ -177,6 +195,7 @@ float ZkMorphAnimation_getBlendIn(ZkMorphAnimation const* slf) {
 }
 
 float ZkMorphAnimation_getBlendOut(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getBlendOut");
 		return 0;
@@ -186,6 +205,7 @@ float ZkMorphAnimation_getBlendOut(ZkMorphAnimation const* slf) {
 }
 
 float ZkMorphAnimation_getDuration(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getDuration");
 		return 0;
@@ -195,6 +215,7 @@ float ZkMorphAnimation_getDuration(ZkMorphAnimation const* slf) {
 }
 
 float ZkMorphAnimation_getSpeed(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getSpeed");
 		return 0;
@@ -204,6 +225,7 @@ float ZkMorphAnimation_getSpeed(ZkMorphAnimation const* slf) {
 }
 
 uint8_t ZkMorphAnimation_getFlags(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getFlags");
 		return 0;
@@ -213,6 +235,7 @@ uint8_t ZkMorphAnimation_getFlags(ZkMorphAnimation const* slf) {
 }
 
 uint32_t ZkMorphAnimation_getFrameCount(ZkMorphAnimation const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getFrameCount");
 		return 0;
@@ -222,6 +245,7 @@ uint32_t ZkMorphAnimation_getFrameCount(ZkMorphAnimation const* slf) {
 }
 
 uint32_t const* ZkMorphAnimation_getVertices(ZkMorphAnimation const* slf, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || count == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getVertices");
 		return nullptr;
@@ -232,6 +256,7 @@ uint32_t const* ZkMorphAnimation_getVertices(ZkMorphAnimation const* slf, ZkSize
 }
 
 ZkVec3f const* ZkMorphAnimation_getSamples(ZkMorphAnimation const* slf, ZkSize* count) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr || count == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getSamples");
 		return nullptr;
@@ -242,6 +267,7 @@ ZkVec3f const* ZkMorphAnimation_getSamples(ZkMorphAnimation const* slf, ZkSize* 
 }
 
 ZkDate ZkMorphSource_getFileDate(ZkMorphSource const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphSource_getFileDate");
 		return {};
@@ -251,6 +277,7 @@ ZkDate ZkMorphSource_getFileDate(ZkMorphSource const* slf) {
 }
 
 ZkString ZkMorphSource_getFileName(ZkMorphSource const* slf) {
+	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkMorphSource_getFileName");
 		return nullptr;
