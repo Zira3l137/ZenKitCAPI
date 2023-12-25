@@ -120,7 +120,7 @@ ZkMaterial const* ZkMesh_getMaterial(ZkMesh const* slf, ZkSize i) {
 		return nullptr;
 	}
 
-	return &slf->materials[0];
+	return &slf->materials[i];
 }
 
 void ZkMesh_enumerateMaterials(ZkMesh const* slf, ZkMaterialEnumerator cb, void* ctx) {
