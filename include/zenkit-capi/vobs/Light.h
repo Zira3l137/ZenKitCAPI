@@ -55,7 +55,11 @@ ZKC_API float ZkLightPreset_getRangeAnimationFps(ZkLightPreset const* slf);
 ZKC_API void ZkLightPreset_setRangeAnimationFps(ZkLightPreset* slf, float rangeAnimationFps);
 ZKC_API ZkBool ZkLightPreset_getRangeAnimationSmooth(ZkLightPreset const* slf);
 ZKC_API void ZkLightPreset_setRangeAnimationSmooth(ZkLightPreset* slf, ZkBool rangeAnimationSmooth);
-ZKC_API ZkColor const* ZkLightPreset_getColorAnimationList(ZkLightPreset const* slf, ZkSize* count);
+
+ZKC_API ZkSize ZkLightPreset_getColorAnimationCount(ZkLightPreset const* slf);
+ZKC_API ZkColor ZkLightPreset_getColorAnimationItem(ZkLightPreset const* slf, ZkSize i);
+ZKC_API void ZkLightPreset_enumerateColorAnimationItems(ZkLightPreset const* slf, ZkColorEnumerator cb, void* ctx);
+
 ZKC_API void ZkLightPreset_setColorAnimationList(ZkLightPreset* slf, ZkColor const* list, ZkSize count);
 ZKC_API float ZkLightPreset_getColorAnimationFps(ZkLightPreset const* slf);
 ZKC_API void ZkLightPreset_setColorAnimationFps(ZkLightPreset* slf, float colorAnimationFps);
@@ -92,7 +96,11 @@ ZKC_API float ZkLight_getRangeAnimationFps(ZkLight const* slf);
 ZKC_API void ZkLight_setRangeAnimationFps(ZkLight* slf, float rangeAnimationFps);
 ZKC_API ZkBool ZkLight_getRangeAnimationSmooth(ZkLight const* slf);
 ZKC_API void ZkLight_setRangeAnimationSmooth(ZkLight* slf, ZkBool rangeAnimationSmooth);
-ZKC_API ZkColor const* ZkLight_getColorAnimationList(ZkLight const* slf, ZkSize* count);
+
+ZKC_API ZkSize ZkLight_getColorAnimationCount(ZkLight const* slf);
+ZKC_API ZkColor ZkLight_getColorAnimationItem(ZkLight const* slf, ZkSize i);
+ZKC_API void ZkLight_enumerateColorAnimationItems(ZkLight const* slf, ZkColorEnumerator cb, void* ctx);
+
 ZKC_API void ZkLight_setColorAnimationList(ZkLight* slf, ZkColor const* list, ZkSize count);
 ZKC_API float ZkLight_getColorAnimationFps(ZkLight const* slf);
 ZKC_API void ZkLight_setColorAnimationFps(ZkLight* slf, float colorAnimationFps);

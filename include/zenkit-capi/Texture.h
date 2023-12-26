@@ -46,7 +46,11 @@ ZKC_API uint32_t ZkTexture_getWidthRef(ZkTexture const* slf);
 ZKC_API uint32_t ZkTexture_getHeightRef(ZkTexture const* slf);
 ZKC_API uint32_t ZkTexture_getMipmapCount(ZkTexture const* slf);
 ZKC_API uint32_t ZkTexture_getAverageColor(ZkTexture const* slf);
-ZKC_API ZkColorArgb const* ZkTexture_getPalette(ZkTexture const* slf, ZkSize* size);
+
+ZKC_API ZkSize ZkTexture_getPaletteSize(ZkTexture const* slf);
+ZKC_API ZkColor ZkTexture_getPaletteItem(ZkTexture const* slf, ZkSize i);
+ZKC_API void ZkTexture_enumeratePaletteItems(ZkTexture const* slf, ZkColorEnumerator cb, void* ctx);
+
 ZKC_API uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize* size);
 ZKC_API ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf, ZkSize size);
 

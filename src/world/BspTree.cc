@@ -47,15 +47,26 @@ uint32_t const* ZkBspTree_getPortalPolygonIndices(ZkBspTree const* slf, ZkSize* 
 	return slf->portal_polygon_indices.data();
 }
 
-ZkVec3f const* ZkBspTree_getLightPoints(ZkBspTree const* slf, ZkSize* count) {
+ZkSize ZkBspTree_getLightPointCount(ZkBspTree const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getLightPoints");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->light_points.size();
+}
 
-	*count = slf->light_points.size();
-	return slf->light_points.data();
+ZkVec3f ZkBspTree_getLightPoint(ZkBspTree const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->light_points, i);
+	return slf->light_points[i];
+}
+
+void ZkBspTree_enumerateLightPoints(ZkBspTree const* slf, ZkVec3fEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& point : slf->light_points) {
+		if (cb(ctx, point)) break;
+	}
 }
 
 uint64_t const* ZkBspTree_getLeafNodeIndices(ZkBspTree const* slf, ZkSize* count) {
@@ -69,15 +80,29 @@ uint64_t const* ZkBspTree_getLeafNodeIndices(ZkBspTree const* slf, ZkSize* count
 	return slf->leaf_node_indices.data();
 }
 
-ZkBspNode const* ZkBspTree_getNodes(ZkBspTree const* slf, ZkSize* count) {
+ZkSize ZkBspTree_getNodeCount(ZkBspTree const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getNodes");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->nodes.size();
+}
 
-	*count = slf->nodes.size();
-	return slf->nodes.data();
+ZkBspNode ZkBspTree_getNode(ZkBspTree const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->nodes, i);
+	return slf->nodes[i];
+}
+
+void ZkBspTree_enumerateNodes(ZkBspTree const* slf, ZkBspNodeEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	ZkBspNode cNode;
+	for (auto& node : slf->nodes) {
+		cNode = node;
+
+		if (cb(ctx, &cNode)) break;
+	}
 }
 
 ZkSize ZkBspTree_getSectorCount(ZkBspTree const* slf) {

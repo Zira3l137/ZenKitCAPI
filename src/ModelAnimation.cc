@@ -133,7 +133,7 @@ ZkAxisAlignedBoundingBox ZkModelAnimation_getBbox(ZkModelAnimation const* slf) {
 	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkModelAnimation_getBbox");
-		return {ZkVec3f {0, 0, 0}, ZkVec3f {0, 0, 0}};
+		return {};
 	}
 
 	return slf->bbox;

@@ -28,7 +28,10 @@ ZKC_API void ZkMorphMesh_del(ZkMorphMesh* slf);
 
 ZKC_API ZkString ZkMorphMesh_getName(ZkMorphMesh const* slf);
 ZKC_API ZkMultiResolutionMesh const* ZkMorphMesh_getMesh(ZkMorphMesh const* slf);
-ZKC_API ZkVec3f const* ZkMorphMesh_getMorphPositions(ZkMorphMesh const* slf, ZkSize* count);
+
+ZKC_API ZkSize ZkMorphMesh_getMorphPositionCount(ZkMorphMesh const* slf);
+ZKC_API ZkVec3f ZkMorphMesh_getMorphPosition(ZkMorphMesh const* slf, ZkSize i);
+ZKC_API void ZkMorphMesh_enumerateMorphPositions(ZkMorphMesh const* slf, ZkVec3fEnumerator cb, void* ctx);
 
 ZKC_API ZkSize ZkMorphMesh_getAnimationCount(ZkMorphMesh const* slf);
 ZKC_API ZkMorphAnimation const* ZkMorphMesh_getAnimation(ZkMorphMesh const* slf, ZkSize i);
@@ -47,7 +50,10 @@ ZKC_API float ZkMorphAnimation_getSpeed(ZkMorphAnimation const* slf);
 ZKC_API uint8_t ZkMorphAnimation_getFlags(ZkMorphAnimation const* slf);
 ZKC_API uint32_t ZkMorphAnimation_getFrameCount(ZkMorphAnimation const* slf);
 ZKC_API uint32_t const* ZkMorphAnimation_getVertices(ZkMorphAnimation const* slf, ZkSize* count);
-ZKC_API ZkVec3f const* ZkMorphAnimation_getSamples(ZkMorphAnimation const* slf, ZkSize* count);
+
+ZKC_API ZkSize ZkMorphAnimation_getSampleCount(ZkMorphAnimation const* slf);
+ZKC_API ZkVec3f ZkMorphAnimation_getSample(ZkMorphAnimation const* slf, ZkSize i);
+ZKC_API void ZkMorphAnimation_enumerateSamples(ZkMorphAnimation const* slf, ZkVec3fEnumerator cb, void* ctx);
 
 ZKC_API ZkDate ZkMorphSource_getFileDate(ZkMorphSource const* slf);
 ZKC_API ZkString ZkMorphSource_getFileName(ZkMorphSource const* slf);

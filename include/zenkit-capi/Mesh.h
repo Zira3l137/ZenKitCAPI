@@ -11,21 +11,26 @@
 #ifdef __cplusplus
 	#include <zenkit/Mesh.hh>
 using ZkMesh = zenkit::Mesh;
-using ZkVertex = zenkit::VertexFeature;
 using ZkLightMap = zenkit::LightMap;
 using ZkPolygon = zenkit::Polygon;
 #else
 typedef struct ZkInternal_Mesh ZkMesh;
 typedef struct ZkInternal_LightMap ZkLightMap;
 typedef struct ZkInternal_Polygon ZkPolygon;
+#endif
 
-typedef struct {
+typedef struct ZkInternal_Vertex {
 	ZkVec2f texture;
 	uint32_t light;
 	ZkVec3f normal;
-} ZkVertex;
-#endif
 
+#ifdef __cplusplus
+	ZkInternal_Vertex() : texture(), light(0), normal() {}
+	ZkInternal_Vertex(zenkit::VertexFeature const& v) : texture(v.texture), light(v.light), normal(v.normal) {}
+#endif
+} ZkVertex;
+
+typedef ZkBool (*ZkVertexEnumerator)(void* ctx, ZkVertex* vertex);
 typedef ZkBool (*ZkLightMapEnumerator)(void* ctx, ZkLightMap const* lightMap);
 typedef ZkBool (*ZkPolygonEnumerator)(void* ctx, ZkPolygon const* polygon);
 
@@ -43,8 +48,13 @@ ZKC_API ZkSize ZkMesh_getMaterialCount(ZkMesh const* slf);
 ZKC_API ZkMaterial const* ZkMesh_getMaterial(ZkMesh const* slf, ZkSize i);
 ZKC_API void ZkMesh_enumerateMaterials(ZkMesh const* slf, ZkMaterialEnumerator cb, void* ctx);
 
-ZKC_API ZkVec3f const* ZkMesh_getPositions(ZkMesh const* slf, ZkSize* count);
-ZKC_API ZkVertex const* ZkMesh_getVertices(ZkMesh const* slf, ZkSize* count);
+ZKC_API ZkSize ZkMesh_getPositionCount(ZkMesh const* slf);
+ZKC_API ZkVec3f ZkMesh_getPosition(ZkMesh const* slf, ZkSize i);
+ZKC_API void ZkMesh_enumeratePositions(ZkMesh const* slf, ZkVec3fEnumerator cb, void* ctx);
+
+ZKC_API ZkSize ZkMesh_getVertexCount(ZkMesh const* slf);
+ZKC_API ZkVertex ZkMesh_getVertex(ZkMesh const* slf, ZkSize i);
+ZKC_API void ZkMesh_enumerateVertices(ZkMesh const* slf, ZkVertexEnumerator cb, void* ctx);
 
 ZKC_API ZkSize ZkMesh_getLightMapCount(ZkMesh const* slf);
 ZKC_API ZkLightMap const* ZkMesh_getLightMap(ZkMesh const* slf, ZkSize i);

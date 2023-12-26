@@ -96,7 +96,11 @@ ZKC_API ZkMoverLerpType ZkMover_getLerpType(ZkMover const* slf);
 ZKC_API void ZkMover_setLerpType(ZkMover* slf, ZkMoverLerpType lerpType);
 ZKC_API ZkMoverSpeedType ZkMover_getSpeedType(ZkMover const* slf);
 ZKC_API void ZkMover_setSpeedType(ZkMover* slf, ZkMoverSpeedType speedType);
-ZKC_API ZkAnimationSample const* ZkMover_getKeyframes(ZkMover const* slf, ZkSize* count);
+
+ZKC_API ZkSize ZkMover_getKeyframeCount(ZkMover const* slf);
+ZKC_API ZkAnimationSample ZkMover_getKeyframe(ZkMover const* slf, ZkSize i);
+ZKC_API void ZkMover_enumerateKeyframes(ZkMover const* slf, ZkAnimationSampleEnumerator cb, void* ctx);
+
 ZKC_API ZkString ZkMover_getSfxOpenStart(ZkMover const* slf);
 ZKC_API void ZkMover_setSfxOpenStart(ZkMover* slf, ZkString sfxOpenStart);
 ZKC_API ZkString ZkMover_getSfxOpenEnd(ZkMover const* slf);

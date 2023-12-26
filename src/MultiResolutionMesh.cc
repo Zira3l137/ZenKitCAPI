@@ -59,26 +59,48 @@ void ZkMultiResolutionMesh_del(ZkMultiResolutionMesh* slf) {
 	delete slf;
 }
 
-ZkVec3f const* ZkMultiResolutionMesh_getPositions(ZkMultiResolutionMesh const* slf, ZkSize* count) {
+ZkSize ZkMultiResolutionMesh_getPositionCount(ZkMultiResolutionMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getPositions");
-		return nullptr;
-	}
-
-	*count = slf->positions.size();
-	return slf->positions.data();
+	ZKC_CHECK_NULL(slf);
+	return slf->positions.size();
 }
 
-ZkVec3f const* ZkMultiResolutionMesh_getNormals(ZkMultiResolutionMesh const* slf, ZkSize* count) {
+ZkVec3f ZkMultiResolutionMesh_getPosition(ZkMultiResolutionMesh const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMultiResolutionMesh_getNormals");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->positions, i);
+	return slf->positions[i];
+}
 
-	*count = slf->normals.size();
-	return slf->normals.data();
+void ZkMultiResolutionMesh_enumeratePositions(ZkMultiResolutionMesh const* slf, ZkVec3fEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& v : slf->positions) {
+		if (cb(ctx, v)) break;
+	}
+}
+
+ZkSize ZkMultiResolutionMesh_getNormalCount(ZkMultiResolutionMesh const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->normals.size();
+}
+
+ZkVec3f ZkMultiResolutionMesh_getNormal(ZkMultiResolutionMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->normals, i);
+	return slf->normals[i];
+}
+
+void ZkMultiResolutionMesh_enumerateNormals(ZkMultiResolutionMesh const* slf, ZkVec3fEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& v : slf->normals) {
+		if (cb(ctx, v)) break;
+	}
 }
 
 ZkSize ZkMultiResolutionMesh_getSubMeshCount(ZkMultiResolutionMesh const* slf) {
@@ -206,15 +228,28 @@ ZkMeshTriangle const* ZkSubMesh_getTriangles(ZkSubMesh const* slf, ZkSize* count
 	return slf->triangles.data();
 }
 
-ZkMeshWedge const* ZkSubMesh_getWedges(ZkSubMesh const* slf, ZkSize* count) {
+ZkSize ZkSubMesh_getWedgeCount(ZkSubMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSubMesh_getWedges");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->wedges.size();
+}
 
-	*count = slf->wedges.size();
-	return slf->wedges.data();
+ZkMeshWedge ZkSubMesh_getWedge(ZkSubMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->wedges, i);
+	return slf->wedges[i];
+}
+
+void ZkSubMesh_enumerateWedges(ZkSubMesh const* slf, ZkMeshWedgeEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	ZkMeshWedge cWedge;
+	for (auto& v : slf->wedges) {
+		cWedge = v;
+		if (cb(ctx, &cWedge)) break;
+	}
 }
 
 float const* ZkSubMesh_getColors(ZkSubMesh const* slf, ZkSize* count) {
@@ -239,15 +274,28 @@ uint16_t const* ZkSubMesh_getTrianglePlaneIndices(ZkSubMesh const* slf, ZkSize* 
 	return slf->triangle_plane_indices.data();
 }
 
-ZkMeshPlane const* ZkSubMesh_getTrianglePlanes(ZkSubMesh const* slf, ZkSize* count) {
+ZkSize ZkSubMesh_getTrianglePlaneCount(ZkSubMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSubMesh_getTrianglePlanes");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->triangle_planes.size();
+}
 
-	*count = slf->triangle_planes.size();
-	return slf->triangle_planes.data();
+ZkMeshPlane ZkSubMesh_getTrianglePlane(ZkSubMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->triangle_planes, i);
+	return slf->triangle_planes[i];
+}
+
+void ZkSubMesh_enumerateTrianglePlanes(ZkSubMesh const* slf, ZkMeshPlaneEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	ZkMeshPlane cPlane;
+	for (auto& v : slf->triangle_planes) {
+		cPlane = v;
+		if (cb(ctx, &cPlane)) break;
+	}
 }
 
 ZkMeshTriangleEdge const* ZkSubMesh_getTriangleEdges(ZkSubMesh const* slf, ZkSize* count) {

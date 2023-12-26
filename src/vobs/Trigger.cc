@@ -215,12 +215,28 @@ void ZkMover_setSpeedType(ZkMover* slf, ZkMoverSpeedType speedType) {
 	slf->speed_mode = static_cast<zenkit::MoverSpeedType>(speedType);
 }
 
-ZkAnimationSample const* ZkMover_getKeyframes(ZkMover const* slf, ZkSize* count) {
+ZkSize ZkMover_getKeyframeCount(ZkMover const* slf) {
 	ZKC_TRACE_FN();
-	ZKC_CHECK_NULL(slf, count);
+	ZKC_CHECK_NULL(slf);
+	return slf->keyframes.size();
+}
 
-	*count = slf->keyframes.size();
-	return slf->keyframes.data();
+ZkAnimationSample ZkMover_getKeyframe(ZkMover const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->keyframes, i);
+	return slf->keyframes[i];
+}
+
+void ZkMover_enumerateKeyframes(ZkMover const* slf, ZkAnimationSampleEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	ZkAnimationSample sample;
+	for (auto& k : slf->keyframes) {
+		sample = k;
+		if (cb(ctx, &sample)) break;
+	}
 }
 
 ZkString ZkMover_getSfxOpenStart(ZkMover const* slf) {

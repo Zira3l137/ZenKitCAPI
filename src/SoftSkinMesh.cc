@@ -51,43 +51,59 @@ void ZkSoftSkinMesh_enumerateBoundingBoxes(ZkSoftSkinMesh const* slf, ZkOriented
 	}
 }
 
-ZkSoftSkinWeightEntry const* ZkSoftSkinMesh_getWeights(ZkSoftSkinMesh const* slf, ZkSize node, ZkSize* count) {
+ZkSize ZkSoftSkinMesh_getWeightTotal(ZkSoftSkinMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getWeights");
-		return nullptr;
-	}
-
-	if (node >= slf->weights.size()) {
-		ZKC_LOG_ERROR("ZkSoftSkinMesh_getWeights() failed: index out of range");
-		return nullptr;
-	}
-
-	*count = slf->weights[node].size();
-	return slf->weights[node].data();
+	ZKC_CHECK_NULL(slf);
+	return slf->weights.size();
 }
 
-void ZkSoftSkinMesh_enumerateWeights(ZkSoftSkinMesh const* slf, ZkSoftSkinWeightEnumerator cb, void* ctx) {
+ZkSize ZkSoftSkinMesh_getWeightCount(ZkSoftSkinMesh const* slf, ZkSize node) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateWeights");
-		return;
-	}
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->weights, node);
+	return slf->weights[node].size();
+}
 
-	for (auto& weights : slf->weights) {
-		if (cb(ctx, weights.data(), weights.size())) break;
+ZkSoftSkinWeightEntry ZkSoftSkinMesh_getWeight(ZkSoftSkinMesh const* slf, ZkSize node, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->weights, node);
+	ZKC_CHECK_LEN(slf->weights[node], i);
+	return slf->weights[node][i];
+}
+
+void ZkSoftSkinMesh_enumerateWeights(ZkSoftSkinMesh const* slf, ZkSize node, ZkSoftSkinWeightEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+	ZKC_CHECK_LENV(slf->weights, node);
+
+	ZkSoftSkinWeightEntry cWeight;
+	for (auto& w : slf->weights[node]) {
+		cWeight = w;
+		if (cb(ctx, &cWeight)) break;
 	}
 }
 
-ZkSoftSkinWedgeNormal const* ZkSoftSkinMesh_getWedgeNormals(ZkSoftSkinMesh const* slf, ZkSize* count) {
+ZkSize ZkSoftSkinMesh_getWedgeNormalCount(ZkSoftSkinMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getWedgeNormals");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->wedge_normals.size();
+}
 
-	*count = slf->weights.size();
-	return slf->wedge_normals.data();
+ZkSoftSkinWedgeNormal ZkSoftSkinMesh_getWedgeNormal(ZkSoftSkinMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->wedge_normals, i);
+	return slf->wedge_normals[i];
+}
+
+void ZkSoftSkinMesh_enumerateWedgeNormals(ZkSoftSkinMesh const* slf, ZkSoftSkinWedgeNormalEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& n : slf->wedge_normals) {
+		if (cb(ctx, n)) break;
+	}
 }
 
 int32_t const* ZkSoftSkinMesh_getNodes(ZkSoftSkinMesh const* slf, ZkSize* count) {

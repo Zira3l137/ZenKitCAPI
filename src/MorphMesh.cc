@@ -79,15 +79,26 @@ ZkMultiResolutionMesh const* ZkMorphMesh_getMesh(ZkMorphMesh const* slf) {
 	return &slf->mesh;
 }
 
-ZkVec3f const* ZkMorphMesh_getMorphPositions(ZkMorphMesh const* slf, ZkSize* count) {
+ZkSize ZkMorphMesh_getMorphPositionCount(ZkMorphMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMorphMesh_getMorphPositions");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->morph_positions.size();
+}
 
-	*count = slf->morph_positions.size();
-	return slf->morph_positions.data();
+ZkVec3f ZkMorphMesh_getMorphPosition(ZkMorphMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->morph_positions, i);
+	return slf->morph_positions[i];
+}
+
+void ZkMorphMesh_enumerateMorphPositions(ZkMorphMesh const* slf, ZkVec3fEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& v : slf->morph_positions) {
+		if (cb(ctx, v)) break;
+	}
 }
 
 ZkSize ZkMorphMesh_getAnimationCount(ZkMorphMesh const* slf) {
@@ -255,15 +266,26 @@ uint32_t const* ZkMorphAnimation_getVertices(ZkMorphAnimation const* slf, ZkSize
 	return slf->vertices.data();
 }
 
-ZkVec3f const* ZkMorphAnimation_getSamples(ZkMorphAnimation const* slf, ZkSize* count) {
+ZkSize ZkMorphAnimation_getSampleCount(ZkMorphAnimation const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMorphAnimation_getSamples");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	return slf->samples.size();
+}
 
-	*count = slf->samples.size();
-	return slf->samples.data();
+ZkVec3f ZkMorphAnimation_getSample(ZkMorphAnimation const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->samples, i);
+	return slf->samples[i];
+}
+
+void ZkMorphAnimation_enumerateSamples(ZkMorphAnimation const* slf, ZkVec3fEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& v : slf->samples) {
+		if (cb(ctx, v)) break;
+	}
 }
 
 ZkDate ZkMorphSource_getFileDate(ZkMorphSource const* slf) {

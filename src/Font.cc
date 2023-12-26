@@ -93,16 +93,16 @@ ZkFontGlyph ZkFont_getGlyph(ZkFont const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	if (slf == nullptr) {
 		ZKC_LOG_WARN_NULL("ZkFont_getGlyph");
-		return {0, ZkVec2f {0, 0}, ZkVec2f {0, 0}};
+		return {0, {}, {}};
 	}
 
 	if (i >= slf->glyphs.size()) {
 		ZKC_LOG_ERROR("ZkFont_getGlyph() failed: index out of range");
-		return {0, ZkVec2f {0, 0}, ZkVec2f {0, 0}};
+		return {0, {}, {}};
 	}
 
 	auto& glyph = slf->glyphs[i];
-	return {glyph.width, ZkVec2f {glyph.uv[0]}, ZkVec2f {glyph.uv[1]}};
+	return {glyph.width, glyph.uv[0], glyph.uv[1]};
 }
 
 void ZkFont_enumerateGlyphs(ZkFont const* slf, ZkFontGlyphEnumerator cb, void* ctx) {
@@ -112,7 +112,7 @@ void ZkFont_enumerateGlyphs(ZkFont const* slf, ZkFontGlyphEnumerator cb, void* c
 		return;
 	}
 
-	ZkFontGlyph fg {0, ZkVec2f {0, 0}, ZkVec2f {0, 0}};
+	ZkFontGlyph fg {0, {}, {}};
 	for (auto& glyph : slf->glyphs) {
 		fg.width = glyph.width;
 		fg.topLeft = glyph.uv[0];

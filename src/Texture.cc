@@ -159,15 +159,26 @@ uint32_t ZkTexture_getAverageColor(ZkTexture const* slf) {
 	return slf->average_color();
 }
 
-ZkColorArgb const* ZkTexture_getPalette(ZkTexture const* slf, ZkSize* size) {
+ZkSize ZkTexture_getPaletteSize(ZkTexture const*) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || size == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getPalette");
-		return nullptr;
-	}
+	return zenkit::ZTEX_PALETTE_ENTRIES;
+}
 
-	*size = zenkit::ZTEX_PALETTE_ENTRIES;
-	return slf->palette();
+ZkColor ZkTexture_getPaletteItem(ZkTexture const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LENA(zenkit::ZTEX_PALETTE_ENTRIES, i);
+	return slf->palette()[i];
+}
+
+void ZkTexture_enumeratePaletteItems(ZkTexture const* slf, ZkColorEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	auto const* pal = slf->palette();
+	for (int i = 0; i < zenkit::ZTEX_PALETTE_ENTRIES; ++i) {
+		if (cb(ctx, pal[i])) break;
+	}
 }
 
 uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize* size) {

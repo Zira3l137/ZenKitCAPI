@@ -159,11 +159,26 @@ void ZkLightPreset_setRangeAnimationSmooth(ZkLightPreset* slf, ZkBool rangeAnima
 	slf->range_animation_smooth = rangeAnimationSmooth;
 }
 
-ZkColor const* ZkLightPreset_getColorAnimationList(ZkLightPreset const* slf, ZkSize* count) {
+ZkSize ZkLightPreset_getColorAnimationCount(ZkLightPreset const* slf) {
 	ZKC_TRACE_FN();
-	ZKC_CHECK_NULL(slf, count);
-	*count = slf->color_animation_list.size();
-	return slf->color_animation_list.data();
+	ZKC_CHECK_NULL(slf);
+	return slf->color_animation_list.size();
+}
+
+ZkColor ZkLightPreset_getColorAnimationItem(ZkLightPreset const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->color_animation_list, i);
+	return slf->color_animation_list[i];
+}
+
+void ZkLightPreset_enumerateColorAnimationItems(ZkLightPreset const* slf, ZkColorEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& i : slf->color_animation_list) {
+		if (cb(ctx, i)) break;
+	}
 }
 
 void ZkLightPreset_setColorAnimationList(ZkLightPreset* slf, ZkColor const* list, ZkSize count) {
@@ -353,11 +368,26 @@ void ZkLight_setRangeAnimationSmooth(ZkLight* slf, ZkBool rangeAnimationSmooth) 
 	slf->range_animation_smooth = rangeAnimationSmooth;
 }
 
-ZkColor const* ZkLight_getColorAnimationList(ZkLight const* slf, ZkSize* count) {
+ZkSize ZkLight_getColorAnimationCount(ZkLight const* slf) {
 	ZKC_TRACE_FN();
-	ZKC_CHECK_NULL(slf, count);
-	*count = slf->color_animation_list.size();
-	return slf->color_animation_list.data();
+	ZKC_CHECK_NULL(slf);
+	return slf->color_animation_list.size();
+}
+
+ZkColor ZkLight_getColorAnimationItem(ZkLight const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->color_animation_list, i);
+	return slf->color_animation_list[i];
+}
+
+void ZkLight_enumerateColorAnimationItems(ZkLight const* slf, ZkColorEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& i : slf->color_animation_list) {
+		if (cb(ctx, i)) break;
+	}
 }
 
 void ZkLight_setColorAnimationList(ZkLight* slf, ZkColor const* list, ZkSize count) {

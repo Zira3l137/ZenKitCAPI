@@ -7,16 +7,24 @@
 #ifdef __cplusplus
 	#include "zenkit/Boxes.hh"
 
-using ZkAxisAlignedBoundingBox = zenkit::AxisAlignedBoundingBox;
 using ZkOrientedBoundingBox = zenkit::OrientedBoundingBox;
 #else
-typedef struct {
-	ZkVec3f min;
-	ZkVec3f max;
-} ZkAxisAlignedBoundingBox;
-
 typedef struct ZkInternal_OrientedBoundingBox ZkOrientedBoundingBox;
 #endif
+
+typedef struct ZkInternal_AxisAlignedBoundingBox {
+	ZkVec3f min;
+	ZkVec3f max;
+
+#ifdef __cplusplus
+	ZkInternal_AxisAlignedBoundingBox() : min(), max() {}
+	ZkInternal_AxisAlignedBoundingBox(zenkit::AxisAlignedBoundingBox const& bbox) : min(bbox.min), max(bbox.max) {}
+
+	operator zenkit::AxisAlignedBoundingBox() const {
+		return {min, max};
+	}
+#endif
+} ZkAxisAlignedBoundingBox;
 
 typedef ZkBool (*ZkOrientedBoundingBoxEnumerator)(void*, ZkOrientedBoundingBox const* box);
 

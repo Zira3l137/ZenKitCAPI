@@ -135,26 +135,50 @@ void ZkMesh_enumerateMaterials(ZkMesh const* slf, ZkMaterialEnumerator cb, void*
 	}
 }
 
-ZkVec3f const* ZkMesh_getPositions(ZkMesh const* slf, ZkSize* count) {
+ZkSize ZkMesh_getPositionCount(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getPositions");
-		return nullptr;
-	}
-
-	*count = slf->vertices.size();
-	return slf->vertices.data();
+	ZKC_CHECK_NULL(slf);
+	return slf->vertices.size();
 }
 
-ZkVertex const* ZkMesh_getVertices(ZkMesh const* slf, ZkSize* count) {
+ZkVec3f ZkMesh_getPosition(ZkMesh const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getVertices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->vertices, i);
+	return slf->vertices[i];
+}
 
-	*count = slf->features.size();
-	return slf->features.data();
+void ZkMesh_enumeratePositions(ZkMesh const* slf, ZkVec3fEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	for (auto& v : slf->vertices) {
+		if (cb(ctx, v)) break;
+	}
+}
+
+ZkSize ZkMesh_getVertexCount(ZkMesh const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->features.size();
+}
+
+ZkVertex ZkMesh_getVertex(ZkMesh const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->vertices, i);
+	return slf->features[i];
+}
+
+void ZkMesh_enumerateVertices(ZkMesh const* slf, ZkVertexEnumerator cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, cb);
+
+	ZkVertex cVertex;
+	for (auto& v : slf->features) {
+		cVertex = v;
+		if (cb(ctx, &cVertex)) break;
+	}
 }
 
 ZkSize ZkMesh_getLightMapCount(ZkMesh const* slf) {
