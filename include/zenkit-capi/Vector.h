@@ -12,7 +12,8 @@
 #endif
 
 typedef struct ZkInternal_Vec2 {
-	float x, y;
+	float x;
+	float y;
 
 #ifdef __cplusplus
 	ZkInternal_Vec2() : x(0), y(0) {}
@@ -25,7 +26,9 @@ typedef struct ZkInternal_Vec2 {
 } ZkVec2f;
 
 typedef struct ZkInternal_Vec3 {
-	float x, y, z;
+	float x;
+	float y;
+	float z;
 
 #ifdef __cplusplus
 	ZkInternal_Vec3() : x(0), y(0), z(0) {}
@@ -38,7 +41,10 @@ typedef struct ZkInternal_Vec3 {
 } ZkVec3f;
 
 typedef struct ZkInternal_Vec4 {
-	float x, y, z, w;
+	float x;
+	float y;
+	float z;
+	float w;
 
 #ifdef __cplusplus
 	ZkInternal_Vec4() : x(0), y(0), z(0), w(0) {}
@@ -51,7 +57,10 @@ typedef struct ZkInternal_Vec4 {
 } ZkVec4f;
 
 typedef struct ZkInternal_Quat {
-	float x, y, z, w;
+	float x;
+	float y;
+	float z;
+	float w;
 
 #ifdef __cplusplus
 	ZkInternal_Quat() : x(0), y(0), z(0), w(0) {}
@@ -64,7 +73,10 @@ typedef struct ZkInternal_Quat {
 } ZkQuat;
 
 typedef struct ZkInternal_Color {
-	uint8_t r, g, b, a;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	uint8_t a;
 
 #ifdef __cplusplus
 	ZkInternal_Color() : r(0), g(0), b(0), a(255) {}
