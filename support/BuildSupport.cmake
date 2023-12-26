@@ -51,7 +51,7 @@ endfunction()
 ##   COMPILE(list): A list containing the compiler flags
 ##   LINK(list): A list containing the linker flags
 function(bs_internal_select_cflags_gcc SANITIZERS COMPILE LINK)
-    list(APPEND _INTERNAL_FLAGS "-Wall" "-Wextra" "-Werror" "-Wconversion" "-Wshadow" "-Wpedantic" "-fPIC")
+    list(APPEND _INTERNAL_FLAGS "-Wall" "-Wextra" "-Werror" "-Wconversion" "-Wshadow" "-Wpedantic" "-fPIC" "-Wno-deprecated-declarations")
 
     if (CMAKE_BUILD_TYPE MATCHES "^Debug" AND ${SANITIZERS} AND NOT WIN32)
         list(APPEND _INTERNAL_FLAGS "-fsanitize=address" "-fsanitize=undefined" "-fsanitize=leak")
@@ -73,6 +73,8 @@ endfunction()
 ##   LINK(list): A list containing the linker flags
 function(bs_internal_select_cflags_clang SANITIZERS COMPILE LINK)
     bs_internal_select_cflags_gcc(${SANITIZERS} _INTERNAL_COMPILE_FLAGS _INTERNAL_LINK_FLAGS)
+    list(APPEND _INTERNAL_COMPILE_FLAGS "-Wno-return-type-c-linkage")
+    list(APPEND _INTERNAL_LINK_FLAGS "-Wno-return-type-c-linkage")
 
     if (CMAKE_BUILD_TYPE MATCHES "^Debug")
         list(APPEND _INTERNAL_COMPILE_FLAGS "-fstandalone-debug")

@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(ZenKitCAPI LANGUAGES CXX C VERSION 1.3.0)
 
-include(support/BuildSupport.cmake)
-
 set(CMAKE_CXX_STANDARD 17)
 
 # Required for dependencies to compile properly.
@@ -68,6 +66,7 @@ list(APPEND _ZKC_SOURCES
         src/World.cc
 )
 
+include(support/BuildSupport.cmake)
 bs_select_cflags(${ZKC_ENABLE_ASAN} _ZKC_COMPILE_FLAGS _ZKC_LINK_FLAGS)
 
 add_library(zenkitcapi SHARED)
@@ -82,3 +81,6 @@ set_target_properties(zenkitcapi PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBIL
 
 install(TARGETS zenkitcapi ARCHIVE LIBRARY RUNTIME)
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/zenkitcapi" TYPE INCLUDE)
+
+add_executable(test test.c)
+target_link_libraries(test PRIVATE zenkitcapi)
