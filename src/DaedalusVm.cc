@@ -306,7 +306,7 @@ ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbo
 }
 
 void ZkDaedalusVm_initInstanceDirect(ZkDaedalusVm* slf, ZkDaedalusInstance* sym) {
-	std::shared_ptr<zenkit::DaedalusInstance> dummy = {sym, [](zenkit::DaedalusInstance*) {}};
+	std::shared_ptr<zenkit::DaedalusInstance> dummy = slf->handle.find_symbol_by_index(sym->symbol_index())->get_instance();
 
 	auto global_self = slf->handle.global_self();
 
