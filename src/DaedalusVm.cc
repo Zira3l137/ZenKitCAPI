@@ -197,6 +197,60 @@ void ZkDaedalusVm_callFunction(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym) {
 	slf->handle.unsafe_call(sym);
 }
 
+ZkDaedalusInstance* ZkDaedalusVm_allocInstance(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusInstanceType type) {
+	ZKC_CHECK_NULL(slf, sym);
+
+	switch (type) {
+	case ZkDaedalusInstanceType_GuildValues:
+		return slf->handle.allocate_instance<zenkit::IGuildValues>(sym).get();
+	case ZkDaedalusInstanceType_Npc:
+		return slf->handle.allocate_instance<zenkit::INpc>(sym).get();
+	case ZkDaedalusInstanceType_Mission:
+		return slf->handle.allocate_instance<zenkit::IMission>(sym).get();
+	case ZkDaedalusInstanceType_Item:
+		return slf->handle.allocate_instance<zenkit::IItem>(sym).get();
+	case ZkDaedalusInstanceType_Focus:
+		return slf->handle.allocate_instance<zenkit::IFocus>(sym).get();
+	case ZkDaedalusInstanceType_Info:
+		return slf->handle.allocate_instance<zenkit::IInfo>(sym).get();
+	case ZkDaedalusInstanceType_ItemReact:
+		return slf->handle.allocate_instance<zenkit::IItemReact>(sym).get();
+	case ZkDaedalusInstanceType_Spell:
+		return slf->handle.allocate_instance<zenkit::ISpell>(sym).get();
+	case ZkDaedalusInstanceType_Svm:
+		return slf->handle.allocate_instance<zenkit::ISvm>(sym).get();
+	case ZkDaedalusInstanceType_Menu:
+		return slf->handle.allocate_instance<zenkit::IMenu>(sym).get();
+	case ZkDaedalusInstanceType_MenuItem:
+		return slf->handle.allocate_instance<zenkit::IMenuItem>(sym).get();
+	case ZkDaedalusInstanceType_Camera:
+		return slf->handle.allocate_instance<zenkit::ICamera>(sym).get();
+	case ZkDaedalusInstanceType_MusicSystem:
+		return slf->handle.allocate_instance<zenkit::IMusicSystem>(sym).get();
+	case ZkDaedalusInstanceType_MusicTheme:
+		return slf->handle.allocate_instance<zenkit::IMusicTheme>(sym).get();
+	case ZkDaedalusInstanceType_MusicJingle:
+		return slf->handle.allocate_instance<zenkit::IMusicJingle>(sym).get();
+	case ZkDaedalusInstanceType_ParticleEffect:
+		return slf->handle.allocate_instance<zenkit::IParticleEffect>(sym).get();
+	case ZkDaedalusInstanceType_EffectBase:
+		return slf->handle.allocate_instance<zenkit::IEffectBase>(sym).get();
+	case ZkDaedalusInstanceType_ParticleEffectEmitKey:
+		return slf->handle.allocate_instance<zenkit::IParticleEffectEmitKey>(sym).get();
+	case ZkDaedalusInstanceType_FightAi:
+		return slf->handle.allocate_instance<zenkit::IFightAi>(sym).get();
+	case ZkDaedalusInstanceType_SoundEffect:
+		return slf->handle.allocate_instance<zenkit::ISoundEffect>(sym).get();
+	case ZkDaedalusInstanceType_SoundSystem:
+		return slf->handle.allocate_instance<zenkit::ISoundSystem>(sym).get();
+	default:
+		break;
+	}
+
+	ZKC_LOG_ERROR("ZkDaedalusVm_allocInstance() failed: invalid instance type");
+	return nullptr;
+}
+
 ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusInstanceType type) {
 	ZKC_CHECK_NULL(slf, sym);
 
@@ -249,6 +303,23 @@ ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbo
 
 	ZKC_LOG_ERROR("ZkDaedalusVm_initInstance() failed: invalid instance type");
 	return nullptr;
+}
+
+void ZkDaedalusVm_initInstanceDirect(ZkDaedalusVm* slf, ZkDaedalusInstance* sym) {
+	std::shared_ptr<zenkit::DaedalusInstance> dummy = {sym, [](zenkit::DaedalusInstance*) {}};
+
+	auto global_self = slf->handle.global_self();
+
+	auto old_gi = slf->handle.unsafe_get_gi();
+	auto old_slf = global_self != nullptr ? global_self->get_instance() : nullptr;
+
+	slf->handle.unsafe_set_gi(dummy);
+	if (global_self != nullptr) global_self->set_instance(dummy);
+
+	slf->handle.unsafe_call(slf->handle.find_symbol_by_instance(*sym));
+
+	if (global_self != nullptr) global_self->set_instance(old_slf);
+	slf->handle.unsafe_set_gi(old_gi);
 }
 
 void ZkDaedalusVm_registerExternal(ZkDaedalusVm* slf,

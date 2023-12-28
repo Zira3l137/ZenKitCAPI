@@ -39,7 +39,10 @@ ZKC_API void ZkDaedalusVm_setGlobalItem(ZkDaedalusVm* slf, ZkDaedalusInstance* v
 
 ZKC_API void ZkDaedalusVm_callFunction(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym);
 ZKC_API ZkDaedalusInstance*
+ZkDaedalusVm_allocInstance(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusInstanceType type);
+ZKC_API ZkDaedalusInstance*
 ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusInstanceType type);
+ZKC_API void ZkDaedalusVm_initInstanceDirect(ZkDaedalusVm* slf, ZkDaedalusInstance* sym);
 ZKC_API void
 ZkDaedalusVm_registerExternal(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusVmExternalCallback cb, void* ctx);
 ZKC_API void ZkDaedalusVm_registerExternalDefault(ZkDaedalusVm* slf, ZkDaedalusVmExternalDefaultCallback cb, void* ctx);
