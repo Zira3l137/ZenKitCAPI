@@ -19,7 +19,7 @@ ZkCameraTrajectory ZkCutsceneCamera_getTrajectoryFOR(ZkCutsceneCamera const* slf
 void ZkCutsceneCamera_setTrajectoryFOR(ZkCutsceneCamera* slf, ZkCameraTrajectory trajectoryFOR) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->trajectory_for = static_cast<zenkit::CameraTrajectory>(trajectoryFOR);
+	slf->trajectory_for = static_cast<zenkit::CameraCoordinateReference>(trajectoryFOR);
 }
 
 ZkCameraTrajectory ZkCutsceneCamera_getTargetTrajectoryFOR(ZkCutsceneCamera const* slf) {
@@ -31,7 +31,7 @@ ZkCameraTrajectory ZkCutsceneCamera_getTargetTrajectoryFOR(ZkCutsceneCamera cons
 void ZkCutsceneCamera_setTargetTrajectoryFOR(ZkCutsceneCamera* slf, ZkCameraTrajectory targetTrajectoryFOR) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->target_trajectory_for = static_cast<zenkit::CameraTrajectory>(targetTrajectoryFOR);
+	slf->target_trajectory_for = static_cast<zenkit::CameraCoordinateReference>(targetTrajectoryFOR);
 }
 
 ZkCameraLoopType ZkCutsceneCamera_getLoopMode(ZkCutsceneCamera const* slf) {
@@ -193,21 +193,21 @@ int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf) {
 ZkSize ZkCutsceneCamera_getFrameCount(ZkCutsceneCamera const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->frames.size();
+	return slf->trajectory_frames.size();
 }
 
 ZkCameraTrajectoryFrame* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	ZKC_CHECK_LEN(slf->frames, i);
-	return slf->frames[i].get();
+	ZKC_CHECK_LEN(slf->trajectory_frames, i);
+	return slf->trajectory_frames[i].get();
 }
 
 void ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTrajectoryFrameEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, cb);
 
-	for (auto& frame : slf->frames) {
+	for (auto& frame : slf->trajectory_frames) {
 		if (cb(ctx, frame.get())) break;
 	}
 }
