@@ -80,7 +80,7 @@ ZkSize ZkRead_getSize(ZkRead* slf) {
 ZkSize ZkRead_getBytes(ZkRead* slf, void* buf, ZkSize length) {
 	ZKC_TRACE_FN();
 	auto off = slf->tell();
-	slf->seek(0, zenkit::Whence::END);
+	slf->seek(0, zenkit::Whence::BEG);
 	auto count = slf->read(buf, length);
 	slf->seek(static_cast<int64_t>(off), zenkit::Whence::BEG);
 	return count;
