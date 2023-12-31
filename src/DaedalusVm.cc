@@ -23,11 +23,35 @@ ZkDaedalusVm* ZkDaedalusVm_load(ZkRead* buf) {
 
 		auto* vm = new ZkDaedalusVm {zenkit::DaedalusVm {std::move(script)}, {}, nullptr};
 
-		vm->handle.register_default_external_custom([vm](zenkit::DaedalusVm&, zenkit::DaedalusSymbol& sym) {
+		vm->handle.register_default_external_custom([vm](zenkit::DaedalusVm& v, zenkit::DaedalusSymbol& sym) {
 			auto callback = vm->externals.find(sym.index());
 			if (callback != vm->externals.end()) {
 				callback->second(vm);
 				return;
+			}
+
+			auto params = v.find_parameters_for_function(&sym);
+			for (int i = static_cast<int>(params.size()) - 1; i >= 0; --i) {
+				auto par = params[static_cast<unsigned>(i)];
+
+				if (par->type() == zenkit::DaedalusDataType::INT)
+					(void) v.pop_int();
+				else if (par->type() == zenkit::DaedalusDataType::FLOAT)
+					(void) v.pop_float();
+				else if (par->type() == zenkit::DaedalusDataType::INSTANCE ||
+				         par->type() == zenkit::DaedalusDataType::STRING)
+					(void) v.pop_reference();
+			}
+
+			if (sym.has_return()) {
+				if (sym.rtype() == zenkit::DaedalusDataType::FLOAT)
+					v.push_float(0.0f);
+				else if (sym.rtype() == zenkit::DaedalusDataType::INT)
+					v.push_int(0);
+				else if (sym.rtype() == zenkit::DaedalusDataType::STRING)
+					v.push_string("");
+				else if (sym.rtype() == zenkit::DaedalusDataType::INSTANCE)
+					v.push_instance(nullptr);
 			}
 
 			if (vm->externalDefault) vm->externalDefault(vm, &sym);
@@ -306,7 +330,8 @@ ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbo
 }
 
 void ZkDaedalusVm_initInstanceDirect(ZkDaedalusVm* slf, ZkDaedalusInstance* sym) {
-	std::shared_ptr<zenkit::DaedalusInstance> dummy = slf->handle.find_symbol_by_index(sym->symbol_index())->get_instance();
+	std::shared_ptr<zenkit::DaedalusInstance> dummy =
+	    slf->handle.find_symbol_by_index(sym->symbol_index())->get_instance();
 
 	auto global_self = slf->handle.global_self();
 
