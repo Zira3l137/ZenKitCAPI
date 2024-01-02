@@ -5,6 +5,8 @@
 #include "Stream.h"
 #include "Vfs.h"
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 	#include <zenkit/DaedalusScript.hh>
 using ZkDaedalusScript = zenkit::DaedalusScript;

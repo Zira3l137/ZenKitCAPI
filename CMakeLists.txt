@@ -69,7 +69,27 @@ list(APPEND _ZKC_SOURCES
 include(support/BuildSupport.cmake)
 bs_select_cflags(${ZKC_ENABLE_ASAN} _ZKC_COMPILE_FLAGS _ZKC_LINK_FLAGS)
 
-add_library(zenkitcapi SHARED)
+if (EMSCRIPTEN)
+    list(APPEND _ZKC_SOURCES src/Main.cc)
+    list(APPEND _ZKC_COMPILE_FLAGS -fexceptions)
+    list(APPEND _ZKC_LINK_FLAGS
+            -sWASM=1
+            -sMODULARIZE
+            -sEXPORT_ES6=1
+            -sEXPORT_KEEPALIVE=1
+            -sSINGLE_FILE=1
+            -sEXPORTED_FUNCTIONS=_malloc,_free
+            -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,addFunction,removeFunction,AsciiToString,setValue,getValue
+            -sALLOW_MEMORY_GROWTH=1
+            -sALLOW_TABLE_GROWTH=1
+            -fexceptions
+            --embind-emit-ts
+    )
+    add_executable(zenkitcapi)
+    target_link_libraries(zenkitcapi PRIVATE embind)
+else ()
+    add_library(zenkitcapi SHARED)
+endif ()
 
 target_sources(zenkitcapi PRIVATE ${_ZKC_SOURCES})
 target_include_directories(zenkitcapi PUBLIC include)

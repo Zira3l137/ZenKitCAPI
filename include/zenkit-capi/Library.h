@@ -3,8 +3,15 @@
 #pragma once
 #include <stddef.h>
 
+#ifdef __EMSCRIPTEN__
+	#include <emscripten/emscripten.h>
+	#define _ZK_PRELUDE EMSCRIPTEN_KEEPALIVE
+#else
+	#define _ZK_PRELUDE
+#endif
+
 #ifdef __cplusplus
-	#define ZKC_EXT extern "C"
+	#define ZKC_EXT extern "C" _ZK_PRELUDE
 #else
 	#define ZKC_EXT
 #endif
