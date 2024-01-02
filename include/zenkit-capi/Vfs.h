@@ -16,10 +16,10 @@ typedef struct ZkInternal_VfsNode ZkVfsNode;
 #endif
 
 typedef enum {
-	ZK_OVERWRITE_NONE = 0,
-	ZK_OVERWRITE_ALL = 1,
-	ZK_OVERWRITE_NEWER = 2,
-	ZK_OVERWRITE_OLDER = 3,
+	ZkVfsOverwriteBehavior_NONE = 0,
+	ZkVfsOverwriteBehavior_ALL = 1,
+	ZkVfsOverwriteBehavior_NEWER = 2,
+	ZkVfsOverwriteBehavior_OLDER = 3,
 } ZkVfsOverwriteBehavior;
 
 typedef ZkBool (*ZkVfsNodeEnumerator)(void* ctx, ZkVfsNode const* node);
