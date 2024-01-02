@@ -6,10 +6,7 @@
 
 ZkMesh* ZkMesh_load(ZkRead* buf) {
 	ZKC_TRACE_FN();
-	if (buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_load");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(buf);
 
 	try {
 		ZkMesh obj {};
@@ -23,10 +20,7 @@ ZkMesh* ZkMesh_load(ZkRead* buf) {
 
 ZkMesh* ZkMesh_loadPath(ZkString path) {
 	ZKC_TRACE_FN();
-	if (path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_loadPath");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(path);
 
 	try {
 		auto buf = zenkit::Read::from(path);
@@ -41,10 +35,7 @@ ZkMesh* ZkMesh_loadPath(ZkString path) {
 }
 ZkMesh* ZkMesh_loadVfs(ZkVfs* vfs, ZkString name) {
 	ZKC_TRACE_FN();
-	if (vfs == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_loadVfs");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(vfs, name);
 
 	auto node = vfs->find(name);
 	if (node == nullptr) return nullptr;
@@ -60,75 +51,44 @@ void ZkMesh_del(ZkMesh* slf) {
 
 ZkDate ZkMesh_getSourceDate(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getSourceDate");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->date;
 }
 
 ZkString ZkMesh_getName(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getName");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->name.c_str();
 }
 
 ZkAxisAlignedBoundingBox ZkMesh_getBoundingBox(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getBoundingBox");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->bbox;
 }
 
 ZkOrientedBoundingBox const* ZkMesh_getOrientedBoundingBox(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getOrientedBoundingBox");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return &slf->obb;
 }
 
 ZkSize ZkMesh_getMaterialCount(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getMaterialCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->materials.size();
 }
 
 ZkMaterial const* ZkMesh_getMaterial(ZkMesh const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getMaterial");
-		return nullptr;
-	}
-
-	if (i >= slf->materials.size()) {
-		ZKC_LOG_ERROR("ZkMesh_getMaterial() failed: index out of range");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->materials, i);
 	return &slf->materials[i];
 }
 
 void ZkMesh_enumerateMaterials(ZkMesh const* slf, ZkMaterialEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_enumerateMaterials");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& mesh : slf->materials) {
 		if (cb(ctx, &mesh)) break;
@@ -183,35 +143,20 @@ void ZkMesh_enumerateVertices(ZkMesh const* slf, ZkVertexEnumerator cb, void* ct
 
 ZkSize ZkMesh_getLightMapCount(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getLightMapCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->lightmaps.size();
 }
 
 ZkLightMap const* ZkMesh_getLightMap(ZkMesh const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getLightMap");
-		return nullptr;
-	}
-
-	if (i >= slf->lightmaps.size()) {
-		ZKC_LOG_ERROR("ZkMesh_getLightMap() failed: index out of range");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->lightmaps, i);
 	return &slf->lightmaps[i];
 }
 
 void ZkMesh_enumerateLightMaps(ZkMesh const* slf, ZkLightMapEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_enumerateLightMaps");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& lm : slf->lightmaps) {
 		if (cb(ctx, &lm)) break;
@@ -220,35 +165,20 @@ void ZkMesh_enumerateLightMaps(ZkMesh const* slf, ZkLightMapEnumerator cb, void*
 
 ZkSize ZkMesh_getPolygonCount(ZkMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getPolygonCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->geometry.size();
 }
 
 ZkPolygon const* ZkMesh_getPolygon(ZkMesh const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_getPolygon");
-		return nullptr;
-	}
-
-	if (i >= slf->geometry.size()) {
-		ZKC_LOG_ERROR("ZkMesh_getPolygon() failed: index out of range");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->geometry, i);
 	return &slf->geometry[i];
 }
 
 void ZkMesh_enumeratePolygons(ZkMesh const* slf, ZkPolygonEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkMesh_enumeratePolygons");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& poly : slf->geometry) {
 		if (cb(ctx, &poly)) break;
@@ -257,65 +187,38 @@ void ZkMesh_enumeratePolygons(ZkMesh const* slf, ZkPolygonEnumerator cb, void* c
 
 ZkTexture const* ZkLightMap_getImage(ZkLightMap const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkLightMap_getImage");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->image.get();
 }
 
 ZkVec3f ZkLightMap_getOrigin(ZkLightMap const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkLightMap_getOrigin");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->origin;
 }
 
 ZkVec3f ZkLightMap_getNormal(ZkLightMap const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkLightMap_getNormal");
-		return {};
-	}
-
-	if (i >= 2) {
-		ZKC_LOG_ERROR("ZkLightMap_getNormal() failed: index out of range");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LENA(2, i);
 	return slf->normals[i];
 }
 
 uint32_t ZkPolygon_getMaterialIndex(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getMaterialIndex");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->material;
 }
 
 int32_t ZkPolygon_getLightMapIndex(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getLightMapIndex");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->lightmap;
 }
 
 uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getPositionIndices");
-		return {};
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->vertices.size();
 	return slf->vertices.data();
@@ -323,10 +226,7 @@ uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkSize* count
 
 uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getFeatureIndices");
-		return {};
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->features.size();
 	return slf->features.data();
@@ -334,100 +234,60 @@ uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkSize* count)
 
 ZkBool ZkPolygon_getIsPortal(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsPortal");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_portal;
 }
 
 ZkBool ZkPolygon_getIsOccluder(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsOccluder");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_occluder;
 }
 
 ZkBool ZkPolygon_getIsSector(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsSector");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_sector;
 }
 
 ZkBool ZkPolygon_getShouldRelight(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getShouldRelight");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.should_relight;
 }
 
 ZkBool ZkPolygon_getIsOutdoor(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsOutdoor");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_outdoor;
 }
 
 ZkBool ZkPolygon_getIsGhostOccluder(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsGhostOccluder");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_ghost_occluder;
 }
 
 ZkBool ZkPolygon_getIsDynamicallyLit(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsDynamicallyLit");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_dynamically_lit;
 }
 
 ZkBool ZkPolygon_getIsLod(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getIsLod");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.is_lod;
 }
 
 uint8_t ZkPolygon_getNormalAxis(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getNormalAxis");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.normal_axis;
 }
 
 int16_t ZkPolygon_getSectorIndex(ZkPolygon const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkPolygon_getSectorIndex");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->flags.sector_index;
 }

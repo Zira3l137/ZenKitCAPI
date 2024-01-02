@@ -45,17 +45,26 @@ private:
 
 ZkRead* ZkRead_newFile(FILE* stream) {
 	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(stream);
 	return zenkit::Read::from(stream).release();
 }
 
 ZkRead* ZkRead_newMem(ZkByte const* bytes, ZkSize length) {
 	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(bytes);
 	return zenkit::Read::from(reinterpret_cast<std::byte const*>(bytes), length).release();
 }
 
 ZkRead* ZkRead_newPath(ZkString path) {
 	ZKC_TRACE_FN();
-	return zenkit::Read::from(path).release();
+	ZKC_CHECK_NULL(path);
+
+	try {
+		return zenkit::Read::from(path).release();
+	} catch (std::exception const& exc) {
+		ZKC_LOG_ERROR("ZkRead_newPath() failed: %s", exc.what());
+		return nullptr;
+	}
 }
 
 ZkRead* ZkRead_newExt(ZkReadExt ext, void* ctx) {
@@ -70,6 +79,8 @@ void ZkRead_del(ZkRead* slf) {
 
 ZkSize ZkRead_getSize(ZkRead* slf) {
 	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+
 	auto off = slf->tell();
 	slf->seek(0, zenkit::Whence::END);
 	auto size = slf->tell();
@@ -79,6 +90,8 @@ ZkSize ZkRead_getSize(ZkRead* slf) {
 
 ZkSize ZkRead_getBytes(ZkRead* slf, void* buf, ZkSize length) {
 	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+
 	auto off = slf->tell();
 	slf->seek(0, zenkit::Whence::BEG);
 	auto count = slf->read(buf, length);

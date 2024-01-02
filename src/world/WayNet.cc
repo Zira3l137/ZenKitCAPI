@@ -6,10 +6,7 @@
 
 ZkWayEdge const* ZkWayNet_getEdges(ZkWayNet const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayNet_getEdges");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->edges.size();
 	return slf->edges.data();
@@ -17,35 +14,20 @@ ZkWayEdge const* ZkWayNet_getEdges(ZkWayNet const* slf, ZkSize* count) {
 
 ZkSize ZkWayNet_getPointCount(ZkWayNet const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayNet_getPointCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->waypoints.size();
 }
 
 ZkWayPoint const* ZkWayNet_getPoint(ZkWayNet const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayNet_getPoint");
-		return nullptr;
-	}
-
-	if (i >= slf->waypoints.size()) {
-		ZKC_LOG_ERROR("ZkWayNet_getPoint() failed: index out of range");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->waypoints, i);
 	return &slf->waypoints[i];
 }
 
 void ZkWayNet_enumeratePoints(ZkWayNet const* slf, ZkWayPointEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayNet_enumeratePoints");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& point : slf->waypoints) {
 		if (cb(ctx, &point)) break;
@@ -54,60 +36,36 @@ void ZkWayNet_enumeratePoints(ZkWayNet const* slf, ZkWayPointEnumerator cb, void
 
 ZkString ZkWayPoint_getName(ZkWayPoint const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayPoint_getName");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->name.c_str();
 }
 
 int32_t ZkWayPoint_getWaterDepth(ZkWayPoint const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayPoint_getWaterDepth");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->water_depth;
 }
 
 ZkBool ZkWayPoint_getUnderWater(ZkWayPoint const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayPoint_getUnderWater");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->under_water;
 }
 
 ZkVec3f ZkWayPoint_getPosition(ZkWayPoint const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayPoint_getPosition");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->position;
 }
 
 ZkVec3f ZkWayPoint_getDirection(ZkWayPoint const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayPoint_getDirection");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->direction;
 }
 
 ZkBool ZkWayPoint_getFreePoint(ZkWayPoint const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWayPoint_getFreePoint");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->free_point;
 }

@@ -6,61 +6,33 @@
 
 ZkVec3f ZkOrientedBoundingBox_getCenter(ZkOrientedBoundingBox const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getCenter");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->center;
 }
 
 ZkVec3f ZkOrientedBoundingBox_getAxis(ZkOrientedBoundingBox const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getAxis");
-		return {};
-	}
-
-	if (i >= 3) {
-		ZKC_LOG_ERROR("ZkOrientedBoundingBox_getAxis() failed: index out of range (0..2)");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LENA(3, i);
 	return slf->axes[i];
 }
 
 ZkVec3f ZkOrientedBoundingBox_getHalfWidth(ZkOrientedBoundingBox const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getHalfWidth");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->half_width;
 }
 
 ZkSize ZkOrientedBoundingBox_getChildCount(ZkOrientedBoundingBox const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->children.size();
 }
 
 ZkOrientedBoundingBox const* ZkOrientedBoundingBox_getChild(ZkOrientedBoundingBox const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_getChildCount");
-		return {};
-	}
-
-	if (i >= slf->children.size()) {
-		ZKC_LOG_ERROR("ZkOrientedBoundingBox_getChild() failed: index out of range");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->children, i);
 	return &slf->children[i];
 }
 
@@ -68,10 +40,7 @@ void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf,
                                              ZkOrientedBoundingBoxEnumerator cb,
                                              void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_enumerateChildren");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& child : slf->children) {
 		if (cb(ctx, &child)) break;
@@ -80,10 +49,6 @@ void ZkOrientedBoundingBox_enumerateChildren(ZkOrientedBoundingBox const* slf,
 
 ZkAxisAlignedBoundingBox ZkOrientedBoundingBox_toAabb(ZkOrientedBoundingBox const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkOrientedBoundingBox_toAabb");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->as_bbox();
 }

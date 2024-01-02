@@ -16,40 +16,25 @@ void ZkVfs_del(ZkVfs* slf) {
 
 ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_getRoot");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return &slf->root();
 }
 
 ZkVfsNode* ZkVfs_mkdir(ZkVfs* slf, ZkString path) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_mkdir");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf, path);
 	return &slf->mkdir(path);
 }
 
 ZkBool ZkVfs_remove(ZkVfs* slf, ZkString path) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_mkdir");
-		return false;
-	}
-
+	ZKC_CHECK_NULL(slf, path);
 	return slf->remove(path);
 }
 
 void ZkVfs_mount(ZkVfs* slf, ZkVfsNode* node, ZkString parent, ZkVfsOverwriteBehavior overwrite) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || node == nullptr || parent == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_mount");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, node, parent);
 
 	try {
 		slf->mount(*node, parent, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
@@ -60,10 +45,7 @@ void ZkVfs_mount(ZkVfs* slf, ZkVfsNode* node, ZkString parent, ZkVfsOverwriteBeh
 
 void ZkVfs_mountHost(ZkVfs* slf, ZkString path, ZkString parent, ZkVfsOverwriteBehavior overwrite) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || path == nullptr || parent == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_mountHost");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, path, parent);
 
 	try {
 		slf->mount_host(path, parent, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
@@ -74,10 +56,7 @@ void ZkVfs_mountHost(ZkVfs* slf, ZkString path, ZkString parent, ZkVfsOverwriteB
 
 void ZkVfs_mountDisk(ZkVfs* slf, ZkRead* buf, ZkVfsOverwriteBehavior overwrite) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_mountDisk");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, buf);
 
 	try {
 		slf->mount_disk(buf, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
@@ -88,10 +67,7 @@ void ZkVfs_mountDisk(ZkVfs* slf, ZkRead* buf, ZkVfsOverwriteBehavior overwrite) 
 
 void ZkVfs_mountDiskHost(ZkVfs* slf, ZkString path, ZkVfsOverwriteBehavior overwrite) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_mountDiskHost");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, path);
 
 	try {
 		slf->mount_disk(path, static_cast<zenkit::VfsOverwriteBehavior>(overwrite));
@@ -102,30 +78,19 @@ void ZkVfs_mountDiskHost(ZkVfs* slf, ZkString path, ZkVfsOverwriteBehavior overw
 
 ZkVfsNode* ZkVfs_resolvePath(ZkVfs* slf, ZkString path) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_resolvePath");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf, path);
 	return slf->resolve(path);
 }
 
 ZkVfsNode* ZkVfs_findNode(ZkVfs* slf, ZkString name) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfs_findNode");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf, name);
 	return slf->find(name);
 }
 
 ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time_t ts) {
 	ZKC_TRACE_FN();
-	if (name == nullptr || buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_newFile");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(name, buf);
 
 	try {
 		auto node = ZkVfsNode::file(name, zenkit::VfsFileDescriptor {(std::byte const*) (buf), size}, ts);
@@ -138,10 +103,7 @@ ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time
 
 ZkVfsNode* ZkVfsNode_newDir(ZkString name, time_t ts) {
 	ZKC_TRACE_FN();
-	if (name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_newDir");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(name);
 
 	try {
 		auto node = ZkVfsNode::directory(name, ts);
@@ -159,50 +121,31 @@ void ZkVfsNode_del(ZkVfsNode* slf) {
 
 ZkBool ZkVfsNode_isFile(ZkVfsNode const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_isFile");
-		return false;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->type() == zenkit::VfsNodeType::FILE;
 }
 
 ZkBool ZkVfsNode_isDir(ZkVfsNode const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_isDir");
-		return false;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->type() == zenkit::VfsNodeType::DIRECTORY;
 }
 
 time_t ZkVfsNode_getTime(ZkVfsNode const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_getTime");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->time();
 }
 
 ZkString ZkVfsNode_getName(ZkVfsNode const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_getName");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->name().c_str();
 }
 
 ZkVfsNode* ZkVfsNode_getChild(ZkVfsNode* slf, ZkString name) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_getChild");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, name);
 
 	if (ZkVfsNode_isFile(slf)) {
 		ZKC_LOG_ERROR("ZkVfsNode_getChild() failed: not a directory");
@@ -214,10 +157,7 @@ ZkVfsNode* ZkVfsNode_getChild(ZkVfsNode* slf, ZkString name) {
 
 ZkVfsNode* ZkVfsNode_create(ZkVfsNode* slf, ZkVfsNode* node) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || node == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_create");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, node);
 
 	if (ZkVfsNode_isFile(slf)) {
 		ZKC_LOG_ERROR("ZkVfsNode_create() failed: not a directory");
@@ -229,10 +169,7 @@ ZkVfsNode* ZkVfsNode_create(ZkVfsNode* slf, ZkVfsNode* node) {
 
 ZkBool ZkVfsNode_remove(ZkVfsNode* slf, ZkString name) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_remove");
-		return false;
-	}
+	ZKC_CHECK_NULL(slf, name);
 
 	if (ZkVfsNode_isFile(slf)) {
 		ZKC_LOG_ERROR("ZkVfsNode_remove() failed: not a directory");
@@ -244,10 +181,7 @@ ZkBool ZkVfsNode_remove(ZkVfsNode* slf, ZkString name) {
 
 ZkRead* ZkVfsNode_open(ZkVfsNode const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_open");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf);
 
 	if (!ZkVfsNode_isFile(slf)) {
 		ZKC_LOG_ERROR("ZkVfsNode_open() failed: not a file");
@@ -259,10 +193,7 @@ ZkRead* ZkVfsNode_open(ZkVfsNode const* slf) {
 
 void ZkVfsNode_enumerateChildren(ZkVfsNode const* slf, ZkVfsNodeEnumerator callback, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || callback == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkVfsNode_enumerateChildren");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, callback);
 
 	if (ZkVfsNode_isFile(slf)) {
 		ZKC_LOG_ERROR("ZkVfsNode_enumerateChildren() failed: not a directory");

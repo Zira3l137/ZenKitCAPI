@@ -4,158 +4,64 @@
 
 #include "Internal.hh"
 
-ZkTexture* ZkTexture_load(ZkRead* buf) {
-	ZKC_TRACE_FN();
-	if (buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_load");
-		return nullptr;
-	}
-
-	try {
-		ZkTexture obj {};
-		obj.load(buf);
-		return ZKC_WRAP_NEW(obj);
-	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkTexture_load() failed: %s", exc.what());
-		return nullptr;
-	}
-}
-
-ZkTexture* ZkTexture_loadPath(ZkString path) {
-	ZKC_TRACE_FN();
-	if (path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_loadPath");
-		return nullptr;
-	}
-
-	try {
-		auto buf = zenkit::Read::from(path);
-
-		ZkTexture obj {};
-		obj.load(buf.get());
-		return ZKC_WRAP_NEW(obj);
-	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkTexture_loadPath() failed: %s", exc.what());
-		return nullptr;
-	}
-}
-
-ZkTexture* ZkTexture_loadVfs(ZkVfs* vfs, ZkString name) {
-	ZKC_TRACE_FN();
-	if (vfs == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_loadVfs");
-		return nullptr;
-	}
-
-	auto node = vfs->find(name);
-	if (node == nullptr) return nullptr;
-
-	auto rd = node->open_read();
-	return ZkTexture_load(rd.get());
-}
-
-void ZkTexture_del(ZkTexture* slf) {
-	ZKC_TRACE_FN();
-	delete slf;
-}
+ZKC_LOADER(ZkTexture);
+ZKC_PATH_LOADER(ZkTexture);
+ZKC_VFS_LOADER(ZkTexture);
+ZKC_DELETER(ZkTexture);
 
 ZkTextureFormat ZkTexture_getFormat(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getFormat");
-		return ZkTextureFormat_R8G8B8A8;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkTextureFormat>(slf->format());
 }
 
 uint32_t ZkTexture_getWidth(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getWidth");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->width();
 }
 
 uint32_t ZkTexture_getHeight(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getHeight");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->height();
 }
 
 uint32_t ZkTexture_getWidthMipmap(ZkTexture const* slf, ZkSize level) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getWidthMipmap");
-		return 0;
-	}
-
-	if (level >= slf->mipmaps()) {
-		ZKC_LOG_ERROR("ZkTexture_getWidthMipmap() failed: index out of range");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LENA(slf->mipmaps(), level);
 	return slf->mipmap_width(static_cast<uint32_t>(level));
 }
 
 uint32_t ZkTexture_getHeightMipmap(ZkTexture const* slf, ZkSize level) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getHeightMipmap");
-		return 0;
-	}
-
-	if (level >= slf->mipmaps()) {
-		ZKC_LOG_ERROR("ZkTexture_getHeightMipmap() failed: index out of range");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LENA(slf->mipmaps(), level);
 	return slf->mipmap_height(static_cast<uint32_t>(level));
 }
 
 uint32_t ZkTexture_getWidthRef(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getWidthRef");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->ref_width();
 }
 
 uint32_t ZkTexture_getHeightRef(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getHeightRef");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->ref_height();
 }
 
 uint32_t ZkTexture_getMipmapCount(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getMipmapCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->mipmaps();
 }
 
 uint32_t ZkTexture_getAverageColor(ZkTexture const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getAverageColor");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->average_color();
 }
 
@@ -183,10 +89,7 @@ void ZkTexture_enumeratePaletteItems(ZkTexture const* slf, ZkColorEnumerator cb,
 
 uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize* size) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || size == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getMipmapRaw");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, size);
 
 	*size = slf->data(static_cast<uint32_t>(level)).size();
 	return slf->data(static_cast<uint32_t>(level)).data();
@@ -194,10 +97,7 @@ uint8_t const* ZkTexture_getMipmapRaw(ZkTexture const* slf, ZkSize level, ZkSize
 
 ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf, ZkSize size) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_getMipmapRgba");
-		return 0;
-	}
+	ZKC_CHECK_NULL(slf, buf);
 
 	auto data = slf->as_rgba8(static_cast<uint32_t>(level));
 	if (size < data.size()) {
@@ -212,10 +112,7 @@ ZkSize ZkTexture_getMipmapRgba(ZkTexture const* slf, ZkSize level, uint8_t* buf,
 
 void ZkTexture_enumerateRawMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_enumerateRawMipmaps");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto i = 0u; i < slf->mipmaps(); ++i) {
 		if (cb(ctx, i, slf->data(i).data(), slf->data(i).size())) break;
@@ -224,10 +121,7 @@ void ZkTexture_enumerateRawMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumerat
 
 void ZkTexture_enumerateRgbaMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkTexture_enumerateRgbaMipmaps");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto i = 0u; i < slf->mipmaps(); ++i) {
 		auto rgba = slf->as_rgba8(i);

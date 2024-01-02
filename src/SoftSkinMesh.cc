@@ -6,45 +6,26 @@
 
 ZkSize ZkSoftSkinMesh_getNodeCount(ZkSoftSkinMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getNodeCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->nodes.size();
 }
 
 ZkMultiResolutionMesh const* ZkSoftSkinMesh_getMesh(ZkSoftSkinMesh const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getMesh");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return &slf->mesh;
 }
 
 ZkOrientedBoundingBox const* ZkSoftSkinMesh_getBbox(ZkSoftSkinMesh const* slf, ZkSize node) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getBbox");
-		return nullptr;
-	}
-
-	if (node >= slf->bboxes.size()) {
-		ZKC_LOG_ERROR("ZkSoftSkinMesh_getBbox() failed: index out of range");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->bboxes, node);
 	return &slf->bboxes[node];
 }
 
 void ZkSoftSkinMesh_enumerateBoundingBoxes(ZkSoftSkinMesh const* slf, ZkOrientedBoundingBoxEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_enumerateBoundingBoxes");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& bbox : slf->bboxes) {
 		if (cb(ctx, &bbox)) break;
@@ -108,10 +89,7 @@ void ZkSoftSkinMesh_enumerateWedgeNormals(ZkSoftSkinMesh const* slf, ZkSoftSkinW
 
 int32_t const* ZkSoftSkinMesh_getNodes(ZkSoftSkinMesh const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkSoftSkinMesh_getNodes");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->nodes.size();
 	return slf->nodes.data();

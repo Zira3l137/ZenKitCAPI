@@ -6,20 +6,13 @@
 
 ZkBspTreeType ZkBspTree_getType(ZkBspTree const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getMode");
-		return ZkBspTreeType_INDOOR;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return static_cast<ZkBspTreeType>(slf->mode);
 }
 
 uint32_t const* ZkBspTree_getPolygonIndices(ZkBspTree const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getPolygonIndices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->polygon_indices.size();
 	return slf->polygon_indices.data();
@@ -27,10 +20,7 @@ uint32_t const* ZkBspTree_getPolygonIndices(ZkBspTree const* slf, ZkSize* count)
 
 uint32_t const* ZkBspTree_getLeafPolygonIndices(ZkBspTree const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getLeafPolygonIndices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->leaf_polygons.size();
 	return slf->leaf_polygons.data();
@@ -38,10 +28,7 @@ uint32_t const* ZkBspTree_getLeafPolygonIndices(ZkBspTree const* slf, ZkSize* co
 
 uint32_t const* ZkBspTree_getPortalPolygonIndices(ZkBspTree const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getPortalPolygonIndices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->portal_polygon_indices.size();
 	return slf->portal_polygon_indices.data();
@@ -71,10 +58,7 @@ void ZkBspTree_enumerateLightPoints(ZkBspTree const* slf, ZkVec3fEnumerator cb, 
 
 uint64_t const* ZkBspTree_getLeafNodeIndices(ZkBspTree const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getLeafNodeIndices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->leaf_node_indices.size();
 	return slf->leaf_node_indices.data();
@@ -107,35 +91,20 @@ void ZkBspTree_enumerateNodes(ZkBspTree const* slf, ZkBspNodeEnumerator cb, void
 
 ZkSize ZkBspTree_getSectorCount(ZkBspTree const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getSectorCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->sectors.size();
 }
 
 ZkBspSector const* ZkBspTree_getSector(ZkBspTree const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_getSector");
-		return nullptr;
-	}
-
-	if (i >= slf->sectors.size()) {
-		ZKC_LOG_ERROR("ZkBspTree_getSector() failed: index out of range");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->sectors, i);
 	return &slf->sectors[i];
 }
 
 void ZkBspTree_enumerateSectors(ZkBspTree const* slf, ZkBspSectorEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspTree_enumerateSectors");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	for (auto& sector : slf->sectors) {
 		if (cb(ctx, &sector)) break;
@@ -144,20 +113,13 @@ void ZkBspTree_enumerateSectors(ZkBspTree const* slf, ZkBspSectorEnumerator cb, 
 
 ZkString ZkBspSector_getName(ZkBspSector const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspSector_getName");
-		return nullptr;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->name.c_str();
 }
 
 uint32_t const* ZkBspSector_getNodeIndices(ZkBspSector const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspSector_getNodeIndices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->node_indices.size();
 	return slf->node_indices.data();
@@ -165,10 +127,7 @@ uint32_t const* ZkBspSector_getNodeIndices(ZkBspSector const* slf, ZkSize* count
 
 uint32_t const* ZkBspSector_getPortalPolygonIndices(ZkBspSector const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || count == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkBspSector_getPortalPolygonIndices");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(slf, count);
 
 	*count = slf->portal_polygon_indices.size();
 	return slf->portal_polygon_indices.data();

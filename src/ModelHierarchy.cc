@@ -4,82 +4,21 @@
 
 #include "Internal.hh"
 
-ZkModelHierarchy* ZkModelHierarchy_load(ZkRead* buf) {
-	ZKC_TRACE_FN();
-	if (buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_load");
-		return nullptr;
-	}
-
-	try {
-		ZkModelHierarchy obj {};
-		obj.load(buf);
-		return ZKC_WRAP_NEW(obj);
-	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkModelHierarchy_load() failed: %s", exc.what());
-		return nullptr;
-	}
-}
-
-ZkModelHierarchy* ZkModelHierarchy_loadPath(ZkString path) {
-	ZKC_TRACE_FN();
-	if (path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_loadPath");
-		return nullptr;
-	}
-
-	try {
-		auto buf = zenkit::Read::from(path);
-
-		ZkModelHierarchy obj {};
-		obj.load(buf.get());
-		return ZKC_WRAP_NEW(obj);
-	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkModelHierarchy_loadPath() failed: %s", exc.what());
-		return nullptr;
-	}
-}
-
-ZkModelHierarchy* ZkModelHierarchy_loadVfs(ZkVfs* vfs, ZkString name) {
-	ZKC_TRACE_FN();
-	if (vfs == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_loadVfs");
-		return nullptr;
-	}
-
-	auto node = vfs->find(name);
-	if (node == nullptr) return nullptr;
-
-	auto rd = node->open_read();
-	return ZkModelHierarchy_load(rd.get());
-}
-
-void ZkModelHierarchy_del(ZkModelHierarchy* slf) {
-	ZKC_TRACE_FN();
-	delete slf;
-}
+ZKC_LOADER(ZkModelHierarchy);
+ZKC_PATH_LOADER(ZkModelHierarchy);
+ZKC_VFS_LOADER(ZkModelHierarchy);
+ZKC_DELETER(ZkModelHierarchy);
 
 ZkSize ZkModelHierarchy_getNodeCount(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getNodeCount");
-		return 0;
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->nodes.size();
 }
 
 ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getNode");
-		return {};
-	}
-
-	if (i >= slf->nodes.size()) {
-		ZKC_LOG_ERROR("ZkModelHierarchy_getNode() failed: index out of range");
-		return {};
-	}
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->nodes, i);
 
 	return ZkModelHierarchyNode {
 	    slf->nodes[i].parent_index,
@@ -90,70 +29,43 @@ ZkModelHierarchyNode ZkModelHierarchy_getNode(ZkModelHierarchy const* slf, ZkSiz
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getBbox(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getBbox");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->bbox;
 }
 
 ZkAxisAlignedBoundingBox ZkModelHierarchy_getCollisionBbox(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getCollisionBbox");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->collision_bbox;
 }
 
 ZkVec3f ZkModelHierarchy_getRootTranslation(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getRootTranslation");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->root_translation;
 }
 
 uint32_t ZkModelHierarchy_getChecksum(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getChecksum");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->checksum;
 }
 
 ZkDate ZkModelHierarchy_getSourceDate(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getSourceDate");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->source_date;
 }
 
 ZkString ZkModelHierarchy_getSourcePath(ZkModelHierarchy const* slf) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_getSourcePath");
-		return {};
-	}
-
+	ZKC_CHECK_NULL(slf);
 	return slf->source_path.c_str();
 }
 
 void ZkModelHierarchy_enumerateNodes(ZkModelHierarchy const* slf, ZkModelHierarchyNodeEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
-	if (slf == nullptr || cb == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkModelHierarchy_enumerateNodes");
-		return;
-	}
+	ZKC_CHECK_NULLV(slf, cb);
 
 	ZkModelHierarchyNode n;
 	for (auto& node : slf->nodes) {
