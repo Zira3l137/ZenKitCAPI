@@ -59,10 +59,25 @@ ZKC_API void ZkTrigger_del(ZkTrigger* slf);
 
 ZKC_API ZkString ZkTrigger_getTarget(ZkTrigger const* slf);
 ZKC_API void ZkTrigger_setTarget(ZkTrigger* slf, ZkString target);
-ZKC_API uint8_t ZkTrigger_getFlags(ZkTrigger const* slf);
-ZKC_API void ZkTrigger_setFlags(ZkTrigger* slf, uint8_t flags);
-ZKC_API uint8_t ZkTrigger_getFilterFlags(ZkTrigger const* slf);
-ZKC_API void ZkTrigger_setFilterFlags(ZkTrigger* slf, uint8_t filterFlags);
+
+ZKC_API ZkBool ZkTrigger_getStartEnabled(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getSendUntrigger(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getReactToOnTrigger(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getReactToOnTouch(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getReactToOnDamage(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getRespondToObject(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getRespondToPC(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getRespondToNPC(ZkTrigger const* slf);
+
+ZKC_API void ZkTrigger_setStartEnabled(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setSendUntrigger(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setReactToOnTrigger(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setReactToOnTouch(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setReactToOnDamage(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setRespondToObject(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setRespondToPC(ZkTrigger* slf, ZkBool b);
+ZKC_API void ZkTrigger_setRespondToNPC(ZkTrigger* slf, ZkBool b);
+
 ZKC_API ZkString ZkTrigger_getVobTarget(ZkTrigger const* slf);
 ZKC_API void ZkTrigger_setVobTarget(ZkTrigger* slf, ZkString vobTarget);
 ZKC_API int32_t ZkTrigger_getMaxActivationCount(ZkTrigger const* slf);

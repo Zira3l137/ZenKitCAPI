@@ -20,28 +20,100 @@ void ZkTrigger_setTarget(ZkTrigger* slf, ZkString target) {
 	slf->target = target;
 }
 
-uint8_t ZkTrigger_getFlags(ZkTrigger const* slf) {
+ZkBool ZkTrigger_getStartEnabled(ZkTrigger const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->flags;
+	return slf->start_enabled;
 }
 
-void ZkTrigger_setFlags(ZkTrigger* slf, uint8_t flags) {
-	ZKC_TRACE_FN();
-	ZKC_CHECK_NULLV(slf);
-	slf->flags = flags;
-}
-
-uint8_t ZkTrigger_getFilterFlags(ZkTrigger const* slf) {
+ZkBool ZkTrigger_getSendUntrigger(ZkTrigger const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->filter_flags;
+	return slf->send_untrigger;
 }
 
-void ZkTrigger_setFilterFlags(ZkTrigger* slf, uint8_t filterFlags) {
+ZkBool ZkTrigger_getReactToOnTrigger(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->react_to_on_trigger;
+}
+
+ZkBool ZkTrigger_getReactToOnTouch(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->react_to_on_touch;
+}
+
+ZkBool ZkTrigger_getReactToOnDamage(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->react_to_on_damage;
+}
+
+ZkBool ZkTrigger_getRespondToObject(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->respond_to_object;
+}
+
+ZkBool ZkTrigger_getRespondToPC(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->respond_to_pc;
+}
+
+ZkBool ZkTrigger_getRespondToNPC(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->respond_to_npc;
+}
+
+void ZkTrigger_setStartEnabled(ZkTrigger* slf, ZkBool b) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->filter_flags = filterFlags;
+	slf->start_enabled = b;
+}
+
+void ZkTrigger_setSendUntrigger(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->send_untrigger = b;
+}
+
+void ZkTrigger_setReactToOnTrigger(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->react_to_on_trigger = b;
+}
+
+void ZkTrigger_setReactToOnTouch(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->react_to_on_touch = b;
+}
+
+void ZkTrigger_setReactToOnDamage(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->react_to_on_damage = b;
+}
+
+void ZkTrigger_setRespondToObject(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->respond_to_object = b;
+}
+
+void ZkTrigger_setRespondToPC(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->respond_to_pc = b;
+}
+
+void ZkTrigger_setRespondToNPC(ZkTrigger* slf, ZkBool b) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->respond_to_npc = b;
 }
 
 ZkString ZkTrigger_getVobTarget(ZkTrigger const* slf) {
