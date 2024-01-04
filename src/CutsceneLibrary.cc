@@ -9,6 +9,19 @@ ZKC_PATH_LOADER(ZkCutsceneLibrary);
 ZKC_VFS_LOADER(ZkCutsceneLibrary);
 ZKC_DELETER(ZkCutsceneLibrary);
 
+ZkSize ZkCutsceneLibrary_getBlockCount(ZkCutsceneLibrary const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->blocks.size();
+}
+
+ZkCutsceneBlock const* ZkCutsceneLibrary_getBlockByIndex(ZkCutsceneLibrary const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->blocks, i);
+	return &slf->blocks[i];
+}
+
 ZkCutsceneBlock const* ZkCutsceneLibrary_getBlock(ZkCutsceneLibrary const* slf, ZkString name) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);

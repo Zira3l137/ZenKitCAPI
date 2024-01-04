@@ -23,7 +23,9 @@ ZKC_API ZkCutsceneLibrary* ZkCutsceneLibrary_loadPath(ZkString path);
 ZKC_API ZkCutsceneLibrary* ZkCutsceneLibrary_loadVfs(ZkVfs const* vfs, ZkString string);
 ZKC_API void ZkCutsceneLibrary_del(ZkCutsceneLibrary* slf);
 
+ZKC_API ZkSize ZkCutsceneLibrary_getBlockCount(ZkCutsceneLibrary const* slf);
 ZKC_API ZkCutsceneBlock const* ZkCutsceneLibrary_getBlock(ZkCutsceneLibrary const* slf, ZkString name);
+ZKC_API ZkCutsceneBlock const* ZkCutsceneLibrary_getBlockByIndex(ZkCutsceneLibrary const* slf, ZkSize i);
 ZKC_API void ZkCutsceneLibrary_enumerateBlocks(ZkCutsceneLibrary const* slf, ZkCutsceneBlockEnumerator cb, void* ctx);
 
 ZKC_API ZkString ZkCutsceneBlock_getName(ZkCutsceneBlock const* slf);
