@@ -21,7 +21,10 @@ ZkDaedalusVm* ZkDaedalusVm_load(ZkRead* buf) {
 		script.load(buf);
 		zenkit::register_all_script_classes(script);
 
-		auto* vm = new ZkDaedalusVm {zenkit::DaedalusVm {std::move(script)}, {}, nullptr};
+		auto* vm = new ZkDaedalusVm {
+		    zenkit::DaedalusVm {std::move(script), zenkit::DaedalusVmExecutionFlag::ALLOW_NULL_INSTANCE_ACCESS},
+		    {},
+		    nullptr};
 		vm->handle.register_exception_handler(zenkit::lenient_vm_exception_handler);
 
 		vm->handle.register_default_external_custom([vm](zenkit::DaedalusVm& v, zenkit::DaedalusSymbol& sym) {
