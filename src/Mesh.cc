@@ -126,7 +126,7 @@ ZkSize ZkMesh_getVertexCount(ZkMesh const* slf) {
 ZkVertex ZkMesh_getVertex(ZkMesh const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	ZKC_CHECK_LEN(slf->vertices, i);
+	ZKC_CHECK_LEN(slf->features, i);
 	return slf->features[i];
 }
 
