@@ -3,11 +3,12 @@
 #pragma once
 #include "../Library.h"
 #include "../Material.h"
+#include "../Object.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Light.hh>
-using ZkLight = zenkit::VLight;
+using ZkLight = ZkSharedHandle<zenkit::VLight>;
 using ZkLightPreset = zenkit::LightPreset;
 #else
 typedef struct ZkInternal_Light ZkLight;

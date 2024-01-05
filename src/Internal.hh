@@ -89,13 +89,8 @@
                                                                                                                        \
 		try {                                                                                                          \
 			auto ar = zenkit::ReadArchive::from(buf);                                                                  \
-                                                                                                                       \
-			zenkit::ArchiveObject o {};                                                                                \
-			ar->read_object_begin(o);                                                                                  \
-                                                                                                                       \
-			cls obj {};                                                                                                \
-			obj.load(*ar, static_cast<zenkit::GameVersion>(version));                                                  \
-			return ZKC_WRAP_NEW(obj);                                                                                  \
+			auto ob = ar->read_object<cls::element_type>(static_cast<zenkit::GameVersion>(version));                   \
+			return ZKC_WRAP_NEW(ob);                                                                                   \
 		} catch (std::exception const& exc) {                                                                          \
 			ZKC_LOG_ERROR(#cls "_load() failed: %s", exc.what());                                                      \
 			return nullptr;                                                                                            \
@@ -113,13 +108,8 @@
 		try {                                                                                                          \
 			auto buf = zenkit::Read::from(path);                                                                       \
 			auto ar = zenkit::ReadArchive::from(buf.get());                                                            \
-                                                                                                                       \
-			zenkit::ArchiveObject o {};                                                                                \
-			ar->read_object_begin(o);                                                                                  \
-                                                                                                                       \
-			cls obj {};                                                                                                \
-			obj.load(*ar, static_cast<zenkit::GameVersion>(version));                                                  \
-			return ZKC_WRAP_NEW(obj);                                                                                  \
+			auto ob = ar->read_object<cls::element_type>(static_cast<zenkit::GameVersion>(version));                   \
+			return ZKC_WRAP_NEW(ob);                                                                                   \
 		} catch (std::exception const& exc) {                                                                          \
 			ZKC_LOG_ERROR(#cls "_loadPath() failed: %s", exc.what());                                                  \
 			return nullptr;                                                                                            \
@@ -179,4 +169,5 @@ inline bool zk_any_nullptr(T*... args) {
 		}                                                                                                              \
 	} while (false)
 
-#define ZKC_TRACE_FN() //ZKC_LOG_TRACE("%s()", __func__)
+#define ZKC_TRACE_FN() // ZKC_LOG_TRACE("%s()", __func__)
+#define SLF (*slf)

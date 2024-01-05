@@ -6,8 +6,55 @@
 
 #include <zenkit/Archive.hh>
 
-ZKC_VOB_LOADER(ZkLightPreset);
-ZKC_VOB_PATH_LOADER(ZkLightPreset);
+ZkLightPreset* ZkLightPreset_load(ZkRead* buf, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	if (buf == nullptr) {
+		ZKC_LOG_WARN_NULL("ZkLightPreset"
+		                  "_load");
+		return nullptr;
+	}
+	try {
+		auto ar = zenkit::ReadArchive::from(buf);
+
+		zenkit::ArchiveObject o;
+		ar->read_object_begin(o);
+
+		ZkLightPreset p;
+		p.load(*ar, static_cast<zenkit::GameVersion>(version));
+		return ZKC_WRAP_NEW(p);
+	} catch (std::exception const& exc) {
+		ZKC_LOG_ERROR("ZkLightPreset"
+		              "_load() failed: %s",
+		              exc.what());
+		return nullptr;
+	}
+}
+
+ZkLightPreset* ZkLightPreset_loadPath(ZkString path, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	if (path == nullptr) {
+		ZKC_LOG_WARN_NULL("ZkLightPreset"
+		                  "_loadPath");
+		return nullptr;
+	}
+	try {
+		auto buf = zenkit::Read::from(path);
+		auto ar = zenkit::ReadArchive::from(buf.get());
+
+		zenkit::ArchiveObject o;
+		ar->read_object_begin(o);
+
+		ZkLightPreset p;
+		p.load(*ar, static_cast<zenkit::GameVersion>(version));
+		return ZKC_WRAP_NEW(p);
+	} catch (std::exception const& exc) {
+		ZKC_LOG_ERROR("ZkLightPreset"
+		              "_loadPath() failed: %s",
+		              exc.what());
+		return nullptr;
+	}
+}
+
 ZKC_DELETER(ZkLightPreset);
 
 ZKC_VOB_LOADER(ZkLight);
@@ -226,166 +273,166 @@ void ZkLightPreset_setCanMove(ZkLightPreset* slf, ZkBool canMove) {
 ZkString ZkLight_getPreset(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->preset.c_str();
+	return SLF->preset.c_str();
 }
 
 void ZkLight_setPreset(ZkLight* slf, ZkString preset) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->preset = preset;
+	SLF->preset = preset;
 }
 
 ZkLightType ZkLight_getLightType(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return static_cast<ZkLightType>(slf->light_type);
+	return static_cast<ZkLightType>(SLF->light_type);
 }
 
 void ZkLight_setLightType(ZkLight* slf, ZkLightType lightType) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->light_type = static_cast<zenkit::LightType>(lightType);
+	SLF->light_type = static_cast<zenkit::LightType>(lightType);
 }
 
 float ZkLight_getRange(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->range;
+	return SLF->range;
 }
 
 void ZkLight_setRange(ZkLight* slf, float range) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->range = range;
+	SLF->range = range;
 }
 
 ZkColor ZkLight_getColor(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->color;
+	return SLF->color;
 }
 
 void ZkLight_setColor(ZkLight* slf, ZkColor color) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->color = color;
+	SLF->color = color;
 }
 
 float ZkLight_getConeAngle(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->cone_angle;
+	return SLF->cone_angle;
 }
 
 void ZkLight_setConeAngle(ZkLight* slf, float coneAngle) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->cone_angle = coneAngle;
+	SLF->cone_angle = coneAngle;
 }
 
 ZkBool ZkLight_getIsStatic(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->is_static;
+	return SLF->is_static;
 }
 
 void ZkLight_setIsStatic(ZkLight* slf, ZkBool isStatic) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->is_static = isStatic;
+	SLF->is_static = isStatic;
 }
 
 ZkLightQuality ZkLight_getQuality(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return static_cast<ZkLightQuality>(slf->quality);
+	return static_cast<ZkLightQuality>(SLF->quality);
 }
 
 void ZkLight_setQuality(ZkLight* slf, ZkLightQuality quality) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->quality = static_cast<zenkit::LightQuality>(quality);
+	SLF->quality = static_cast<zenkit::LightQuality>(quality);
 }
 
 ZkString ZkLight_getLensflareFx(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->lensflare_fx.c_str();
+	return SLF->lensflare_fx.c_str();
 }
 
 void ZkLight_setLensflareFx(ZkLight* slf, ZkString lensflareFx) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->lensflare_fx = lensflareFx;
+	SLF->lensflare_fx = lensflareFx;
 }
 
 ZkBool ZkLight_getOn(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->on;
+	return SLF->on;
 }
 
 void ZkLight_setOn(ZkLight* slf, ZkBool on) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->on = on;
+	SLF->on = on;
 }
 
 float const* ZkLight_getRangeAnimationScale(ZkLight const* slf, ZkSize* count) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf, count);
-	*count = slf->range_animation_scale.size();
-	return slf->range_animation_scale.data();
+	*count = SLF->range_animation_scale.size();
+	return SLF->range_animation_scale.data();
 }
 
 void ZkLight_setRangeAnimationScale(ZkLight* slf, float const* scale, ZkSize count) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, scale);
-	slf->range_animation_scale.assign(scale, scale + count);
+	SLF->range_animation_scale.assign(scale, scale + count);
 }
 
 float ZkLight_getRangeAnimationFps(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->range_animation_fps;
+	return SLF->range_animation_fps;
 }
 
 void ZkLight_setRangeAnimationFps(ZkLight* slf, float rangeAnimationFps) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->range_animation_fps = rangeAnimationFps;
+	SLF->range_animation_fps = rangeAnimationFps;
 }
 
 ZkBool ZkLight_getRangeAnimationSmooth(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->range_animation_smooth;
+	return SLF->range_animation_smooth;
 }
 
 void ZkLight_setRangeAnimationSmooth(ZkLight* slf, ZkBool rangeAnimationSmooth) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->range_animation_smooth = rangeAnimationSmooth;
+	SLF->range_animation_smooth = rangeAnimationSmooth;
 }
 
 ZkSize ZkLight_getColorAnimationCount(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->color_animation_list.size();
+	return SLF->color_animation_list.size();
 }
 
 ZkColor ZkLight_getColorAnimationItem(ZkLight const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	ZKC_CHECK_LEN(slf->color_animation_list, i);
-	return slf->color_animation_list[i];
+	ZKC_CHECK_LEN(SLF->color_animation_list, i);
+	return SLF->color_animation_list[i];
 }
 
 void ZkLight_enumerateColorAnimationItems(ZkLight const* slf, ZkColorEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, cb);
 
-	for (auto& i : slf->color_animation_list) {
+	for (auto& i : SLF->color_animation_list) {
 		if (cb(ctx, i)) break;
 	}
 }
@@ -393,41 +440,41 @@ void ZkLight_enumerateColorAnimationItems(ZkLight const* slf, ZkColorEnumerator 
 void ZkLight_setColorAnimationList(ZkLight* slf, ZkColor const* list, ZkSize count) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, list);
-	slf->color_animation_list.assign(list, list + count);
+	SLF->color_animation_list.assign(list, list + count);
 }
 
 float ZkLight_getColorAnimationFps(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->color_animation_fps;
+	return SLF->color_animation_fps;
 }
 
 void ZkLight_setColorAnimationFps(ZkLight* slf, float colorAnimationFps) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->color_animation_fps = colorAnimationFps;
+	SLF->color_animation_fps = colorAnimationFps;
 }
 
 ZkBool ZkLight_getColorAnimationSmooth(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->color_animation_smooth;
+	return SLF->color_animation_smooth;
 }
 
 void ZkLight_setColorAnimationSmooth(ZkLight* slf, ZkBool colorAnimationSmooth) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->color_animation_smooth = colorAnimationSmooth;
+	SLF->color_animation_smooth = colorAnimationSmooth;
 }
 
 ZkBool ZkLight_getCanMove(ZkLight const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->can_move;
+	return SLF->can_move;
 }
 
 void ZkLight_setCanMove(ZkLight* slf, ZkBool canMove) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->can_move = canMove;
+	SLF->can_move = canMove;
 }

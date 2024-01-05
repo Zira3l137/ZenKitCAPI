@@ -4,6 +4,7 @@
 #include "Library.h"
 #include "Mesh.h"
 #include "Stream.h"
+#include "Object.h"
 #include "Vfs.h"
 #include "vobs/VirtualObject.h"
 #include "world/BspTree.h"
@@ -11,7 +12,7 @@
 
 #ifdef __cplusplus
 	#include <zenkit/World.hh>
-using ZkWorld = zenkit::World;
+using ZkWorld = ZkSharedHandle<zenkit::World>;
 #else
 typedef struct ZkInternal_World ZkWorld;
 #endif

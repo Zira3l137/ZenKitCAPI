@@ -5,13 +5,14 @@
 #include "../Library.h"
 #include "../Material.h"
 #include "../Matrix.h"
+#include "../Object.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/VirtualObject.hh>
-using ZkVirtualObject = zenkit::VirtualObject;
-using ZkVisual = zenkit::Visual;
-using ZkVisualDecal = zenkit::VisualDecal;
+using ZkVirtualObject = ZkSharedHandle<zenkit::VirtualObject>;
+using ZkVisual = ZkSharedHandle<zenkit::Visual>;
+using ZkVisualDecal = ZkSharedHandle<zenkit::VisualDecal>;
 #else
 typedef struct ZkInternal_VirtualObject ZkVirtualObject;
 typedef struct ZkInternal_Visual ZkVisual;
@@ -147,6 +148,7 @@ ZKC_API ZkVirtualObject* ZkVirtualObject_addChild(ZkVirtualObject* slf, ZkVobTyp
 ZKC_API void ZkVirtualObject_removeChild(ZkVirtualObject* slf, ZkSize i);
 ZKC_API void ZkVirtualObject_removeChildren(ZkVirtualObject* slf, ZkVirtualObjectEnumerator pred, void* ctx);
 
+ZKC_API void ZkVisual_del(ZkVisual* slf);
 ZKC_API ZkString ZkVisual_getName(ZkVisual const* slf);
 ZKC_API void ZkVisual_setName(ZkVisual* slf, ZkString name);
 ZKC_API ZkVisualType ZkVisual_getType(ZkVisual const* slf);

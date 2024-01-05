@@ -2,16 +2,18 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include "../Library.h"
+#include "../Object.h"
 #include "../Stream.h"
 #include "../Vector.h"
+#include "Misc.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/MovableObject.hh>
-using ZkMovableObject = zenkit::VMovableObject;
-using ZkInteractiveObject = zenkit::VInteractiveObject;
-using ZkFire = zenkit::VFire;
-using ZkContainer = zenkit::VContainer;
-using ZkDoor = zenkit::VDoor;
+using ZkMovableObject = ZkSharedHandle<zenkit::VMovableObject>;
+using ZkInteractiveObject = ZkSharedHandle<zenkit::VInteractiveObject>;
+using ZkFire = ZkSharedHandle<zenkit::VFire>;
+using ZkContainer = ZkSharedHandle<zenkit::VContainer>;
+using ZkDoor = ZkSharedHandle<zenkit::VDoor>;
 #else
 typedef struct ZkInternal_MovableObject ZkMovableObject;
 typedef struct ZkInternal_InteractiveObject ZkInteractiveObject;
@@ -92,6 +94,12 @@ ZKC_API ZkString ZkContainer_getPickString(ZkContainer const* slf);
 ZKC_API void ZkContainer_setPickString(ZkContainer* slf, ZkString pickString);
 ZKC_API ZkString ZkContainer_getContents(ZkContainer const* slf);
 ZKC_API void ZkContainer_setContents(ZkContainer* slf, ZkString contents);
+
+ZKC_API ZkSize ZkContainer_getItemCount(ZkContainer const* slf);
+ZKC_API ZkItem* ZkContainer_getItem(ZkContainer const* slf, ZkSize i);
+ZKC_API void ZkContainer_addItem(ZkContainer const* slf, ZkItem*);
+ZKC_API ZkItem* ZkContainer_addNewItem(ZkContainer const* slf);
+ZKC_API void ZkContainer_removeItem(ZkContainer const* slf);
 
 ZKC_API ZkDoor* ZkDoor_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkDoor* ZkDoor_loadPath(ZkString path, ZkGameVersion version);

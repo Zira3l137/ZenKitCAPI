@@ -98,10 +98,8 @@ void ZkModelAnimation_enumerateSamples(ZkModelAnimation const* slf, ZkAnimationS
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, cb);
 
-	ZkAnimationSample as {};
 	for (auto& sample : slf->samples) {
-		as = sample;
-		if (cb(ctx, &as)) {
+		if (cb(ctx, sample)) {
 			break;
 		}
 	}

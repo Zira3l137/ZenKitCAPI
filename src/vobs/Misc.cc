@@ -13,13 +13,25 @@ ZKC_DELETER(ZkAnimate)
 ZkBool ZkAnimate_getStartOn(ZkAnimate const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->start_on;
+	return SLF->start_on;
 }
 
 void ZkAnimate_setStartOn(ZkAnimate* slf, ZkBool startOn) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->start_on = startOn;
+	SLF->start_on = startOn;
+}
+
+ZkBool ZkAnimate_getIsRunning(ZkAnimate const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_is_running;
+}
+
+void ZkAnimate_setIsRunning(ZkAnimate* slf, ZkBool isRunning) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_is_running = isRunning;
 }
 
 ZKC_VOB_LOADER(ZkItem)
@@ -29,13 +41,37 @@ ZKC_DELETER(ZkItem)
 ZkString ZkItem_getInstance(ZkItem const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->instance.c_str();
+	return SLF->instance.c_str();
 }
 
 void ZkItem_setInstance(ZkItem* slf, ZkString instance) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->instance = instance;
+	SLF->instance = instance;
+}
+
+int ZkItem_getAmount(ZkItem const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_amount;
+}
+
+void ZkItem_setAmount(ZkItem* slf, int amount) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_amount = amount;
+}
+
+int ZkItem_getFlags(ZkItem const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_flags;
+}
+
+void ZkItem_setFlags(ZkItem* slf, int flags) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_flags = flags;
 }
 
 ZKC_VOB_LOADER(ZkLensFlare)
@@ -45,13 +81,13 @@ ZKC_DELETER(ZkLensFlare)
 ZkString ZkLensFlare_getEffect(ZkLensFlare const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->fx.c_str();
+	return SLF->fx.c_str();
 }
 
 void ZkLensFlare_setEffect(ZkLensFlare* slf, ZkString effect) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->fx = effect;
+	SLF->fx = effect;
 }
 
 ZKC_VOB_LOADER(ZkParticleEffectController)
@@ -61,37 +97,37 @@ ZKC_DELETER(ZkParticleEffectController)
 ZkString ZkParticleEffectController_getEffectName(ZkParticleEffectController const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->pfx_name.c_str();
+	return SLF->pfx_name.c_str();
 }
 
 void ZkParticleEffectController_setEffectName(ZkParticleEffectController* slf, ZkString effectName) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->pfx_name = effectName;
+	SLF->pfx_name = effectName;
 }
 
 ZkBool ZkParticleEffectController_getKillWhenDone(ZkParticleEffectController const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->kill_when_done;
+	return SLF->kill_when_done;
 }
 
 void ZkParticleEffectController_setKillWhenDone(ZkParticleEffectController* slf, ZkBool killWhenDone) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->kill_when_done = killWhenDone;
+	SLF->kill_when_done = killWhenDone;
 }
 
 ZkBool ZkParticleEffectController_getInitiallyRunning(ZkParticleEffectController const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->initially_running;
+	return SLF->initially_running;
 }
 
 void ZkParticleEffectController_setInitiallyRunning(ZkParticleEffectController* slf, ZkBool initiallyRunning) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->initially_running = initiallyRunning;
+	SLF->initially_running = initiallyRunning;
 }
 
 ZKC_VOB_LOADER(ZkMessageFilter)
@@ -101,37 +137,37 @@ ZKC_DELETER(ZkMessageFilter)
 ZkString ZkMessageFilter_getTarget(ZkMessageFilter const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->target.c_str();
+	return SLF->target.c_str();
 }
 
 void ZkMessageFilter_setTarget(ZkMessageFilter* slf, ZkString target) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->target = target;
+	SLF->target = target;
 }
 
 ZkMessageFilterAction ZkMessageFilter_getOnTrigger(ZkMessageFilter const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return static_cast<ZkMessageFilterAction>(slf->on_trigger);
+	return static_cast<ZkMessageFilterAction>(SLF->on_trigger);
 }
 
 void ZkMessageFilter_setOnTrigger(ZkMessageFilter* slf, ZkMessageFilterAction onTrigger) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->on_trigger = static_cast<zenkit::MessageFilterAction>(onTrigger);
+	SLF->on_trigger = static_cast<zenkit::MessageFilterAction>(onTrigger);
 }
 
 ZkMessageFilterAction ZkMessageFilter_getOnUntrigger(ZkMessageFilter const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return static_cast<ZkMessageFilterAction>(slf->on_untrigger);
+	return static_cast<ZkMessageFilterAction>(SLF->on_untrigger);
 }
 
 void ZkMessageFilter_setOnUntrigger(ZkMessageFilter* slf, ZkMessageFilterAction onUntrigger) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->on_untrigger = static_cast<zenkit::MessageFilterAction>(onUntrigger);
+	SLF->on_untrigger = static_cast<zenkit::MessageFilterAction>(onUntrigger);
 }
 
 ZKC_VOB_LOADER(ZkCodeMaster)
@@ -141,81 +177,81 @@ ZKC_DELETER(ZkCodeMaster)
 ZkString ZkCodeMaster_getTarget(ZkCodeMaster const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->target.c_str();
+	return SLF->target.c_str();
 }
 
 void ZkCodeMaster_setTarget(ZkCodeMaster* slf, ZkString target) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->target = target;
+	SLF->target = target;
 }
 
 ZkBool ZkCodeMaster_getOrdered(ZkCodeMaster const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->ordered;
+	return SLF->ordered;
 }
 
 void ZkCodeMaster_setOrdered(ZkCodeMaster* slf, ZkBool ordered) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->ordered = ordered;
+	SLF->ordered = ordered;
 }
 
 ZkBool ZkCodeMaster_getFirstFalseIsFailure(ZkCodeMaster const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->first_false_is_failure;
+	return SLF->first_false_is_failure;
 }
 
 void ZkCodeMaster_setFirstFalseIsFailure(ZkCodeMaster* slf, ZkBool firstFalseIsFailure) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->first_false_is_failure = firstFalseIsFailure;
+	SLF->first_false_is_failure = firstFalseIsFailure;
 }
 
 ZkString ZkCodeMaster_getFailureTarget(ZkCodeMaster const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->failure_target.c_str();
+	return SLF->failure_target.c_str();
 }
 
 void ZkCodeMaster_setFailureTarget(ZkCodeMaster* slf, ZkString failureTarget) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->failure_target = failureTarget;
+	SLF->failure_target = failureTarget;
 }
 
 ZkBool ZkCodeMaster_getUntriggeredCancels(ZkCodeMaster const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->untriggered_cancels;
+	return SLF->untriggered_cancels;
 }
 
 void ZkCodeMaster_setUntriggeredCancels(ZkCodeMaster* slf, ZkBool untriggeredCancels) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->untriggered_cancels = untriggeredCancels;
+	SLF->untriggered_cancels = untriggeredCancels;
 }
 
 ZkSize ZkCodeMaster_getSlaveCount(ZkCodeMaster const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->slaves.size();
+	return SLF->slaves.size();
 }
 
 ZkString ZkCodeMaster_getSlave(ZkCodeMaster const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	ZKC_CHECK_LEN(slf->slaves, i);
-	return slf->slaves[i].c_str();
+	ZKC_CHECK_LEN(SLF->slaves, i);
+	return SLF->slaves[i].c_str();
 }
 
 void ZkCodeMaster_enumerateSlaves(ZkCodeMaster const* slf, ZkStringEnumerator cb, void* ctx) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, cb);
 
-	for (auto& it : slf->slaves) {
+	for (auto& it : SLF->slaves) {
 		if (cb(ctx, it.c_str())) break;
 	}
 }
@@ -223,23 +259,23 @@ void ZkCodeMaster_enumerateSlaves(ZkCodeMaster const* slf, ZkStringEnumerator cb
 void ZkCodeMaster_addSlave(ZkCodeMaster* slf, ZkString slave) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, slave);
-	slf->slaves.push_back(slave);
+	SLF->slaves.push_back(slave);
 }
 
 void ZkCodeMaster_removeSlave(ZkCodeMaster* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CHECK_LENV(slf->slaves, i);
-	slf->slaves.erase(slf->slaves.begin() + static_cast<long>(i));
+	ZKC_CHECK_LENV(SLF->slaves, i);
+	SLF->slaves.erase(SLF->slaves.begin() + static_cast<long>(i));
 }
 
 void ZkCodeMaster_removeSlaves(ZkCodeMaster* slf, ZkStringEnumerator pred, void* ctx) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, pred);
 
-	for (auto it = slf->slaves.begin(); it != slf->slaves.end();) {
+	for (auto it = SLF->slaves.begin(); it != SLF->slaves.end();) {
 		if (pred(ctx, it->c_str())) {
-			it = slf->slaves.erase(it);
+			it = SLF->slaves.erase(it);
 		} else {
 			++it;
 		}
@@ -253,37 +289,37 @@ ZKC_DELETER(ZkMoverController)
 ZkString ZkMoverController_getTarget(ZkMoverController const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->target.c_str();
+	return SLF->target.c_str();
 }
 
 void ZkMoverController_setTarget(ZkMoverController* slf, ZkString target) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->target = target;
+	SLF->target = target;
 }
 
 ZkMoverMessageType ZkMoverController_getMessage(ZkMoverController const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return static_cast<ZkMoverMessageType>(slf->message);
+	return static_cast<ZkMoverMessageType>(SLF->message);
 }
 
 void ZkMoverController_setMessage(ZkMoverController* slf, ZkMoverMessageType message) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->message = static_cast<zenkit::MoverMessageType>(message);
+	SLF->message = static_cast<zenkit::MoverMessageType>(message);
 }
 
 int32_t ZkMoverController_getKey(ZkMoverController const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->key;
+	return SLF->key;
 }
 
 void ZkMoverController_setKey(ZkMoverController* slf, int32_t key) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->key = key;
+	SLF->key = key;
 }
 
 ZKC_VOB_LOADER(ZkTouchDamage)
@@ -293,145 +329,145 @@ ZKC_DELETER(ZkTouchDamage)
 float ZkTouchDamage_getDamage(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->damage;
+	return SLF->damage;
 }
 
 void ZkTouchDamage_setDamage(ZkTouchDamage* slf, float damage) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->damage = damage;
+	SLF->damage = damage;
 }
 
 ZkBool ZkTouchDamage_getIsBarrier(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->barrier;
+	return SLF->barrier;
 }
 
 void ZkTouchDamage_setIsBarrier(ZkTouchDamage* slf, ZkBool isBarrier) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->barrier = isBarrier;
+	SLF->barrier = isBarrier;
 }
 
 ZkBool ZkTouchDamage_getIsBlunt(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->blunt;
+	return SLF->blunt;
 }
 
 void ZkTouchDamage_setIsBlunt(ZkTouchDamage* slf, ZkBool isBlunt) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->blunt = isBlunt;
+	SLF->blunt = isBlunt;
 }
 
 ZkBool ZkTouchDamage_getIsEdge(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->edge;
+	return SLF->edge;
 }
 
 void ZkTouchDamage_setIsEdge(ZkTouchDamage* slf, ZkBool isEdge) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->edge = isEdge;
+	SLF->edge = isEdge;
 }
 
 ZkBool ZkTouchDamage_getIsFire(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->fire;
+	return SLF->fire;
 }
 
 void ZkTouchDamage_setIsFire(ZkTouchDamage* slf, ZkBool isFire) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->fire = isFire;
+	SLF->fire = isFire;
 }
 
 ZkBool ZkTouchDamage_getIsFly(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->fly;
+	return SLF->fly;
 }
 
 void ZkTouchDamage_setIsFly(ZkTouchDamage* slf, ZkBool isFly) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->fly = isFly;
+	SLF->fly = isFly;
 }
 
 ZkBool ZkTouchDamage_getIsMagic(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->magic;
+	return SLF->magic;
 }
 
 void ZkTouchDamage_setIsMagic(ZkTouchDamage* slf, ZkBool isMagic) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->magic = isMagic;
+	SLF->magic = isMagic;
 }
 
 ZkBool ZkTouchDamage_getIsPoint(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->point;
+	return SLF->point;
 }
 
 void ZkTouchDamage_setIsPoint(ZkTouchDamage* slf, ZkBool isPoint) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->point = isPoint;
+	SLF->point = isPoint;
 }
 
 ZkBool ZkTouchDamage_getIsFall(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->fall;
+	return SLF->fall;
 }
 
 void ZkTouchDamage_setIsFall(ZkTouchDamage* slf, ZkBool isFall) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->fall = isFall;
+	SLF->fall = isFall;
 }
 
 float ZkTouchDamage_getRepeatDelaySeconds(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->repeat_delay_sec;
+	return SLF->repeat_delay_sec;
 }
 
 void ZkTouchDamage_setRepeatDelaySeconds(ZkTouchDamage* slf, float repeatDelaySeconds) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->repeat_delay_sec = repeatDelaySeconds;
+	SLF->repeat_delay_sec = repeatDelaySeconds;
 }
 
 float ZkTouchDamage_getVolumeScale(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->volume_scale;
+	return SLF->volume_scale;
 }
 
 void ZkTouchDamage_setVolumeScale(ZkTouchDamage* slf, float volumeScale) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->volume_scale = volumeScale;
+	SLF->volume_scale = volumeScale;
 }
 
 ZkTouchCollisionType ZkTouchDamage_getCollisionType(ZkTouchDamage const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return static_cast<ZkTouchCollisionType>(slf->collision);
+	return static_cast<ZkTouchCollisionType>(SLF->collision);
 }
 
 void ZkTouchDamage_setCollisionType(ZkTouchDamage* slf, ZkTouchCollisionType collisionType) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->collision = static_cast<zenkit::TouchCollisionType>(collisionType);
+	SLF->collision = static_cast<zenkit::TouchCollisionType>(collisionType);
 }
 
 ZKC_VOB_LOADER(ZkEarthquake)
@@ -441,35 +477,35 @@ ZKC_DELETER(ZkEarthquake)
 float ZkEarthquake_getRadius(ZkEarthquake const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->radius;
+	return SLF->radius;
 }
 
 void ZkEarthquake_setRadius(ZkEarthquake* slf, float radius) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->radius = radius;
+	SLF->radius = radius;
 }
 
 float ZkEarthquake_getDuration(ZkEarthquake const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->duration;
+	return SLF->duration;
 }
 
 void ZkEarthquake_setDuration(ZkEarthquake* slf, float duration) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->duration = duration;
+	SLF->duration = duration;
 }
 
 ZkVec3f ZkEarthquake_getAmplitude(ZkEarthquake const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return slf->amplitude;
+	return SLF->amplitude;
 }
 
 void ZkEarthquake_setAmplitude(ZkEarthquake* slf, ZkVec3f amplitude) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	slf->amplitude = amplitude;
+	SLF->amplitude = amplitude;
 }

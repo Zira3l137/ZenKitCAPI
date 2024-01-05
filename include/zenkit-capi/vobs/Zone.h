@@ -1,17 +1,16 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
-#include "../Boxes.h"
 #include "../Library.h"
-#include "../Matrix.h"
+#include "../Object.h"
 #include "../Stream.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Zone.hh>
-using ZkZoneMusic = zenkit::VZoneMusic;
-using ZkZoneFarPlane = zenkit::VZoneFarPlane;
-using ZkZoneFog = zenkit::VZoneFog;
+using ZkZoneMusic = ZkSharedHandle<zenkit::VZoneMusic>;
+using ZkZoneFarPlane = ZkSharedHandle<zenkit::VZoneFarPlane>;
+using ZkZoneFog = ZkSharedHandle<zenkit::VZoneFog>;
 #else
 typedef struct ZkInternal_ZoneMusic ZkZoneMusic;
 typedef struct ZkInternal_ZoneFarPlane ZkZoneFarPlane;

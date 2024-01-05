@@ -2,12 +2,13 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include "../Library.h"
+#include "../Object.h"
 #include "../Stream.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Sound.hh>
-using ZkSound = zenkit::VSound;
-using ZkSoundDaytime = zenkit::VSoundDaytime;
+using ZkSound = ZkSharedHandle<zenkit::VSound>;
+using ZkSoundDaytime = ZkSharedHandle<zenkit::VSoundDaytime>;
 #else
 typedef struct ZkInternal_Sound ZkSound;
 typedef struct ZkInternal_SoundDaytime ZkSoundDaytime;

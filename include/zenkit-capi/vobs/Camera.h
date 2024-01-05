@@ -5,12 +5,13 @@
 #include "../Library.h"
 #include "../Material.h"
 #include "../Matrix.h"
+#include "../Object.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Camera.hh>
-using ZkCutsceneCamera = zenkit::VCutsceneCamera;
-using ZkCameraTrajectoryFrame = zenkit::VCameraTrajectoryFrame;
+using ZkCutsceneCamera = ZkSharedHandle<zenkit::VCutsceneCamera>;
+using ZkCameraTrajectoryFrame = ZkSharedHandle<zenkit::VCameraTrajectoryFrame>;
 #else
 typedef struct ZkInternal_CutsceneCamera ZkCutsceneCamera;
 typedef struct ZkInternal_CameraTrajectoryFrame ZkCameraTrajectoryFrame;
@@ -80,12 +81,20 @@ ZKC_API float ZkCutsceneCamera_getAutoUntriggerLastDelay(ZkCutsceneCamera const*
 ZKC_API void ZkCutsceneCamera_setAutoUntriggerLastDelay(ZkCutsceneCamera* slf, float autoUntriggerLastDelay);
 ZKC_API int32_t ZkCutsceneCamera_getPositionCount(ZkCutsceneCamera const* slf);
 ZKC_API int32_t ZkCutsceneCamera_getTargetCount(ZkCutsceneCamera const* slf);
-ZKC_API void ZkCutsceneCamera_setTargetCount(ZkCutsceneCamera* slf, int32_t targetCount);
+ZKC_API ZkBool ZkCutsceneCamera_getIsPaused(ZkCutsceneCamera const* slf);
+ZKC_API void ZkCutsceneCamera_setIsPaused(ZkCutsceneCamera* slf, ZkBool isPaused);
+ZKC_API ZkBool ZkCutsceneCamera_getIsStarted(ZkCutsceneCamera const* slf);
+ZKC_API void ZkCutsceneCamera_setIsStarted(ZkCutsceneCamera* slf, ZkBool isStarted);
+ZKC_API ZkBool ZkCutsceneCamera_getGotoTimeMode(ZkCutsceneCamera const* slf);
+ZKC_API void ZkCutsceneCamera_setGotoTimeMode(ZkCutsceneCamera* slf, ZkBool gotoTimeMode);
+ZKC_API float ZkCutsceneCamera_getTime(ZkCutsceneCamera const* slf);
+ZKC_API void ZkCutsceneCamera_setTime(ZkCutsceneCamera* slf, float time);
 
 ZKC_API ZkSize ZkCutsceneCamera_getFrameCount(ZkCutsceneCamera const* slf);
 ZKC_API ZkCameraTrajectoryFrame* ZkCutsceneCamera_getFrame(ZkCutsceneCamera const* slf, ZkSize i);
 ZKC_API void
 ZkCutsceneCamera_enumerateFrames(ZkCutsceneCamera const* slf, ZkCameraTrajectoryFrameEnumerator cb, void* ctx);
+ZKC_API void ZkCameraTrajectoryFrame_del(ZkCameraTrajectoryFrame const* slf);
 
 ZKC_API float ZkCameraTrajectoryFrame_getTime(ZkCameraTrajectoryFrame const* slf);
 ZKC_API void ZkCameraTrajectoryFrame_setTime(ZkCameraTrajectoryFrame* slf, float time);

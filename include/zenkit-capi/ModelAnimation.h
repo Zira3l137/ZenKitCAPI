@@ -25,7 +25,7 @@ typedef struct ZkInternal_AnimationSample {
 #endif
 } ZkAnimationSample;
 
-typedef ZkBool (*ZkAnimationSampleEnumerator)(void* ctx, ZkAnimationSample* sample);
+typedef ZkBool (*ZkAnimationSampleEnumerator)(void* ctx, ZkAnimationSample sample);
 
 ZKC_API ZkModelAnimation* ZkModelAnimation_load(ZkRead* buf);
 ZKC_API ZkModelAnimation* ZkModelAnimation_loadPath(ZkString path);

@@ -3,19 +3,20 @@
 #pragma once
 #include "../Library.h"
 #include "../Material.h"
+#include "../Object.h"
 #include "../Vector.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Misc.hh>
-using ZkAnimate = zenkit::VAnimate;
-using ZkItem = zenkit::VItem;
-using ZkLensFlare = zenkit::VLensFlare;
-using ZkParticleEffectController = zenkit::VParticleEffectController;
-using ZkMessageFilter = zenkit::VMessageFilter;
-using ZkCodeMaster = zenkit::VCodeMaster;
-using ZkMoverController = zenkit::VMoverController;
-using ZkTouchDamage = zenkit::VTouchDamage;
-using ZkEarthquake = zenkit::VEarthquake;
+using ZkAnimate = ZkSharedHandle<zenkit::VAnimate>;
+using ZkItem = ZkSharedHandle<zenkit::VItem>;
+using ZkLensFlare = ZkSharedHandle<zenkit::VLensFlare>;
+using ZkParticleEffectController = ZkSharedHandle<zenkit::VParticleEffectController>;
+using ZkMessageFilter = ZkSharedHandle<zenkit::VMessageFilter>;
+using ZkCodeMaster = ZkSharedHandle<zenkit::VCodeMaster>;
+using ZkMoverController = ZkSharedHandle<zenkit::VMoverController>;
+using ZkTouchDamage = ZkSharedHandle<zenkit::VTouchDamage>;
+using ZkEarthquake = ZkSharedHandle<zenkit::VEarthquake>;
 #else
 typedef struct ZkInternal_Animate ZkAnimate;
 typedef struct ZkInternal_Item ZkItem;
@@ -55,12 +56,18 @@ ZKC_API ZkAnimate* ZkAnimate_loadPath(ZkString path, ZkGameVersion version);
 ZKC_API void ZkAnimate_del(ZkAnimate* slf);
 ZKC_API ZkBool ZkAnimate_getStartOn(ZkAnimate const* slf);
 ZKC_API void ZkAnimate_setStartOn(ZkAnimate* slf, ZkBool startOn);
+ZKC_API ZkBool ZkAnimate_getIsRunning(ZkAnimate const* slf);
+ZKC_API void ZkAnimate_setIsRunning(ZkAnimate* slf, ZkBool isRunning);
 
 ZKC_API ZkItem* ZkItem_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkItem* ZkItem_loadPath(ZkString path, ZkGameVersion version);
 ZKC_API void ZkItem_del(ZkItem* slf);
 ZKC_API ZkString ZkItem_getInstance(ZkItem const* slf);
 ZKC_API void ZkItem_setInstance(ZkItem* slf, ZkString instance);
+ZKC_API int ZkItem_getAmount(ZkItem const* slf);
+ZKC_API void ZkItem_setAmount(ZkItem* slf, int amount);
+ZKC_API int ZkItem_getFlags(ZkItem const* slf);
+ZKC_API void ZkItem_setFlags(ZkItem* slf, int flags);
 
 ZKC_API ZkLensFlare* ZkLensFlare_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkLensFlare* ZkLensFlare_loadPath(ZkString path, ZkGameVersion version);

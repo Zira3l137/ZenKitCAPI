@@ -3,18 +3,19 @@
 #pragma once
 #include "../Library.h"
 #include "../ModelAnimation.h"
+#include "../Object.h"
 #include "../Stream.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Trigger.hh>
-using ZkTrigger = zenkit::VTrigger;
-using ZkMover = zenkit::VMover;
-using ZkTriggerList = zenkit::VTriggerList;
+using ZkTrigger = ZkSharedHandle<zenkit::VTrigger>;
+using ZkMover = ZkSharedHandle<zenkit::VMover>;
+using ZkTriggerList = ZkSharedHandle<zenkit::VTriggerList>;
 using ZkTriggerListTarget = zenkit::VTriggerList::Target;
-using ZkTriggerScript = zenkit::VTriggerScript;
-using ZkTriggerChangeLevel = zenkit::VTriggerChangeLevel;
-using ZkTriggerWorldStart = zenkit::VTriggerWorldStart;
-using ZkTriggerUntouch = zenkit::VTriggerUntouch;
+using ZkTriggerScript = ZkSharedHandle<zenkit::VTriggerScript>;
+using ZkTriggerChangeLevel = ZkSharedHandle<zenkit::VTriggerChangeLevel>;
+using ZkTriggerWorldStart = ZkSharedHandle<zenkit::VTriggerWorldStart>;
+using ZkTriggerUntouch = ZkSharedHandle<zenkit::VTriggerUntouch>;
 #else
 typedef struct ZkInternal_Trigger ZkTrigger;
 typedef struct ZkInternal_Mover ZkMover;
