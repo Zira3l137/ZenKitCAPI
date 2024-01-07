@@ -3,5 +3,6 @@
 #include "zenkit-capi/Object.h"
 
 ZkObject* ZkObject_takeRef(ZkObject* slf) {
+	if (slf == nullptr || *slf == nullptr) return nullptr;
 	return new ZkObject(*slf, slf->get());
 }

@@ -241,7 +241,7 @@ ZkVisual* ZkVirtualObject_getVisual(ZkVirtualObject const* slf) {
 		return nullptr;
 	}
 
-	return new ZkVisual(SLF->visual);
+	return &SLF->visual;
 }
 
 ZkVisual* ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisualType visual) {
