@@ -236,6 +236,11 @@ void ZkVirtualObject_setName(ZkVirtualObject* slf, ZkString name) {
 ZkVisual* ZkVirtualObject_getVisual(ZkVirtualObject const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
+
+	if (!SLF->visual) {
+		return nullptr;
+	}
+
 	return new ZkVisual(SLF->visual);
 }
 
