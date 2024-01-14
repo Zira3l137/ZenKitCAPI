@@ -51,6 +51,10 @@ ZKC_API float ZkSound_getRadius(ZkSound const* slf);
 ZKC_API void ZkSound_setRadius(ZkSound* slf, float radius);
 ZKC_API ZkString ZkSound_getSoundName(ZkSound const* slf);
 ZKC_API void ZkSound_setSoundName(ZkSound* slf, ZkString soundName);
+ZKC_API ZkBool ZkSound_getIsRunning(ZkSound const* slf);
+ZKC_API void ZkSound_setIsRunning(ZkSound* slf, ZkBool isRunning);
+ZKC_API ZkBool ZkSound_getIsAllowedToRun(ZkSound const* slf);
+ZKC_API void ZkSound_setIsAllowedToRun(ZkSound* slf, ZkBool isAllowedToRun);
 
 ZKC_API ZkSoundDaytime* ZkSoundDaytime_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkSoundDaytime* ZkSoundDaytime_loadPath(ZkString path, ZkGameVersion version);

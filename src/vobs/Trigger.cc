@@ -175,6 +175,54 @@ void ZkTrigger_setFireDelaySeconds(ZkTrigger* slf, float fireDelaySeconds) {
 	SLF->fire_delay_sec = fireDelaySeconds;
 }
 
+ZkBool ZkTrigger_getNextTimeTriggerable(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_next_time_triggerable;
+}
+
+ZkVirtualObject* ZkTrigger_getOtherVob(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_other_vob ? &SLF->s_other_vob : nullptr;
+}
+
+int ZkTrigger_getCountCanBeActivated(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_count_can_be_activated;
+}
+
+ZkBool ZkTrigger_getIsEnabled(ZkTrigger const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_is_enabled;
+}
+
+void ZkTrigger_setNextTimeTriggerable(ZkTrigger* slf, ZkBool nextTimeTriggerable) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_next_time_triggerable = nextTimeTriggerable;
+}
+
+void ZkTrigger_setOtherVob(ZkTrigger* slf, ZkVirtualObject* otherVob) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_other_vob = otherVob ? *otherVob : nullptr;
+}
+
+void ZkTrigger_setCountCanBeActivated(ZkTrigger* slf, int countCanBeActivated) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_count_can_be_activated = countCanBeActivated;
+}
+
+void ZkTrigger_setIsEnabled(ZkTrigger* slf, ZkBool isEnabled) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_is_enabled = isEnabled;
+}
+
 ZKC_VOB_LOADER(ZkMover)
 ZKC_VOB_PATH_LOADER(ZkMover)
 ZKC_DELETER(ZkMover)
@@ -405,6 +453,114 @@ void ZkMover_setSfxUseLocked(ZkMover* slf, ZkString sfxUseLocked) {
 	SLF->sfx_use_locked = sfxUseLocked;
 }
 
+ZkVec3f ZkMover_getActKeyPosDelta(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_act_key_pos_delta;
+}
+
+float ZkMover_getActKeyframeF(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_act_keyframe_f;
+}
+
+int ZkMover_getActKeyframe(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_act_keyframe;
+}
+
+int ZkMover_getNextKeyframe(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_next_keyframe;
+}
+
+float ZkMover_getMoveSpeedUnit(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_move_speed_unit;
+}
+
+float ZkMover_getAdvanceDir(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_advance_dir;
+}
+
+uint32_t ZkMover_getMoverState(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_mover_state;
+}
+
+int ZkMover_getTriggerEventCount(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_trigger_event_count;
+}
+
+float ZkMover_getStayOpenTimeDest(ZkMover const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_stay_open_time_dest;
+}
+
+void ZkMover_setActKeyPosDelta(ZkMover* slf, ZkVec3f actKeyPosDelta) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_act_key_pos_delta = actKeyPosDelta;
+}
+
+void ZkMover_setActKeyframeF(ZkMover* slf, float actKeyframeF) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_act_keyframe_f = actKeyframeF;
+}
+
+void ZkMover_setActKeyframe(ZkMover* slf, int actKeyframe) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_act_keyframe = actKeyframe;
+}
+
+void ZkMover_setNextKeyframe(ZkMover* slf, int nextKeyframe) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_next_keyframe = nextKeyframe;
+}
+
+void ZkMover_setMoveSpeedUnit(ZkMover* slf, float moveSpeedUnit) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_move_speed_unit = moveSpeedUnit;
+}
+
+void ZkMover_setAdvanceDir(ZkMover* slf, float advanceDir) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_advance_dir = advanceDir;
+}
+
+void ZkMover_setMoverState(ZkMover* slf, uint32_t moverState) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_mover_state = moverState;
+}
+
+void ZkMover_setTriggerEventCount(ZkMover* slf, int triggerEventCount) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_trigger_event_count = triggerEventCount;
+}
+
+void ZkMover_setStayOpenTimeDest(ZkMover* slf, float stayOpenTimeDest) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_stay_open_time_dest = stayOpenTimeDest;
+}
+
 ZKC_VOB_LOADER(ZkTriggerList)
 ZKC_VOB_PATH_LOADER(ZkTriggerList)
 ZKC_DELETER(ZkTriggerList)
@@ -454,6 +610,30 @@ void ZkTriggerList_removeTarget(ZkTriggerList* slf, ZkSize i) {
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(SLF->targets, i);
 	SLF->targets.erase(SLF->targets.begin() + static_cast<long>(i));
+}
+
+ZkByte ZkTriggerList_getActTarget(ZkTriggerList const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_act_target;
+}
+
+ZkBool ZkTriggerList_getSendOnTrigger(ZkTriggerList const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_send_on_trigger;
+}
+
+void ZkTriggerList_setActTarget(ZkTriggerList* slf, ZkByte actTarget) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_act_target = actTarget;
+}
+
+void ZkTriggerList_setSendOnTrigger(ZkTriggerList* slf, ZkBool sendOnTrigger) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_send_on_trigger = sendOnTrigger;
 }
 
 void ZkTriggerList_removeTargets(ZkTriggerList* slf, ZkTriggerListTargetEnumerator pred, void* ctx) {
@@ -562,6 +742,18 @@ void ZkTriggerWorldStart_setFireOnce(ZkTriggerWorldStart* slf, ZkBool fireOnce) 
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	SLF->fire_once = fireOnce;
+}
+
+ZkBool ZkTriggerWorldStart_getHasFired(ZkTriggerWorldStart const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_has_fired;
+}
+
+void ZkTriggerWorldStart_setHasFired(ZkTriggerWorldStart* slf, ZkBool hasFired) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_has_fired = hasFired;
 }
 
 ZKC_VOB_LOADER(ZkTriggerUntouch)

@@ -296,6 +296,32 @@ void ZkContainer_setContents(ZkContainer* slf, ZkString contents) {
 	SLF->contents = contents;
 }
 
+ZkSize ZkContainer_getItemCount(ZkContainer const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_items.size();
+}
+
+ZkItem* ZkContainer_getItem(ZkContainer const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(SLF->s_items, i);
+	return &SLF->s_items[i];
+}
+
+void ZkContainer_addItem(ZkContainer const* slf, ZkItem* item) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, item);
+	SLF->s_items.push_back(*item);
+}
+
+void ZkContainer_removeItem(ZkContainer const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CHECK_LENV(SLF->s_items, i);
+	SLF->s_items.erase(SLF->s_items.begin() + i);
+}
+
 ZKC_VOB_LOADER(ZkDoor)
 ZKC_VOB_PATH_LOADER(ZkDoor)
 ZKC_DELETER(ZkDoor)

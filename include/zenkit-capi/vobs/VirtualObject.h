@@ -13,10 +13,22 @@
 using ZkVirtualObject = ZkSharedHandle<zenkit::VirtualObject>;
 using ZkVisual = ZkSharedHandle<zenkit::Visual>;
 using ZkVisualDecal = ZkSharedHandle<zenkit::VisualDecal>;
+
+using ZkAi = ZkSharedHandle<zenkit::Ai>;
+using ZkAiHuman = ZkSharedHandle<zenkit::AiHuman>;
+using ZkAiMove = ZkSharedHandle<zenkit::AiMove>;
+using ZkEventManager = ZkSharedHandle<zenkit::EventManager>;
+
+using ZkNpc = ZkSharedHandle<zenkit::VNpc>;
 #else
 typedef struct ZkInternal_VirtualObject ZkVirtualObject;
 typedef struct ZkInternal_Visual ZkVisual;
 typedef struct ZkInternal_VisualDecal ZkVisualDecal;
+typedef struct ZkInternal_Ai ZkAi;
+typedef struct ZkInternal_AiHuman ZkAiHuman;
+typedef struct ZkInternal_AiMove ZkAiMove;
+typedef struct ZkInternal_EventManager ZkEventManager;
+typedef struct ZkInternal_Npc ZkNpc;
 #endif
 
 typedef ZkBool (*ZkVirtualObjectEnumerator)(void* ctx, ZkVirtualObject const* vob);
@@ -98,6 +110,12 @@ typedef enum {
 	ZkVisualType_UNKNOWN = 7,
 } ZkVisualType;
 
+typedef enum {
+	ZkAiType_HUMAN = 0,
+	ZkAiType_MOVE = 1,
+} ZkAiType;
+
+ZKC_API ZkVirtualObject* ZkVirtualObject_new(ZkVobType type);
 ZKC_API ZkVirtualObject* ZkVirtualObject_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkVirtualObject* ZkVirtualObject_loadPath(ZkString path, ZkGameVersion version);
 ZKC_API void ZkVirtualObject_del(ZkVirtualObject* slf);
@@ -139,15 +157,24 @@ ZKC_API void ZkVirtualObject_setPresetName(ZkVirtualObject* slf, ZkString preset
 ZKC_API ZkString ZkVirtualObject_getName(ZkVirtualObject const* slf);
 ZKC_API void ZkVirtualObject_setName(ZkVirtualObject* slf, ZkString name);
 ZKC_API ZkVisual* ZkVirtualObject_getVisual(ZkVirtualObject const* slf);
-ZKC_API ZkVisual* ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisualType visual);
+ZKC_API void ZkVirtualObject_setVisual(ZkVirtualObject* slf, ZkVisual* visual);
+ZKC_API ZkByte ZkVirtualObject_getSleepMode(ZkVirtualObject const* slf);
+ZKC_API void ZkVirtualObject_setSleepMode(ZkVirtualObject* slf, ZkByte sleepMode);
+ZKC_API float ZkVirtualObject_getNextOnTimer(ZkVirtualObject const* slf);
+ZKC_API void ZkVirtualObject_setNextOnTimer(ZkVirtualObject* slf, float nextOnTimer);
+ZKC_API ZkAi* ZkVirtualObject_getAi(ZkVirtualObject const* slf);
+ZKC_API void ZkVirtualObject_setAi(ZkVirtualObject* slf, ZkAi* ai);
+ZKC_API ZkEventManager* ZkVirtualObject_getEventManager(ZkVirtualObject const* slf);
+ZKC_API void ZkVirtualObject_setEventManager(ZkVirtualObject* slf, ZkEventManager* em);
 
 ZKC_API ZkSize ZkVirtualObject_getChildCount(ZkVirtualObject const* slf);
 ZKC_API ZkVirtualObject* ZkVirtualObject_getChild(ZkVirtualObject const* slf, ZkSize i);
 ZKC_API void ZkVirtualObject_enumerateChildren(ZkVirtualObject const* slf, ZkVirtualObjectEnumerator cb, void* ctx);
-ZKC_API ZkVirtualObject* ZkVirtualObject_addChild(ZkVirtualObject* slf, ZkVobType type);
+ZKC_API void ZkVirtualObject_addChild(ZkVirtualObject* slf, ZkVirtualObject* object);
 ZKC_API void ZkVirtualObject_removeChild(ZkVirtualObject* slf, ZkSize i);
 ZKC_API void ZkVirtualObject_removeChildren(ZkVirtualObject* slf, ZkVirtualObjectEnumerator pred, void* ctx);
 
+ZKC_API ZkVisual* ZkVisual_new(ZkVisualType type);
 ZKC_API void ZkVisual_del(ZkVisual* slf);
 ZKC_API ZkString ZkVisual_getName(ZkVisual const* slf);
 ZKC_API void ZkVisual_setName(ZkVisual* slf, ZkString name);
@@ -169,3 +196,51 @@ ZKC_API uint8_t ZkVisualDecal_getAlphaWeight(ZkVisualDecal const* slf);
 ZKC_API void ZkVisualDecal_setAlphaWeight(ZkVisualDecal* slf, uint8_t alphaWeight);
 ZKC_API ZkBool ZkVisualDecal_getIgnoreDaylight(ZkVisualDecal const* slf);
 ZKC_API void ZkVisualDecal_setIgnoreDaylight(ZkVisualDecal* slf, ZkBool ignoreDaylight);
+
+ZKC_API ZkAi* ZkAi_new(ZkAiType type);
+ZKC_API void ZkAi_del(ZkAi* slf);
+ZKC_API ZkAiType ZkAi_getType(ZkAi const* slf);
+
+ZKC_API int ZkAiHuman_getWaterLevel(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getFloorY(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getWaterY(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getCeilY(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getFeetY(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getHeadY(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getFallDistY(ZkAiHuman const* slf);
+ZKC_API float ZkAiHuman_getFallStartY(ZkAiHuman const* slf);
+ZKC_API ZkNpc* ZkAiHuman_getNpc(ZkAiHuman const* slf);
+ZKC_API int ZkAiHuman_getWalkMode(ZkAiHuman const* slf);
+ZKC_API int ZkAiHuman_getWeaponMode(ZkAiHuman const* slf);
+ZKC_API int ZkAiHuman_getWmodeAst(ZkAiHuman const* slf);
+ZKC_API int ZkAiHuman_getWmodeSelect(ZkAiHuman const* slf);
+ZKC_API ZkBool ZkAiHuman_getChangeWeapon(ZkAiHuman const* slf);
+ZKC_API int ZkAiHuman_getActionMode(ZkAiHuman const* slf);
+
+ZKC_API void ZkAiHuman_setWaterLevel(ZkAiHuman* slf, int water_level);
+ZKC_API void ZkAiHuman_setFloorY(ZkAiHuman* slf, float floor_y);
+ZKC_API void ZkAiHuman_setWaterY(ZkAiHuman* slf, float water_y);
+ZKC_API void ZkAiHuman_setCeilY(ZkAiHuman* slf, float ceil_y);
+ZKC_API void ZkAiHuman_setFeetY(ZkAiHuman* slf, float feet_y);
+ZKC_API void ZkAiHuman_setHeadY(ZkAiHuman* slf, float head_y);
+ZKC_API void ZkAiHuman_setFallDistY(ZkAiHuman* slf, float fall_dist_y);
+ZKC_API void ZkAiHuman_setFallStartY(ZkAiHuman* slf, float fall_start_y);
+ZKC_API void ZkAiHuman_setNpc(ZkAiHuman* slf, ZkNpc* npc);
+ZKC_API void ZkAiHuman_setWalkMode(ZkAiHuman* slf, int walk_mode);
+ZKC_API void ZkAiHuman_setWeaponMode(ZkAiHuman* slf, int weapon_mode);
+ZKC_API void ZkAiHuman_setWmodeAst(ZkAiHuman* slf, int wmode_ast);
+ZKC_API void ZkAiHuman_setWmodeSelect(ZkAiHuman* slf, int wmode_select);
+ZKC_API void ZkAiHuman_setChangeWeapon(ZkAiHuman* slf, ZkBool change_weapon);
+ZKC_API void ZkAiHuman_setActionMode(ZkAiHuman* slf, int action_mode);
+
+ZKC_API ZkVirtualObject* ZkAiMove_getVob(ZkAiMove const* slf);
+ZKC_API void ZkAiMove_setVob(ZkAiMove* slf, ZkVirtualObject* vob);
+ZKC_API ZkNpc* ZkAiMove_getOwner(ZkAiMove const* slf);
+ZKC_API void ZkAiMove_setOwner(ZkAiMove* slf, ZkNpc* owner);
+
+ZKC_API ZkEventManager* ZkEventManager_new(void);
+ZKC_API void ZkEventManager_del(ZkEventManager* slf);
+ZKC_API ZkBool ZkEventManager_getCleared(ZkEventManager const* slf);
+ZKC_API void ZkEventManager_setCleared(ZkEventManager* slf, ZkBool cleared);
+ZKC_API ZkBool ZkEventManager_getActive(ZkEventManager const* slf);
+ZKC_API void ZkEventManager_setActive(ZkEventManager* slf, ZkBool active);

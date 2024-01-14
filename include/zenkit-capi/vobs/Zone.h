@@ -33,6 +33,14 @@ ZKC_API void ZkZoneMusic_setVolume(ZkZoneMusic* slf, float volume);
 ZKC_API ZkBool ZkZoneMusic_getIsLoop(ZkZoneMusic const* slf);
 ZKC_API void ZkZoneMusic_setIsLoop(ZkZoneMusic* slf, ZkBool isLoop);
 
+ZKC_API ZkBool ZkZoneMusic_getLocalEnabled(ZkZoneMusic const* slf);
+ZKC_API ZkBool ZkZoneMusic_getDayEntranceDone(ZkZoneMusic const* slf);
+ZKC_API ZkBool ZkZoneMusic_getNightEntranceDone(ZkZoneMusic const* slf);
+
+ZKC_API void ZkZoneMusic_setLocalEnabled(ZkZoneMusic* slf, ZkBool localEnabled);
+ZKC_API void ZkZoneMusic_setDayEntranceDone(ZkZoneMusic* slf, ZkBool dayEntraceDone);
+ZKC_API void ZkZoneMusic_setNightEntranceDone(ZkZoneMusic* slf, ZkBool nightEntranceDone);
+
 ZKC_API ZkZoneFarPlane* ZkZoneFarPlane_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkZoneFarPlane* ZkZoneFarPlane_loadPath(ZkString path, ZkGameVersion version);
 ZKC_API void ZkZoneFarPlane_del(ZkZoneFarPlane* slf);

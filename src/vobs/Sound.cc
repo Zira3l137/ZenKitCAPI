@@ -140,6 +140,30 @@ void ZkSound_setSoundName(ZkSound* slf, ZkString soundName) {
 	SLF->sound_name = soundName;
 }
 
+ZkBool ZkSound_getIsRunning(ZkSound const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_is_running;
+}
+
+void ZkSound_setIsRunning(ZkSound* slf, ZkBool isRunning) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_is_running = isRunning;
+}
+
+ZkBool ZkSound_getIsAllowedToRun(ZkSound const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_is_allowed_to_run;
+}
+
+void ZkSound_setIsAllowedToRun(ZkSound* slf, ZkBool isAllowedToRun) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_is_allowed_to_run = isAllowedToRun;
+}
+
 ZKC_VOB_LOADER(ZkSoundDaytime);
 ZKC_VOB_PATH_LOADER(ZkSoundDaytime);
 ZKC_DELETER(ZkSoundDaytime);

@@ -97,9 +97,8 @@ ZKC_API void ZkContainer_setContents(ZkContainer* slf, ZkString contents);
 
 ZKC_API ZkSize ZkContainer_getItemCount(ZkContainer const* slf);
 ZKC_API ZkItem* ZkContainer_getItem(ZkContainer const* slf, ZkSize i);
-ZKC_API void ZkContainer_addItem(ZkContainer const* slf, ZkItem*);
-ZKC_API ZkItem* ZkContainer_addNewItem(ZkContainer const* slf);
-ZKC_API void ZkContainer_removeItem(ZkContainer const* slf);
+ZKC_API void ZkContainer_addItem(ZkContainer const* slf, ZkItem* item);
+ZKC_API void ZkContainer_removeItem(ZkContainer const* slf, ZkSize i);
 
 ZKC_API ZkDoor* ZkDoor_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkDoor* ZkDoor_loadPath(ZkString path, ZkGameVersion version);

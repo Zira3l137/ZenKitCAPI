@@ -80,6 +80,42 @@ void ZkZoneMusic_setIsLoop(ZkZoneMusic* slf, ZkBool isLoop) {
 	SLF->loop = isLoop;
 }
 
+ZkBool ZkZoneMusic_getLocalEnabled(ZkZoneMusic const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_local_enabled;
+}
+
+ZkBool ZkZoneMusic_getDayEntranceDone(ZkZoneMusic const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_day_entrance_done;
+}
+
+ZkBool ZkZoneMusic_getNightEntranceDone(ZkZoneMusic const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->s_night_entrance_done;
+}
+
+void ZkZoneMusic_setLocalEnabled(ZkZoneMusic* slf, ZkBool localEnabled) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_local_enabled = localEnabled;
+}
+
+void ZkZoneMusic_setDayEntranceDone(ZkZoneMusic* slf, ZkBool dayEntranceDone) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_day_entrance_done = dayEntranceDone;
+}
+
+void ZkZoneMusic_setNightEntranceDone(ZkZoneMusic* slf, ZkBool nightEntranceDone) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->s_night_entrance_done = nightEntranceDone;
+}
+
 ZKC_VOB_LOADER(ZkZoneFarPlane)
 ZKC_VOB_PATH_LOADER(ZkZoneFarPlane)
 ZKC_DELETER(ZkZoneFarPlane)

@@ -5,6 +5,7 @@
 #include "../ModelAnimation.h"
 #include "../Object.h"
 #include "../Stream.h"
+#include "VirtualObject.h"
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/Trigger.hh>
@@ -90,6 +91,16 @@ ZKC_API void ZkTrigger_setDamageThreshold(ZkTrigger* slf, float damageThreshold)
 ZKC_API float ZkTrigger_getFireDelaySeconds(ZkTrigger const* slf);
 ZKC_API void ZkTrigger_setFireDelaySeconds(ZkTrigger* slf, float fireDelaySeconds);
 
+ZKC_API ZkBool ZkTrigger_getNextTimeTriggerable(ZkTrigger const* slf);
+ZKC_API ZkVirtualObject* ZkTrigger_getOtherVob(ZkTrigger const* slf);
+ZKC_API int ZkTrigger_getCountCanBeActivated(ZkTrigger const* slf);
+ZKC_API ZkBool ZkTrigger_getIsEnabled(ZkTrigger const* slf);
+
+ZKC_API void ZkTrigger_setNextTimeTriggerable(ZkTrigger* slf, ZkBool nextTimeTriggerable);
+ZKC_API void ZkTrigger_setOtherVob(ZkTrigger* slf, ZkVirtualObject* otherVob);
+ZKC_API void ZkTrigger_setCountCanBeActivated(ZkTrigger* slf, int countCanBeActivated);
+ZKC_API void ZkTrigger_setIsEnabled(ZkTrigger* slf, ZkBool isEnabled);
+
 ZKC_API ZkMover* ZkMover_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkMover* ZkMover_loadPath(ZkString path, ZkGameVersion version);
 ZKC_API void ZkMover_del(ZkMover* slf);
@@ -112,6 +123,26 @@ ZKC_API ZkMoverLerpType ZkMover_getLerpType(ZkMover const* slf);
 ZKC_API void ZkMover_setLerpType(ZkMover* slf, ZkMoverLerpType lerpType);
 ZKC_API ZkMoverSpeedType ZkMover_getSpeedType(ZkMover const* slf);
 ZKC_API void ZkMover_setSpeedType(ZkMover* slf, ZkMoverSpeedType speedType);
+
+ZKC_API ZkVec3f ZkMover_getActKeyPosDelta(ZkMover const* slf);
+ZKC_API float ZkMover_getActKeyframeF(ZkMover const* slf);
+ZKC_API int ZkMover_getActKeyframe(ZkMover const* slf);
+ZKC_API int ZkMover_getNextKeyframe(ZkMover const* slf);
+ZKC_API float ZkMover_getMoveSpeedUnit(ZkMover const* slf);
+ZKC_API float ZkMover_getAdvanceDir(ZkMover const* slf);
+ZKC_API uint32_t ZkMover_getMoverState(ZkMover const* slf);
+ZKC_API int ZkMover_getTriggerEventCount(ZkMover const* slf);
+ZKC_API float ZkMover_getStayOpenTimeDest(ZkMover const* slf);
+
+ZKC_API void ZkMover_setActKeyPosDelta(ZkMover* slf, ZkVec3f actKeyPosDelta);
+ZKC_API void ZkMover_setActKeyframeF(ZkMover* slf, float actKeyframeF);
+ZKC_API void ZkMover_setActKeyframe(ZkMover* slf, int actKeyframe);
+ZKC_API void ZkMover_setNextKeyframe(ZkMover* slf, int nextKeyframe);
+ZKC_API void ZkMover_setMoveSpeedUnit(ZkMover* slf, float moveSpeedUnit);
+ZKC_API void ZkMover_setAdvanceDir(ZkMover* slf, float advanceDir);
+ZKC_API void ZkMover_setMoverState(ZkMover* slf, uint32_t moverState);
+ZKC_API void ZkMover_setTriggerEventCount(ZkMover* slf, int triggerEventCount);
+ZKC_API void ZkMover_setStayOpenTimeDest(ZkMover* slf, float stayOpenTimeDest);
 
 ZKC_API ZkSize ZkMover_getKeyframeCount(ZkMover const* slf);
 ZKC_API ZkAnimationSample ZkMover_getKeyframe(ZkMover const* slf, ZkSize i);
@@ -147,6 +178,12 @@ ZKC_API ZkTriggerListTarget* ZkTriggerList_addTarget(ZkTriggerList* slf);
 ZKC_API void ZkTriggerList_removeTarget(ZkTriggerList* slf, ZkSize i);
 ZKC_API void ZkTriggerList_removeTargets(ZkTriggerList* slf, ZkTriggerListTargetEnumerator pred, void* ctx);
 
+ZKC_API ZkByte ZkTriggerList_getActTarget(ZkTriggerList const* slf);
+ZKC_API ZkBool ZkTriggerList_getSendOnTrigger(ZkTriggerList const* slf);
+
+ZKC_API void ZkTriggerList_setActTarget(ZkTriggerList* slf, ZkByte actTarget);
+ZKC_API void ZkTriggerList_setSendOnTrigger(ZkTriggerList* slf, ZkBool sendOnTrigger);
+
 ZKC_API ZkString ZkTriggerListTarget_getName(ZkTriggerListTarget const* slf);
 ZKC_API void ZkTriggerListTarget_setName(ZkTriggerListTarget* slf, ZkString name);
 ZKC_API float ZkTriggerListTarget_getDelaySeconds(ZkTriggerListTarget const* slf);
@@ -173,6 +210,9 @@ ZKC_API ZkString ZkTriggerWorldStart_getTarget(ZkTriggerWorldStart const* slf);
 ZKC_API void ZkTriggerWorldStart_setTarget(ZkTriggerWorldStart* slf, ZkString target);
 ZKC_API ZkBool ZkTriggerWorldStart_getFireOnce(ZkTriggerWorldStart const* slf);
 ZKC_API void ZkTriggerWorldStart_setFireOnce(ZkTriggerWorldStart* slf, ZkBool fireOnce);
+
+ZKC_API ZkBool ZkTriggerWorldStart_getHasFired(ZkTriggerWorldStart const* slf);
+ZKC_API void ZkTriggerWorldStart_setHasFired(ZkTriggerWorldStart* slf, ZkBool hasFired);
 
 ZKC_API ZkTriggerUntouch* ZkTriggerUntouch_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkTriggerUntouch* ZkTriggerUntouch_loadPath(ZkString path, ZkGameVersion version);
