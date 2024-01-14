@@ -91,12 +91,12 @@ ZKC_API void ZkTrigger_setDamageThreshold(ZkTrigger* slf, float damageThreshold)
 ZKC_API float ZkTrigger_getFireDelaySeconds(ZkTrigger const* slf);
 ZKC_API void ZkTrigger_setFireDelaySeconds(ZkTrigger* slf, float fireDelaySeconds);
 
-ZKC_API ZkBool ZkTrigger_getNextTimeTriggerable(ZkTrigger const* slf);
+ZKC_API float ZkTrigger_getNextTimeTriggerable(ZkTrigger const* slf);
 ZKC_API ZkVirtualObject* ZkTrigger_getOtherVob(ZkTrigger const* slf);
 ZKC_API int ZkTrigger_getCountCanBeActivated(ZkTrigger const* slf);
 ZKC_API ZkBool ZkTrigger_getIsEnabled(ZkTrigger const* slf);
 
-ZKC_API void ZkTrigger_setNextTimeTriggerable(ZkTrigger* slf, ZkBool nextTimeTriggerable);
+ZKC_API void ZkTrigger_setNextTimeTriggerable(ZkTrigger* slf, float nextTimeTriggerable);
 ZKC_API void ZkTrigger_setOtherVob(ZkTrigger* slf, ZkVirtualObject* otherVob);
 ZKC_API void ZkTrigger_setCountCanBeActivated(ZkTrigger* slf, int countCanBeActivated);
 ZKC_API void ZkTrigger_setIsEnabled(ZkTrigger* slf, ZkBool isEnabled);

@@ -175,7 +175,7 @@ void ZkTrigger_setFireDelaySeconds(ZkTrigger* slf, float fireDelaySeconds) {
 	SLF->fire_delay_sec = fireDelaySeconds;
 }
 
-ZkBool ZkTrigger_getNextTimeTriggerable(ZkTrigger const* slf) {
+float ZkTrigger_getNextTimeTriggerable(ZkTrigger const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	return SLF->s_next_time_triggerable;
@@ -199,7 +199,7 @@ ZkBool ZkTrigger_getIsEnabled(ZkTrigger const* slf) {
 	return SLF->s_is_enabled;
 }
 
-void ZkTrigger_setNextTimeTriggerable(ZkTrigger* slf, ZkBool nextTimeTriggerable) {
+void ZkTrigger_setNextTimeTriggerable(ZkTrigger* slf, float nextTimeTriggerable) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	SLF->s_next_time_triggerable = nextTimeTriggerable;

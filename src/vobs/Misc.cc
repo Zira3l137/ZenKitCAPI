@@ -1110,7 +1110,7 @@ void ZkNpc_removeOverlay(ZkNpc* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(SLF->overlays, i);
-	SLF->overlays.erase(SLF->overlays.begin() + i);
+	SLF->overlays.erase(SLF->overlays.begin() + static_cast<long>(i));
 }
 
 void ZkNpc_setOverlay(ZkNpc* slf, ZkSize i, ZkString overlay) {
@@ -1149,7 +1149,7 @@ void ZkNpc_removeTalent(ZkNpc* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(SLF->talents, i);
-	SLF->talents.erase(SLF->talents.begin() + i);
+	SLF->talents.erase(SLF->talents.begin() + static_cast<long>(i));
 }
 
 void ZkNpc_setTalent(ZkNpc* slf, ZkSize i, ZkNpcTalent* talent) {
@@ -1188,7 +1188,7 @@ void ZkNpc_removeItem(ZkNpc* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(SLF->items, i);
-	SLF->items.erase(SLF->items.begin() + i);
+	SLF->items.erase(SLF->items.begin() + static_cast<long>(i));
 }
 
 void ZkNpc_setItem(ZkNpc* slf, ZkSize i, ZkItem* item) {
@@ -1227,7 +1227,7 @@ void ZkNpc_removeSlot(ZkNpc* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(SLF->slots, i);
-	SLF->slots.erase(SLF->slots.begin() + i);
+	SLF->slots.erase(SLF->slots.begin() + static_cast<long>(i));
 }
 
 ZkNpcSlot* ZkNpc_addSlot(ZkNpc* slf) {

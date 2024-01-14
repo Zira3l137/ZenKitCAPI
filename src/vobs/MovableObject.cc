@@ -319,7 +319,7 @@ void ZkContainer_removeItem(ZkContainer const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(SLF->s_items, i);
-	SLF->s_items.erase(SLF->s_items.begin() + i);
+	SLF->s_items.erase(SLF->s_items.begin() + static_cast<long>(i));
 }
 
 ZKC_VOB_LOADER(ZkDoor)
