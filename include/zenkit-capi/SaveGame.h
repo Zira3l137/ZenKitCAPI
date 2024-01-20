@@ -76,7 +76,7 @@ ZKC_API void ZkSaveState_setMinute(ZkSaveState* slf, int minute);
 ZKC_API ZkSize ZkSaveState_getMissionCount(ZkSaveState* slf);
 ZKC_API void ZkSaveState_getMission(ZkSaveState* slf, ZkSize i, ZkString* name, int* id, ZkBool* av, int* statusIndex);
 ZKC_API void ZkSaveState_setMission(ZkSaveState* slf, ZkSize i, ZkString name, int id, ZkBool av, int statusIndex);
-ZKC_API void ZkSaveState_addMission(ZkSaveState* slf, ZkString name, int id, bool av, int statusIndex);
+ZKC_API void ZkSaveState_addMission(ZkSaveState* slf, ZkString name, int id, ZkBool av, int statusIndex);
 ZKC_API void ZkSaveState_removeMission(ZkSaveState* slf, ZkSize i);
 ZKC_API void ZkSaveState_clearMissions(ZkSaveState* slf);
 

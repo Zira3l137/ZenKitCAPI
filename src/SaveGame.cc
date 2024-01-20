@@ -327,7 +327,7 @@ void ZkSaveState_getInfoState(ZkSaveState* slf, ZkSize i, char const** name, ZkB
 	*told = slf->infos[i].told;
 }
 
-void ZkSaveState_setInfoState(ZkSaveState* slf, ZkSize i, char const* name, bool told) {
+void ZkSaveState_setInfoState(ZkSaveState* slf, ZkSize i, char const* name, ZkBool told) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	ZKC_CHECK_LENV(slf->infos, i);
@@ -336,7 +336,7 @@ void ZkSaveState_setInfoState(ZkSaveState* slf, ZkSize i, char const* name, bool
 	slf->infos[i].told = told;
 }
 
-void ZkSaveState_addInfoState(ZkSaveState* slf, char const* name, bool told) {
+void ZkSaveState_addInfoState(ZkSaveState* slf, char const* name, ZkBool told) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 
