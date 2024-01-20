@@ -3,8 +3,8 @@
 #pragma once
 #include "Library.h"
 #include "Mesh.h"
-#include "Stream.h"
 #include "Object.h"
+#include "Stream.h"
 #include "Vfs.h"
 #include "vobs/VirtualObject.h"
 #include "world/BspTree.h"
