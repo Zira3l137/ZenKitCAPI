@@ -465,6 +465,35 @@ void ZkSaveState_clearLogTopics(ZkSaveState* slf) {
 	slf->log.clear();
 }
 
+ZkSize ZkSaveState_getLogTopicEntryCount(ZkSaveState* slf, ZkSize iTopic) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->log, iTopic);
+	return slf->log[iTopic].entries.size();
+}
+
+ZkString ZkSaveState_getLogTopicEntry(ZkSaveState* slf, ZkSize iTopic, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(slf->log, iTopic);
+	ZKC_CHECK_LEN(slf->log[iTopic].entries, i);
+	return slf->log[iTopic].entries[i].c_str();
+}
+
+void ZkSaveState_addLogTopicEntry(ZkSaveState* slf, ZkSize iTopic, ZkString description) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CHECK_LENV(slf->log, iTopic);
+	slf->log[iTopic].entries.emplace_back(description);
+}
+
+void ZkSaveState_clearLogTopicEntries(ZkSaveState* slf, ZkSize iTopic) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CHECK_LENV(slf->log, iTopic);
+	slf->log[iTopic].entries.clear();
+}
+
 ZkByte* ZkSaveState_getGuildAttitudes(ZkSaveState* slf, ZkSize* dimension) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);

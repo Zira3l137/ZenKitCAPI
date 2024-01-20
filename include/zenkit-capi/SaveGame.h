@@ -106,12 +106,15 @@ ZKC_API void ZkSaveState_setLogTopic(ZkSaveState* slf,
                                      ZkString description,
                                      ZkSaveTopicSection section,
                                      ZkSaveTopicStatus status);
-ZKC_API void ZkSaveState_addLogTopic(ZkSaveState* slf,
-                                     ZkString description,
-                                     ZkSaveTopicSection section,
-                                     ZkSaveTopicStatus status);
+ZKC_API void
+ZkSaveState_addLogTopic(ZkSaveState* slf, ZkString description, ZkSaveTopicSection section, ZkSaveTopicStatus status);
 ZKC_API void ZkSaveState_removeLogTopic(ZkSaveState* slf, ZkSize i);
 ZKC_API void ZkSaveState_clearLogTopics(ZkSaveState* slf);
+
+ZKC_API ZkSize ZkSaveState_getLogTopicEntryCount(ZkSaveState* slf, ZkSize iTopic);
+ZKC_API ZkString ZkSaveState_getLogTopicEntry(ZkSaveState* slf, ZkSize iTopic, ZkSize i);
+ZKC_API void ZkSaveState_addLogTopicEntry(ZkSaveState* slf, ZkSize iTopic, ZkString description);
+ZKC_API void ZkSaveState_clearLogTopicEntries(ZkSaveState* slf, ZkSize iTopic);
 
 ZKC_API ZkByte* ZkSaveState_getGuildAttitudes(ZkSaveState* slf, ZkSize* dimension);
 ZKC_API void ZkSaveState_setGuildAttitudes(ZkSaveState* slf, ZkByte* attitudes, ZkSize dimension);
