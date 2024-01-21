@@ -1237,6 +1237,39 @@ ZkNpcSlot* ZkNpc_addSlot(ZkNpc* slf) {
 	return SLF->slots.back().get();
 }
 
+ZkSize ZkNpc_getNewsCount(ZkNpc const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return SLF->news.size();
+}
+
+ZkNpcNews* ZkNpc_getNews(ZkNpc const* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_LEN(SLF->news, i);
+	return SLF->news[i].get();
+}
+
+void ZkNpc_clearNews(ZkNpc* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	SLF->news.clear();
+}
+
+void ZkNpc_removeNews(ZkNpc* slf, ZkSize i) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CHECK_LENV(SLF->news, i);
+	SLF->news.erase(SLF->news.begin() + static_cast<long>(i));
+}
+
+ZkNpcNews* ZkNpc_addNews(ZkNpc* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	SLF->news.push_back(std::make_unique<ZkNpcNews>());
+	return SLF->news.back().get();
+}
+
 int ZkNpc_getProtection(ZkNpc const* slf, ZkSize i) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
@@ -1418,4 +1451,112 @@ void ZkNpcSlot_setInInventory(ZkNpcSlot* slf, ZkBool inInventory) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	slf->in_inventory = inInventory;
+}
+
+ZkBool ZkNpcNews_getTold(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->told;
+}
+
+float ZkNpcNews_getSpreadTime(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->spread_time;
+}
+
+ZkNpcNewsSpread ZkNpcNews_getSpreadType(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return static_cast<ZkNpcNewsSpread>(slf->spread_type);
+}
+
+ZkNpcNewsId ZkNpcNews_getNewsId(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return static_cast<ZkNpcNewsId>(slf->news_id);
+}
+
+ZkBool ZkNpcNews_getGossip(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->gossip;
+}
+
+ZkBool ZkNpcNews_getGuildVictim(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->guild_victim;
+}
+
+ZkString ZkNpcNews_getWitnessName(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->witness_name.c_str();
+}
+
+ZkString ZkNpcNews_getOffenderName(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->offender_name.c_str();
+}
+
+ZkString ZkNpcNews_getVictimName(ZkNpcNews const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	return slf->victim_name.c_str();
+}
+
+void ZkNpcNews_setTold(ZkNpcNews* slf, ZkBool told) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->told = told;
+}
+
+void ZkNpcNews_setSpreadTime(ZkNpcNews* slf, float spreadTime) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->spread_time = spreadTime;
+}
+
+void ZkNpcNews_setSpreadType(ZkNpcNews* slf, ZkNpcNewsSpread spreadType) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->spread_type = static_cast<zenkit::VNpc::NewsSpread>(spreadType);
+}
+
+void ZkNpcNews_setNewsId(ZkNpcNews* slf, ZkNpcNewsId newsId) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->news_id = static_cast<zenkit::VNpc::NewsId>(newsId);
+}
+
+void ZkNpcNews_setGossip(ZkNpcNews* slf, ZkBool gossip) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->gossip = gossip;
+}
+
+void ZkNpcNews_setGuildVictim(ZkNpcNews* slf, ZkBool guildVictim) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->guild_victim = guildVictim;
+}
+
+void ZkNpcNews_setWitnessName(ZkNpcNews* slf, ZkString witnessName) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->witness_name = witnessName;
+}
+
+void ZkNpcNews_setOffenderName(ZkNpcNews* slf, ZkString offenderName) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->offender_name = offenderName;
+}
+
+void ZkNpcNews_setVictimName(ZkNpcNews* slf, ZkString victimName) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	slf->victim_name = victimName;
 }

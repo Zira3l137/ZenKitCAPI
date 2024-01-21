@@ -21,6 +21,7 @@ using ZkTouchDamage = ZkSharedHandle<zenkit::VTouchDamage>;
 using ZkEarthquake = ZkSharedHandle<zenkit::VEarthquake>;
 using ZkNpcTalent = ZkSharedHandle<zenkit::VNpc::Talent>;
 using ZkNpcSlot = zenkit::VNpc::Slot;
+using ZkNpcNews = zenkit::VNpc::News;
 #else
 typedef struct ZkInternal_Animate ZkAnimate;
 typedef struct ZkInternal_Item ZkItem;
@@ -33,6 +34,7 @@ typedef struct ZkInternal_TouchDamager ZkTouchDamage;
 typedef struct ZkInternal_Earthquake ZkEarthquake;
 typedef struct ZkInternal_NpcTalent ZkNpcTalent;
 typedef struct ZkInternal_NpcSlot ZkNpcSlot;
+typedef struct ZkInternal_NpcNews ZkNpcNews;
 #endif
 
 typedef enum {
@@ -56,6 +58,24 @@ typedef enum {
 	ZkTouchCollisionType_BOX = 1,
 	ZkTouchCollisionType_POINT = 2,
 } ZkTouchCollisionType;
+
+typedef enum {
+	ZkNpcNewsId_MURDER = 200,
+	ZkNpcNewsId_ATTACK = 195,
+	ZkNpcNewsId_THEFT = 190,
+	ZkNpcNewsId_DEFEAT = 185,
+	ZkNpcNewsId_NERVE = 180,
+	ZkNpcNewsId_INTERFERE = 175,
+	ZkNpcNewsId_HAS_DEFEATED = 170,
+} ZkNpcNewsId;
+
+typedef enum {
+	ZkNpcNewsSpread_DONT_SPREAD = 0,
+	ZkNpcNewsSpread_FRIENDLY_TOWARDS_VICTIM = 1,
+	ZkNpcNewsSpread_FRIENDLY_TOWARDS_WITNESS = 2,
+	ZkNpcNewsSpread_FRIENDLY_TOWARDS_OFFENDER = 3,
+	ZkNpcNewsSpread_SAME_GUILD_VICTIM = 4,
+} ZkNpcNewsSpread;
 
 ZKC_API ZkAnimate* ZkAnimate_load(ZkRead* buf, ZkGameVersion version);
 ZKC_API ZkAnimate* ZkAnimate_loadPath(ZkString path, ZkGameVersion version);
@@ -294,6 +314,12 @@ ZKC_API void ZkNpc_clearSlots(ZkNpc* slf);
 ZKC_API void ZkNpc_removeSlot(ZkNpc* slf, ZkSize i);
 ZKC_API ZkNpcSlot* ZkNpc_addSlot(ZkNpc* slf);
 
+ZKC_API ZkSize ZkNpc_getNewsCount(ZkNpc const* slf);
+ZKC_API ZkNpcNews* ZkNpc_getNews(ZkNpc const* slf, ZkSize i);
+ZKC_API void ZkNpc_clearNews(ZkNpc* slf);
+ZKC_API void ZkNpc_removeNews(ZkNpc* slf, ZkSize i);
+ZKC_API ZkNpcNews* ZkNpc_addNews(ZkNpc* slf);
+
 ZKC_API int ZkNpc_getProtection(ZkNpc const* slf, ZkSize i);
 ZKC_API void ZkNpc_setProtection(ZkNpc* slf, ZkSize i, int v);
 
@@ -329,3 +355,23 @@ ZKC_API void ZkNpcSlot_setUsed(ZkNpcSlot* slf, ZkBool used);
 ZKC_API void ZkNpcSlot_setName(ZkNpcSlot* slf, ZkString name);
 ZKC_API void ZkNpcSlot_setItem(ZkNpcSlot* slf, ZkItem* item);
 ZKC_API void ZkNpcSlot_setInInventory(ZkNpcSlot* slf, ZkBool inInventory);
+
+ZKC_API ZkBool ZkNpcNews_getTold(ZkNpcNews const* slf);
+ZKC_API float ZkNpcNews_getSpreadTime(ZkNpcNews const* slf);
+ZKC_API ZkNpcNewsSpread ZkNpcNews_getSpreadType(ZkNpcNews const* slf);
+ZKC_API ZkNpcNewsId ZkNpcNews_getNewsId(ZkNpcNews const* slf);
+ZKC_API ZkBool ZkNpcNews_getGossip(ZkNpcNews const* slf);
+ZKC_API ZkBool ZkNpcNews_getGuildVictim(ZkNpcNews const* slf);
+ZKC_API ZkString ZkNpcNews_getWitnessName(ZkNpcNews const* slf);
+ZKC_API ZkString ZkNpcNews_getOffenderName(ZkNpcNews const* slf);
+ZKC_API ZkString ZkNpcNews_getVictimName(ZkNpcNews const* slf);
+
+ZKC_API void ZkNpcNews_setTold(ZkNpcNews* slf, ZkBool told);
+ZKC_API void ZkNpcNews_setSpreadTime(ZkNpcNews* slf, float spreadTime);
+ZKC_API void ZkNpcNews_setSpreadType(ZkNpcNews* slf, ZkNpcNewsSpread spreadType);
+ZKC_API void ZkNpcNews_setNewsId(ZkNpcNews* slf, ZkNpcNewsId newsId);
+ZKC_API void ZkNpcNews_setGossip(ZkNpcNews* slf, ZkBool gossip);
+ZKC_API void ZkNpcNews_setGuildVictim(ZkNpcNews* slf, ZkBool guildVictim);
+ZKC_API void ZkNpcNews_setWitnessName(ZkNpcNews* slf, ZkString witnessName);
+ZKC_API void ZkNpcNews_setOffenderName(ZkNpcNews* slf, ZkString offenderName);
+ZKC_API void ZkNpcNews_setVictimName(ZkNpcNews* slf, ZkString victimName);
