@@ -15,14 +15,15 @@ typedef ZkInternal_SaveState ZkSaveState;
 #endif
 
 typedef enum {
-	ZkSaveTopicSection_QUESTS = 0x00,
-	ZkSaveTopicSection_INFOS = 0x01,
+	ZkSaveTopicSection_MISSIONS = 0x00,
+	ZkSaveTopicSection_NOTES = 0x01,
 } ZkSaveTopicSection;
 
 typedef enum {
-	ZkSaveTopicStatus_ACTIVE = 0x01,
-	ZkSaveTopicStatus_COMPLETED = 0x02,
-	ZkSaveTopicStatus_FAILED = 0x03,
+	ZkSaveTopicStatus_FREE = 0x00,
+	ZkSaveTopicStatus_RUNNING = 0x01,
+	ZkSaveTopicStatus_SUCCESS = 0x02,
+	ZkSaveTopicStatus_FAILURE = 0x03,
 	ZkSaveTopicStatus_OBSOLETE = 0x04,
 } ZkSaveTopicStatus;
 
