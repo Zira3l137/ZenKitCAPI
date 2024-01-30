@@ -11,7 +11,7 @@ struct ZkInternal_DaedalusVm {
 	zenkit::DaedalusVm handle;
 	std::unordered_map<uint32_t, std::function<void(ZkDaedalusVm*)>> externals;
 	std::function<void(ZkDaedalusVm*, ZkDaedalusSymbol*)> externalDefault;
-	std::string string_scope_workaround_cache;
+	std::string string_scope_workaround_cache {};
 };
 
 ZkDaedalusVm* ZkDaedalusVm_load(ZkRead* buf) {

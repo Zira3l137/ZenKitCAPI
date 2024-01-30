@@ -273,7 +273,7 @@ void ZkSaveState_getMission(ZkSaveState* slf, ZkSize i, char const** name, int* 
 
 	*name = slf->missions[i].name.c_str();
 	*id = slf->missions[i].id;
-	*av = slf->missions[i].av;
+	*av = slf->missions[i].available;
 	*statusIndex = slf->missions[i].status_index;
 }
 
@@ -284,7 +284,7 @@ void ZkSaveState_setMission(ZkSaveState* slf, ZkSize i, char const* name, int id
 
 	slf->missions[i].name = name;
 	slf->missions[i].id = id;
-	slf->missions[i].av = av;
+	slf->missions[i].available = av;
 	slf->missions[i].status_index = statusIndex;
 }
 
@@ -295,7 +295,7 @@ void ZkSaveState_addMission(ZkSaveState* slf, char const* name, int id, ZkBool a
 	auto& m = slf->missions.emplace_back();
 	m.name = name;
 	m.id = id;
-	m.av = av;
+	m.available = av;
 	m.status_index = statusIndex;
 }
 
