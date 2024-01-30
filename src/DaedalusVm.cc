@@ -11,6 +11,7 @@ struct ZkInternal_DaedalusVm {
 	zenkit::DaedalusVm handle;
 	std::unordered_map<uint32_t, std::function<void(ZkDaedalusVm*)>> externals;
 	std::function<void(ZkDaedalusVm*, ZkDaedalusSymbol*)> externalDefault;
+	std::string string_scope_workaround_cache;
 };
 
 ZkDaedalusVm* ZkDaedalusVm_load(ZkRead* buf) {
@@ -131,7 +132,15 @@ float ZkDaedalusVm_popFloat(ZkDaedalusVm* slf) {
 
 ZkString ZkDaedalusVm_popString(ZkDaedalusVm* slf) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->handle.pop_string().c_str());
+
+	try {
+		slf->string_scope_workaround_cache = slf->handle.pop_string();
+	} catch (std::exception const& exc) {
+		zenkit::Logger::log(zenkit::LogLevel::ERROR, "<Native>", "%s() failed: %s", __func__, exc.what());
+		return nullptr;
+	}
+
+	return slf->string_scope_workaround_cache.c_str();
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_popInstance(ZkDaedalusVm* slf) {
