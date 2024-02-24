@@ -128,3 +128,34 @@ void ZkTexture_enumerateRgbaMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumera
 		if (cb(ctx, i, rgba.data(), rgba.size())) break;
 	}
 }
+
+
+ZkTextureBuilder* ZkTextureBuilder_new(ZkSize width, ZkSize height) {
+	ZKC_TRACE_FN();
+
+	return new ZkTextureBuilder {static_cast<unsigned int>(width), static_cast<unsigned int>(height)};
+}
+
+void ZkTextureBuilder_del(ZkTextureBuilder* slf) {
+	delete[] slf;
+}
+
+bool ZkTextureBuilder_addMipmap(ZkTextureBuilder* slf, ZkByte* buf, ZkSize len, ZkTextureFormat fmt) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf, buf);
+
+	try {
+		std::vector<uint8_t> dta;
+		dta.assign(buf, buf + len);
+		slf->add_mipmap(std::move(dta), static_cast<zenkit::TextureFormat>(fmt));
+		return true;
+	} catch (zenkit::Error const& exc) {
+		ZKC_LOG_ERROR("ZkTextureBuilder_addMipmap() failed: %s", exc.what());
+		return false;
+	}
+}
+
+ZkTexture* ZkTextureBuilder_build(ZkTextureBuilder* slf, ZkTextureFormat fmt) {
+	auto tex = slf->build(static_cast<zenkit::TextureFormat>(fmt));
+	return ZKC_WRAP_NEW(tex);
+}
