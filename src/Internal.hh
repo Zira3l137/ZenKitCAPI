@@ -169,5 +169,5 @@ inline bool zk_any_nullptr(T*... args) {
 		}                                                                                                              \
 	} while (false)
 
-#define ZKC_TRACE_FN() // ZKC_LOG_TRACE("%s()", __func__)
+#define ZKC_TRACE_FN() ZKC_LOG_TRACE("%s()", __func__)
 #define SLF (*slf)
