@@ -14,6 +14,14 @@ void ZkVfs_del(ZkVfs* slf) {
 	delete slf;
 }
 
+void ZkVfs_save(ZkVfs const* slf, ZkString path, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, path);
+
+	auto wr = zenkit::Write::to(path);
+	slf->save(wr.get(), static_cast<zenkit::GameVersion>(version));
+}
+
 ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
