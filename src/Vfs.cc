@@ -4,6 +4,8 @@
 
 #include "Internal.hh"
 
+#include <cstring>
+
 ZkVfs* ZkVfs_new(void) {
 	ZKC_TRACE_FN();
 	return new ZkVfs {};
@@ -101,7 +103,10 @@ ZkVfsNode* ZkVfsNode_newFile(ZkString name, ZkByte const* buf, ZkSize size, time
 	ZKC_CHECK_NULL(name, buf);
 
 	try {
-		auto node = ZkVfsNode::file(name, zenkit::VfsFileDescriptor {(std::byte const*) (buf), size}, ts);
+		std::byte* mem = new std::byte[size];
+		memcpy(mem, buf, size);
+
+		auto node = ZkVfsNode::file(name, zenkit::VfsFileDescriptor {mem, size, true}, ts);
 		return ZKC_WRAP_NEW(node);
 	} catch (std::exception const& exc) {
 		ZKC_LOG_ERROR("ZkVfsNode_newFile() failed: %s", exc.what());
