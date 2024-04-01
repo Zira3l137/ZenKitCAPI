@@ -30,6 +30,9 @@ typedef struct {
 ZKC_API ZkWorld* ZkWorld_load(ZkRead* buf);
 ZKC_API ZkWorld* ZkWorld_loadPath(ZkString path);
 ZKC_API ZkWorld* ZkWorld_loadVfs(ZkVfs* vfs, ZkString name);
+ZKC_API ZkWorld* ZkWorld_loadVersioned(ZkRead* buf, ZkGameVersion version);
+ZKC_API ZkWorld* ZkWorld_loadPathVersioned(ZkString path, ZkGameVersion version);
+ZKC_API ZkWorld* ZkWorld_loadVfsVersioned(ZkVfs* vfs, ZkString name, ZkGameVersion version);
 ZKC_API void ZkWorld_del(ZkWorld* slf);
 
 ZKC_API ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf);

@@ -6,30 +6,22 @@
 
 ZkWorld* ZkWorld_load(ZkRead* buf) {
 	ZKC_TRACE_FN();
-	if (buf == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWorld"
-		                  "_load");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(buf);
+
 	try {
 		ZkWorld* slf = new ZkWorld(std::make_shared<zenkit::World>());
 		SLF->load(buf);
 		return slf;
 	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkWorld"
-		              "_load() failed: %s",
-		              exc.what());
+		ZKC_LOG_ERROR("ZkWorld_load() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkWorld* ZkWorld_loadPath(ZkString path) {
 	ZKC_TRACE_FN();
-	if (path == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWorld"
-		                  "_loadPath");
-		return nullptr;
-	}
+	ZKC_CHECK_NULL(path);
+
 	try {
 		auto buf = zenkit::Read::from(path);
 
@@ -38,23 +30,63 @@ ZkWorld* ZkWorld_loadPath(ZkString path) {
 
 		return slf;
 	} catch (std::exception const& exc) {
-		ZKC_LOG_ERROR("ZkWorld"
-		              "_loadPath() failed: %s",
-		              exc.what());
+		ZKC_LOG_ERROR("ZkWorld_loadPath() failed: %s", exc.what());
 		return nullptr;
 	}
 }
 
 ZkWorld* ZkWorld_loadVfs(ZkVfs* vfs, ZkString name) {
-	if (vfs == nullptr || name == nullptr) {
-		ZKC_LOG_WARN_NULL("ZkWorld"
-		                  "_loadVfs");
-		return nullptr;
-	}
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(vfs, name);
+
 	auto node = vfs->find(name);
 	if (node == nullptr) return nullptr;
 	auto rd = node->open_read();
 	return ZkWorld_load(rd.get());
+}
+
+ZkWorld* ZkWorld_loadVersioned(ZkRead* buf, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(buf);
+
+	try {
+		ZkWorld* slf = new ZkWorld(std::make_shared<zenkit::World>());
+		SLF->load(buf, static_cast<zenkit::GameVersion>(version));
+		return slf;
+	} catch (std::exception const& exc) {
+		ZKC_LOG_ERROR("ZkWorld_load() failed: %s",
+					  exc.what());
+		return nullptr;
+	}
+
+}
+
+ZkWorld* ZkWorld_loadPathVersioned(ZkString path, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(path);
+
+	try {
+		auto buf = zenkit::Read::from(path);
+
+		ZkWorld* slf = new ZkWorld(std::make_shared<zenkit::World>());
+		SLF->load(buf.get(), static_cast<zenkit::GameVersion>(version));
+
+		return slf;
+	} catch (std::exception const& exc) {
+		ZKC_LOG_ERROR("ZkWorld_loadPath() failed: %s",
+					  exc.what());
+		return nullptr;
+	}
+}
+
+ZkWorld* ZkWorld_loadVfsVersioned(ZkVfs* vfs, ZkString name, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(vfs, name);
+
+	auto node = vfs->find(name);
+	if (node == nullptr) return nullptr;
+	auto rd = node->open_read();
+	return ZkWorld_loadVersioned(rd.get(), version);
 }
 
 ZKC_DELETER(ZkWorld);
