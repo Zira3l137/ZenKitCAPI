@@ -102,4 +102,4 @@ target_link_libraries(zenkitcapi PRIVATE zenkit)
 set_target_properties(zenkitcapi PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN 1 DEBUG_POSTFIX "d" VERSION ${PROJECT_VERSION})
 
 install(TARGETS zenkitcapi ARCHIVE LIBRARY RUNTIME)
-install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/zenkitcapi" TYPE INCLUDE)
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/zenkit-capi" TYPE INCLUDE)
