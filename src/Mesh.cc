@@ -216,20 +216,20 @@ int32_t ZkPolygon_getLightMapIndex(ZkPolygon const* slf) {
 	return slf->lightmap;
 }
 
-uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkSize* count) {
+uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkMesh const* msh, ZkSize* count) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf, count);
 
-	*count = slf->vertices.size();
-	return slf->vertices.data();
+	*count = slf->index_count;
+	return &msh->polygon_vertex_indices[slf->index_offset];
 }
 
-uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkSize* count) {
+uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkMesh const* msh, ZkSize* count) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf, count);
 
-	*count = slf->features.size();
-	return slf->features.data();
+	*count = slf->index_count;
+	return &msh->polygon_feature_indices[slf->index_offset];
 }
 
 ZkBool ZkPolygon_getIsPortal(ZkPolygon const* slf) {

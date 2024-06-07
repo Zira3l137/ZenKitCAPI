@@ -70,8 +70,8 @@ ZKC_API ZkVec3f ZkLightMap_getNormal(ZkLightMap const* slf, ZkSize i);
 
 ZKC_API uint32_t ZkPolygon_getMaterialIndex(ZkPolygon const* slf);
 ZKC_API int32_t ZkPolygon_getLightMapIndex(ZkPolygon const* slf);
-ZKC_API uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkSize* count);
-ZKC_API uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkSize* count);
+ZKC_API uint32_t const* ZkPolygon_getPositionIndices(ZkPolygon const* slf, ZkMesh const* msh, ZkSize* count);
+ZKC_API uint32_t const* ZkPolygon_getFeatureIndices(ZkPolygon const* slf, ZkMesh const* msh, ZkSize* count);
 ZKC_API ZkBool ZkPolygon_getIsPortal(ZkPolygon const* slf);
 ZKC_API ZkBool ZkPolygon_getIsOccluder(ZkPolygon const* slf);
 ZKC_API ZkBool ZkPolygon_getIsSector(ZkPolygon const* slf);

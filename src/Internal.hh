@@ -4,6 +4,8 @@
 #include <zenkit/Archive.hh>
 #include "zenkit-capi/Archive.h"
 
+#include <algorithm>
+
 #define ZKC_LOADER(cls)                                                                                                \
 	cls* cls##_load(ZkRead* buf) {                                                                                     \
 		if (buf == nullptr) {                                                                                          \
