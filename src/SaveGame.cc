@@ -43,13 +43,17 @@ ZkBool ZkSaveGame_save(ZkSaveGame* slf, ZkString path, ZkWorld* world, ZkString 
 ZkWorld* ZkSaveGame_loadCurrentWorld(ZkSaveGame const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return new ZkWorld(slf->load_world());
+
+	auto world = slf->load_world();
+	return world == nullptr ? nullptr : new ZkWorld(world);
 }
 
 ZkWorld* ZkSaveGame_loadWorld(ZkSaveGame const* slf, ZkString name) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf, name);
-	return new ZkWorld(slf->load_world(name));
+
+	auto world = slf->load_world(name);
+	return world == nullptr ? nullptr : new ZkWorld(world);
 }
 
 ZkSaveMetadata* ZkSaveGame_getMetadata(ZkSaveGame* slf) {
