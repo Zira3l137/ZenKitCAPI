@@ -35,6 +35,8 @@ ZKC_API ZkWorld* ZkWorld_loadPathVersioned(ZkString path, ZkGameVersion version)
 ZKC_API ZkWorld* ZkWorld_loadVfsVersioned(ZkVfs* vfs, ZkString name, ZkGameVersion version);
 ZKC_API void ZkWorld_del(ZkWorld* slf);
 
+ZKC_API void ZkWorld_save(ZkWorld* slf, ZkWrite* write, ZkGameVersion version);
+
 ZKC_API ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf);
 ZKC_API ZkWayNet const* ZkWorld_getWayNet(ZkWorld const* slf);
 ZKC_API ZkBspTree const* ZkWorld_getBspTree(ZkWorld const* slf);

@@ -91,6 +91,14 @@ ZkWorld* ZkWorld_loadVfsVersioned(ZkVfs* vfs, ZkString name, ZkGameVersion versi
 
 ZKC_DELETER(ZkWorld);
 
+void ZkWorld_save(ZkWorld* slf, ZkWrite* write, ZkGameVersion version) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, write);
+
+	auto ar = zenkit::WriteArchive::to(write, zenkit::ArchiveFormat::BINSAFE);
+	ZKC_CATCH(SLF->save(*ar, static_cast<zenkit::GameVersion>(version)));
+}
+
 ZkMesh const* ZkWorld_getMesh(ZkWorld const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
