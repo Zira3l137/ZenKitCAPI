@@ -213,3 +213,38 @@ uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->symbol_index();
 }
+
+uint32_t ZkDaedalusSymbol_getFileIndex(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->file_index();
+}
+
+uint32_t ZkDaedalusSymbol_getOffsetAsMember(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->offset_as_member();
+}
+
+uint32_t ZkDaedalusSymbol_getLineStart(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->line_start();
+}
+
+uint32_t ZkDaedalusSymbol_getLineCount(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->line_count();
+}
+
+uint32_t ZkDaedalusSymbol_getCharStart(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->char_start();
+}
+
+uint32_t ZkDaedalusSymbol_getCharCount(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->char_count();
+}
+
+uint32_t ZkDaedalusSymbol_getClassSize(ZkDaedalusSymbol const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->class_size();
+}
