@@ -118,6 +118,11 @@ void ZkDaedalusVm_pushInstance(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 
+	if (value == nullptr) {
+		ZKC_CATCH(slf->handle.push_instance(nullptr));
+		return;
+	}
+
 	auto instance = slf->handle.find_symbol_by_index(value->symbol_index());
 	if (instance == nullptr) {
 		ZKC_LOG_ERROR("ZkDaedalusVm_pushInstance() failed: invalid instance");
