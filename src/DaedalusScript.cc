@@ -214,6 +214,16 @@ uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf) {
 	return slf->symbol_index();
 }
 
+void* ZkDaedalusInstance_getUserPointer(ZkDaedalusInstance const* slf) {
+	ZKC_CHECK_NULL(slf);
+	return slf->user_ptr;
+}
+
+void ZkDaedalusInstance_setUserPointer(ZkDaedalusInstance* slf, void* ptr) {
+	ZKC_CHECK_NULLV(slf);
+	slf->user_ptr = ptr;
+}
+
 uint32_t ZkDaedalusSymbol_getFileIndex(ZkDaedalusSymbol const* slf) {
 	ZKC_CHECK_NULL(slf);
 	return slf->file_index();

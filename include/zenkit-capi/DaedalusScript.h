@@ -158,6 +158,8 @@ ZKC_API ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const
 
 ZKC_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf);
 ZKC_API uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf);
+ZKC_API void* ZkDaedalusInstance_getUserPointer(ZkDaedalusInstance const* slf);
+ZKC_API void ZkDaedalusInstance_setUserPointer(ZkDaedalusInstance* slf, void* ptr);
 
 ZKC_API uint32_t ZkDaedalusSymbol_getFileIndex(ZkDaedalusSymbol const* slf);
 ZKC_API uint32_t ZkDaedalusSymbol_getOffsetAsMember(ZkDaedalusSymbol const* slf);
