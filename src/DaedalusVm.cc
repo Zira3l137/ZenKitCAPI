@@ -155,7 +155,9 @@ ZkString ZkDaedalusVm_popString(ZkDaedalusVm* slf) {
 ZkDaedalusInstance* ZkDaedalusVm_popInstance(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(ZKC_WRAP_NEW(slf->handle.pop_instance()));
+
+	auto* instance = new ZkDaedalusInstance(slf->handle.pop_instance());
+	ZKC_RETURN_CATCH(instance);
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalSelf(ZkDaedalusVm* slf) {
