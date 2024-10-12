@@ -156,8 +156,12 @@ ZkDaedalusInstance* ZkDaedalusVm_popInstance(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 
-	auto* instance = new ZkDaedalusInstance(slf->handle.pop_instance());
-	ZKC_RETURN_CATCH(instance);
+	auto instance = slf->handle.pop_instance();
+	if (instance == nullptr) {
+		return nullptr;
+	}
+
+	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalSelf(ZkDaedalusVm* slf) {
@@ -165,6 +169,9 @@ ZkDaedalusInstance* ZkDaedalusVm_getGlobalSelf(ZkDaedalusVm* slf) {
 	ZKC_CHECK_NULL(slf);
 
 	auto& instance = slf->handle.global_self()->get_instance();
+	if (instance == nullptr) {
+		return nullptr;
+	}
 	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
 }
 
@@ -172,6 +179,9 @@ ZkDaedalusInstance* ZkDaedalusVm_getGlobalOther(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	auto& instance = slf->handle.global_other()->get_instance();
+	if (instance == nullptr) {
+		return nullptr;
+	}
 	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
 }
 
@@ -179,6 +189,9 @@ ZkDaedalusInstance* ZkDaedalusVm_getGlobalVictim(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	auto& instance = slf->handle.global_victim()->get_instance();
+	if (instance == nullptr) {
+		return nullptr;
+	}
 	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
 }
 
@@ -186,6 +199,9 @@ ZkDaedalusInstance* ZkDaedalusVm_getGlobalHero(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	auto& instance = slf->handle.global_hero()->get_instance();
+	if (instance == nullptr) {
+		return nullptr;
+	}
 	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
 }
 
@@ -193,6 +209,10 @@ ZkDaedalusInstance* ZkDaedalusVm_getGlobalItem(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	auto& instance = slf->handle.global_item()->get_instance();
+	if (instance == nullptr) {
+		return nullptr;
+	}
+
 	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
 }
 
@@ -200,27 +220,27 @@ void ZkDaedalusVm_setGlobalSelf(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 
-	ZKC_CATCH(slf->handle.global_self()->set_instance(*value));
+	ZKC_CATCH(slf->handle.global_self()->set_instance(value ? *value : nullptr));
 }
 void ZkDaedalusVm_setGlobalOther(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->handle.global_other()->set_instance(*value));
+	ZKC_CATCH(slf->handle.global_other()->set_instance(value ? *value : nullptr));
 }
 void ZkDaedalusVm_setGlobalVictim(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->handle.global_victim()->set_instance(*value));
+	ZKC_CATCH(slf->handle.global_victim()->set_instance(value ? *value : nullptr));
 }
 void ZkDaedalusVm_setGlobalHero(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->handle.global_hero()->set_instance(*value));
+	ZKC_CATCH(slf->handle.global_hero()->set_instance(value ? *value : nullptr));
 }
 void ZkDaedalusVm_setGlobalItem(ZkDaedalusVm* slf, ZkDaedalusInstance* value) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->handle.global_item()->set_instance(*value));
+	ZKC_CATCH(slf->handle.global_item()->set_instance(value ? *value : nullptr));
 }
 
 void ZkDaedalusVm_callFunction(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym) {

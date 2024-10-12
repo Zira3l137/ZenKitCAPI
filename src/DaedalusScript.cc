@@ -88,32 +88,32 @@ ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByName(ZkDaedalusScript* slf, ZkStri
 
 ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->get_string(index, context->get()).c_str());
+	ZKC_RETURN_CATCH(slf->get_string(index, context ? context->get() : nullptr).c_str());
 }
 
 float ZkDaedalusSymbol_getFloat(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->get_float(index, context->get()));
+	ZKC_RETURN_CATCH(slf->get_float(index, context ? context->get() : nullptr));
 }
 
 int32_t ZkDaedalusSymbol_getInt(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->get_int(index, context->get()));
+	ZKC_RETURN_CATCH(slf->get_int(index, context ? context->get() : nullptr));
 }
 
 void ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf, value);
-	ZKC_CATCH(slf->set_string(value, index, context->get()));
+	ZKC_CATCH(slf->set_string(value, index, context ? context->get() : nullptr));
 }
 
 void ZkDaedalusSymbol_setFloat(ZkDaedalusSymbol* slf, float value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->set_float(value, index, context->get()));
+	ZKC_CATCH(slf->set_float(value, index, context ? context->get() : nullptr));
 }
 
 void ZkDaedalusSymbol_setInt(ZkDaedalusSymbol* slf, int32_t value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->set_int(value, index, context->get()));
+	ZKC_CATCH(slf->set_int(value, index, context ? context->get() : nullptr));
 }
 
 ZkBool ZkDaedalusSymbol_getIsConst(ZkDaedalusSymbol const* slf) {
