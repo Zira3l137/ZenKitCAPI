@@ -319,11 +319,11 @@ ZkDaedalusInstance* ZkDaedalusVm_allocInstance(ZkDaedalusVm* slf, ZkDaedalusSymb
 		*instance = slf->handle.allocate_instance<zenkit::ISoundSystem>(sym);
 		break;
 	default:
+		ZKC_LOG_ERROR("ZkDaedalusVm_allocInstance() failed: invalid instance type");
 		delete instance;
 		return nullptr;
 	}
 
-	ZKC_LOG_ERROR("ZkDaedalusVm_allocInstance() failed: invalid instance type");
 	return instance;
 }
 
@@ -397,11 +397,11 @@ ZkDaedalusInstance* ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbo
 		*instance = slf->handle.init_instance<zenkit::ISoundSystem>(sym);
 		break;
 	default:
+		ZKC_LOG_ERROR("ZkDaedalusVm_initInstance() failed: invalid instance type");
 		delete instance;
 		return nullptr;
 	}
 
-	ZKC_LOG_ERROR("ZkDaedalusVm_initInstance() failed: invalid instance type");
 	return instance;
 }
 
