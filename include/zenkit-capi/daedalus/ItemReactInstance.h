@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkItemReactInstance = zenkit::IItemReact;
+	#include <zenkit-capi/Object.h>
+using ZkItemReactInstance = ZkSharedHandle<zenkit::IItemReact>;
 #else
 typedef struct ZkInternal_ItemReactInstance ZkItemReactInstance;
 #endif

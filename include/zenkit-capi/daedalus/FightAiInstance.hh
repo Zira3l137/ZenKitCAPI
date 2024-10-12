@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkFightAiInstance = zenkit::IFightAi;
+	#include <zenkit-capi/Object.h>
+using ZkFightAiInstance = ZkSharedHandle<zenkit::IFightAi>;
 #else
 typedef struct ZkInternal_FightAiInstance ZkFightAiInstance;
 #endif

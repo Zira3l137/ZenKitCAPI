@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkInfoInstance = zenkit::IInfo;
+	#include <zenkit-capi/Object.h>
+using ZkInfoInstance = ZkSharedHandle<zenkit::IInfo>;
 #else
 typedef struct ZkInternal_InfoInstance ZkInfoInstance;
 #endif

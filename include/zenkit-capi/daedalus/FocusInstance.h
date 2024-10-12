@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkFocusInstance = zenkit::IFocus;
+	#include <zenkit-capi/Object.h>
+using ZkFocusInstance = ZkSharedHandle<zenkit::IFocus>;
 #else
 typedef struct ZkInternal_FocusInstance ZkFocusInstance;
 #endif

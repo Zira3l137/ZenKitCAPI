@@ -1,9 +1,11 @@
 #pragma once
 #include "../Library.h"
 
+
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkParticleEffectInstance = zenkit::IParticleEffect;
+	#include <zenkit-capi/Object.h>
+using ZkParticleEffectInstance = ZkSharedHandle<zenkit::IParticleEffect>;
 #else
 typedef struct ZkInternal_ParticleEffectInstance ZkParticleEffectInstance;
 #endif

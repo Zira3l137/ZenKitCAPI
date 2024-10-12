@@ -3,70 +3,70 @@
 
 int32_t ZkItemReactInstance_getNpc(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->npc;
+	return SLF->npc;
 }
 
 void ZkItemReactInstance_setNpc(ZkItemReactInstance* slf, int32_t npc) {
 	ZKC_CHECK_NULLV(slf);
-	slf->npc = npc;
+	SLF->npc = npc;
 }
 
 int32_t ZkItemReactInstance_getTradeItem(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->trade_item;
+	return SLF->trade_item;
 }
 
 void ZkItemReactInstance_setTradeItem(ZkItemReactInstance* slf, int32_t tradeItem) {
 	ZKC_CHECK_NULLV(slf);
-	slf->trade_item = tradeItem;
+	SLF->trade_item = tradeItem;
 }
 
 int32_t ZkItemReactInstance_getTradeAmount(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->trade_amount;
+	return SLF->trade_amount;
 }
 
 void ZkItemReactInstance_setTradeAmount(ZkItemReactInstance* slf, int32_t tradeAmount) {
 	ZKC_CHECK_NULLV(slf);
-	slf->trade_amount = tradeAmount;
+	SLF->trade_amount = tradeAmount;
 }
 
 int32_t ZkItemReactInstance_getRequestedCategory(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->requested_cat;
+	return SLF->requested_cat;
 }
 
 void ZkItemReactInstance_setRequestedCategory(ZkItemReactInstance* slf, int32_t requestedCategory) {
 	ZKC_CHECK_NULLV(slf);
-	slf->requested_cat = requestedCategory;
+	SLF->requested_cat = requestedCategory;
 }
 
 int32_t ZkItemReactInstance_getRequestedItem(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->requested_item;
+	return SLF->requested_item;
 }
 
 void ZkItemReactInstance_setRequestedItem(ZkItemReactInstance* slf, int32_t requestedItem) {
 	ZKC_CHECK_NULLV(slf);
-	slf->requested_item = requestedItem;
+	SLF->requested_item = requestedItem;
 }
 
 int32_t ZkItemReactInstance_getRequestedAmount(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->requested_amount;
+	return SLF->requested_amount;
 }
 
 void ZkItemReactInstance_setRequestedAmount(ZkItemReactInstance* slf, int32_t requestedAmount) {
 	ZKC_CHECK_NULLV(slf);
-	slf->requested_amount = requestedAmount;
+	SLF->requested_amount = requestedAmount;
 }
 
 int32_t ZkItemReactInstance_getReaction(ZkItemReactInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->reaction;
+	return SLF->reaction;
 }
 
 void ZkItemReactInstance_setReaction(ZkItemReactInstance* slf, int32_t reaction) {
 	ZKC_CHECK_NULLV(slf);
-	slf->reaction = reaction;
+	SLF->reaction = reaction;
 }

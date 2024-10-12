@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkSpellInstance = zenkit::ISpell;
+	#include <zenkit-capi/Object.h>
+using ZkSpellInstance = ZkSharedHandle<zenkit::ISpell>;
 #else
 typedef struct ZkInternal_SpellInstance ZkSpellInstance;
 #endif

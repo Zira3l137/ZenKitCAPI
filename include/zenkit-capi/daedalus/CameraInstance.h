@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkCameraInstance = zenkit::ICamera;
+	#include <zenkit-capi/Object.h>
+using ZkCameraInstance = ZkSharedHandle<zenkit::ICamera>;
 #else
 typedef struct ZkInternal_CameraInstance ZkCameraInstance;
 #endif

@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkEffectBaseInstance = zenkit::IEffectBase;
+	#include <zenkit-capi/Object.h>
+using ZkEffectBaseInstance = ZkSharedHandle<zenkit::IEffectBase>;
 #else
 typedef struct ZkInternal_EffectBaseInstance ZkEffectBaseInstance;
 

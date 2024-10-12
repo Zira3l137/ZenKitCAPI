@@ -5,7 +5,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkNpcInstance = zenkit::INpc;
+	#include <zenkit-capi/Object.h>
+using ZkNpcInstance = ZkSharedHandle<zenkit::INpc>;
 #else
 typedef struct ZkInternal_NpcInstance ZkNpcInstance;
 #endif

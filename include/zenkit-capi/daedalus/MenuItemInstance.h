@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkMenuItemInstance = zenkit::IMenuItem;
+	#include <zenkit-capi/Object.h>
+using ZkMenuItemInstance = ZkSharedHandle<zenkit::IMenuItem>;
 #else
 typedef struct ZkInternal_MenuItemInstance ZkMenuItemInstance;
 #endif

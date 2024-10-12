@@ -5,7 +5,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkGuildValuesInstance = zenkit::IGuildValues;
+	#include <zenkit-capi/Object.h>
+using ZkGuildValuesInstance = ZkSharedHandle<zenkit::IGuildValues>;
 #else
 typedef struct ZkInternal_GuildValuesInstance ZkGuildValuesInstance;
 #endif

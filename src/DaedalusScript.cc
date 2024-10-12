@@ -88,32 +88,32 @@ ZkDaedalusSymbol* ZkDaedalusScript_getSymbolByName(ZkDaedalusScript* slf, ZkStri
 
 ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->get_string(index, context).c_str());
+	ZKC_RETURN_CATCH(slf->get_string(index, context->get()).c_str());
 }
 
 float ZkDaedalusSymbol_getFloat(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->get_float(index, context));
+	ZKC_RETURN_CATCH(slf->get_float(index, context->get()));
 }
 
 int32_t ZkDaedalusSymbol_getInt(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context) {
 	ZKC_CHECK_NULL(slf);
-	ZKC_RETURN_CATCH(slf->get_int(index, context));
+	ZKC_RETURN_CATCH(slf->get_int(index, context->get()));
 }
 
 void ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf, value);
-	ZKC_CATCH(slf->set_string(value, index, context));
+	ZKC_CATCH(slf->set_string(value, index, context->get()));
 }
 
 void ZkDaedalusSymbol_setFloat(ZkDaedalusSymbol* slf, float value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->set_float(value, index, context));
+	ZKC_CATCH(slf->set_float(value, index, context->get()));
 }
 
 void ZkDaedalusSymbol_setInt(ZkDaedalusSymbol* slf, int32_t value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf);
-	ZKC_CATCH(slf->set_int(value, index, context));
+	ZKC_CATCH(slf->set_int(value, index, context->get()));
 }
 
 ZkBool ZkDaedalusSymbol_getIsConst(ZkDaedalusSymbol const* slf) {
@@ -182,7 +182,7 @@ ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const* slf) {
 }
 
 ZKC_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf) {
-	auto type = slf->instance_type();
+	auto type = SLF->instance_type();
 
 	if (type == &typeid(zenkit::IGuildValues)) return ZkDaedalusInstanceType_GuildValues;
 	if (type == &typeid(zenkit::INpc)) return ZkDaedalusInstanceType_Npc;
@@ -209,19 +209,23 @@ ZKC_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance con
 	return ZkDaedalusInstanceType_Invalid;
 }
 
+void ZkDaedalusInstance_release(ZkDaedalusInstance const* slf) {
+	delete slf;
+}
+
 uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->symbol_index();
+	return SLF->symbol_index();
 }
 
 void* ZkDaedalusInstance_getUserPointer(ZkDaedalusInstance const* slf) {
 	ZKC_CHECK_NULL(slf);
-	return slf->user_ptr;
+	return SLF->user_ptr;
 }
 
 void ZkDaedalusInstance_setUserPointer(ZkDaedalusInstance* slf, void* ptr) {
 	ZKC_CHECK_NULLV(slf);
-	slf->user_ptr = ptr;
+	SLF->user_ptr = ptr;
 }
 
 uint32_t ZkDaedalusSymbol_getFileIndex(ZkDaedalusSymbol const* slf) {

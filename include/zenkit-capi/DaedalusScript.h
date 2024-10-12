@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include "Library.h"
+#include "Object.h"
 #include "Stream.h"
 #include "Vfs.h"
 
@@ -11,7 +12,7 @@
 	#include <zenkit/DaedalusScript.hh>
 using ZkDaedalusScript = zenkit::DaedalusScript;
 using ZkDaedalusSymbol = zenkit::DaedalusSymbol;
-using ZkDaedalusInstance = zenkit::DaedalusInstance;
+using ZkDaedalusInstance = ZkSharedHandle<zenkit::DaedalusInstance>;
 #else
 typedef struct ZkInternal_DaedalusScript ZkDaedalusScript;
 typedef struct ZkInternal_DaedalusSymbol ZkDaedalusSymbol;
@@ -156,6 +157,7 @@ ZKC_API ZkDaedalusDataType ZkDaedalusSymbol_getType(ZkDaedalusSymbol const* slf)
 ZKC_API uint32_t ZkDaedalusSymbol_getIndex(ZkDaedalusSymbol const* slf);
 ZKC_API ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const* slf);
 
+ZKC_API void ZkDaedalusInstance_release(ZkDaedalusInstance const* slf);
 ZKC_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf);
 ZKC_API uint32_t ZkDaedalusInstance_getIndex(ZkDaedalusInstance const* slf);
 ZKC_API void* ZkDaedalusInstance_getUserPointer(ZkDaedalusInstance const* slf);

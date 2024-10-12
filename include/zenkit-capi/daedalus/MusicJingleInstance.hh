@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkMusicJingleInstance = zenkit::IMusicJingle;
+	#include <zenkit-capi/Object.h>
+using ZkMusicJingleInstance = ZkSharedHandle<zenkit::IMusicJingle>;
 #else
 typedef struct ZkInternal_MusicJingleInstance ZkMusicJingleInstance;
 #endif

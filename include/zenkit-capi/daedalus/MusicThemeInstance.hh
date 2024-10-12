@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkMusicThemeInstance = zenkit::IMusicTheme;
+	#include <zenkit-capi/Object.h>
+using ZkMusicThemeInstance = ZkSharedHandle<zenkit::IMusicTheme>;
 #else
 typedef struct ZkInternal_MusicThemeInstance ZkMusicThemeInstance;
 #endif

@@ -6,7 +6,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkItemInstance = zenkit::IItem;
+	#include <zenkit-capi/Object.h>
+using ZkItemInstance = ZkSharedHandle<zenkit::IItem>;
 #else
 typedef struct ZkInternal_ItemInstance ZkItemInstance;
 #endif

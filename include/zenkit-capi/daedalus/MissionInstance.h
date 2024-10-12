@@ -5,7 +5,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkMissionInstance = zenkit::IMission;
+	#include <zenkit-capi/Object.h>
+using ZkMissionInstance = ZkSharedHandle<zenkit::IMission>;
 #else
 typedef struct ZkInternal_MissionInstance ZkMissionInstance;
 #endif

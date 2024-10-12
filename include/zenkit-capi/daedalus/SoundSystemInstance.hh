@@ -1,9 +1,11 @@
 #pragma once
 #include "../Library.h"
 
+
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkSoundSystemInstance = zenkit::ISoundSystem;
+	#include <zenkit-capi/Object.h>
+using ZkSoundSystemInstance = ZkSharedHandle<zenkit::ISoundSystem>;
 #else
 typedef struct ZkInternal_SoundSystemInstance ZkSoundSystemInstance;
 #endif

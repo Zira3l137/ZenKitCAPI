@@ -3,7 +3,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/addon/daedalus.hh>
-using ZkParticleEffectEmitKeyInstance = zenkit::IParticleEffectEmitKey;
+	#include <zenkit-capi/Object.h>
+using ZkParticleEffectEmitKeyInstance = ZkSharedHandle<zenkit::IParticleEffectEmitKey>;
 #else
 typedef struct ZkInternal_ParticleEffectEmitKeyInstance ZkParticleEffectEmitKeyInstance;
 #endif
