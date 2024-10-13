@@ -417,7 +417,10 @@ void ZkDaedalusVm_initInstanceDirect(ZkDaedalusVm* slf, ZkDaedalusInstance* sym)
 	slf->handle.unsafe_set_gi(*sym);
 	if (global_self != nullptr) global_self->set_instance(*sym);
 
-	slf->handle.unsafe_call(slf->handle.find_symbol_by_instance(*sym));
+	auto* s = slf->handle.find_symbol_by_instance(*sym);
+	s->set_instance(*sym);
+
+	slf->handle.unsafe_call(s);
 
 	if (global_self != nullptr) global_self->set_instance(old_slf);
 	slf->handle.unsafe_set_gi(old_gi);
