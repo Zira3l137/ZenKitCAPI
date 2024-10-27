@@ -132,15 +132,14 @@ void ZkTexture_enumerateRgbaMipmaps(ZkTexture const* slf, ZkTextureMipmapEnumera
 
 ZkTextureBuilder* ZkTextureBuilder_new(ZkSize width, ZkSize height) {
 	ZKC_TRACE_FN();
-
 	return new ZkTextureBuilder {static_cast<unsigned int>(width), static_cast<unsigned int>(height)};
 }
 
 void ZkTextureBuilder_del(ZkTextureBuilder* slf) {
-	delete[] slf;
+	delete slf;
 }
 
-bool ZkTextureBuilder_addMipmap(ZkTextureBuilder* slf, ZkByte* buf, ZkSize len, ZkTextureFormat fmt) {
+ZkBool ZkTextureBuilder_addMipmap(ZkTextureBuilder* slf, ZkByte* buf, ZkSize len, ZkTextureFormat fmt) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf, buf);
 

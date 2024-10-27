@@ -11,6 +11,7 @@ using ZkTexture = zenkit::Texture;
 using ZkTextureBuilder = zenkit::TextureBuilder;
 #else
 typedef struct ZkInternal_Texture ZkTexture;
+typedef struct ZkInternal_TextureBuilder ZkTextureBuilder;
 #endif
 
 typedef enum {
@@ -61,5 +62,5 @@ ZKC_API void ZkTexture_enumerateRgbaMipmaps(ZkTexture const* slf, ZkTextureMipma
 ZKC_API ZkTextureBuilder* ZkTextureBuilder_new(ZkSize width, ZkSize height);
 ZKC_API void ZkTextureBuilder_del(ZkTextureBuilder* slf);
 
-ZKC_API bool ZkTextureBuilder_addMipmap(ZkTextureBuilder* slf, ZkByte* buf, ZkSize len, ZkTextureFormat fmt);
+ZKC_API ZkBool ZkTextureBuilder_addMipmap(ZkTextureBuilder* slf, ZkByte* buf, ZkSize len, ZkTextureFormat fmt);
 ZKC_API ZkTexture* ZkTextureBuilder_build(ZkTextureBuilder* slf, ZkTextureFormat fmt);
