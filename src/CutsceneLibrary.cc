@@ -12,9 +12,8 @@ ZkCutsceneLibrary* ZkCutsceneLibrary_load(ZkRead* buf) {
 
 	try {
 		auto ar = zenkit::ReadArchive::from(buf);
-		auto obj = new ZkCutsceneLibrary(new zenkit::CutsceneLibrary());
-		(*obj)->load(*ar, zenkit::GameVersion::GOTHIC_1);
-		return obj;
+		auto obj = ar->read_object<zenkit::CutsceneLibrary>(zenkit::GameVersion::GOTHIC_1);
+		return ZKC_WRAP_NEW(obj);
 	} catch (std::exception const& exc) {
 		ZKC_LOG_ERROR("ZkCutsceneLibrary_load() failed: %s", exc.what());
 		return nullptr;
@@ -59,6 +58,7 @@ void ZkCutsceneLibrary_save(ZkCutsceneLibrary* slf, ZkWrite* buf, ZkArchiveForma
 	try {
 		auto ar = zenkit::WriteArchive::to(buf, static_cast<zenkit::ArchiveFormat>(fmt));
 		SLF->save(*ar, zenkit::GameVersion::GOTHIC_1);
+		ar->write_header();
 	} catch (std::exception const& exc) {
 		ZKC_LOG_ERROR("ZkCutsceneLibrary_save() failed: %s", exc.what());
 	}
