@@ -896,3 +896,27 @@ void ZkEventManager_setActive(ZkEventManager* slf, ZkBool active) {
 	ZKC_CHECK_NULLV(slf);
 	SLF->active = active;
 }
+
+ZkCutsceneContextFwd* ZkEventManager_getCutscene(ZkEventManager const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_NULL(slf->get());
+
+	auto handle = SLF->cutscene.lock();
+	if (handle == nullptr) return nullptr;
+
+	return ZKC_WRAP_NEW(handle);
+}
+
+void ZkEventManager_setCutscene(ZkEventManager* slf, ZkCutsceneContextFwd* cutscene) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf);
+	ZKC_CHECK_NULLV(slf->get());
+
+	if (cutscene == nullptr) {
+		SLF->cutscene.reset();
+		return;
+	}
+
+	SLF->cutscene = *cutscene;
+}

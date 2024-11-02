@@ -299,7 +299,16 @@ int32_t ZkCutscenePlayer_getLastProcessHour(ZkCutscenePlayer const* slf) {
 int32_t ZkCutscenePlayer_getPlayListCount(ZkCutscenePlayer const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
-	return SLF->play_list_count;
+	ZKC_CHECK_NULL(slf->get());
+	return SLF->playlists.size();
+}
+
+ZkCutsceneContext* ZkCutscenePlayer_getPlayListItem(ZkCutscenePlayer const* slf, uint32_t index) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+	ZKC_CHECK_NULL(slf->get());
+	ZKC_CHECK_LEN(SLF->playlists, index);
+	return new ZkCutsceneContext {SLF->playlists[index].lock()};
 }
 
 void ZkCutscenePlayer_setLastProcessDay(ZkCutscenePlayer* slf, int32_t val) {
@@ -312,12 +321,6 @@ void ZkCutscenePlayer_setLastProcessHour(ZkCutscenePlayer* slf, int32_t val) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf);
 	SLF->last_process_hour = val;
-}
-
-void ZkCutscenePlayer_setPlayListCount(ZkCutscenePlayer* slf, int32_t val) {
-	ZKC_TRACE_FN();
-	ZKC_CHECK_NULLV(slf);
-	SLF->play_list_count = val;
 }
 
 ZkSkyController* ZkSkyContoller_new(void) {

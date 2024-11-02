@@ -10,6 +10,8 @@
 
 #ifdef __cplusplus
 	#include <zenkit/vobs/VirtualObject.hh>
+	#include <zenkit/CutsceneLibrary.hh>
+
 using ZkVirtualObject = ZkSharedHandle<zenkit::VirtualObject>;
 using ZkVisual = ZkSharedHandle<zenkit::Visual>;
 using ZkVisualDecal = ZkSharedHandle<zenkit::VisualDecal>;
@@ -20,6 +22,7 @@ using ZkAiMove = ZkSharedHandle<zenkit::AiMove>;
 using ZkEventManager = ZkSharedHandle<zenkit::EventManager>;
 
 using ZkNpc = ZkSharedHandle<zenkit::VNpc>;
+using ZkCutsceneContextFwd = ZkSharedHandle<zenkit::CutsceneContext>;
 #else
 typedef struct ZkInternal_VirtualObject ZkVirtualObject;
 typedef struct ZkInternal_Visual ZkVisual;
@@ -29,6 +32,7 @@ typedef struct ZkInternal_AiHuman ZkAiHuman;
 typedef struct ZkInternal_AiMove ZkAiMove;
 typedef struct ZkInternal_EventManager ZkEventManager;
 typedef struct ZkInternal_Npc ZkNpc;
+typedef struct ZkInternal_CutsceneContext ZkCutsceneContextFwd;
 #endif
 
 typedef ZkBool (*ZkVirtualObjectEnumerator)(void* ctx, ZkVirtualObject const* vob);
@@ -244,3 +248,5 @@ ZKC_API ZkBool ZkEventManager_getCleared(ZkEventManager const* slf);
 ZKC_API void ZkEventManager_setCleared(ZkEventManager* slf, ZkBool cleared);
 ZKC_API ZkBool ZkEventManager_getActive(ZkEventManager const* slf);
 ZKC_API void ZkEventManager_setActive(ZkEventManager* slf, ZkBool active);
+ZKC_API ZkCutsceneContextFwd* ZkEventManager_getCutscene(ZkEventManager const* slf);
+ZKC_API void ZkEventManager_setCutscene(ZkEventManager* slf, ZkCutsceneContextFwd* cutscene);

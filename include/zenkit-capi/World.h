@@ -1,6 +1,7 @@
 // Copyright © 2023. GothicKit Contributors
 // SPDX-License-Identifier: MIT
 #pragma once
+#include "CutsceneLibrary.h"
 #include "Library.h"
 #include "Mesh.h"
 #include "Object.h"
@@ -75,9 +76,9 @@ ZKC_API void ZkCutscenePlayer_del(ZkCutscenePlayer* slf);
 ZKC_API int32_t ZkCutscenePlayer_getLastProcessDay(ZkCutscenePlayer const* slf);
 ZKC_API int32_t ZkCutscenePlayer_getLastProcessHour(ZkCutscenePlayer const* slf);
 ZKC_API int32_t ZkCutscenePlayer_getPlayListCount(ZkCutscenePlayer const* slf);
+ZKC_API ZkCutsceneContext* ZkCutscenePlayer_getPlayListItem(ZkCutscenePlayer const* slf, uint32_t index);
 ZKC_API void ZkCutscenePlayer_setLastProcessDay(ZkCutscenePlayer* slf, int32_t val);
 ZKC_API void ZkCutscenePlayer_setLastProcessHour(ZkCutscenePlayer* slf, int32_t val);
-ZKC_API void ZkCutscenePlayer_setPlayListCount(ZkCutscenePlayer* slf, int32_t val);
 
 ZKC_API ZkSkyController* ZkSkyContoller_new(void);
 ZKC_API void ZkSkyContoller_del(ZkSkyController* slf);
