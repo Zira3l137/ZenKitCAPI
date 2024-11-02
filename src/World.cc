@@ -300,7 +300,7 @@ int32_t ZkCutscenePlayer_getPlayListCount(ZkCutscenePlayer const* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 	ZKC_CHECK_NULL(slf->get());
-	return SLF->playlists.size();
+	return static_cast<int32_t>(SLF->playlists.size());
 }
 
 ZkCutsceneContext* ZkCutscenePlayer_getPlayListItem(ZkCutscenePlayer const* slf, uint32_t index) {
