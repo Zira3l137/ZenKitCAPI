@@ -26,7 +26,7 @@ typedef ZkBool (*ZkVfsNodeEnumerator)(void* ctx, ZkVfsNode const* node);
 
 ZKC_API ZkVfs* ZkVfs_new(void);
 ZKC_API void ZkVfs_del(ZkVfs* slf);
-ZKC_API void ZkVfs_save(ZkVfs const* slf, ZkString path, ZkGameVersion version);
+ZKC_API void ZkVfs_save(ZkVfs const* slf, ZkString path, ZkGameVersion version, time_t unix_t);
 
 ZKC_API ZkVfsNode const* ZkVfs_getRoot(ZkVfs const* slf);
 
