@@ -156,12 +156,16 @@ ZkDaedalusInstance* ZkDaedalusVm_popInstance(ZkDaedalusVm* slf) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULL(slf);
 
-	auto instance = slf->handle.pop_instance();
-	if (instance == nullptr) {
-		return nullptr;
-	}
-
-	ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
+	try {
+        auto instance = slf->handle.pop_instance();
+        if (instance == nullptr) {
+            return nullptr;
+        }
+        ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
+    } catch (zenkit::DaedalusScriptError const& e) {
+    	ZKC_LOG_ERROR("Failed to pop instance: %s", e.what());
+	    return nullptr;
+    }
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalSelf(ZkDaedalusVm* slf) {
