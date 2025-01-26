@@ -3,6 +3,7 @@
 #include "zenkit-capi/DaedalusScript.h"
 #include "Internal.hh"
 
+#include <exception>
 #include <zenkit/addon/daedalus.hh>
 
 ZKC_LOADER(ZkDaedalusScript)
@@ -106,8 +107,9 @@ ZkDaedalusInstance* ZkDaedalusSymbol_getInstance(ZkDaedalusSymbol* slf) {
 
 	try {
 		auto& instance = slf->get_instance();
+		if (instance == nullptr) return nullptr;
 		return new ZkDaedalusInstance(instance);
-	} catch (std::runtime_error& e) {
+	} catch (std::exception& e) {
 		return nullptr;
 	}
 }
@@ -193,6 +195,9 @@ ZkDaedalusDataType ZkDaedalusSymbol_getReturnType(ZkDaedalusSymbol const* slf) {
 }
 
 ZKC_API ZkDaedalusInstanceType ZkDaedalusInstance_getType(ZkDaedalusInstance const* slf) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULL(slf);
+
 	auto type = SLF->instance_type();
 
 	if (type == &typeid(zenkit::IGuildValues)) return ZkDaedalusInstanceType_GuildValues;
