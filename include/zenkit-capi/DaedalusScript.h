@@ -137,6 +137,7 @@ ZKC_API ZkString ZkDaedalusSymbol_getString(ZkDaedalusSymbol const* slf,
                                             ZkDaedalusInstance const* context);
 ZKC_API float ZkDaedalusSymbol_getFloat(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context);
 ZKC_API int32_t ZkDaedalusSymbol_getInt(ZkDaedalusSymbol const* slf, uint16_t index, ZkDaedalusInstance const* context);
+ZKC_API ZkDaedalusInstance* ZkDaedalusSymbol_getInstance(ZkDaedalusSymbol* slf);
 ZKC_API void
 ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context);
 ZKC_API void ZkDaedalusSymbol_setFloat(ZkDaedalusSymbol* slf, float value, uint16_t index, ZkDaedalusInstance* context);

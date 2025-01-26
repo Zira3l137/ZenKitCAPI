@@ -101,6 +101,17 @@ int32_t ZkDaedalusSymbol_getInt(ZkDaedalusSymbol const* slf, uint16_t index, ZkD
 	ZKC_RETURN_CATCH(slf->get_int(index, context ? context->get() : nullptr));
 }
 
+ZkDaedalusInstance* ZkDaedalusSymbol_getInstance(ZkDaedalusSymbol* slf) {
+	ZKC_CHECK_NULL(slf, slf);
+
+	try {
+		auto& instance = slf->get_instance();
+		return new ZkDaedalusInstance(instance);
+	} catch (std::runtime_error& e) {
+		return nullptr;
+	}
+}
+
 void ZkDaedalusSymbol_setString(ZkDaedalusSymbol* slf, ZkString value, uint16_t index, ZkDaedalusInstance* context) {
 	ZKC_CHECK_NULLV(slf, value);
 	ZKC_CATCH(slf->set_string(value, index, context ? context->get() : nullptr));
