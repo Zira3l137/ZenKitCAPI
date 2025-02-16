@@ -157,15 +157,15 @@ ZkDaedalusInstance* ZkDaedalusVm_popInstance(ZkDaedalusVm* slf) {
 	ZKC_CHECK_NULL(slf);
 
 	try {
-        auto instance = slf->handle.pop_instance();
-        if (instance == nullptr) {
-            return nullptr;
-        }
-        ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
-    } catch (zenkit::DaedalusScriptError const& e) {
-    	ZKC_LOG_ERROR("Failed to pop instance: %s", e.what());
-	    return nullptr;
-    }
+		auto instance = slf->handle.pop_instance();
+		if (instance == nullptr) {
+			return nullptr;
+		}
+		ZKC_RETURN_CATCH(new ZkDaedalusInstance(instance));
+	} catch (zenkit::DaedalusScriptError const& e) {
+		ZKC_LOG_ERROR("Failed to pop instance: %s", e.what());
+		return nullptr;
+	}
 }
 
 ZkDaedalusInstance* ZkDaedalusVm_getGlobalSelf(ZkDaedalusVm* slf) {
@@ -437,6 +437,15 @@ void ZkDaedalusVm_registerExternal(ZkDaedalusVm* slf,
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, sym, cb);
 	slf->externals.insert_or_assign(sym->index(), [cb, ctx](ZkDaedalusVm* vm) { cb(ctx, vm); });
+}
+
+void ZkDaedalusVm_overrideFunction(ZkDaedalusVm* slf, char const* name, ZkDaedalusVmExternalCallback cb, void* ctx) {
+	ZKC_TRACE_FN();
+	ZKC_CHECK_NULLV(slf, name, cb);
+	slf->handle.override_function(name, [slf, ctx, cb](zenkit::DaedalusVm&) -> zenkit::DaedalusNakedCall {
+		cb(ctx, slf);
+		return {};
+	});
 }
 
 void ZkDaedalusVm_registerExternalDefault(ZkDaedalusVm* slf, ZkDaedalusVmExternalDefaultCallback cb, void* ctx) {

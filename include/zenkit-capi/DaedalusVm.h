@@ -45,5 +45,7 @@ ZkDaedalusVm_initInstance(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusIn
 ZKC_API void ZkDaedalusVm_initInstanceDirect(ZkDaedalusVm* slf, ZkDaedalusInstance* sym);
 ZKC_API void
 ZkDaedalusVm_registerExternal(ZkDaedalusVm* slf, ZkDaedalusSymbol* sym, ZkDaedalusVmExternalCallback cb, void* ctx);
+ZKC_API void
+ZkDaedalusVm_overrideFunction(ZkDaedalusVm* slf, char const* name, ZkDaedalusVmExternalCallback cb, void* ctx);
 ZKC_API void ZkDaedalusVm_registerExternalDefault(ZkDaedalusVm* slf, ZkDaedalusVmExternalDefaultCallback cb, void* ctx);
 ZKC_API void ZkDaedalusVm_printStackTrace(ZkDaedalusVm* slf);
