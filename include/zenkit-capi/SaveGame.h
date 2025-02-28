@@ -9,9 +9,9 @@ using ZkSaveGame = zenkit::SaveGame;
 using ZkSaveMetadata = zenkit::SaveMetadata;
 using ZkSaveState = zenkit::SaveState;
 #else
-typedef ZkInternal_SaveGame ZkSaveGame;
-typedef ZkInternal_SaveMetadata ZkSaveMetadata;
-typedef ZkInternal_SaveState ZkSaveState;
+typedef struct ZkInternal_SaveGame ZkSaveGame;
+typedef struct ZkInternal_SaveMetadata ZkSaveMetadata;
+typedef struct ZkInternal_SaveState ZkSaveState;
 #endif
 
 typedef enum {
