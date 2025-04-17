@@ -79,7 +79,7 @@ jobs:
             cmake:p
             ninja:p
       - name: 'Configure'
-        run: 'cmake -B build -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release -DZK_BUILD_EXAMPLES=OFF -DZK_BUILD_TESTS=OFF'
+        run: 'cmake -B build -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release -DZK_BUILD_EXAMPLES=OFF -DZK_BUILD_TESTS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5'
       - name: 'Build'
         run: 'cmake --build build --config Release -j 2'
       - name: 'Rename Artifact'
