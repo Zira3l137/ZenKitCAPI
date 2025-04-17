@@ -442,10 +442,15 @@ void ZkDaedalusVm_registerExternal(ZkDaedalusVm* slf,
 void ZkDaedalusVm_overrideFunction(ZkDaedalusVm* slf, char const* name, ZkDaedalusVmExternalCallback cb, void* ctx) {
 	ZKC_TRACE_FN();
 	ZKC_CHECK_NULLV(slf, name, cb);
-	slf->handle.override_function(name, [slf, ctx, cb](zenkit::DaedalusVm&) -> zenkit::DaedalusNakedCall {
-		cb(ctx, slf);
-		return {};
-	});
+
+	try {
+		slf->handle.override_function(name, [slf, ctx, cb](zenkit::DaedalusVm&) -> zenkit::DaedalusNakedCall {
+			cb(ctx, slf);
+			return {};
+		});
+	} catch (std::exception const& exc) {
+		ZKC_LOG_ERROR("ZkDaedalusVm_overrideFunction() failed: %s", exc.what());
+	}
 }
 
 void ZkDaedalusVm_registerExternalDefault(ZkDaedalusVm* slf, ZkDaedalusVmExternalDefaultCallback cb, void* ctx) {
