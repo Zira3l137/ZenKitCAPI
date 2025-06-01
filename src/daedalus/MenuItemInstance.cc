@@ -224,7 +224,7 @@ void ZkMenuItemInstance_setHideOnValue(ZkMenuItemInstance* slf, int32_t hideOnVa
 ZkString ZkMenuItemInstance_getText(ZkMenuItemInstance const* slf, ZkSize i) {
 	ZKC_CHECK_NULL(slf);ZKC_CHECK_NULL(slf->get());
 	ZKC_CHECK_LENA(ZkMenuItemInstance_TextCount, i);
-	return SLF->text->c_str();
+	return SLF->text[i].c_str();
 }
 
 void ZkMenuItemInstance_setText(ZkMenuItemInstance* slf, ZkSize i, ZkString text) {
